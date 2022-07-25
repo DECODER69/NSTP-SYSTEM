@@ -1,0 +1,13 @@
+h1 {
+    color: #c51c39;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #c51c39 !important;
+}
+
+.head {
+    width: 100%;
+    height: auto;
+}

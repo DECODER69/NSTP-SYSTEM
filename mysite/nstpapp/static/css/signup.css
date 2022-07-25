@@ -1,0 +1,70 @@
+    .page {
+        background-color: #f2f0e8;
+        height: 100vh;
+        width: 100%;
+    }
+    
+    #tit {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    .left {
+        width: 50%;
+        height: 100vh;
+        float: left;
+    }
+    
+    .right {
+        width: 50%;
+        height: 100vh;
+        float: right;
+        align-content: center;
+    }
+    
+    .logo {
+        margin-top: 150px;
+        align-items: center;
+    }
+    
+    .logo img {
+        width: 200px;
+        margin: auto;
+        display: flex;
+    }
+    
+    .text {
+        margin: auto;
+        align-items: center;
+    }
+    
+    .text h1 {
+        text-align: center;
+        color: rgb(0, 0, 0);
+    }
+    
+    .cont {
+        padding: 10px;
+        width: 60%;
+        height: 70vh;
+        background-color: #ffffff;
+        margin: auto;
+        margin-top: 100px;
+        border-radius: 10px;
+    }
+    
+    .form-control {
+        height: 20px !important;
+        border: no;
+        border-top-style: hidden !important;
+        border-right-style: hidden !important;
+        border-left-style: hidden !important;
+    }
+    
+    .form-control:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+    }
