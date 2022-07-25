@@ -14,7 +14,7 @@
     <div class="page">
         <div class="left">
             <div class="logo">
-                <img src="../../static/images/logo.png">
+                <img src="../../static/images/tup.png">
             </div>
             <div class="text">
                 <h1 id="tit">Sign up to NSTP</h1>
@@ -23,32 +23,44 @@
         </div>
 
         <div class="right">
-            <form class="cont">
-                <div class="form-group">
-                    <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" placeholder="" required>
+            <div class="cont">
+                <form class="container" action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="Juan" required name="firstname">
 
-                </div>
-                <div class="form-group">
-                    <label for="middle">MiddleName</label>
-                    <input type="text" class="form-control" id="middle" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="middle">MiddleName</label>
+                        <input type="text" class="form-control" id="middle" placeholder="Reyes" name="middle">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Dela Cruz" required name="lastname">
+                    </div>
 
-                </div>
+                    <div class="form-group">
+                        <label for="lastname">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Juan.DelaCruz@gsfe.tupcavite.edu.ph" required name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">ID Number</label>
+                        <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label><br>
+                        <div id="pass">
+                            <input type="password" class="form-control" id="password1" placeholder="Password" required name="password1">
+                            <input type="password" class="form-control" id="password2" placeholder="Confirm Password" required name="password2">
+                        </div>
+                    </div><br>
+                    <button type="submit" class="btn btn-success">Sign Up</button><br>&nbsp;<br>
+                    <p id="already">Already have an Account? <a href="#"> Login</a></p>
+                </form>
 
-                <div class="form-group">
-                    <label for="lastname">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="" required>
 
-                </div>
-
-            </form>
-
-
-
+            </div>
         </div>
 
     </div>

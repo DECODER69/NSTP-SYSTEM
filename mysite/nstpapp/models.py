@@ -14,14 +14,15 @@ class extenduser(models.Model):
     password = models.CharField(max_length=20)
     
     address = models.CharField(max_length=100, default='')
-    cpnumber = models.DecimalField(max_digits=11, decimal_places=0, default='')
+    cpnumber = models.CharField(max_length=100, default='')
     gender = models.CharField(max_length=6, default='')
-    age = models.DecimalField(max_digits=3, decimal_places=0)
+    age = models.CharField(max_length=3, default='', null=True)
     birthday = models.CharField(max_length=15, default='')
     section = models.CharField(max_length=20, default='')
     field = models.CharField(max_length=20, default='')
     picture = models.ImageField(upload_to='images/', null=False)
     status = models.CharField(max_length=10, default='PENDING')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     
     
