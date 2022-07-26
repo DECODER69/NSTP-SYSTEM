@@ -1,0 +1,74 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+    {% include 'activities/navbar.html' %}
+    <section class="home-section">
+        <h1 class="text">Dashboard</h1><br>
+
+        <div class="card-holder">
+            {% for n in name %}
+            <div class="card">
+                <h5 class="card-header">Student Name </h5>
+                <div class="card-body">
+                    <img src="../../static/images/profile.jpg" id="profile">
+                    <h5 class="card-title" id="names">{{n.firstname}} {{n.lastname}}</h5>
+
+
+                </div>
+            </div>
+
+            <div class="card">
+                <h5 class="card-header" id="status">APPROVED</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+
+                </div>
+            </div>
+            <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment </h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+
+
+    </section>
+
+
+    <script>
+        const ranges = [{
+                text: PENDING,
+                icon: "<i class='bx bxs-x-circle'></i>"
+            }, {
+                text: ENROLLED,
+                icon: "<i class='bx bxs-check-circle'></i>"
+            }
+
+        ]
+
+        var el = document.getElementById("status");
+        if (el.text == 'APPROVED') {
+
+
+        }
+    </script>
+
+</body>
+
+</html>
