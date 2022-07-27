@@ -33,37 +33,108 @@
 
 /* own css */
 
-.card-holder {
+.bg {
     background-image: url(../images/tupc.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    display: flex;
     height: 100vh;
+}
+
+.card-holder {
+    display: flex;
+    justify-content: space-between;
 }
 
 .card {
     color: white;
-    background: rgb(111, 111, 111) !important;
+    background: #535353 !important;
+    /* background-image: linear-gradient(to right, #646464, #c2c2c2); */
     margin: 18px !important;
-    height: 250px;
-    width: 30%;
-}
-
-.card-body {
+    top: 18px;
     display: flex;
-    width: 100%;
+    border-radius: 10px !important;
 }
 
 #profile {
     width: 130px;
     height: 130px;
     border-radius: 50%;
-    float: left;
+    margin: 18px;
+}
+
+#profile1 {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 18px;
 }
 
 .card-title {
-    float: right !important;
-    margin-top: 50px;
-    margin-left: 50px;
+    font-size: 25px !important;
+    text-align: center;
+    margin-top: 30px;
 }
+
+.card-text {
+    text-align: center;
+}
+
+#play {
+    display: none;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 18px;
+}
+
+
+/* .col-md-4 {
+    background-color: #c51c39;
+    height: 100% !important;
+} */
+
+#pause {
+    display: none;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 18px;
+}
+
+#status {
+    background: transparent;
+    border: none;
+    pointer-events: none;
+    font-size: 25px !important;
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+}
+
+
+/* MEDIA QUERRRIEES */
+
+@media only screen and (max-width: 600px) {
+    .card-holder {
+        display: grid;
+    }
+    #profile {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        margin: auto;
+        display: flex;
+        margin-top: 10px;
+    }
+    .card-title {
+        font-size: 15px !important;
+        text-align: center;
+    }
+    .card-text {
+        text-align: center;
+        font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 600px) {}

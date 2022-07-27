@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+
     <title>Dashboard</title>
 </head>
 
@@ -15,35 +18,62 @@
     <section class="home-section">
         <h1 class="text">Dashboard</h1><br>
 
-        <div class="card-holder">
-            {% for n in name %}
-            <div class="card">
-                <h5 class="card-header">Student Name </h5>
-                <div class="card-body">
-                    <img src="../../static/images/profile.jpg" id="profile">
-                    <h5 class="card-title" id="names">{{n.firstname}} {{n.lastname}}</h5>
+        <div class="bg">
+            <div class="card-holder">
+                {% for n in name %}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="../../static/images/profile.jpg" alt="..." id="profile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{n.firstname}} {{n.lastname}}</h5>
+                                <p class="card-text">Student Name</p>
 
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="../../static/images/approved.jpg" alt="..." id="play">
+                            <img src="../../static/images/pending.jpg" alt="..." id="pause">
+                            <!-- <i class="fa fa-pause-circle" aria-hidden="true" id="pause"></i> -->
+                            <!-- <i class="fa fa-play-circle" aria-hidden="true" id="play"></i> -->
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <input type="text" class="card-title" id="status" value="APPROVED" readonly>
+                                <p class="card-text">Enrollment Status</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="../../static/images/profile.jpg" alt="..." id="profile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{n.firstname}} {{n.lastname}}</h5>
+                                <p class="card-text">Field</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
 
-            <div class="card">
-                <h5 class="card-header" id="status">APPROVED</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
 
-                </div>
-            </div>
-            <div class="card">
-                <h5 class="card-header">Featured</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment </h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                </div>
-            </div>
-            {% endfor %}
         </div>
+
 
 
 
@@ -52,20 +82,12 @@
 
 
     <script>
-        const ranges = [{
-                text: PENDING,
-                icon: "<i class='bx bxs-x-circle'></i>"
-            }, {
-                text: ENROLLED,
-                icon: "<i class='bx bxs-check-circle'></i>"
-            }
+        var txt = document.getElementById('status').value;
 
-        ]
-
-        var el = document.getElementById("status");
-        if (el.text == 'APPROVED') {
-
-
+        if (txt == 'APPROVED') {
+            document.getElementById('play').style.display = "initial"
+        } else {
+            document.getElementById('pause').style.display = "initial"
         }
     </script>
 
