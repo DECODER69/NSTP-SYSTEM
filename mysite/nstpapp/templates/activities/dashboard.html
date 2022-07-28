@@ -21,7 +21,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Complete Registration !</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Complete Profile !</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Proceed</button>
+                    <a href="/profile_page"><button type="button" class="btn btn-primary">Proceed</button></a>
                 </div>
             </div>
         </div>
@@ -40,9 +40,9 @@
     <!-- end of modal -->
 
     <section class="home-section">
-
-        <h1 class="text"><i class='bx bxs-dashboard'></i>Dashboard</h1><br>
-
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-dashboard'></i>Dashboard</h1><br>
+        </div>
         <div class="bg">
             <div class="card-holder">
                 {% for n in name %}
@@ -114,6 +114,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                 </div>
                 <br>
