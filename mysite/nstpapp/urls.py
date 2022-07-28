@@ -21,5 +21,6 @@ urlpatterns = [
     path('login_page/',views.login_page, name='login_page'),
     path('signin/', views.signin, name='signin'),
     path('dashboard_page/', views.dashboard_page, name='dashboard_page'),
+    path('profile_page/', views.profile_page, name='profile_page'),
     path('navbar/', views.navbar, name='navbar'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

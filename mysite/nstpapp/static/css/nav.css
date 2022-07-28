@@ -292,6 +292,9 @@
     .sidebar li .tooltip {
         display: none;
     }
+    .sidebar.open {
+        width: 360px;
+    }
 }
 
 @media (max-width: 420px) {

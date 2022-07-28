@@ -23,6 +23,15 @@ def dashboard_page(request):
         'name': name,
     }
     return render(request, 'activities/dashboard.html', context)
+def profile_page(request):
+    return render(request, 'activities/profile.html')
+
+
+
+
+
+
+
 def navbar(request):
     return render(request, 'activities/navbar.html')
 

@@ -12,7 +12,6 @@ class extenduser(models.Model):
     email = models.EmailField(max_length=254, null=True, unique=True)
     idnumber = models.CharField(max_length=30, default='')
     password = models.CharField(max_length=20)
-    
     address = models.CharField(max_length=100, default='')
     cpnumber = models.CharField(max_length=100, default='')
     gender = models.CharField(max_length=6, default='')
