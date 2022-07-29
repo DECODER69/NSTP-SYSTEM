@@ -1,24 +1,27 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-    <title>profile</title>
+    <title>edit profile</title>
+    <link rel="stylesheet" href="../../static/css/editprofile.css">
 </head>
 
 <body>
     {% include 'activities/navbar.html' %}
 
-
     <section class="home-section">
-        <a href="#">
-            <h1 class="text"><i class='bx bx-user'></i>User Profile</h1><br></a>
+        <div class="lines">
+            <a href="/profile_page">
+                <h1 class="text"><i class='bx bx-user'></i>User Profile</h1>
+            </a>
+            <a href="/editprofile">
+                <i class='bx bxs-chevron-right' id="spacer"></i>
+                <h1 class="text"><i class='bx bx-edit' id="edit"></i>Edit Profile</h1><br></a>
+        </div>
 
-
-        <!-- whole body -->
         <div class="bg">
             <div class="profile">
                 <div class="first">
@@ -32,30 +35,39 @@
 
                             <div class="blocks">
                                 <h1 class="ti">Personal Information</h1>
-                                <a href="/editprofile" style="text-decoration: none;"><i class='bx bx-edit' id="edit"></i> Edit Profile</a>
+                                <!-- <a href="/editprofile" style="text-decoration: none;"><i class='bx bx-edit' id="edit"></i> Edit Profile</a> -->
                             </div>
 
                             <hr>
                             <div class="block">
                                 <label>Gender: </label>
-                                <p class="tag">Male</p>
+                                <select name="gender" id="status" class="tag">
+                                    <option selected="selected" disabled></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
                             </div>
 
                             <div class="block">
                                 <label>Course/Section: </label>
-                                <p class="tag">BET-COET-4A</p>
+                                <input class="tag" type="text" placeholder="BET-COET-S4A">
                             </div>
                             <div class="block">
                                 <label>Email: </label>
-                                <p class="tag">christian.rapal@gsfe.tupcavite.edu.ph</p>
+                                <input type="email" class="tag">
                             </div>
                             <div class="block">
                                 <label>Age: </label>
-                                <p class="tag">22</p>
+                                <input type="number" class="tag">
                             </div>
                             <div class="block">
                                 <label>Civil Status: </label>
-                                <p class="tag">Single</p>
+                                <select name="civil" class="tag">
+                                    <option selected="selected" disabled></option>
+                                    <option value="single">Single</option>
+                                    <option value="married">Married</option>
+                                    <option value="divorced">Divorced</option>
+                                </select>
                             </div>
                             <div class="block">
                                 <label>Phone Number: </label>
@@ -133,16 +145,19 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
         </div>
+
+
+        <!-- whole body -->
+
+
+
+
+
+
+
+
+
 
     </section>
 

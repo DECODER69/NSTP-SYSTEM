@@ -30,6 +30,14 @@
     margin: 18px
 }
 
+#spacer {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 18px
+}
+
 .bg {
     background-attachment: fixed;
     background-image: url(../images/tupc.jpg);
@@ -40,6 +48,10 @@
 
 
 /* OWN CSS */
+
+.lines {
+    display: flex;
+}
 
 .blocks {
     width: 100%;
@@ -118,6 +130,7 @@
 
 .block {
     display: flex;
+    padding: 5px;
 }
 
 .block label {
@@ -127,10 +140,21 @@
 }
 
 .tag {
+    background-color: #ffffff71;
     text-align: left;
     width: 100%;
     font-size: 15px;
     color: rgb(2, 68, 222);
+    border-radius: 5px;
+    border: no;
+    border-top-style: hidden !important;
+    border-right-style: hidden !important;
+    border-left-style: hidden !important;
+}
+
+.tag:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 

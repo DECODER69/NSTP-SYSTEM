@@ -25,6 +25,8 @@ def dashboard_page(request):
     return render(request, 'activities/dashboard.html', context)
 def profile_page(request):
     return render(request, 'activities/profile.html')
+def editprofile(request):
+    return render(request, 'activities/editprofile.html')
 
 
 
