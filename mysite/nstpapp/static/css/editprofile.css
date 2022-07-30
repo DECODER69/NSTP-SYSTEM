@@ -152,7 +152,48 @@
     border-left-style: hidden !important;
 }
 
+.tag1 {
+    background-color: #ffffff71;
+    text-align: left;
+    width: 40%;
+    font-size: 15px;
+    color: rgb(2, 68, 222);
+    border-radius: 5px;
+    border: no;
+    border-top-style: hidden !important;
+    border-right-style: hidden !important;
+    border-left-style: hidden !important;
+}
+
+.tag2 {
+    background-color: #ffffff71;
+    text-align: left;
+    width: 40%;
+    font-size: 15px;
+    color: rgb(2, 68, 222);
+    border-radius: 5px;
+    border: no;
+    border-top-style: hidden !important;
+    border-right-style: hidden !important;
+    border-left-style: hidden !important;
+}
+
+.day {
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+}
+
+#read {
+    pointer-events: none;
+}
+
 .tag:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.tag1:focus {
     outline: none !important;
     box-shadow: none !important;
 }

@@ -24,9 +24,17 @@ def dashboard_page(request):
     }
     return render(request, 'activities/dashboard.html', context)
 def profile_page(request):
-    return render(request, 'activities/profile.html')
+    details = extenduser.objects.filter(user=request.user)
+    context={
+        'details':details,
+    }
+    return render(request, 'activities/profile.html', context)
 def editprofile(request):
-    return render(request, 'activities/editprofile.html')
+    editwow = extenduser.objects.filter(user=request.user)
+    context = {
+        'ediwow':editwow,
+    }
+    return render(request, 'activities/editprofile.html', context)
 
 
 

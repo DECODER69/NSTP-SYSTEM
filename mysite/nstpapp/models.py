@@ -21,6 +21,24 @@ class extenduser(models.Model):
     field = models.CharField(max_length=20, default='')
     picture = models.ImageField(upload_to='images/', null=False)
     status = models.CharField(max_length=10, default='PENDING')
+    
+    # additionals
+
+    civil = models.CharField(max_length=20, default='')
+    nfather = models.CharField(max_length=20, default='')
+    foccupation = models.CharField(max_length=20, default='')
+    nmother = models.CharField(max_length=20, default='')
+    moccupation = models.CharField(max_length=20, default='')
+    pcontact = models.CharField(max_length=20, default='')
+    
+    nguardian = models.CharField(max_length=20, default='')
+    goccupation = models.CharField(max_length=20, default='')
+    gcontact = models.CharField(max_length=20, default='')
+    
+    idpic = models.ImageField(upload_to='images/', null=True)
+    
+    
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     

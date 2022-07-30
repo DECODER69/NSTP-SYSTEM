@@ -27,6 +27,7 @@
                 <div class="first">
                     <div class="left"><br>&nbsp;<br>&nbsp;<br>
                         <img src="../../static/images/profile.jpg" id="picture"><br>
+
                         <h1 class="name" id="name">Christian Rapal</h1>
                         <p class="name">TUPC-18-0168</p>
                     </div>
@@ -38,7 +39,7 @@
                                 <!-- <a href="/editprofile" style="text-decoration: none;"><i class='bx bx-edit' id="edit"></i> Edit Profile</a> -->
                             </div>
 
-                            <hr>
+                            <hr> {% for e in ediwow %}
                             <div class="block">
                                 <label>Gender: </label>
                                 <select name="gender" id="status" class="tag">
@@ -50,11 +51,11 @@
 
                             <div class="block">
                                 <label>Course/Section: </label>
-                                <input class="tag" type="text" placeholder="BET-COET-S4A">
+                                <input class="tag" type="text" placeholder="BET-COET-S4A" value="{{e.section}}">
                             </div>
                             <div class="block">
                                 <label>Email: </label>
-                                <input type="email" class="tag">
+                                <input type="email" class="tag" value="{{e.email}}">
                             </div>
                             <div class="block">
                                 <label>Age: </label>
@@ -71,15 +72,20 @@
                             </div>
                             <div class="block">
                                 <label>Phone Number: </label>
-                                <p class="tag">09959966668</p>
+                                <input class="tag" type="number" placeholder="Mobile Number">
                             </div>
                             <div class="block">
                                 <label>Address: </label>
-                                <p class="tag">Blk 3 lot 9 victoria reyes dasmarinas cavite</p>
+                                <input class="tag" type="text" placeholder="Complete Address">
+
                             </div>
                             <div class="block">
                                 <label>Birthday: </label>
-                                <p class="tag">January 4, 2000</p>
+                                <div class="day">
+                                    <input type="text" class="tag1" id="read" readonly>
+                                    <input class="tag1" type="date">
+                                </div>
+
                             </div>&nbsp;<br>&nbsp;<br>
 
 
@@ -92,42 +98,42 @@
 
                             <div class="block">
                                 <label>Father's Name: </label>
-                                <p class="tag">Roberto D. Rapal</p>
+                                <input class="tag" type="text" placeholder="Father's Fullname" value="{{e.nfather}}">
                             </div>
 
                             <div class="block">
                                 <label>Father's Occupation: </label>
-                                <p class="tag">Farmer</p>
+                                <input class="tag" type="text" placeholder="Father's Occupation" value="{{e.foccupation}}">
                             </div>
 
                             <div class="block">
                                 <label>Mother's Name: </label>
-                                <p class="tag">Marilyn C. Rapal</p>
+                                <input class="tag" type="text" placeholder="Mother's Fullname" value="{{e.nmother}}">
                             </div>
 
                             <div class="block">
                                 <label>Mother's Occupation: </label>
-                                <p class="tag">Housewife</p>
+                                <input class="tag" type="text" placeholder="Mother's Occupation" value="{{e.moccupation}}">
                             </div>
                             <div class="block">
                                 <label>Parent's Contact: </label>
-                                <p class="tag">09103264151</p>
+                                <input type="number" class="tag" placeholder="Parent's Contact Number" value="{{e.pcontact}}">
                             </div>&nbsp;<br>
 
                             <div class="block">
                                 <label>Guardian's Name: </label>
-                                <p class="tag">Helen R. Montemar</p>
+                                <input class="tag" type="text" placeholder="Guardian's Fullname" value="{{e.nguardian}}">
                             </div>
 
                             <div class="block">
                                 <label>Guardian's Occupation: </label>
-                                <p class="tag">Self Employed</p>
+                                <input class="tag" type="text" placeholder="Guardian's Occupation" value="{{e.goccupation}}">
                             </div>
                             <div class="block">
                                 <label>Guardian's Contact: </label>
-                                <p class="tag">09103264151</p>
+                                <input class="tag" type="number" placeholder="Guardian's Contact Number" value="{{e.gcontact}}">
                             </div>
-                            <hr>
+                            <hr> {% endfor %}
 
                             <!-- OTHERSSSSSSSSSSSSSS -->
 

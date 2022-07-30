@@ -21,11 +21,12 @@
         <!-- whole body -->
         <div class="bg">
             <div class="profile">
+                {% for e in details %}
                 <div class="first">
                     <div class="left"><br>&nbsp;<br>&nbsp;<br>
                         <img src="../../static/images/profile.jpg" id="picture"><br>
-                        <h1 class="name" id="name">Christian Rapal</h1>
-                        <p class="name">TUPC-18-0168</p>
+                        <h1 class="name" id="name">{{e.firstname}} {{e.lastname}}</h1>
+                        <p class="name">{{e.idnumber}}</p>
                     </div>
                     <div class="right">
                         <div class="cool" id="part1">
@@ -38,36 +39,36 @@
                             <hr>
                             <div class="block">
                                 <label>Gender: </label>
-                                <p class="tag">Male</p>
+                                <p class="tag">{{e.gender}}</p>
                             </div>
 
                             <div class="block">
                                 <label>Course/Section: </label>
-                                <p class="tag">BET-COET-4A</p>
+                                <p class="tag">{{e.section}}</p>
                             </div>
                             <div class="block">
                                 <label>Email: </label>
-                                <p class="tag">christian.rapal@gsfe.tupcavite.edu.ph</p>
+                                <p class="tag">{{e.email}}</p>
                             </div>
                             <div class="block">
                                 <label>Age: </label>
-                                <p class="tag">22</p>
+                                <p class="tag">{{e.age}}</p>
                             </div>
                             <div class="block">
                                 <label>Civil Status: </label>
-                                <p class="tag">Single</p>
+                                <p class="tag">{{e.civil}}</p>
                             </div>
                             <div class="block">
                                 <label>Phone Number: </label>
-                                <p class="tag">09959966668</p>
+                                <p class="tag">{{e.cpnumber}}</p>
                             </div>
                             <div class="block">
                                 <label>Address: </label>
-                                <p class="tag">Blk 3 lot 9 victoria reyes dasmarinas cavite</p>
+                                <p class="tag">{{e.address}}</p>
                             </div>
                             <div class="block">
                                 <label>Birthday: </label>
-                                <p class="tag">January 4, 2000</p>
+                                <p class="tag">{{e.birthday}}</p>
                             </div>&nbsp;<br>&nbsp;<br>
 
 
@@ -80,40 +81,40 @@
 
                             <div class="block">
                                 <label>Father's Name: </label>
-                                <p class="tag">Roberto D. Rapal</p>
+                                <p class="tag">{{e.nfather}}</p>
                             </div>
 
                             <div class="block">
                                 <label>Father's Occupation: </label>
-                                <p class="tag">Farmer</p>
+                                <p class="tag">{{e.foccupation}}</p>
                             </div>
 
                             <div class="block">
                                 <label>Mother's Name: </label>
-                                <p class="tag">Marilyn C. Rapal</p>
+                                <p class="tag">{{e.nmother}}</p>
                             </div>
 
                             <div class="block">
                                 <label>Mother's Occupation: </label>
-                                <p class="tag">Housewife</p>
+                                <p class="tag">{{e.moccupation}}</p>
                             </div>
                             <div class="block">
                                 <label>Parent's Contact: </label>
-                                <p class="tag">09103264151</p>
+                                <p class="tag">{{e.pcontact}}</p>
                             </div>&nbsp;<br>
 
                             <div class="block">
                                 <label>Guardian's Name: </label>
-                                <p class="tag">Helen R. Montemar</p>
+                                <p class="tag">{{e.nguardian}}</p>
                             </div>
 
                             <div class="block">
                                 <label>Guardian's Occupation: </label>
-                                <p class="tag">Self Employed</p>
+                                <p class="tag">{{e.goccupation}}</p>
                             </div>
                             <div class="block">
                                 <label>Guardian's Contact: </label>
-                                <p class="tag">09103264151</p>
+                                <p class="tag">{{e.gcontact}}</p>
                             </div>
                             <hr>
 
@@ -129,6 +130,7 @@
                     </div>
 
                 </div>
+                {% endfor %}
 
             </div>
 
