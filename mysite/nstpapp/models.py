@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -35,7 +36,10 @@ class extenduser(models.Model):
     goccupation = models.CharField(max_length=20, default='')
     gcontact = models.CharField(max_length=20, default='')
     
-    idpic = models.ImageField(upload_to='images/', null=True)
+    idpic = models.ImageField(upload_to="images/", default='')
+    disease  = models.CharField(max_length=100, default='')
+    specific = models.CharField(max_length=100, default='')
+    proof = models.FileField(upload_to='proofs/', default='')
     
     
     
@@ -44,5 +48,5 @@ class extenduser(models.Model):
     
     
     def __str__(self):
-        return self.email
+        return self.idnumber
     

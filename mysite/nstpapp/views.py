@@ -1,3 +1,4 @@
+from tabnanny import check
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
@@ -89,3 +90,35 @@ def signin(request):
     else:
         messages.error(request, 'Invalid username or password')
         return redirect('/login_page')
+    
+def edit(request):
+    if request.method == 'POST':
+        gender = request.POST.get('gender')
+        section = request.POST.get('section')
+        email = request.POST.get('email')
+        age = request.POST.get('age')
+        civil = request.POST.get('civil')
+        cpnumber = request.POST.get('cpnumber')
+        address = request.POST.get('address')
+        birthday = request.POST.get('birthday')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian  = request.POST.get('nguardian')
+        goccupation = request.POST.get('goccupation')
+        gcontact = request.POST.get('gcontact')
+        studentid = request.FILES['studentid']
+        check = request.POST.getlist('check')
+        spec = request.POST.get('spec')
+        proof = request.FILES['proof']
+        
+        extenduser.objects.filter(user=request.user).update(gender=gender, section=section, email=email, age=age, 
+                                                            civil=civil, cpnumber=cpnumber, address=address, birthday=birthday,
+                                                            nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
+                                                            pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact,
+                                                            idpic=studentid, disease=check, specific=spec, proof=proof)
+        return redirect('/profile_page')
+    else:
+        return redirect('/editprofile')

@@ -23,6 +23,7 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('dashboard_page/', views.dashboard_page, name='dashboard_page'),
     path('profile_page/', views.profile_page, name='profile_page'),
-    path('editprofile/', views.editprofile, name='editprofile')
+    path('editprofile/', views.editprofile, name='editprofile'),
+    path('edit/', views.edit, name='edit'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

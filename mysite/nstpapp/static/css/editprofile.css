@@ -198,6 +198,90 @@
     box-shadow: none !important;
 }
 
+.health {
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.block2 {
+    display: block;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+.block3 {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+.block4 {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+.spec {
+    background-color: #ffffff71;
+    text-align: left;
+    width: 100%;
+    font-size: 15px;
+    color: rgb(2, 68, 222);
+    border-radius: 5px;
+    border: no;
+    border-top-style: hidden !important;
+    border-right-style: hidden !important;
+    border-left-style: hidden !important;
+}
+
+.spec:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ques {
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    padding: 10px;
+    margin: 0 0 10px;
+    display: block;
+}
+
+.ques:hover {
+    background: transparent;
+    cursor: pointer;
+}
+
+#prof {
+    justify-content: space-between;
+}
+
+#prof p {
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.buttons {
+    float: right;
+}
+
+.btn {
+    width: 200px;
+    height: 60px;
+}
+
+.btn i {
+    font-size: 30px;
+}
+
+.ids {
+    width: 100px;
+    width: 100px;
+}
+
 
 /* s */
 
