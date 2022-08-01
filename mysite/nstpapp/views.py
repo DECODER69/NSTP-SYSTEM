@@ -101,15 +101,19 @@ def signin(request):
     if request.method == "POST":
             username = request.POST.get('username')
             password = request.POST.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('/dashboard_page')
+            if User.objects.filter(username=username).exists():
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    auth.login(request, user)
+                    return redirect('/dashboard_page')
+                else:
+                    messages.error(request, 'Incorrect password')
+                    return redirect('/login_page')
             else:
-                messages.error(request, 'Invalid username or password')
+                messages.error(request, 'ID Number ' + str (username) + ' Does not exist !')
                 return redirect('/login_page')
     else:
-        messages.error(request, 'Invalid username or password')
+        messages.error(request, 'Invalid username or password !')
         return redirect('/login_page')
 
 @login_required(login_url='/login_page')
