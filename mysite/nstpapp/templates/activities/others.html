@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html lang="en">
 
 <head>
@@ -44,67 +44,20 @@
 
                             </div>
                             <div class="block">
-                                <img src="{{e.idpic.url}}" class="ids" alt="id picture">
+                                <a href="{{e.idpic.url}}" target="_blank">
+                                    <img src="{{e.idpic.url}}" class="ids" alt="id picture">
+                                </a>
+
 
                             </div>
 
                             &nbsp;<br>&nbsp;<br>
 
                             <hr>
-                            <div class="blocks">
-                                <h1 class="ti">Health Status Assessment</h1>
-
-                            </div>
-
-                            <hr>
-
-                            <p class="health">Past Medical History: Please Check each condition that you have been told you have (or had).</p> <br>
-
-                            <div class="block2">
-                                <div class="block3">
-                                    <label class="ques"><input type="checkbox" value="Cancer" name="check"/> Cancer</label>
-                                    <label class="ques"><input type="checkbox" value="Diabetes" name="check"/> Diabetes</label>
-                                    <label class="ques"><input type="checkbox" value="Kidney Disease " name="check"/> Kidney Disease </label>
-                                    <label class="ques"><input type="checkbox" value="Liver Disease " name="check"/> Liver Disease </label>
-                                    <label class="ques"><input type="checkbox" value="Ulcers" name="check"/> Ulcers</label>
-                                    <label class="ques"><input type="checkbox" value="Angina/Chest Pain " name="check"/> Angina/Chest Pain </label>
-
-                                </div>
-                                <div class="block4">
-                                    <label class="ques"><input type="checkbox" value="Asthma" name="check"/> Asthma</label>
-                                    <label class="ques"><input type="checkbox" value="Lung Disease " name="check"/> Lung Disease </label>
-                                    <label class="ques"><input type="checkbox" value="Heart Disease" name="check"/> Heart Disease </label>
-                                    <label class="ques"><input type="checkbox" value="Stroke" name="check"/> Stroker</label>
-                                    <label class="ques"><input type="checkbox" value="Allergies" name="check"/> Allergies</label>
-
-
-
-                                </div>
-                                <input type="text" value="{{e.disease}}" class="spec" readonly>
-
-
-                            </div>
-                            <br>
-                            <p class="health" style="font-style: italic;">If none of the choices above, Please Specify your answer below and submit Medication Certificate to prove that you are not Physically Fit.</p> <br>
-                            <div class="block">
-                                <input class="spec" type="text" placeholder="Please Type Your Answer" name="spec" value="{{e.specific}}">
-
-
-                            </div><br>
-                            <div class="block" id="prof">
-                                <p>Submit your Proof here &nbsp; *png, jpg only</p>
-                                <input type="file" class="proff" name="proof" required accept=".jpg, .jpeg, .png">
-
-
-                            </div>
-                            <div class="block">
-                                <img src="../../static/images/sample_id.jpg" class="ids">
-
-                            </div>
 
                             <hr>
                             <div class="buttons">
-                                <button type="submit" class="btn btn-success"><i class='bx bx-save'> Save</i> </button>
+                                <button type="submit" class="btn btn-success"><i class='bx bx-save'> Next</i> </button>
 
                             </div>
                         </form>

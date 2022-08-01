@@ -87,3 +87,9 @@
     #already {
         text-align: center;
     }
+    
+    #by {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }

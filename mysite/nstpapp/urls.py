@@ -17,6 +17,7 @@ app_name = 'activities'
 urlpatterns = [
     path('', views.index, name='index'),
     path('navbar/', views.navbar, name='navbar'),
+    path('logout_student/', views.logout_student, name='logout_student'),
     path('signup_page/', views.signup_page, name='signup_page'),
     path('signup/', views.signup, name='signup'),
     path('login_page/',views.login_page, name='login_page'),
@@ -27,5 +28,7 @@ urlpatterns = [
     path('edit/', views.edit, name='edit'),
     path('others/', views.others, name='others'),
     path('edit_others/<str:id>', views.edit_others, name='edit_others'),
+    path('health/', views.health, name='health'),
+    path('edit_health/<str:id>', views.edit_health, name='edit_health'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

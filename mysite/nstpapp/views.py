@@ -1,8 +1,10 @@
+from pickle import FALSE
 from tabnanny import check
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
+from django.contrib.auth.decorators import login_required
 
 #models imported
 from .models import extenduser
@@ -19,38 +21,50 @@ def signup_page(request):
     return render(request, 'activities/signup.html')
 def login_page(request):
     return render(request, 'activities/login.html')
+
+@login_required(login_url='/login_page')
 def dashboard_page(request):
     name = extenduser.objects.filter(user = request.user)
     context = {
         'name': name,
     }
     return render(request, 'activities/dashboard.html', context)
+@login_required(login_url='/login_page')
 def profile_page(request):
     details = extenduser.objects.filter(user=request.user)
     context={
         'details':details,
     }
     return render(request, 'activities/profile.html', context)
+@login_required(login_url='/login_page')
 def editprofile(request):
     editwow = extenduser.objects.filter(user=request.user)
     context = {
         'ediwow':editwow,
     }
     return render(request, 'activities/editprofile.html', context)
-
+@login_required(login_url='/login_page')
 def others(request):
     uwu = extenduser.objects.filter(user=request.user)
     context = {
         'uwu':uwu,
     }
     return render(request, 'activities/others.html', context)
-
-
+@login_required(login_url='/login_page')
+def health(request):
+    uwus = extenduser.objects.filter(user=request.user)
+    context = {
+        'uwus':uwus,
+    }
+    return render(request, 'activities/health.html', context)
 
 
 
 def navbar(request):
     return render(request, 'activities/navbar.html')
+def logout_student(request):
+    logout(request)
+    return redirect('/login_page')
 
 #   EOF PAGE SHOWING
 
@@ -64,6 +78,7 @@ def signup(request):
         email = request.POST.get('email')
         idnumber = request.POST.get('idnumber')
         password = request.POST.get('password1')
+        picture = request.FILES['picture']
         
         if User.objects.filter(username=idnumber).exists():
             messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
@@ -73,7 +88,7 @@ def signup(request):
             return redirect('/signup_page')
         else:
             user = User.objects.create_user(username=idnumber, password=password,)
-            datas = extenduser(firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,user=user)
+            datas = extenduser(firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,picture=picture,user=user)
             datas.save()
             auth.login(request, user)
             messages.info(request, 'Account created successfully')
@@ -96,7 +111,8 @@ def signin(request):
     else:
         messages.error(request, 'Invalid username or password')
         return redirect('/login_page')
-    
+
+@login_required(login_url='/login_page')
 def edit(request):
 
     if request.method == 'POST':
@@ -117,9 +133,6 @@ def edit(request):
         nguardian  = request.POST.get('nguardian')
         goccupation = request.POST.get('goccupation')
         gcontact = request.POST.get('gcontact')
-
-        
- 
         extenduser.objects.filter(user=request.user).update(gender=gender, section=section, email=email, age=age, 
                                                             civil=civil, cpnumber=cpnumber, address=address, birthday=birthday,
                                                             nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
@@ -131,21 +144,34 @@ def edit(request):
         return redirect('/others')
     else:
         return redirect('/editprofile')
-    
+@login_required(login_url='/login_page')
 def edit_others(request, id):
     hehe = extenduser.objects.get(id=id)
     if request.method == 'POST':
         hehe.idpic = request.FILES['studentid']
-        hehe.proof = request.FILES['proof']
         image_path = hehe.idpic.path
-        proof_path = hehe.proof.path
         if os.path.exists(image_path):
             os.remove(image_path)
-        elif os.path.exists(proof_path):
-            os.remove(proof_path)
-        hehe.disease = request.POST.getlist('check')
-        hehe.specific = request.POST.get('spec')
         hehe.save()
-        return redirect('/others')
+    
+        return redirect('/health')
        
     return redirect('/others')
+
+@login_required(login_url='/login_page')
+def edit_health(request, id):
+    hehes = extenduser.objects.get(id=id)
+    if request.method == 'POST':
+        hehes.proof = request.FILES['proof']
+        proof_path = hehes.proof.path
+        if os.path.exists(proof_path):
+            os.remove(proof_path)
+
+        hehes.disease = request.POST.getlist('check')
+        hehes.specific = request.POST.get('spec')
+        hehes.save()
+    
+        return redirect('/health')
+    
+    return redirect('/others')
+        

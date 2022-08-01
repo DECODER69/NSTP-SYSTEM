@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edit profile</title>
     <link rel="stylesheet" href="../../static/css/editprofile.css">
+
+    <!-- forr changing profileshit -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/svg-with-js.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -29,8 +34,15 @@
                     <div class="left"><br>&nbsp;<br>&nbsp;<br>
                         <img src="{{e.picture.url}}" id="picture"><br>
 
-                        <h1 class="name" id="name">Christian Rapal</h1>
-                        <p class="name">TUPC-18-0168</p>
+                        <h1 class="name" id="name">{{e.firstname}} {{e.lastname}}</h1>
+                        <p class="name">{{e.idnumber}}</p>
+                        <!-- <div id="profile-container">
+                            <image id="profileImage" src="{{e.picture.url}}" />
+                        </div>
+
+                        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                        <h1 class="name" id="name">{{e.firstname}} {{e.lastname}}</h1>
+                        <p class="name">{{e.idnumber}}</p> -->
                     </div>
                     <div class="right">
                         <div class="cool" id="part1">
@@ -250,6 +262,23 @@
 
 
     </section>
+    <!-- <script>
+        $("#profileImage").click(function(e) {
+            $("#imageUpload").click();
+        });
+
+        function fasterPreview(uploader) {
+            if (uploader.files && uploader.files[0]) {
+                $('#profileImage').attr('src',
+                    window.URL.createObjectURL(uploader.files[0]));
+            }
+        }
+
+        $("#imageUpload").change(function() {
+            fasterPreview(this);
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </body>
 
