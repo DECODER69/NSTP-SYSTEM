@@ -25,5 +25,7 @@ urlpatterns = [
     path('profile_page/', views.profile_page, name='profile_page'),
     path('editprofile/', views.editprofile, name='editprofile'),
     path('edit/', views.edit, name='edit'),
+    path('others/', views.others, name='others'),
+    path('edit_others/<str:id>', views.edit_others, name='edit_others'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

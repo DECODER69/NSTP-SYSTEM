@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>others</title>
+    <link rel="stylesheet" href="../../static/css/others.css">
+</head>
+
+<body>
+    {% include 'activities/navbar.html' %}
+
+    <section class="home-section">
+        <div class="lines">
+            <a href="/profile_page">
+                <h1 class="text"><i class='bx bx-user'></i>User Profile</h1>
+            </a>
+            <a href="/editprofile">
+                <i class='bx bxs-chevron-right' id="spacer"></i>
+                <h1 class="text"><i class='bx bx-edit' id="edit"></i>Edit Profile</h1><br>
+            </a>
+            <a href="/others">
+                <i class='bx bxs-chevron-right' id="spacer"></i>
+                <h1 class="text"><i class='bx bx-edit' id="edit"></i> Other Requirements</h1><br>
+            </a>
+        </div>
+
+        <div class="bg">
+            <div class="profile">
+                <div class="first">
+                    <div class="right">
+                        <div class="blocks">
+                            <h1 class="ti">Other Requirements &nbsp;*Required*</h1>
+                        </div>
+
+                        <hr> {% for e in uwu %}
+                        <form action="{% url 'activities:edit_others' e.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="block">
+                                <label>Submit here the photo of your Student's ID.</label>
+                                <input type="file" name="studentid">
+
+                            </div>
+                            <div class="block">
+                                <img src="{{e.idpic.url}}" class="ids">
+
+                            </div>
+
+                            &nbsp;<br>&nbsp;<br>
+
+                            <hr>
+                            <div class="blocks">
+                                <h1 class="ti">Health Status Assessment</h1>
+
+                            </div>
+
+                            <hr>
+
+                            <p class="health">Past Medical History: Please Check each condition that you have been told you have (or had).</p> <br>
+
+                            <div class="block2">
+                                <div class="block3">
+                                    <label class="ques"><input type="checkbox" value="Cancer" name="check"/> Cancer</label>
+                                    <label class="ques"><input type="checkbox" value="Diabetes" name="check"/> Diabetes</label>
+                                    <label class="ques"><input type="checkbox" value="Kidney Disease " name="check"/> Kidney Disease </label>
+                                    <label class="ques"><input type="checkbox" value="Liver Disease " name="check"/> Liver Disease </label>
+                                    <label class="ques"><input type="checkbox" value="Ulcers" name="check"/> Ulcers</label>
+                                    <label class="ques"><input type="checkbox" value="Angina/Chest Pain " name="check"/> Angina/Chest Pain </label>
+
+                                </div>
+                                <div class="block4">
+                                    <label class="ques"><input type="checkbox" value="Asthma" name="check"/> Asthma</label>
+                                    <label class="ques"><input type="checkbox" value="Lung Disease " name="check"/> Lung Disease </label>
+                                    <label class="ques"><input type="checkbox" value="Heart Disease" name="check"/> Heart Disease </label>
+                                    <label class="ques"><input type="checkbox" value="Stroke" name="check"/> Stroker</label>
+                                    <label class="ques"><input type="checkbox" value="Allergies" name="check"/> Allergies</label>
+
+
+
+                                </div>
+                                <input type="text" value="{{e.disease}}" class="spec" readonly>
+
+
+                            </div>
+                            <br>
+                            <p class="health" style="font-style: italic;">If none of the choices above, Please Specify your answer below and submit Medication Certificate to prove that you are not Physically Fit.</p> <br>
+                            <div class="block">
+                                <input class="spec" type="text" placeholder="Please Type Your Answer" name="spec" value="{{e.specific}}">
+
+
+                            </div><br>
+                            <div class="block" id="prof">
+                                <p>Submit your Proof here</p>
+                                <input type="file" class="proff" name="proof">
+
+
+                            </div>
+                            <hr>
+                            <div class="buttons">
+                                <button type="submit" class="btn btn-success"><i class='bx bx-save'> Next</i> </button>
+
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

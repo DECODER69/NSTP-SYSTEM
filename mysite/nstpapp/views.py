@@ -6,6 +6,7 @@ from django.contrib import messages
 
 #models imported
 from .models import extenduser
+import os
 
 # Create your views here.
 
@@ -37,7 +38,12 @@ def editprofile(request):
     }
     return render(request, 'activities/editprofile.html', context)
 
-
+def others(request):
+    uwu = extenduser.objects.filter(user=request.user)
+    context = {
+        'uwu':uwu,
+    }
+    return render(request, 'activities/others.html', context)
 
 
 
@@ -92,7 +98,9 @@ def signin(request):
         return redirect('/login_page')
     
 def edit(request):
+
     if request.method == 'POST':
+        
         gender = request.POST.get('gender')
         section = request.POST.get('section')
         email = request.POST.get('email')
@@ -109,16 +117,39 @@ def edit(request):
         nguardian  = request.POST.get('nguardian')
         goccupation = request.POST.get('goccupation')
         gcontact = request.POST.get('gcontact')
-        studentid = request.FILES['studentid']
-        check = request.POST.getlist('check')
-        spec = request.POST.get('spec')
-        proof = request.FILES['proof']
+
         
+ 
         extenduser.objects.filter(user=request.user).update(gender=gender, section=section, email=email, age=age, 
                                                             civil=civil, cpnumber=cpnumber, address=address, birthday=birthday,
                                                             nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
                                                             pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact,
-                                                            idpic=studentid, disease=check, specific=spec, proof=proof)
-        return redirect('/profile_page')
+                                            )
+
+
+        
+        return redirect('/others')
     else:
         return redirect('/editprofile')
+    
+def edit_others(request, id):
+    hehe = extenduser.objects.get(id=id)
+
+
+    if request.method == 'POST':
+        hehe.idpic = request.FILES['studentid']
+        image_path = hehe.idpic.path
+        if os.path.exists(image_path):
+            os.remove(image_path)
+            
+        
+            # studentid = request.FILES['studentid']
+        hehe.disease = request.POST.getlist('check')
+        hehe.specific = request.POST.get('spec')
+        
+            # hehe.proof = request.FILES['proof']
+            # extenduser.objects.filter(user=request.user).update(idpic=studentid, disease=check, specific=spec, proof=proof)
+        hehe.save()
+        return redirect('/others')
+       
+    return redirect('/others')

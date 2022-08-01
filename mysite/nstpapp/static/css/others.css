@@ -44,13 +44,33 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    height: 100vh;
 }
-
-
-/* OWN CSS */
 
 .lines {
     display: flex;
+}
+
+
+/* #own css */
+
+.profile {
+    height: auto;
+    display: flex;
+    padding: 18px;
+}
+
+.first {
+    width: 90%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.856);
+    position: inherit;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .blocks {
@@ -71,57 +91,10 @@
     color: rgb(185, 185, 185);
 }
 
-.profile {
-    /* background-color: #22c51c; */
-    height: auto;
-    display: flex;
-    padding: 18px;
-}
-
-.first {
-    width: 90%;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.856);
-    position: inherit;
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.left {
-    width: 30%;
-    height: 100%;
-    /* background-color: rgb(215, 215, 17); */
-}
-
-#picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: flex;
-    margin: auto;
-    border: solid brown 1px;
-}
-
-.name {
-    font-size: 25px;
-    text-align: center;
-}
-
 .right {
+    padding: 18px;
     height: 100%;
-    width: 80%;
-    display: flex;
-}
-
-#part1 {
     width: 100%;
-    /* background-color: aqua; */
-    height: 100%;
-    padding: 10px;
 }
 
 .ti {
@@ -129,73 +102,9 @@
 }
 
 .block {
+    justify-content: space-between;
     display: flex;
     padding: 5px;
-}
-
-.block label {
-    float: left;
-    font-size: 15px;
-    width: 70%;
-}
-
-.tag {
-    background-color: #ffffff71;
-    text-align: left;
-    width: 100%;
-    font-size: 15px;
-    color: rgb(2, 68, 222);
-    border-radius: 5px;
-    border: no;
-    border-top-style: hidden !important;
-    border-right-style: hidden !important;
-    border-left-style: hidden !important;
-}
-
-.tag1 {
-    background-color: #ffffff71;
-    text-align: left;
-    width: 40%;
-    font-size: 15px;
-    color: rgb(2, 68, 222);
-    border-radius: 5px;
-    border: no;
-    border-top-style: hidden !important;
-    border-right-style: hidden !important;
-    border-left-style: hidden !important;
-}
-
-.tag2 {
-    background-color: #ffffff71;
-    text-align: left;
-    width: 40%;
-    font-size: 15px;
-    color: rgb(2, 68, 222);
-    border-radius: 5px;
-    border: no;
-    border-top-style: hidden !important;
-    border-right-style: hidden !important;
-    border-left-style: hidden !important;
-}
-
-.day {
-    justify-content: space-between;
-    width: 100%;
-    display: flex;
-}
-
-#read {
-    pointer-events: none;
-}
-
-.tag:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-.tag1:focus {
-    outline: none !important;
-    box-shadow: none !important;
 }
 
 .health {

@@ -23,10 +23,11 @@
         </div>
 
         <div class="bg">
+            {% for e in ediwow %}
             <div class="profile">
                 <div class="first">
                     <div class="left"><br>&nbsp;<br>&nbsp;<br>
-                        <img src="../../static/images/profile.jpg" id="picture"><br>
+                        <img src="{{e.picture.url}}" id="picture"><br>
 
                         <h1 class="name" id="name">Christian Rapal</h1>
                         <p class="name">TUPC-18-0168</p>
@@ -39,8 +40,8 @@
                                 <!-- <a href="/editprofile" style="text-decoration: none;"><i class='bx bx-edit' id="edit"></i> Edit Profile</a> -->
                             </div>
 
-                            <hr> {% for e in ediwow %}
-                            <form action="{% url 'activities:edit'%}" method="POST" enctype="multipart/form-data">
+                            <hr>
+                            <form action="{% url 'activities:edit' %}" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="block">
                                     <label>Gender: </label>
@@ -149,7 +150,7 @@
 
                                 <!--EOF FAMILYYYYYYYYYYYYYY -->
                                 <hr>
-                                <div class="blocks">
+                                <!-- <div class="blocks">
                                     <h1 class="ti">Other Requirements</h1>
                                 </div>
 
@@ -161,7 +162,7 @@
                                 </div>
 
                                 &nbsp;<br>&nbsp;<br>
-                                <!-- HEALTH  -->
+                   
                                 <hr>
                                 <div class="blocks">
                                     <h1 class="ti">Health Status Assessment</h1>
@@ -207,16 +208,16 @@
 
 
                                 </div>
+ -->
 
 
-                                <hr>
 
                                 <div class="buttons">
-                                    <button type="submit" class="btn btn-success"><i class='bx bx-save'>Save</i> </button>
+                                    <button type="submit" class="btn btn-success"><i class='bx bx-save'> Next</i> </button>
 
                                 </div>
                                 <br>&nbsp; <br>&nbsp;
-                                <br>&nbsp; {% endfor %}
+                                <br>&nbsp;
                             </form>
                         </div>
 
@@ -233,7 +234,7 @@
 
         </div>
 
-
+        {% endfor %}
         </div>
 
 
