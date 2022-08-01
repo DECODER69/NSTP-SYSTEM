@@ -134,21 +134,17 @@ def edit(request):
     
 def edit_others(request, id):
     hehe = extenduser.objects.get(id=id)
-
-
     if request.method == 'POST':
         hehe.idpic = request.FILES['studentid']
+        hehe.proof = request.FILES['proof']
         image_path = hehe.idpic.path
+        proof_path = hehe.proof.path
         if os.path.exists(image_path):
             os.remove(image_path)
-            
-        
-            # studentid = request.FILES['studentid']
+        elif os.path.exists(proof_path):
+            os.remove(proof_path)
         hehe.disease = request.POST.getlist('check')
         hehe.specific = request.POST.get('spec')
-        
-            # hehe.proof = request.FILES['proof']
-            # extenduser.objects.filter(user=request.user).update(idpic=studentid, disease=check, specific=spec, proof=proof)
         hehe.save()
         return redirect('/others')
        

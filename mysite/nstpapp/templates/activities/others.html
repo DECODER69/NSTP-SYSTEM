@@ -40,11 +40,11 @@
                             {% csrf_token %}
                             <div class="block">
                                 <label>Submit here the photo of your Student's ID.</label>
-                                <input type="file" name="studentid">
+                                <input type="file" name="studentid" value="{{e.idpic}}" required>
 
                             </div>
                             <div class="block">
-                                <img src="{{e.idpic.url}}" class="ids">
+                                <img src="{{e.idpic.url}}" class="ids" alt="id picture">
 
                             </div>
 
@@ -92,14 +92,19 @@
 
                             </div><br>
                             <div class="block" id="prof">
-                                <p>Submit your Proof here</p>
-                                <input type="file" class="proff" name="proof">
+                                <p>Submit your Proof here &nbsp; *png, jpg only</p>
+                                <input type="file" class="proff" name="proof" required accept=".jpg, .jpeg, .png">
 
 
                             </div>
+                            <div class="block">
+                                <img src="../../static/images/sample_id.jpg" class="ids">
+
+                            </div>
+
                             <hr>
                             <div class="buttons">
-                                <button type="submit" class="btn btn-success"><i class='bx bx-save'> Next</i> </button>
+                                <button type="submit" class="btn btn-success"><i class='bx bx-save'> Save</i> </button>
 
                             </div>
                         </form>

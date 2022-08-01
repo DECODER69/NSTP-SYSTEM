@@ -36,10 +36,10 @@ class extenduser(models.Model):
     goccupation = models.CharField(max_length=20, default='')
     gcontact = models.CharField(max_length=20, default='')
     
-    idpic = models.ImageField(upload_to="images/", default='')
+    idpic = models.ImageField(upload_to="images/", default='../../mysite/nstpapp/static/images/sample_id.jpg' )
     disease  = models.CharField(max_length=100, default='')
     specific = models.CharField(max_length=100, default='')
-    proof = models.FileField(upload_to='proofs/', default='')
+    proof = models.FileField(upload_to='proofs/', default='../../mysite/nstpapp/static/images/sample_id.jpg')
     
     
     
