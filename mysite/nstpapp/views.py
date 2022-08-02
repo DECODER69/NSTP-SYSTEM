@@ -58,6 +58,9 @@ def health(request):
     }
     return render(request, 'activities/health.html', context)
 
+def file_manager(request):
+    return render(request, 'activities/file_manager.html')
+
 
 
 def navbar(request):
