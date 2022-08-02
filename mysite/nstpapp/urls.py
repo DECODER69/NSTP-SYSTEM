@@ -31,5 +31,9 @@ urlpatterns = [
     path('health/', views.health, name='health'),
     path('edit_health/<str:id>', views.edit_health, name='edit_health'),
     path('file_manager/', views.file_manager, name='file_manager'),
+    path('files_rotc/', views.files_rotc, name='files_rotc'),
+    path('rotc_files/', views.rotc_files, name='rotc_files'),
+    path('files_cwts/', views.files_cwts, name='files_cwts'),
+    path('cwts_files/', views.cwts_files, name='cwts_files'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

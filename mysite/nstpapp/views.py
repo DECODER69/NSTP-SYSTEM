@@ -1,3 +1,4 @@
+from dataclasses import field
 from pickle import FALSE
 from tabnanny import check
 from django.shortcuts import render, redirect
@@ -61,7 +62,10 @@ def health(request):
 def file_manager(request):
     return render(request, 'activities/file_manager.html')
 
-
+def files_rotc(request):
+    return render(request, 'activities/files_rotc.html')
+def files_cwts(request):
+    return render(request, 'activities/files_cwts.html')
 
 def navbar(request):
     return render(request, 'activities/navbar.html')
@@ -181,4 +185,24 @@ def edit_health(request, id):
         return redirect('/health')
     
     return redirect('/others')
+
+def rotc_files(request):
+    users = extenduser.objects.filter(user=request.user).filter(field='ROTC')
+    if users:
+        return redirect('/files_rotc')
+    else:
+        messages.error(request, 'You Are not Enrolled here !')
+        return redirect('/file_manager')
+    
+def cwts_files(request):
+    users = extenduser.objects.filter(user=request.user).filter(field='CWTS')
+    if users:
+        return redirect('/files_cwts')
+    else:
+        messages.error(request, 'You Are not Enrolled here !')
+        return redirect('/file_manager')
+
+            
+    
+    
         

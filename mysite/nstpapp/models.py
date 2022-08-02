@@ -40,7 +40,7 @@ class extenduser(models.Model):
     disease  = models.CharField(max_length=100, default='')
     specific = models.CharField(max_length=100, default='')
     proof = models.FileField(upload_to='proofs/', default='../../mysite/nstpapp/static/images/sample_id.jpg')
-    
+
     
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
