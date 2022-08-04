@@ -66,6 +66,11 @@ def files_rotc(request):
     return render(request, 'activities/files_rotc.html')
 def files_cwts(request):
     return render(request, 'activities/files_cwts.html')
+def fields(request):
+    return render(request, 'activities/fields.html')
+
+def field_rotc(request):
+    return render(request, 'activities/field_rotc.html')
 
 def navbar(request):
     return render(request, 'activities/navbar.html')
@@ -79,7 +84,7 @@ def logout_student(request):
 
 def signup(request):
     if request.method == 'POST':
-        firstname = request.POST.get('firstname')
+        firstname = request.POST.get('fistname')
         middle = request.POST.get('middle')
         lastname = request.POST.get('lastname')
         email = request.POST.get('email')

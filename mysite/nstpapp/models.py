@@ -19,7 +19,7 @@ class extenduser(models.Model):
     age = models.CharField(max_length=3, default='', null=True)
     birthday = models.CharField(max_length=15, default='')
     section = models.CharField(max_length=20, default='')
-    field = models.CharField(max_length=20, default='')
+    field = models.CharField(max_length=20, default='Select Course')
     picture = models.ImageField(upload_to='images/', null=False)
     status = models.CharField(max_length=10, default='PENDING')
     

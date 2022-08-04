@@ -42,6 +42,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    height: 100vh;
 }
 
 .card-holder {
@@ -49,11 +50,27 @@
     justify-content: space-between;
 }
 
-.card {
+.card-body {
+    align-items: center;
+}
+
+#card {
     color: white;
     background: #535353 !important;
     /* background-image: linear-gradient(to right, #323131, #7e4343); */
-    margin: 18px !important;
+    margin: 10px !important;
+    top: 18px;
+    display: flex;
+    border-radius: 10px !important;
+}
+
+#deta {
+    width: 30%;
+    padding: 18px;
+    color: white;
+    background: #535353 !important;
+    /* background-image: linear-gradient(to right, #323131, #7e4343); */
+    margin: 10px !important;
     top: 18px;
     display: flex;
     border-radius: 10px !important;
@@ -114,15 +131,26 @@
 
 #status {
     background: transparent;
+    display: flex;
     width: 200px;
     border: none;
     pointer-events: none;
     font-size: 25px !important;
     text-align: center;
-    margin-top: 30px;
     color: white;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+}
+
+#course a {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #c51c39;
+    text-decoration: none;
+    color: white;
+}
+
+#course:hover a {
+    background-color: #840f22;
 }
 
 
@@ -288,6 +316,19 @@ ANNOUNCEMENTS */
         font-size: 10px;
     }
     .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 0.25rem;
+    }
+    #deta {
         position: relative;
         display: -ms-flexbox;
         display: flex;

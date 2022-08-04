@@ -41,12 +41,12 @@
 
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bxs-dashboard'></i>Dashboard</h1><br>
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Dashboard</h1><br>
         </div>
         <div class="bg">
             <div class="card-holder">
                 {% for n in name %}
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3" id="deta">
                     <div class="row no-gutters">
                         <div class="col-md-4" id="cage">
                             <img src="{{n.picture.url}}" alt="..." id="profile">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3" id="deta">
                     <div class="row no-gutters">
                         <div class="col-md-4" id="cage">
                             <img src="../../static/images/approved.jpg" alt="..." id="play">
@@ -70,28 +70,33 @@
 
                         <div class="col-md-8">
                             <div class="card-body">
-                                <input type="text" class="card-title" id="status" value="APPROVED" readonly>
+                                <input type="text" class="card-title" id="status" value="PENDING" readonly>
                                 <p class="card-text">Enrollment Status</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3" id="deta">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="../../static/images/field.jpg" alt="..." id="profile">
+                            <img src="../../static/images/course.jpg" alt="..." id="profile">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{n.field}}</h5>
-                                <p class="card-text">Field</p>
+                                <h5 class="card-title">{{n.field}} {{e.section}}</h5>
+                                <p class="card-text">Field</p><br>
+                                <p class="card-text" id="course"><a href="/fields">View Fields</a></p>
 
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
+
+
+
+
             </div>
             <div class="announcements">
                 <h1 class="ans"><i class='bx bxs-megaphone'></i> Announcements</h1>
@@ -114,10 +119,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
 
                 </div>
                 <br>

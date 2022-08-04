@@ -35,5 +35,7 @@ urlpatterns = [
     path('rotc_files/', views.rotc_files, name='rotc_files'),
     path('files_cwts/', views.files_cwts, name='files_cwts'),
     path('cwts_files/', views.cwts_files, name='cwts_files'),
+    path('fields/', views.fields, name='fields'),
+    path('field_rotc/', views.field_rotc, name='field_rotc'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

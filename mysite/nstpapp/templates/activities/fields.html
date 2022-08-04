@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fields</title>
+    <link rel="stylesheet" href="../../static/css/fields.css">
+</head>
+
+<body>
+    {% include 'activities/navbar.html' %}
+    <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Please Read ! !</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    Please read the overview of each field and decide what field you should be enrolled!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                    <!-- <a href="/editprofile"><button type="button" class="btn btn-primary">Proceed</button></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end of modal -->
+
+
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Fields</h1><br>
+        </div>
+        <div class="bg">
+            <div class="row">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Overview
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Reserve Officer Training Corps (ROTC)</h5>
+                        <p class="card-text">Inside is the Overview on what is doing inside the ROTC Field !</p>
+                        <a href="/field_rotc" class="btn btn-primary">Open</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        tupc.nstp@gmail.com
+                    </div>
+                </div>
+                <br>
+                <div class="card text-center">
+                    <div class="card-header">
+                        Overview
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Reserve Officer Training Corps (ROTC)</h5>
+                        <p class="card-text">Inside is the Overview on what is doing inside the CWTS Field !</p>
+                        <a href="#" class="btn btn-primary">Open</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        tupc.nstp@gmail.com
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#exampleModal').modal('show');
+        });
+    </script>
+
+</body>
+
+</html>
