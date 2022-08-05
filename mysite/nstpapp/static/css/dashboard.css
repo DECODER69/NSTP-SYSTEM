@@ -223,6 +223,9 @@ ANNOUNCEMENTS */
 /* MEDIA QUERRRIEES */
 
 @media only screen and (max-width: 600px) {
+    /* .sidebar.open~.home-section {
+        display: none;
+    } */
     .card-holder {
         display: grid;
     }

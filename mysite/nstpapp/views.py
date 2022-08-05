@@ -72,11 +72,23 @@ def fields(request):
 def field_rotc(request):
     return render(request, 'activities/field_rotc.html')
 
+
+
+def admin_nav(request):
+    return render(request, 'activities/admin_nav.html')
 def navbar(request):
     return render(request, 'activities/navbar.html')
 def logout_student(request):
     logout(request)
     return redirect('/login_page')
+
+# ADMIN DISPLAY PAGE###################################
+
+def admin_dashboard(request):
+    return render(request, 'activities/admin_dashboard.html')
+
+
+
 
 #   EOF PAGE SHOWING
 
@@ -211,3 +223,10 @@ def cwts_files(request):
     
     
         
+
+
+
+
+
+# ADMIN FUNCTIONS ################################
+

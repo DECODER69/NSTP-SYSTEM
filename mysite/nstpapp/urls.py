@@ -17,6 +17,7 @@ app_name = 'activities'
 urlpatterns = [
     path('', views.index, name='index'),
     path('navbar/', views.navbar, name='navbar'),
+    path('admin_nav/', views.admin_nav, name='admin_nav'),
     path('logout_student/', views.logout_student, name='logout_student'),
     path('signup_page/', views.signup_page, name='signup_page'),
     path('signup/', views.signup, name='signup'),
@@ -37,5 +38,10 @@ urlpatterns = [
     path('cwts_files/', views.cwts_files, name='cwts_files'),
     path('fields/', views.fields, name='fields'),
     path('field_rotc/', views.field_rotc, name='field_rotc'),
+    
+    
+    
+    # admin urls
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
