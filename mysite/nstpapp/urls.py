@@ -43,5 +43,7 @@ urlpatterns = [
     
     # admin urls
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin_staff/', views.admin_staff, name='admin_staff'),
+    path('admin_pending/', views.admin_pending, name='admin_pending'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

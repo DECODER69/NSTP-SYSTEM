@@ -87,6 +87,20 @@ def logout_student(request):
 def admin_dashboard(request):
     return render(request, 'activities/admin_dashboard.html')
 
+def admin_staff(request):
+    details = extenduser.objects.filter(status='ENROLLED')
+    context = {
+        'details': details,
+    }
+    return render(request, 'activities/admin_staffs.html', context)
+
+def admin_pending(request):
+    pendings = extenduser.objects.filter(status='PENDING')
+    context = {
+        'pendings':pendings
+    }
+    return render(request, 'activities/admin_pending.html', context)
+
 
 
 

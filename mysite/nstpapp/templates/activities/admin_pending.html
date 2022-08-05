@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pending</title>
+    <link rel="stylesheet" href="../../static/admin_css/admin_pending.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-time'></i> PENDING ENROLLEES</h1><br>
+        </div>
+        <div class="bg">
+            <div class="table-responsive">
+
+
+                <table class="table table-hover" id="myTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID NUMBER</th>
+                            <th scope="col">FIRST NAME</th>
+                            <th scope="col">MIDDLE NAME</th>
+                            <th scope="col">LAST NAME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">ADDRESS</th>
+                            <th scope="col">GENDER</th>
+                            <th scope="col">PROFILE PICTURE</th>
+                            <th scope="col">COURSE</th>
+                            <th scope="col">FIELD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in pendings %}
+                        <tr>
+                            <th scope="row">{{s.idnumber}}</th>
+                            <td>{{s.firstname}}</td>
+                            <td>{{s.middlename}}</td>
+                            <td>{{s.lastname}}</td>
+                            <td>{{s.email}}</td>
+                            <td>{{s.address}}</td>
+                            <td>{{s.gender}}</td>
+                            <td id="profile"><img src="{{s.picture.url}}"></td>
+                            <td>{{s.section}}</td>
+                            <td>{{s.field}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+</body>
+
+</html>

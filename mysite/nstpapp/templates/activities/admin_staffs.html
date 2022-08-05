@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="stylesheet" href="../../static/admin_css/admin_staff.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-user-pin'></i> STUDENTS</h1><br>
+        </div>
+        <div class="bg">
+            <div class="inside">
+                <a href="#" class="add">
+                    <div class="btns">
+                        <i class='bx bx-user-plus'></i>
+                        <p>Add Student</p>
+                    </div>
+                    <br>&nbsp;
+                    <br>
+                    <div class="options">
+                        <select id="mylist" onchange="myFunction()">
+                            <option value="ROTC">ROTC</option>
+                            <option value="CWTS">CWTS</option>
+                        </select>
+                    </div>
+
+                </a><br>
+                <div class="table-responsive">
+                    <div class="details">
+                        <p>Student Details</p>
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+                    </div>
+
+                    <table class="table table-hover" id="myTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ID NUMBER</th>
+                                <th scope="col">FIRST NAME</th>
+                                <th scope="col">MIDDLE NAME</th>
+                                <th scope="col">LAST NAME</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">ADDRESS</th>
+                                <th scope="col">GENDER</th>
+                                <th scope="col">PROFILE PICTURE</th>
+                                <th scope="col">COURSE</th>
+                                <th scope="col">FIELD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in details %}
+                            <tr>
+                                <th scope="row">{{s.idnumber}}</th>
+                                <td>{{s.firstname}}</td>
+                                <td>{{s.middlename}}</td>
+                                <td>{{s.lastname}}</td>
+                                <td>{{s.email}}</td>
+                                <td>{{s.address}}</td>
+                                <td>{{s.gender}}</td>
+                                <td id="profile"><img src="{{s.picture.url}}"></td>
+                                <td>{{s.section}}</td>
+                                <td>{{s.field}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+    </script>
+
+</body>
+
+</html>
