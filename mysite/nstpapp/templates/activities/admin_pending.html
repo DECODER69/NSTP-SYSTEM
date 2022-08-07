@@ -38,7 +38,14 @@
                     <tbody>
                         {% for s in pendings %}
                         <tr>
-                            <th scope="row">{{s.idnumber}}</th>
+
+                            <th scope="row">
+                                <a href="{% url 'activities:admin_view_profile' s.id %}" target="_self" title="Click to view profile">
+                                    {{s.idnumber}}
+                                </a>
+
+                            </th>
+
                             <td>{{s.firstname}}</td>
                             <td>{{s.middlename}}</td>
                             <td>{{s.lastname}}</td>

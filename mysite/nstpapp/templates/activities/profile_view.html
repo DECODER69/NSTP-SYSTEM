@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile views</title>
+    <link rel="stylesheet" href="../../static/admin_css/profile_view.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="home-section">
+        <div class="heads">
+            <a href="/admin_pending">
+                <h1 class="text"><i class='bx bx-file'></i> PENDING ENROLLEES</h1>
+            </a>
+
+            <h1 class="text">/</h1>
+            <h1 class="text"><i class='bx bx-file'></i> PROFILE REVIEW</h1>
+
+
+        </div>
+        <div class="bg">
+            {% for s in profiles %}
+            <div class="containers">
+                <div class="left-card">
+                    <div class="ewan">
+                        <img class="pic" src="{{s.picture.url}}">
+                    </div>
+
+                    <div class="name">
+                        <h1>{{s.firstname}} {{s.lastname}}</h1>
+
+                    </div>
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </section>
+
+
+
+</body>
+
+</html>

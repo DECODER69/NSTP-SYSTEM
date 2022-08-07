@@ -45,5 +45,6 @@ urlpatterns = [
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('admin_staff/', views.admin_staff, name='admin_staff'),
     path('admin_pending/', views.admin_pending, name='admin_pending'),
+    path('admin_view_profile/<str:id>', views.admin_view_profile, name='admin_view_profile'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

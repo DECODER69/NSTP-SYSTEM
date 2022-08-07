@@ -88,7 +88,7 @@ def admin_dashboard(request):
     active = extenduser.objects.filter(status='ENROLLED').count()
     pending = extenduser.objects.filter(status='PENDING').count()
     context = {
-        'active':active,
+        'active':active,   
         'pending':pending,
     }
     return render(request, 'activities/admin_dashboard.html', context)
@@ -106,6 +106,16 @@ def admin_pending(request):
         'pendings':pendings
     }
     return render(request, 'activities/admin_pending.html', context)
+
+def admin_view_profile(request, id):
+    profiles = extenduser.objects.filter(id=id)
+    context = {
+        'profiles':profiles
+    }
+    return render(request, 'activities/profile_view.html', context)
+
+def profile_view(request):
+    return render(request, 'activities/profile_view.html')
 
 
 
