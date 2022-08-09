@@ -16,7 +16,9 @@
         <div class="heads">
             <h1 class="text"><i class='bx bx-time'></i> PENDING ENROLLEES</h1><br>
         </div>
+
         <div class="bg">
+            <h class="count">Total Count: {{pend}}</h><br>
             <div class="table-responsive">
 
 
@@ -52,7 +54,12 @@
                             <td>{{s.email}}</td>
                             <td>{{s.address}}</td>
                             <td>{{s.gender}}</td>
-                            <td id="profile"><img src="{{s.picture.url}}"></td>
+                            <td id="profile">
+                                <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
+                                    <img src="{{s.picture.url}}">
+                                </a>
+
+                            </td>
                             <td>{{s.section}}</td>
                             <td>{{s.field}}</td>
                         </tr>

@@ -175,3 +175,14 @@
         display: flex;
     }
 }
+
+@media screen and (min-width:1366px) and (max-width:1920px) {
+    .home-section .text {
+        /* background: #c51c39; */
+        display: inline-block;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+        margin: 18px
+    }
+}

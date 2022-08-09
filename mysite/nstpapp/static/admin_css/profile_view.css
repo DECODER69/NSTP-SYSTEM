@@ -43,6 +43,7 @@
 }
 
 .bg {
+    padding-bottom: 200px;
     width: auto;
     background-attachment: fixed;
     /* background-image: url(../images/tupc2.jpg); */
@@ -65,19 +66,92 @@
 /* 
 OWN CSS */
 
-.left-card {
+.containers {
+    padding: 10px;
+    display: flex;
+    margin: auto;
+    height: auto;
+    width: 80%;
+    background-color: #ffffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 50px;
-    width: 15%;
-    height: 60vh;
 }
 
-.ewan {
-    width: 100%;
-    height: 50vh;
+.left {
+    display: block;
+    width: 40%;
+    height: auto;
+    border-right: 2px solid rgb(122, 122, 122);
+    border-right-style: dotted;
 }
 
-.left-card .pic {
+.right {
+    padding-bottom: 18px;
+    padding-left: 18px;
+    float: right;
+    width: 60%;
+    height: auto;
+}
+
+.profile .profile2 {
+    display: flex;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: solid white 2px;
+}
+
+.name {
+    text-align: center;
+    font-size: 25px;
+}
+
+.student {
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.socials {
+    padding-left: 10px;
+    text-align: left;
+}
+
+.socials i {
+    vertical-align: middle;
+}
+
+.background {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.details {
+    display: flex;
     width: 100%;
-    height: 60%;
+    justify-content: space-between;
+}
+
+.hehe {
+    height: auto;
+    display: grid;
+    width: 50%;
+}
+
+.hehe img {
+    height: 100px;
+    width: 100px;
+    display: grid;
+    float: left;
+}
+
+@media screen and (min-width:1366px) and (max-width:1920px) {
+    .home-section .text {
+        /* background: #c51c39; */
+        display: inline-block;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+        margin: 18px
+    }
 }

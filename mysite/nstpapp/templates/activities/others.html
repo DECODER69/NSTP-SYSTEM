@@ -42,7 +42,7 @@
                             {% csrf_token %}
                             <div class="block">
                                 <label>Submit here the photo of your Student's ID.</label>
-                                <input type="file" name="studentid" value="{{e.idpic}}" required>
+                                <input type="file" name="studentid" value="{{e.idpic.url}}" required>
 
                             </div>
                             <div class="block">

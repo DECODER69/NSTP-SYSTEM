@@ -101,9 +101,11 @@ def admin_staff(request):
     return render(request, 'activities/admin_staffs.html', context)
 
 def admin_pending(request):
+    pend = extenduser.objects.filter(status='PENDING').count()
     pendings = extenduser.objects.filter(status='PENDING')
     context = {
-        'pendings':pendings
+        'pendings':pendings,
+        'pend':pend
     }
     return render(request, 'activities/admin_pending.html', context)
 
@@ -114,8 +116,8 @@ def admin_view_profile(request, id):
     }
     return render(request, 'activities/profile_view.html', context)
 
-def profile_view(request):
-    return render(request, 'activities/profile_view.html')
+# def profile_view(request):
+#     return render(request, 'activities/profile_view.html')
 
 
 
@@ -174,7 +176,6 @@ def signin(request):
 def edit(request):
 
     if request.method == 'POST':
-        
         gender = request.POST.get('gender')
         section = request.POST.get('section')
         email = request.POST.get('email')
@@ -224,6 +225,10 @@ def edit_health(request, id):
         proof_path = hehes.proof.path
         if os.path.exists(proof_path):
             os.remove(proof_path)
+            hehes.disease = request.POST.getlist('check')
+            hehes.specific = request.POST.get('spec')
+            hehes.save()
+            return redirect('/health')
 
         hehes.disease = request.POST.getlist('check')
         hehes.specific = request.POST.get('spec')
