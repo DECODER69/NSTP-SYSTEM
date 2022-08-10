@@ -61,17 +61,17 @@
 
 .add .btns {
     border-radius: 5px;
-    padding: 10px;
+    padding-right: 10px;
     height: 50px;
     text-align: center !important;
     text-decoration: none !important;
     color: white;
-    width: 10%;
+    width: auto;
     background-color: #0069d9;
-    display: -webkit-box;
+    display: flex;
 }
 
-.add i {
+.btns i {
     font-size: 25px;
     vertical-align: middle;
 }

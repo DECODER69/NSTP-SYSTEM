@@ -25,144 +25,193 @@
 
             {% for s in profiles %}
             <div class="containers">
-                <div class="left"><br>
-                    <a href="{{s.picture.url}}" class="profile" target="_blank">
-                        <img src="{{s.picture.url}}" class="profile2">
-                    </a>
-                    <br>
-                    <h1 class="name">
-                        {{s.firstname}} {{s.lastname}}
-
-
-                    </h1>
-                    <p class="student">Student</p>
-                    <br>
-                    <div class="socials">
-                        <p title="ID NUmber"><i class='bx bxs-id-card'></i> {{s.idnumber}}</p>
-                        <p title="Phone Number"><i class='bx bxs-phone-call'></i> {{s.cpnumber}}</p>
-                        <p title="Email"><i class='bx bxs-envelope'></i> {{s.email}}</p>
-                        <p title="Address"><i class='bx bxs-map'></i> {{s.address}}</p>
-                        <p title="Gender"><i class='bx bx-male'></i> {{s.gender}}</p>
-                        <p title="Birthday"><i class='bx bxs-calendar'></i> {{s.birthday}}</p>
-
-
+                <div class="taas">
+                    <div class="inputs">
+                        <!-- <select class="selects">
+                            <option value="{{s.field}}" selected>{{s.field}}</option>
+                            <option value="ROTC">ROTC</option>
+                            <option value="CWTS">CWTS</option>
+                        </select>
+                        <br> -->
+                        <select class="selects">
+                            <option value="{{s.status}}">{{s.status}}</option>
+                            <option value="ENROLLED">ENROLLED</option>
+                            <option value="REJECTED">REJECTED</option>
+                        </select>
+                        <button type="submit" class="btn btn-success"><i class='bx bx-check' ></i>Save</button>
                     </div>
 
-                </div>
 
-                <div class="right">
-                    <h1 class="background">Other Informations</h1><br>
-                    <div class="details">
-                        <p>Age</p>
-                        <div class="hehe">
-                            <p>{{s.age}}</p>
+
+                </div><br>
+
+                <div class="over">
+
+                    <div class="left"><br>
+                        <a href="{{s.picture.url}}" class="profile" target="_blank">
+                            <img src="{{s.picture.url}}" class="profile2">
+                        </a>
+                        <br>
+                        <h1 class="name">
+                            {{s.firstname}} {{s.lastname}}
+
+
+                        </h1>
+                        <p class="student">Student</p>
+                        <br>
+                        <div class="socials">
+                            <p title="ID NUmber"><i class='bx bxs-id-card'></i> {{s.idnumber}}</p>
+                            <p title="Phone Number"><i class='bx bxs-phone-call'></i> {{s.cpnumber}}</p>
+                            <p title="Email"><i class='bx bxs-envelope'></i> {{s.email}}</p>
+                            <p title="Address"><i class='bx bxs-map'></i> {{s.address}}</p>
+                            <p title="Gender"><i class='bx bx-male'></i> {{s.gender}}</p>
+                            <p title="Birthday"><i class='bx bxs-calendar'></i> {{s.birthday}}</p>
+
+
                         </div>
+
                     </div>
 
-                    <div class="details">
-                        <p>Course / Section</p>
-                        <div class="hehe">
-                            <p>{{s.section}}</p>
+                    <div class="right">
+                        <h1 class="background">Other Informations</h1><br>
+                        <div class="details">
+                            <p>Age</p>
+                            <div class="hehe">
+                                <p>{{s.age}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Civil Status</p>
-                        <div class="hehe">
-                            <p>{{s.civil}}</p>
+
+                        <div class="details">
+                            <p>Course / Section</p>
+                            <div class="hehe">
+                                <p>{{s.section}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
+                        <div class="details">
+                            <p>Civil Status</p>
+                            <div class="hehe">
+                                <p>{{s.civil}}</p>
+                            </div>
+                        </div>
+                        <!-- <div class="details">
                         <p>Field</p>
                         <div class="hehe">
                             <p>{{s.field}} ({{s.}}) ({{s.status}})</p>
                         </div>
-                    </div>
-                    <br>
+                    </div> -->
+                        <br>
 
 
-                    <h1 class="background">Family Background</h1><br>
-                    <div class="details">
-                        <p>Father's Name</p>
-                        <div class="hehe">
-                            <p>{{s.nfather}}</p>
+                        <h1 class="background">Family Background</h1><br>
+                        <div class="details">
+                            <p>Father's Name</p>
+                            <div class="hehe">
+                                <p>{{s.nfather}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Father's Occupation</p>
-                        <div class="hehe">
-                            <p>{{s.foccupation}}</p>
+                        <div class="details">
+                            <p>Father's Occupation</p>
+                            <div class="hehe">
+                                <p>{{s.foccupation}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Mother's Occupation</p>
-                        <div class="hehe">
-                            <p>{{s.nmother}}</p>
+                        <div class="details">
+                            <p>Mother's Occupation</p>
+                            <div class="hehe">
+                                <p>{{s.nmother}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Mother's Occupation</p>
-                        <div class="hehe">
-                            <p>{{s.moccupation}}</p>
+                        <div class="details">
+                            <p>Mother's Occupation</p>
+                            <div class="hehe">
+                                <p>{{s.moccupation}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Parent's Contact</p>
-                        <div class="hehe">
-                            <p>{{s.pcontact}}</p>
+                        <div class="details">
+                            <p>Parent's Contact</p>
+                            <div class="hehe">
+                                <p>{{s.pcontact}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="details">
-                        <p>Guardian's Name</p>
-                        <div class="hehe">
-                            <p>{{s.nguardian}}</p>
+                        <br>
+                        <div class="details">
+                            <p>Guardian's Name</p>
+                            <div class="hehe">
+                                <p>{{s.nguardian}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Guardian's Occupation</p>
-                        <div class="hehe">
-                            <p>{{s.goccupation}}</p>
+                        <div class="details">
+                            <p>Guardian's Occupation</p>
+                            <div class="hehe">
+                                <p>{{s.goccupation}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Guardian's Occupation</p>
-                        <div class="hehe">
-                            <p>{{s.gcontact}}</p>
+                        <div class="details">
+                            <p>Guardian's Occupation</p>
+                            <div class="hehe">
+                                <p>{{s.gcontact}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <br>
+                        <br>
 
 
-                    <h1 class="background">Health Background</h1><br>
-                    <div class="details">
-                        <p>Disease have</p>
-                        <div class="hehe">
-                            <p>{{s.disease}}</p>
+                        <h1 class="background">Health Background</h1><br>
+                        <div class="details">
+                            <p>Disease have</p>
+                            <div class="hehe">
+                                <p>{{s.disease}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Other Disease</p>
-                        <div class="hehe">
-                            <p>{{s.specific}}</p>
+                        <div class="details">
+                            <p>Other Disease</p>
+                            <div class="hehe">
+                                <p>{{s.specific}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="details">
-                        <p>Proof</p>
-                        <div class="hehe">
-                            <a href="{{s.proof.url}}" target="_blank">
-                                <p>{{s.proof}}</p>
+                        <div class="details">
+                            <p>Proof</p>
+                            <div class="hehe">
+                                {% if s.proof %}
+                                <a href="{{s.proof.url}}" target="_blank">
+                                    <p>Click to view Proof</p>
 
-                            </a>
+                                </a>
+                                {% else %}
+                                <p>No Proof Submitted</p>
+                                {% endif %}
 
+                            </div>
                         </div>
+                        <br>
+
+                        <h1 class="background">NSTP Field</h1><br>
+                        <div class="details">
+                            <p>Selected Field</p>
+                            <div class="hehe">
+                                <p>{{s.field}} ({{s.status}})</p>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <p>Proof *for CWTS only*</p>
+                            <div class="hehe">
+                                {% if s.proof %}
+                                <a href="{{s.proof.url}}" target="_blank">
+                                    <p>Click to view Proposal</p>
+
+                                </a>
+                                {% else %}
+                                <p>No Proposal submitted</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+
                     </div>
+
 
 
                 </div>
-
-
-
-
             </div>
 
             {% endfor %}

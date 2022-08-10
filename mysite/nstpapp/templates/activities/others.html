@@ -41,14 +41,20 @@
                         <form action="{% url 'activities:edit_others' e.id %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="block">
-                                <label>Submit here the photo of your Student's ID.</label>
-                                <input type="file" name="studentid" value="{{e.idpic.url}}" required>
+                                <label>Submit here the photo of your Student's ID.</label> {% if e.idpic %}
+                                <input type="file" name="studentid" value="{{e.idpic.url}}" required> {% else %}
+                                <p></p>
+                                {% endif %}
 
                             </div>
                             <div class="block">
+                                {% if e.idpic %}
                                 <a href="{{e.idpic.url}}" target="_blank">
                                     <img src="{{e.idpic.url}}" class="ids" alt="id picture">
                                 </a>
+                                {% else %}
+                                <p></p>
+                                {% endif %}
 
 
                             </div>

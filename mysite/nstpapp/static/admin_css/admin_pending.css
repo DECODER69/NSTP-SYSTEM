@@ -46,17 +46,25 @@
 .bg {
     width: auto;
     background-attachment: fixed;
-    /* background-image: url(../images/tupc2.jpg); */
+    background-image: url(../images/tupc2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: auto;
+    min-height: 100vh;
     padding: 18px;
+}
+
+.table {
+    background-color: rgba(255, 255, 255, 0.767);
 }
 
 .table #profile img {
     width: 50px;
     height: 50px;
+}
+
+.table tr th {
+    font-size: 15px !important;
 }
 
 @media screen and (min-width:1366px) and (max-width:1920px) {

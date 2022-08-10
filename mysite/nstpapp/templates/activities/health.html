@@ -90,8 +90,13 @@
 
                             </div>
                             <div class="block">
-                                <img src="{{e.proof.url}}" class="ids" value="{{e.proof.url}}">
+                                {% if e.proof %}
+                                <a href="{{e.proof.url}}" target="_blank">
+                                    <p class="ids">{{e.proof}} </p>{% else %}
+                                    <p></p>
+                                </a>
 
+                                {% endif %}
                             </div>
 
                             <hr>
