@@ -75,7 +75,11 @@ def field_rotc(request):
 
 
 def admin_nav(request):
-    return render(request, 'activities/admin_nav.html')
+    pending = extenduser.objects.filter(status='PENDING').count()
+    context = {
+        'pending':pending
+    }
+    return render(request, 'activities/admin_nav.html', context)
 def navbar(request):
     return render(request, 'activities/navbar.html')
 def logout_student(request):
@@ -95,24 +99,28 @@ def admin_dashboard(request):
 
 def admin_staff(request):
     details = extenduser.objects.filter(status='ENROLLED')
+    pending = extenduser.objects.filter(status='PENDING').count()
     context = {
+        'pending':pending,
         'details': details,
     }
     return render(request, 'activities/admin_staffs.html', context)
 
 def admin_pending(request):
-    pend = extenduser.objects.filter(status='PENDING').count()
+    pending = extenduser.objects.filter(status='PENDING').count()
     pendings = extenduser.objects.filter(status='PENDING')
     context = {
         'pendings':pendings,
-        'pend':pend
+        'pending':pending
     }
     return render(request, 'activities/admin_pending.html', context)
 
 def admin_view_profile(request, id):
     profiles = extenduser.objects.filter(id=id)
+    pending = extenduser.objects.filter(status='PENDING').count()
     context = {
-        'profiles':profiles
+        'profiles':profiles,
+        'pending':pending
     }
     return render(request, 'activities/profile_view.html', context)
 
@@ -265,3 +273,17 @@ def cwts_files(request):
 
 # ADMIN FUNCTIONS ################################
 
+def approve(request, id):
+    stat2 = request.POST.get('getID')
+    print(stat2)
+    extenduser.objects.filter(id=stat2).update(status='ENROLLED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    return redirect('/admin_pending')
+
+def decline(request, id):
+   
+    stat2 = request.POST.get('getID2')
+    print(stat2)
+    extenduser.objects.filter(id=stat2).update(status='REJECTED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
+    return redirect('/admin_pending')

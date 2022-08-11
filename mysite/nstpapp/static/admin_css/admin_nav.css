@@ -204,6 +204,10 @@
     border-radius: 12px;
 }
 
+.pendings {
+    color: rgb(255, 0, 0);
+}
+
 
 /* .sidebar li.profile {
     position: fixed;

@@ -18,21 +18,20 @@
         </div>
 
         <div class="bg">
-            <h class="count">Total Count: {{pend}}</h><br>
+            <h class="count">Total: {{pending}}</h><br>
             <div class="table-responsive">
 
 
-                <table class="table table-hover" id="myTable">
+                <table class="table table-bordered" id="myTable">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID NUMBER</th>
-                            <th scope="col">FIRST NAME</th>
-                            <th scope="col">MIDDLE NAME</th>
-                            <th scope="col">LAST NAME</th>
-                            <th scope="col">EMAIL</th>
-                            <th scope="col">PROFILE PICTURE</th>
-                            <th scope="col">COURSE</th>
-                            <th scope="col">FIELD</th>
+                            <th scope="col">ID Number</th>
+                            <th scope="col">Full name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Profile picture</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">NSTP Field</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,21 +42,35 @@
                                 <a href="{% url 'activities:admin_view_profile' s.id %}" target="_self" title="Click to view profile">
                                     {{s.idnumber}}
                                 </a>
-
                             </th>
-
-                            <td>{{s.firstname}}</td>
-                            <td>{{s.middlename}}</td>
-                            <td>{{s.lastname}}</td>
+                            <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                             <td>{{s.email}}</td>
                             <td id="profile">
                                 <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
                                     <img src="{{s.picture.url}}">
                                 </a>
-
                             </td>
                             <td>{{s.section}}</td>
                             <td>{{s.field}}</td>
+                            <!-- formsssssss -->
+
+                            <td class="actions">
+                                <div class="ehe">
+                                    <form action="{% url 'activities:approve' s.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="getID" value="{{s.id}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
+                                    </form>
+                                </div>
+                                <div class="ehe">
+                                    <form action="{% url 'activities:decline' s.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="getID2" value="{{s.id}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
+                                    </form>
+                                </div>
+
+
+                            </td>
+
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -69,7 +82,16 @@
 
         </div>
     </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        {% for msg in messages %}
+            Swal.fire({
+                icon:    'msg.icon',
+                text: '{{ msg }}'
+            })
+        {% endfor %}
+    </script>
 </body>
 
 </html>

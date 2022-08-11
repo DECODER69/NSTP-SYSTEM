@@ -22,6 +22,7 @@
 .count {
     color: rgb(185, 2, 2);
     font-size: 30px;
+    float: right;
 }
 
 .heads .text i {
@@ -55,7 +56,12 @@
 }
 
 .table {
-    background-color: rgba(255, 255, 255, 0.767);
+    background-color: rgb(255, 255, 255);
+}
+
+.table th,
+td {
+    text-align: center
 }
 
 .table #profile img {
@@ -65,6 +71,38 @@
 
 .table tr th {
     font-size: 15px !important;
+}
+
+.actions {
+    justify-content: center;
+    display: flex;
+}
+
+.ehe {
+    padding: 10px;
+}
+
+.approve {
+    margin: auto;
+    height: 40px;
+    color: white;
+    background-color: #36bda4;
+    width: 150px;
+    border: #1f8270 solid 2px;
+    border-radius: 2px;
+}
+
+.decline {
+    height: 40px;
+    color: white;
+    background-color: #f25370;
+    width: 150px;
+    border: #9a2036 solid 2px;
+    border-radius: 2px;
+}
+
+.approve i {
+    vertical-align: middle;
 }
 
 @media screen and (min-width:1366px) and (max-width:1920px) {
