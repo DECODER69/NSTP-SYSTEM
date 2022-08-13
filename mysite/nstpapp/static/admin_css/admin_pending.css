@@ -47,7 +47,7 @@
 .bg {
     width: auto;
     background-attachment: fixed;
-    background-image: url(../images/tupc2.jpg);
+    /* background-image: url(../images/tupc2.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -82,6 +82,10 @@ td {
     padding: 10px;
 }
 
+.tar {
+    padding: 10px;
+}
+
 .approve {
     margin: auto;
     height: 40px;
@@ -103,6 +107,14 @@ td {
 
 .approve i {
     vertical-align: middle;
+}
+
+
+/* navs tabs */
+
+.nav-item .nav-link {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 @media screen and (min-width:1366px) and (max-width:1920px) {

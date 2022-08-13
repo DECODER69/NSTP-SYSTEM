@@ -7,38 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students</title>
     <link rel="stylesheet" href="../../static/admin_css/admin_staff.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <!-- icon for seacrch -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
 </head>
 
 <body>
     {% include 'activities/admin_nav.html' %}
+
+
+
 
     <section class="home-section">
         <div class="heads">
             <h1 class="text"><i class='bx bx-user-pin'></i> STUDENTS</h1><br>
         </div>
         <div class="bg">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin_staff">Officially Enrolled</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin_pending">Pending Enrollees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rejected</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
             <div class="inside">
-                <a href="#" class="add">
-                    <div class="btns">
-                        <i class='bx bx-user-plus'></i>
-                        <p>Add Student</p>
-                    </div>
-                    <br>&nbsp;
-                    <br>
-                    <div class="options">
-                        <select id="mylist" onchange="myFunction()">
-                            <option value="ROTC">ROTC</option>
-                            <option value="CWTS">CWTS</option>
+                <div class="filters">
+                    <div class="filter_in">
+                        <select class="cl_country" id="ddlCountry">
+                            <option value="all">Select Field </option>
+                            <option value="rotc">ROTC</option>
+                            <option value="cwts">CWTS</option>
+        
+                        </select><br>
+                        <select class="cl_age" id="ddlAge">
+                            <option value="all">Select Platoon/ Section</option>
+                            <option value="ALPHA">APHA</option>
+                            <option value="BRAVO">BRAVO</option>
+                            <option value="SECTION A">SECTION A</option>
+        
                         </select>
                     </div>
 
-                </a><br>
-                <div class="table-responsive">
-                    <div class="details">
-                        <p>Student Details</p>
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-
+                    <div class="sear">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xF002; Search names here" title="Type in a name" style="font-family: Arial, 'Font Awesome 5 Free'">
                     </div>
+
+
+
+                </div>
+
+                <div class="table-responsive">
+
 
                     <table class="table table-hover" id="myTable">
                         <thead class="thead-dark">
@@ -53,12 +80,13 @@
                                 <th scope="col">PROFILE PICTURE</th>
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
+                                <th scope="col">SECTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for s in details %}
                             <tr>
-                                <th scope="row">{{s.idnumber}}</th>
+                                <td>{{s.idnumber}}</td>
                                 <td>{{s.firstname}}</td>
                                 <td>{{s.middlename}}</td>
                                 <td>{{s.lastname}}</td>
@@ -68,7 +96,10 @@
                                 <td id="profile"><img src="{{s.picture.url}}"></td>
                                 <td>{{s.section}}</td>
                                 <td>{{s.field}}</td>
+                                <td>{{s.platoons}}</td>
                             </tr>
+
+
                             {% endfor %}
                         </tbody>
                     </table>
@@ -89,7 +120,9 @@
             table = document.getElementById("myTable");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[1];
+                td2 = tr[i].getElementsByTagName("td")[2];
+                td3 = tr[i].getElementsByTagName("td")[3];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -101,7 +134,49 @@
             }
         }
     </script>
-    <script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#ddlCountry,#ddlAge").on("change", function() {
+                var country = $('#ddlCountry').find("option:selected").val();
+                var age = $('#ddlAge').find("option:selected").val();
+                SearchData(country, age)
+            });
+        });
+
+        function SearchData(country, age) {
+            if (country.toUpperCase() == 'ALL' && age.toUpperCase() == 'ALL') {
+                $('#myTable tbody tr').show();
+            } else {
+                $('#myTable tbody tr:has(td)').each(function() {
+                    var rowCountry = $.trim($(this).find('td:eq(9)').text());
+                    var rowAge = $.trim($(this).find('td:eq(10)').text());
+                    if (country.toUpperCase() != 'ALL' && age.toUpperCase() != 'ALL') {
+                        if (rowCountry.toUpperCase() == country.toUpperCase() && rowAge == age) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    } else if ($(this).find('td:eq(9)').text() != '' || $(this).find('td:eq(9)').text() != '') {
+                        if (country != 'all') {
+                            if (rowCountry.toUpperCase() == country.toUpperCase()) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        }
+                        if (age != 'all') {
+                            if (rowAge == age) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        }
+                    }
+
+                });
+            }
+        }
     </script>
 
 </body>

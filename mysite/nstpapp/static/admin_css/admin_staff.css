@@ -124,6 +124,45 @@
 
 #myInput {
     border-radius: 5px;
+    height: 40px;
+}
+
+
+/* navs tabs */
+
+.nav-item .nav-link {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.filters {
+    padding-top: 20px;
+    display: flex;
+    height: 100px;
+}
+
+.filter_in {
+    padding-top: 20px;
+    justify-content: space-between;
+    width: 40%;
+    display: flex;
+}
+
+.filters select {
+    border-radius: 5px;
+    height: 40px;
+    width: 350px;
+}
+
+.sear {
+    padding-top: 20px;
+    width: 60%;
+    float: right;
+}
+
+.sear input {
+    width: 350px;
+    float: right;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {

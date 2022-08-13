@@ -18,7 +18,20 @@
         </div>
 
         <div class="bg">
-            <h class="count">Total: {{pending}}</h><br>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin_staff">Officially Enrolled</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin_pending">Pending Enrollees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
             <div class="table-responsive">
 
 
@@ -31,6 +44,7 @@
                             <th scope="col">Profile picture</th>
                             <th scope="col">Course</th>
                             <th scope="col">NSTP Field</th>
+                            <th scope="col">View Profile</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -39,9 +53,9 @@
                         <tr>
 
                             <th scope="row">
-                                <a href="{% url 'activities:admin_view_profile' s.id %}" target="_self" title="Click to view profile">
-                                    {{s.idnumber}}
-                                </a>
+
+                                {{s.idnumber}}
+
                             </th>
                             <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                             <td>{{s.email}}</td>
@@ -52,6 +66,12 @@
                             </td>
                             <td>{{s.section}}</td>
                             <td>{{s.field}}</td>
+                            <td class="tar">
+                                <a href="{% url 'activities:admin_view_profile' s.id %}" target="_blank" title="Click to view profile">
+                                   View Profile
+                                </a>
+
+                            </td>
                             <!-- formsssssss -->
 
                             <td class="actions">
@@ -86,10 +106,10 @@
 
     <script>
         {% for msg in messages %}
-            Swal.fire({
-                icon:    'msg.icon',
-                text: '{{ msg }}'
-            })
+        Swal.fire({
+            icon: 'msg.icon',
+            text: '{{ msg }}'
+        }) 
         {% endfor %}
     </script>
 </body>

@@ -1,6 +1,7 @@
 from dataclasses import field
 from pickle import FALSE
 from tabnanny import check
+from tkinter import FLAT
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
@@ -99,10 +100,12 @@ def admin_dashboard(request):
 
 def admin_staff(request):
     details = extenduser.objects.filter(status='ENROLLED')
+    pendings = extenduser.objects.filter(status='PENDING')
     pending = extenduser.objects.filter(status='PENDING').count()
     context = {
         'pending':pending,
         'details': details,
+        'pendings':pendings,
     }
     return render(request, 'activities/admin_staffs.html', context)
 
@@ -262,10 +265,6 @@ def cwts_files(request):
         messages.error(request, 'You Are not Enrolled here !')
         return redirect('/file_manager')
 
-            
-    
-    
-        
 
 
 
@@ -275,9 +274,13 @@ def cwts_files(request):
 
 def approve(request, id):
     stat2 = request.POST.get('getID')
-    print(stat2)
+    name = extenduser.objects.all()
+    name.idnumber = extenduser.objects.filter(id=stat2)
+    # for names in name.idnumber:
+        
+    # print(name.idnumber[0] )
     extenduser.objects.filter(id=stat2).update(status='ENROLLED')
-    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    messages.success(request, 'Student ' + str (name.idnumber[0]) + ' has been Approved !')
     return redirect('/admin_pending')
 
 def decline(request, id):
