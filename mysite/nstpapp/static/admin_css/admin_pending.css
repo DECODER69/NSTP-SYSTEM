@@ -117,6 +117,41 @@ td {
     font-weight: bold;
 }
 
+.filters {
+    padding-top: 20px;
+    display: flex;
+    height: 100px;
+}
+
+.filter_in {
+    padding-top: 20px;
+    justify-content: space-between;
+    width: 40%;
+    display: flex;
+}
+
+.filters select {
+    border-radius: 5px;
+    height: 40px;
+    width: 350px;
+}
+
+.sear {
+    padding-top: 20px;
+    width: 60%;
+    float: right;
+}
+
+.sear input {
+    width: 350px;
+    float: right;
+}
+
+#myInput {
+    border-radius: 5px;
+    height: 40px;
+}
+
 @media screen and (min-width:1366px) and (max-width:1920px) {
     .home-section .text {
         /* background: #c51c39; */

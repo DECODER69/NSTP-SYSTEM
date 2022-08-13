@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pending</title>
     <link rel="stylesheet" href="../../static/admin_css/admin_pending.css">
+
+    <!-- icon for seacrch -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
 </head>
 
 <body>
@@ -18,7 +21,7 @@
         </div>
 
         <div class="bg">
-            <ul class="nav nav-tabs nav-fill">
+            <ul class="nav nav-tabs nav-fill nav-pills">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_staff">Officially Enrolled</a>
                 </li>
@@ -32,6 +35,44 @@
                     <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>
+            <div class="filters">
+                <div class="filter_in">
+                    <select class="cl_country" id="ddlCountry">
+                        <option value="all">Select Field </option>
+                        <option value="rotc">ROTC</option>
+                        <option value="cwts">CWTS</option>
+    
+                    </select><br>
+                    {% comment %} <select class="cl_age" id="ddlAge">
+                        <option value="all">Select Platoon/ Section</option>
+                        <option value="ALPHA">APHA</option>
+                        <option value="BRAVO">BRAVO</option>
+                        <option value="CHARLIE">CHARLIE</option>
+                        <option value="DELTA">DELTA</option>
+                        <option value="ECHO">ECHO</option>
+                        <option value="FOXTROT">FOXTROT</option>
+                        <option value="GOLF">GOLF</option>
+                        <option value="HOTEL">HOTEL</option>
+                        <option value="INDIA">INDIA</option>
+                        <option value="JULIET">JULIET</option>
+                        <option value="KILO">KILO</option>
+                        <option value="LIMA">LIMA</option>
+                        <option value="MIKE">MIKE</option>
+                        <option value="SECTION A">SECTION A</option>
+                        <option value="SECTION B">SECTION B</option>
+                        <option value="SECTION C">SECTION C</option>
+                        <option value="SECTION D">SECTION D</option>
+    
+                    </select> {% endcomment %}
+                </div>
+
+                <div class="sear">
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xF002; Search names here" title="Type in a name" style="font-family: Arial, 'Font Awesome 5 Free'">
+                </div>
+
+
+
+            </div>
             <div class="table-responsive">
 
 
@@ -52,11 +93,11 @@
                         {% for s in pendings %}
                         <tr>
 
-                            <th scope="row">
+                            <td>
 
                                 {{s.idnumber}}
 
-                            </th>
+                            </td>
                             <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                             <td>{{s.email}}</td>
                             <td id="profile">
@@ -112,6 +153,69 @@
         }) 
         {% endfor %}
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#ddlCountry,#ddlAge").on("change", function() {
+                var country = $('#ddlCountry').find("option:selected").val();
+                var age = $('#ddlAge').find("option:selected").val();
+                SearchData(country, age)
+            });
+        });
+
+        function SearchData(country, age) {
+            if (country.toUpperCase() == 'ALL' && age.toUpperCase() == 'ALL') {
+                $('#myTable tbody tr').show();
+            } else {
+                $('#myTable tbody tr:has(td)').each(function() {
+                    var rowCountry = $.trim($(this).find('td:eq(5)').text());
+              
+                    if (country.toUpperCase() != 'ALL' ) {
+                        if (rowCountry.toUpperCase() == country.toUpperCase() ) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    } else if ($(this).find('td:eq(5)').text() != '' || $(this).find('td:eq(5)').text() != '') {
+                        if (country != 'all') {
+                            if (rowCountry.toUpperCase() == country.toUpperCase()) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        }
+                        
+                    }
+
+                });
+            }
+        }
+    </script>
+
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                td2 = tr[i].getElementsByTagName("td")[2];
+                td3 = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
 </body>
 
 </html>
