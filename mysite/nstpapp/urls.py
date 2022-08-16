@@ -48,4 +48,8 @@ urlpatterns = [
     path('admin_view_profile/<str:id>', views.admin_view_profile, name='admin_view_profile'),
     path('approve/<str:id>', views.approve, name='approve'),
     path('decline/<str:id>', views.decline, name='decline'),
+    path('admin_rejected/', views.admin_rejected, name='admin_rejected,'),
+    path('custom/', views.custom, name='custom'),
+    path('rejected_email_page/<str:id>', views.rejected_email_page, name='rejected_email_page'),
+
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

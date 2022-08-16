@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-    <link rel="stylesheet" href="../../static/admin_css/admin_staff.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <title>admin rejected students</title>
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../static/admin_css/admin_rejected.css">
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+
 </head>
 
 <body>
@@ -19,25 +20,30 @@
 
 
 
+
+
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-user-pin'></i> ENROLLED STUDENTS</h1><br>
+            <h1 class="text"><i class='bx bx-user-minus' style="vertical-align: middle;"></i> REJECTED</h1><br>
         </div>
         <div class="bg">
             <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link active" style="background-color: #25A643;" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
+                    <a class="nav-link " href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
+                    <a class="nav-link active" style="background-color: red;" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
                 </li> -->
             </ul>
+            <!-- modal -->
+
+
             <div class="inside">
                 <div class="filters">
                     <div class="filter_in">
@@ -47,7 +53,7 @@
                             <option value="cwts">CWTS</option>
         
                         </select><br>
-                        <select class="cl_age" id="ddlAge">
+                        <!-- <select class="cl_age" id="ddlAge">
                             <option value="all">Select Platoon/ Section</option>
                             <option value="ALPHA">APHA</option>
                             <option value="BRAVO">BRAVO</option>
@@ -67,7 +73,7 @@
                             <option value="SECTION C">SECTION C</option>
                             <option value="SECTION D">SECTION D</option>
         
-                        </select>
+                        </select> -->
                     </div>
 
                     <div class="sear">
@@ -87,30 +93,42 @@
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
                                 <th scope="col">EMAIL</th>
-                                <th scope="col">ADDRESS</th>
-                                <th scope="col">GENDER</th>
                                 <th scope="col">PROFILE PICTURE</th>
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
-                                <th scope="col">SECTION</th>
+                                <th scope="col">VIEW PROFILE</th>
+                                <th scope="col">SEND EMAIL</th>
+                                <th scope="col">ACTIONS</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s in details %}
+                            {% for s in rejected %}
                             <tr>
-                                <td>{{s.idnumber}}</td>
+
+                                <td>
+                                    {{s.idnumber}}
+                                </td>
                                 <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                 <td>{{s.email}}</td>
-                                <td>{{s.address}}</td>
-                                <td>{{s.gender}}</td>
                                 <td id="profile"><img src="{{s.picture.url}}"></td>
                                 <td>{{s.section}}</td>
                                 <td>{{s.field}}</td>
-                                <td>{{s.platoons}}</td>
+                                <td>
+                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
+                                        <button type="button" class="btn btn-primary"><i class='bx bx-book-open' style="vertical-align: middle;"></i> View Profile</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
+                                        <button type="button" class="btn btn-info"> <i class='bx bx-envelope' style="vertical-align: middle;"></i> Send Email</button>
+                                    </a>
+                                </td>
+
                             </tr>
 
                             {% empty %}
-                            <h1 style="color: red;">NO ACTIVE STUDENTS !</h1>
+                            <h1 style="color: red;">NO REJECTED ENROLLEES !</h1>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -189,6 +207,8 @@
             }
         }
     </script>
+    </div>
+    </section>
 
 </body>
 

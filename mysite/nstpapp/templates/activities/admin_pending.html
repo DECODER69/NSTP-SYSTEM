@@ -23,17 +23,17 @@
         <div class="bg">
             <ul class="nav nav-tabs nav-fill nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin_staff">Officially Enrolled</a>
+                    <a class="nav-link" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/admin_pending">Pending Enrollees</a>
+                    <a class="nav-link active" style="background-color:#FBC007;" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
                 </li>
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
-                </li>
+                </li> {% endcomment %}
             </ul>
             <div class="filters">
                 <div class="filter_in">
@@ -90,50 +90,59 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         {% for s in pendings %}
-                        <tr>
+                            
+                            <tr>
+                    
 
-                            <td>
+                                    <td>
 
-                                {{s.idnumber}}
+                                        {{s.idnumber}}
 
-                            </td>
-                            <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                            <td>{{s.email}}</td>
-                            <td id="profile">
-                                <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
-                                    <img src="{{s.picture.url}}">
-                                </a>
-                            </td>
-                            <td>{{s.section}}</td>
-                            <td>{{s.field}}</td>
-                            <td class="tar">
-                                <a href="{% url 'activities:admin_view_profile' s.id %}" target="_blank" title="Click to view profile">
-                                   View Profile
-                                </a>
+                                    </td>
 
-                            </td>
-                            <!-- formsssssss -->
+        
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                    <td>{{s.email}}</td>
+                                    <td id="profile">
+                                        <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
+                                            <img src="{{s.picture.url}}">
+                                        </a>
+                                    </td>
+                                    <td>{{s.section}}</td>
+                                    <td>{{s.field}}</td>
+                                    <td class="tar">
+                                        <a href="{% url 'activities:admin_view_profile' s.id %}" target="_blank" title="Click to view profile">
+                                        View Profile
+                                        </a>
 
-                            <td class="actions">
-                                <div class="ehe">
-                                    <form action="{% url 'activities:approve' s.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="getID" value="{{s.id}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
-                                    </form>
-                                </div>
-                                <div class="ehe">
-                                    <form action="{% url 'activities:decline' s.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="getID2" value="{{s.id}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
-                                    </form>
-                                </div>
+                                    </td>
+                                    <!-- formsssssss -->
+
+                                    <td class="actions">
+                                        <div class="ehe">
+                                            <form action="{% url 'activities:approve' s.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="getID" value="{{s.id}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
+                                            </form>
+                                        </div>
+                                        <div class="ehe">
+                                            <form action="{% url 'activities:decline' s.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="getID2" value="{{s.id}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
+                                            </form>
+                                        </div>
 
 
-                            </td>
-
-                        </tr>
+                                    </td>
+                                                      
+                            
+                            </tr>
+                            {% empty %}
+                            <h1 style="color: red;">NO PENDING ENROLLEES !</h1>
                         {% endfor %}
+                     
                     </tbody>
                 </table>
 

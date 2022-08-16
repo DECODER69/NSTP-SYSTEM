@@ -1,4 +1,5 @@
 from dataclasses import field
+from multiprocessing import context
 from pickle import FALSE
 from tabnanny import check
 from tkinter import FLAT
@@ -11,6 +12,10 @@ from django.contrib.auth.decorators import login_required
 #models imported
 from .models import extenduser
 import os
+
+
+# emails
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -99,14 +104,16 @@ def admin_dashboard(request):
     return render(request, 'activities/admin_dashboard.html', context)
 
 def admin_staff(request):
-    details = extenduser.objects.filter(status='ENROLLED')
+    details = extenduser.objects.filter(status='ENROLLED').order_by('field')
     pendings = extenduser.objects.filter(status='PENDING')
     pending = extenduser.objects.filter(status='PENDING').count()
+
     context = {
         'pending':pending,
         'details': details,
         'pendings':pendings,
     }
+    
     return render(request, 'activities/admin_staffs.html', context)
 
 def admin_pending(request):
@@ -118,6 +125,17 @@ def admin_pending(request):
     }
     return render(request, 'activities/admin_pending.html', context)
 
+def admin_rejected(request):
+    # pending = extenduser.objects.filter(status='PENDING').count()
+    rejected = extenduser.objects.filter(status='REJECTED')
+
+    context = {
+      
+        'rejected':rejected,
+       
+    }
+    return render(request, 'activities/admin_rejected.html', context)
+
 def admin_view_profile(request, id):
     profiles = extenduser.objects.filter(id=id)
     pending = extenduser.objects.filter(status='PENDING').count()
@@ -126,6 +144,8 @@ def admin_view_profile(request, id):
         'pending':pending
     }
     return render(request, 'activities/profile_view.html', context)
+
+
 
 # def profile_view(request):
 #     return render(request, 'activities/profile_view.html')
@@ -290,3 +310,25 @@ def decline(request, id):
     extenduser.objects.filter(id=stat2).update(status='REJECTED')
     messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
     return redirect('/admin_pending')
+
+
+
+# EMAILS
+def rejected_email_page(request, id):
+    rejects = extenduser.objects.filter(status='REJECTED')
+    ems = extenduser.objects.filter(id=id)
+    context = {
+        'rejects':rejects,
+        'ems':ems
+    }
+    
+    return render(request, 'activities/rejected_email.html', context)
+
+def custom(request):
+    if request.method == 'POST':
+        sub = request.POST.get('emailtext')
+        msg = request.POST.get('message')
+        emaila = request.POST.get('cusemail')
+        send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+        return redirect('/admin_rejected')
+    return redirect('/admin_rejected')

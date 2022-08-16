@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-    <link rel="stylesheet" href="../../static/admin_css/admin_staff.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <title>admin rejected students</title>
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../static/admin_css/admin_rejected.css">
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+
 </head>
 
 <body>
@@ -19,17 +20,19 @@
 
 
 
+
+
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-user-pin'></i> ENROLLED STUDENTS</h1><br>
+            <h1 class="text"><i class='bx bx-user-minus'></i> REJECTED</h1><br>
         </div>
         <div class="bg">
             <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link active" style="background-color: #25A643;" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
+                    <a class="nav-link" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
+                    <a class="nav-link active" style="background-color:#FBC007;" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
@@ -38,6 +41,9 @@
                     <a class="nav-link disabled">Disabled</a>
                 </li> -->
             </ul>
+            <!-- modal -->
+
+
             <div class="inside">
                 <div class="filters">
                     <div class="filter_in">
@@ -47,7 +53,7 @@
                             <option value="cwts">CWTS</option>
         
                         </select><br>
-                        <select class="cl_age" id="ddlAge">
+                        <!-- <select class="cl_age" id="ddlAge">
                             <option value="all">Select Platoon/ Section</option>
                             <option value="ALPHA">APHA</option>
                             <option value="BRAVO">BRAVO</option>
@@ -67,7 +73,7 @@
                             <option value="SECTION C">SECTION C</option>
                             <option value="SECTION D">SECTION D</option>
         
-                        </select>
+                        </select> -->
                     </div>
 
                     <div class="sear">
@@ -96,21 +102,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s in details %}
-                            <tr>
-                                <td>{{s.idnumber}}</td>
-                                <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                <td>{{s.email}}</td>
-                                <td>{{s.address}}</td>
-                                <td>{{s.gender}}</td>
-                                <td id="profile"><img src="{{s.picture.url}}"></td>
-                                <td>{{s.section}}</td>
-                                <td>{{s.field}}</td>
-                                <td>{{s.platoons}}</td>
-                            </tr>
+                            {% for s in rejects %}
+                                <tr>
 
-                            {% empty %}
-                            <h1 style="color: red;">NO ACTIVE STUDENTS !</h1>
+                                    <td>
+                                        {{s.idnumber}}
+                                    </td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                    <td>{{s.email}}</td>
+                                    <td id="profile"><img src="{{s.picture.url}}"></td>
+                                    <td>{{s.section}}</td>
+                                    <td>{{s.field}}</td>
+                                    <td>
+                                        <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
+                                            <button type="button" class="btn btn-primary"><i class='bx bx-book-open' style="vertical-align: middle;"></i> View Profile</button>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
+                                            <button type="button" class="btn btn-info"> <i class='bx bx-envelope' style="vertical-align: middle;"></i> Send Email</button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+
+                                {% empty %}
+                                    <td style="color: red;">NO REJECTED ENROLLEES !</td>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -122,6 +139,53 @@
 
         </div>
     </section>
+    <div>{% for k in ems %}
+        <form action="{% url 'activities:custom'%}" method="post">
+            {% csrf_token %}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Compose Email</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                    <input type="email" name="cusemail" value="{{k.email}}" required id="rec" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Subject:</label>
+                                    <input type="text" name="emailtext" placeholder="SUBJECT" required id="sub" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text" name="message" required placeholder="Type Your Message Here"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/admin_rejected"><button type="button" class="btn btn-secondary" >Close</button></a>
+                            <button type="submit" class="btn btn-primary">Send message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+        {% endfor %}
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#exampleModal").modal('show');
+        });
+    </script>
 
     <script>
         function myFunction() {
@@ -189,6 +253,8 @@
             }
         }
     </script>
+    </div>
+    </section>
 
 </body>
 
