@@ -26,6 +26,9 @@
         <div class="bg">
             <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
+                    <a href="#" class="nav-link">School Year</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" style="background-color: #25A643;" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
                 </li>
                 <li class="nav-item">
@@ -34,9 +37,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li> -->
+
             </ul>
             <div class="inside">
                 <div class="filters">
@@ -160,15 +161,15 @@
                 $('#myTable tbody tr').show();
             } else {
                 $('#myTable tbody tr:has(td)').each(function() {
-                    var rowCountry = $.trim($(this).find('td:eq(9)').text());
-                    var rowAge = $.trim($(this).find('td:eq(10)').text());
+                    var rowCountry = $.trim($(this).find('td:eq(7)').text());
+                    var rowAge = $.trim($(this).find('td:eq(8)').text());
                     if (country.toUpperCase() != 'ALL' && age.toUpperCase() != 'ALL') {
                         if (rowCountry.toUpperCase() == country.toUpperCase() && rowAge == age) {
                             $(this).show();
                         } else {
                             $(this).hide();
                         }
-                    } else if ($(this).find('td:eq(9)').text() != '' || $(this).find('td:eq(9)').text() != '') {
+                    } else if ($(this).find('td:eq(7)').text() != '' || $(this).find('td:eq(7)').text() != '') {
                         if (country != 'all') {
                             if (rowCountry.toUpperCase() == country.toUpperCase()) {
                                 $(this).show();
