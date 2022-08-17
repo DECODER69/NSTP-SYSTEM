@@ -6,9 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School years</title>
+    <link rel="stylesheet" href="../../static/admin_css/sy.css">
 </head>
 
 <body>
+    {% include 'activities/admin_nav.html' %}
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-user-pin'></i> ENROLLED STUDENTS</h1><br>
+        </div>
+        <div class="bg">
+            <ul class="nav nav-tabs nav-pills nav-fill">
+                <li class="nav-item">
+                    <a href="/school_years" class="nav-link active">School Year</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </section>
 
 </body>
 

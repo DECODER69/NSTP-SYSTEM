@@ -48,88 +48,6 @@
     padding: 18px;
 }
 
-
-/* own css */
-
-.inside {
-    padding: 5px;
-}
-
-.add {
-    display: flex;
-}
-
-.add .btns {
-    border-radius: 5px;
-    padding-right: 10px;
-    height: 50px;
-    text-align: center !important;
-    text-decoration: none !important;
-    color: white;
-    width: auto;
-    background-color: #0069d9;
-    display: flex;
-}
-
-.btns i {
-    font-size: 25px;
-    vertical-align: middle;
-}
-
-.add p {
-    margin: auto;
-    text-align: center;
-}
-
-.add .btns:hover {
-    color: rgb(255, 255, 255);
-    background-color: #0050a7;
-}
-
-.options {
-    float: right;
-    width: 100%;
-}
-
-.options #mylist {
-    /* float: right; */
-    border-radius: 5px;
-    width: 10%;
-    height: 100%;
-}
-
-.table-responsive {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 100%;
-    background-color: #ffffff;
-}
-
-.table #profile img {
-    width: 50px;
-}
-
-.details {
-    /* background-color: #811616; */
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.details p {
-    font-weight: bolder;
-    font-size: 20px;
-    vertical-align: middle;
-    color: rgb(68, 68, 68);
-}
-
-#myInput {
-    border-radius: 5px;
-    height: 40px;
-}
-
-
-/* navs tabs */
-
 .nav-item .nav-link {
     font-size: 20px;
     font-weight: bold;
@@ -157,25 +75,6 @@
 .sear {
     padding-top: 20px;
     width: 60%;
-    float: right;
-}
-
-
-/* select {
-    height: 25px !important;
-    border: no;
-    border-top-style: hidden !important;
-    border-right-style: hidden !important;
-    border-left-style: hidden !important;
-}
-
-select:focus {
-    outline: none !important;
-    box-shadow: none !important;
-} */
-
-.sear input {
-    width: 350px;
     float: right;
 }
 

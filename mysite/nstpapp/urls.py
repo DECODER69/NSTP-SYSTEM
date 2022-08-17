@@ -51,5 +51,6 @@ urlpatterns = [
     path('admin_rejected/', views.admin_rejected, name='admin_rejected,'),
     path('custom/', views.custom, name='custom'),
     path('rejected_email_page/<str:id>', views.rejected_email_page, name='rejected_email_page'),
+    path('school_years/', views.school_years, name='school_years'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

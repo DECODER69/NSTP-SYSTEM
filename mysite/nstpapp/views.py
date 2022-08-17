@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 #models imported
-from .models import extenduser
+from .models import extenduser, sy
 import os
 
 
@@ -93,6 +93,11 @@ def logout_student(request):
     return redirect('/login_page')
 
 # ADMIN DISPLAY PAGE###################################
+####################
+#####################
+####################
+#########################
+# ADMIN PAGE DISPLAYS
 
 def admin_dashboard(request):
     active = extenduser.objects.filter(status='ENROLLED').count()
@@ -147,8 +152,12 @@ def admin_view_profile(request, id):
 
 
 
-# def profile_view(request):
-#     return render(request, 'activities/profile_view.html')
+def school_years(request):
+    years = sy.objects.all()
+    context = {
+        'years':years
+    }
+    return render(request, 'activities/sy.html', context)
 
 
 
@@ -288,7 +297,10 @@ def cwts_files(request):
 
 
 
-
+########################
+############################
+######################
+#############
 
 # ADMIN FUNCTIONS ################################
 
@@ -331,4 +343,10 @@ def custom(request):
         emaila = request.POST.get('cusemail')
         send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
         return redirect('/admin_rejected')
-    return redirect('/admin_rejected')
+    return redirect('/admin_rejected')\
+        
+def create_sy(request):
+    if request.method == 'POST':
+        pass
+        
+    return redirect('/school_years')
