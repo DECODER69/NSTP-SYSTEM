@@ -79,8 +79,7 @@
 }
 
 .inners {
-    display: flex;
-    width: 100%;
+    background-color: #811616;
 }
 
 .form-group {
@@ -92,7 +91,7 @@
 }
 
 #current {
-    font-size: 40px;
+    font-size: 20px;
     text-align: center;
     margin: auto;
 }

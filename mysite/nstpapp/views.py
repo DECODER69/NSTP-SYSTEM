@@ -27,9 +27,9 @@ from django.db import IntegrityError
 def index(request):
     return render(request, 'activities/index.html')
 def signup_page(request):
-    schools = [school_year.objects.latest('years')]
+    schools = school_year.objects.all()
     context = {
-        'schools':schools,
+        'schools':[schools.last()],
     }
     return render(request, 'activities/signup.html', context)
 def login_page(request):
