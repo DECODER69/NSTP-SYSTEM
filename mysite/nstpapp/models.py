@@ -41,6 +41,7 @@ class extenduser(models.Model):
     disease  = models.CharField(max_length=100, default='')
     specific = models.CharField(max_length=100, default='')
     proof = models.FileField(upload_to='proofs/', default='')
+    s_year = models.CharField(max_length=100, default='')
 
     
     
@@ -51,7 +52,7 @@ class extenduser(models.Model):
     def __str__(self):
         return self.idnumber
     
-class sy(models.Model):
+class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
     
     

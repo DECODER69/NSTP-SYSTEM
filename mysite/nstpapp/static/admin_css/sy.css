@@ -78,6 +78,15 @@
     float: right;
 }
 
+.inners {
+    display: flex;
+    width: 100%;
+}
+
+.inners .card {
+    width: 30%;
+}
+
 @media screen and (min-width:360px)and (max-width:640px) {
     .add .btns {
         border-radius: 5px;

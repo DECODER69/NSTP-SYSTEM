@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 #models imported
-from .models import extenduser, sy
+from .models import extenduser,school_year
 import os
 
 
@@ -25,7 +25,11 @@ from django.core.mail import send_mail
 def index(request):
     return render(request, 'activities/index.html')
 def signup_page(request):
-    return render(request, 'activities/signup.html')
+    schools = [school_year.objects.latest('years')]
+    context = {
+        'schools':schools,
+    }
+    return render(request, 'activities/signup.html', context)
 def login_page(request):
     return render(request, 'activities/login.html')
 
@@ -100,11 +104,13 @@ def logout_student(request):
 # ADMIN PAGE DISPLAYS
 
 def admin_dashboard(request):
+    sy = [school_year.objects.latest('years')]
     active = extenduser.objects.filter(status='ENROLLED').count()
     pending = extenduser.objects.filter(status='PENDING').count()
     context = {
         'active':active,   
         'pending':pending,
+        'sy':sy,
     }
     return render(request, 'activities/admin_dashboard.html', context)
 
@@ -153,9 +159,9 @@ def admin_view_profile(request, id):
 
 
 def school_years(request):
-    years = sy.objects.all()
+    s_years = [school_year.objects.latest('years')]
     context = {
-        'years':years
+        's_years':s_years
     }
     return render(request, 'activities/sy.html', context)
 
@@ -175,16 +181,17 @@ def signup(request):
         idnumber = request.POST.get('idnumber')
         password = request.POST.get('password1')
         picture = request.FILES['picture']
-        
+        s_year = request.POST.get('s_year')
         if User.objects.filter(username=idnumber).exists():
             messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
             return redirect('/signup_page')
         elif extenduser.objects.filter(email=email).exists():
             messages.error(request, 'Email ' + str (email) + ' Already Exist !')
             return redirect('/signup_page')
+       
         else:
             user = User.objects.create_user(username=idnumber, password=password,)
-            datas = extenduser(firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,picture=picture,user=user)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,picture=picture,user=user)
             datas.save()
             auth.login(request, user)
             messages.info(request, 'Account created successfully')
@@ -347,6 +354,10 @@ def custom(request):
         
 def create_sy(request):
     if request.method == 'POST':
-        pass
+        years = request.POST.get('year')
+        data = school_year(years=years)
+        data.save()
+        messages.success(request, 'School year ' + str (years) + ' Successfully Created !')
+        return redirect('/school_years')
         
     return redirect('/school_years')

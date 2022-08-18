@@ -13,7 +13,7 @@
     {% include 'activities/admin_nav.html' %}
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-user-pin'></i> ENROLLED STUDENTS</h1><br>
+            <h1 class="text"><i class='bx bx-user-pin'></i> MANAGE SCHOOL YEARS</h1><br>
         </div>
         <div class="bg">
             <ul class="nav nav-tabs nav-pills nav-fill">
@@ -31,8 +31,61 @@
                 </li>
 
             </ul>
+            <br>
+
+            <div class="inners">
+                <div class="card">
+                    <div class="card-header">
+                        School Year
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'activities:create_sy' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">*Add School Year here</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" name="year">
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
+
+                        </form>
+
+                    </div>
+                </div>
+                <br>&nbsp;<br>
+                <div class="card">
+                    <div class="card-header">
+                        Current School Year
+                    </div>
+                    <div class="card-body">
+                        <form >
+                            <div class="form-group">
+                                {% for s in s_years %}
+                                  
+                                        <label for="formGroupExampleInput" id="current">{{s.years}}</label>
+                        
+                                {% endfor %}
+                                <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" name="year"> -->
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button> -->
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% for msg in messages %}
+            Swal.fire({
+                icon:    'success',
+                text: '{{ msg }}'
+            })
+        {% endfor %}
+    </script>
 
 </body>
 

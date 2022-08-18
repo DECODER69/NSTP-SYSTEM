@@ -28,6 +28,9 @@
             <div class="cont">
                 <form class="container" action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
                     {%csrf_token%}
+                    {% for s in schools %}
+                    <input type="hidden" name="s_year" value="{{s.years}}">
+                    {% endfor %}
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" class="form-control" id="firstname" placeholder="Juan" required name="firstname">

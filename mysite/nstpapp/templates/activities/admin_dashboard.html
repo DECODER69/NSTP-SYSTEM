@@ -57,15 +57,17 @@
                     <div class="cards" id="yellow">
                         <div class="inside1">
                             <div class="left">
-                                <h1>8</h1>
-                                <p>Total Enrollee</p>
+                                {% for s in sy %}
+                                <h1>{{s.years}}</h1>
+                                {% endfor %}
+                                <p>School Year</p>
                             </div>
                             <div class="right">
                                 <img class="graph" src="../../static/images/graph.png">
                             </div>
                         </div>
                         <div class="more">
-                            <p class="info"><a href="#">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
+                            <p class="info"><a href="/school_years">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
 
                         </div>
                     </div>

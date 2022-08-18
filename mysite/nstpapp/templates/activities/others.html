@@ -42,9 +42,8 @@
                             {% csrf_token %}
                             <div class="block">
                                 <label>Submit here the photo of your Student's ID.</label> {% if e.idpic %}
-                                <input type="file" name="studentid" value="{{e.idpic.url}}" required> {% else %}
-                                <p></p>
-                                {% endif %}
+                                <img src="{{e.idpic.url}}" class="ids" alt="id picture"> {% else %}
+                                <input type="file" name="studentid" value="{{e.idpic.url}}" required> {% endif %}
 
                             </div>
                             <div class="block">
