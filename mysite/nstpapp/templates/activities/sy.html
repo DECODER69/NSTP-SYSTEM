@@ -43,7 +43,7 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="formGroupExampleInput">*Add School Year here</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" name="year">
+                                <input  type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" accept="1,2,3,4,5,6,7,8,9,0,-" name="year" required>
                             </div>
                             <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
 
@@ -60,10 +60,13 @@
                         <form >
                             <div class="form-group">
                                 {% for s in s_years %}
-                                  
-                                        <label for="formGroupExampleInput" id="current">{{s.years}}</label>
-                        
+                                {% if s.years %}
+                                    <label for="formGroupExampleInput" id="current" >{{s.years}}</label>
+                                    {% else %}
+                                    <label for="formGroupExampleInput" id="current" >Create School Year</label>
+                                    {% endif %}
                                 {% endfor %}
+                 
                                 <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" name="year"> -->
                             </div>
                             <!-- <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button> -->
@@ -81,11 +84,12 @@
     <script>
         {% for msg in messages %}
             Swal.fire({
-                icon:    'success',
+                icon:    '{{msg.icon}}',
                 text: '{{ msg }}'
             })
         {% endfor %}
     </script>
+
 
 </body>
 

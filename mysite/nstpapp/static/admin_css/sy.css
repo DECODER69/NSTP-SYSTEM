@@ -83,8 +83,18 @@
     width: 100%;
 }
 
+.form-group {
+    text-align: center;
+}
+
 .inners .card {
     width: 30%;
+}
+
+#current {
+    font-size: 40px;
+    text-align: center;
+    margin: auto;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {

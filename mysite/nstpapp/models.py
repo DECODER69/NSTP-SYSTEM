@@ -41,7 +41,7 @@ class extenduser(models.Model):
     disease  = models.CharField(max_length=100, default='')
     specific = models.CharField(max_length=100, default='')
     proof = models.FileField(upload_to='proofs/', default='')
-    s_year = models.CharField(max_length=100, default='')
+    s_year = models.CharField(max_length=100, default='0000')
 
     
     

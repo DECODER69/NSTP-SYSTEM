@@ -1,6 +1,7 @@
 from dataclasses import field
 from multiprocessing import context
 from pickle import FALSE
+from re import S
 from tabnanny import check
 from tkinter import FLAT
 from django.shortcuts import render, redirect
@@ -16,6 +17,7 @@ import os
 
 # emails
 from django.core.mail import send_mail
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -159,11 +161,17 @@ def admin_view_profile(request, id):
 
 
 def school_years(request):
-    s_years = [school_year.objects.latest('years')]
+    s_years = school_year.objects.all()
+    
     context = {
-        's_years':s_years
+        's_years':[s_years.last()],
     }
     return render(request, 'activities/sy.html', context)
+
+
+  
+     
+    
 
 
 
@@ -355,9 +363,13 @@ def custom(request):
 def create_sy(request):
     if request.method == 'POST':
         years = request.POST.get('year')
-        data = school_year(years=years)
-        data.save()
-        messages.success(request, 'School year ' + str (years) + ' Successfully Created !')
-        return redirect('/school_years')
+        if school_year.objects.filter(years=years).exists():
+                messages.info(request, 'School year ' + str (years) + ' ALready exist !')
+                return redirect('/school_years')
+        else:
+            data = school_year(years=years)
+            data.save()
+            messages.success(request, 'School year ' + str (years) + ' Successfully Created !')
+            return redirect('/school_years')
         
     return redirect('/school_years')
