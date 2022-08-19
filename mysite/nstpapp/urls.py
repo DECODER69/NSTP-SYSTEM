@@ -11,6 +11,7 @@ from django.urls import include, re_path
 # password reset
 from django.contrib.auth import views as auth_views
 
+from django.urls import reverse_lazy
 
 app_name = 'activities'
 
@@ -53,5 +54,13 @@ urlpatterns = [
     path('rejected_email_page/<str:id>', views.rejected_email_page, name='rejected_email_page'),
     path('school_years/', views.school_years, name='school_years'),
     path('create_sy/', views.create_sy, name='create_sy'),
+    
+    
+    # password reset
+    path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
+    path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='activities/registration/password_reset_confirm.html'),name='password_reset_confirm'),
+    path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='activities/registration/password_reset_complete.html'),name='password_reset_complete'),
+    
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -198,7 +198,7 @@ def signup(request):
             return redirect('/signup_page')
        
         else:
-            user = User.objects.create_user(username=idnumber, password=password,)
+            user = User.objects.create_user(username=idnumber, password=password, email=email)
             datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,picture=picture,user=user)
             datas.save()
             auth.login(request, user)
@@ -373,3 +373,11 @@ def create_sy(request):
             return redirect('/school_years')
         
     return redirect('/school_years')
+
+
+
+
+# PASSWORD RESET EMAIL
+
+# def password_reset(request):
+#     return render (request, 'activities/registration/')

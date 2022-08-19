@@ -88,3 +88,10 @@
 #already {
     text-align: center;
 }
+
+
+/* password reset */
+
+form.as_p {
+    width: 100%;
+}
