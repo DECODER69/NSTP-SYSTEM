@@ -78,9 +78,10 @@
     float: right;
 }
 
-.inners {
+
+/* .inners {
     background-color: #811616;
-}
+} */
 
 .form-group {
     text-align: center;
@@ -94,6 +95,12 @@
     font-size: 20px;
     text-align: center;
     margin: auto;
+}
+
+.card {
+    width: 100% !important;
+    height: auto;
+    background-color: #0069d9 !important;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {
