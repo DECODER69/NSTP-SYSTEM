@@ -78,29 +78,63 @@
     float: right;
 }
 
-
-/* .inners {
-    background-color: #811616;
-} */
-
 .form-group {
     text-align: center;
 }
 
-.inners .card {
+
+/* .inners .card {
     width: 30%;
-}
+} */
 
-#current {
-    font-size: 20px;
-    text-align: center;
-    margin: auto;
-}
-
-.card {
+.cards {
     width: 100% !important;
     height: auto;
-    background-color: #0069d9 !important;
+}
+
+.card1 {
+    width: 100%;
+    height: 100%;
+    /* background-color: #16A1B4; */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.card1 button {
+    display: flex;
+}
+
+.add {
+    color: white;
+    font-size: 20px;
+    background-color: #222D32;
+}
+
+.inners {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    text-align: center;
+    width: 40%;
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-group h1 {
+    font-size: 20px;
+    text-align: center !important;
+}
+
+.fors {
+    width: 100%;
+    height: 100%;
+}
+
+.fors h1 {
+    font-size: 40px;
+    text-align: center;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {

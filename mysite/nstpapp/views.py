@@ -106,13 +106,13 @@ def logout_student(request):
 # ADMIN PAGE DISPLAYS
 
 def admin_dashboard(request):
-    sy = [school_year.objects.latest('years')]
+    sy = school_year.objects.all()
     active = extenduser.objects.filter(status='ENROLLED').count()
     pending = extenduser.objects.filter(status='PENDING').count()
     context = {
         'active':active,   
         'pending':pending,
-        'sy':sy,
+        'sy':[sy.last()],
     }
     return render(request, 'activities/admin_dashboard.html', context)
 
@@ -162,10 +162,21 @@ def admin_view_profile(request, id):
 
 def school_years(request):
     s_years = school_year.objects.all()
-    
+    ss_years = school_year.objects.all()
+
+    syss = request.POST.get('syss')
+
+
+    print("hahah" + str(syss))
     context = {
         's_years':[s_years.last()],
+        'ss_years':ss_years,
+        # 'graduates':graduates
+        
     }
+
+
+
     return render(request, 'activities/sy.html', context)
 
 

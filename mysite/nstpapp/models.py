@@ -54,5 +54,6 @@ class extenduser(models.Model):
     
 class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
+
     
     

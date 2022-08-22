@@ -11,6 +11,10 @@
 
 <body>
     {% include 'activities/admin_nav.html' %}
+
+    <!-- modals -->
+
+
     <section class="home-section">
         <div class="heads">
             <h1 class="text"><i class='bx bx-user-pin'></i> MANAGE SCHOOL YEARS</h1><br>
@@ -34,67 +38,68 @@
             <br>
 
             <div class="inners">
-                <div class="card">
+                <!-- <div class="cards">
                     {% for s in s_years %}
                     {% if s.years %}
-                    <div class="card-header">
                        School Year  |  {{s.years}}
                         {% else %}
                             Create School Year
                         {% endif %}
-                    </div>
                     {% endfor %}
-                    <div class="card-body">
                         <form action="{% url 'activities:create_sy' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="formGroupExampleInput">*Add School Year here</label>
-                                <input  type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" accept="1,2,3,4,5,6,7,8,9,0,-" name="year" required>
+                                <input  type="text"   placeholder="2022-2023" accept="1,2,3,4,5,6,7,8,9,0,-" name="year" required>
                             </div>
                             <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
 
                         </form>
 
-                    </div>
+                   
+                </div>   -->
+
+                <div class="form-group">
+                    <form action="{% url 'activities:create_sy' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="exampleFormControlInput1" style="float: left;">Add School Year</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="2022-2023" required name="year"><br>
+                        <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
+                    </form>
+
+
                 </div>
-                <br>&nbsp;<br>
-                {% comment %} <div class="card">
-                    <div class="card-header">
-                        Current School Year
-                    </div>
-                    <div class="card-body">
-                        <form >
-                            <div class="form-group">
-                                {% for s in s_years %}
-                                {% if s.years %}
-                                    <label for="formGroupExampleInput" id="current" >{{s.years}}</label>
-                                    {% else %}
-                                    <label for="formGroupExampleInput" id="current" >Create School Year</label>
-                                    {% endif %}
-                                {% endfor %}
-                 
-                                <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="2022-2023" name="year"> -->
-                            </div>
-                            <!-- <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button> -->
-
-                        </form>
+                <br>
+                <div class="form-group" id="fgroup">
+                    <label for="exampleFormControlInput1" style="float: left;">Current School Year</label><br>&nbsp;<br>
+                    <div class="fors">
+                        
+                    {% for s in s_years %}
+                
+                    <h1 class="yss">{{s.years}}</h1>
+              
+                {% endfor %}
 
                     </div>
-                </div> {% endcomment %}
+
+
+                </div>
+
+
 
             </div>
         </div>
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+ <script>
         {% for msg in messages %}
             Swal.fire({
                 icon:    '{{msg.icon}}',
                 text: '{{ msg }}'
             })
         {% endfor %}
-    </script>
+    </script> 
 
 
 </body>
