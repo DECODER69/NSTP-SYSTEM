@@ -181,11 +181,6 @@ def school_years(request):
  
         
 
-        
- 
-
-
-
     return render(request, 'activities/sy.html', context)
 
 # def allumni_page(request):
@@ -416,11 +411,13 @@ def allumni_content(request):
     if request.method == 'POST':
         getYear = request.POST.get('getYear')
         content = extenduser.objects.filter(s_year=getYear)
+        content2 = extenduser.objects.filter(s_year=getYear).count()
     else:
         print("hahahahaaha")
         return render(request, 'activities/allumni.html')
     context = {
-        'content':content
+        'content':content,
+        'content2':content2
     }
     print(getYear+"hahahahahaaha")
 
@@ -428,8 +425,15 @@ def allumni_content(request):
     return render(request, 'activities/allumni.html', context)
 
 
-
-    
+def delete_sy(request, years):
+    if request.method == 'POST':
+        yrid = request.POST.get('getID2')
+        syid = school_year.objects.filter(years=yrid).delete()
+        context = {
+            'syid':syid,
+        }
+        messages.success(request, 'School year ' + str (yrid) + ' Successfully Removed !')
+        return redirect('/school_years', context)
 
 
 

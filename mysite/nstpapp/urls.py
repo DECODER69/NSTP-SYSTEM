@@ -56,6 +56,7 @@ urlpatterns = [
     path('create_sy/', views.create_sy, name='create_sy'),
     # path('allumni_page/', views.allumni_page, name='allumni_page'),
     path('allumni_content/', views.allumni_content, name='allumni_content'),
+    path('delete_sy/<str:years>', views.delete_sy, name='delete_sy'),
     
     
     # password reset

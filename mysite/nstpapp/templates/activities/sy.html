@@ -37,27 +37,11 @@
             </ul>
             <br>
 
+
+
+
             <div class="inners">
-                <!-- <div class="cards">
-                    {% for s in s_years %}
-                    {% if s.years %}
-                       School Year  |  {{s.years}}
-                        {% else %}
-                            Create School Year
-                        {% endif %}
-                    {% endfor %}
-                        <form action="{% url 'activities:create_sy' %}" method="POST">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">*Add School Year here</label>
-                                <input  type="text"   placeholder="2022-2023" accept="1,2,3,4,5,6,7,8,9,0,-" name="year" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
 
-                        </form>
-
-                   
-                </div>   -->
 
                 <div class="form-group">
                     <form action="{% url 'activities:create_sy' %}" method="POST">
@@ -92,36 +76,65 @@
 
             </div>
         </div>
-        <div class="haha">
-            {% for s in ewan %} {% if s.years %}
-            <form action="{% url 'activities:allumni_content'  %}" method="POST">
-                {% csrf_token %}
-                <div class="card">
-                    <div class="card-header">
-                        {{s.years}}
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <input type="hidden" value="{{s.years}}" name="getYear">
-                        <button type="submit">Open</button>
-                    </div>
-                </div>
-            </form>
-            <br>&nbsp;<br> {% endif %} {% endfor %}
-        </div>
-        <br>
+        <div class="inside">
+            <div class="table-responsive">
+                <div class="he">
+                    <br>
+                    <p1 style="margin-left: 10px; color:#ffffff;">School Year List and History:</p1><br>&nbsp;
+                    <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">School Years</h1><br>
 
+                </div>
+
+                <table class="table table-hover" id="myTable">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">SCHOOL YEARS</th>
+                            <th scope="col">GRADUATES</th>
+                            <th scope="col">ACTIONS</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in ewan %} {% if s.years %}
+                        <tr>
+                            <td>{{ s.years }}</td>
+                            <form action="{% url 'activities:allumni_content'  %}" method="POST">
+                                {% csrf_token %}
+                                <td>
+                                    <input type="hidden" value="{{s.years}}" name="getYear">
+                                    <button type="submit" class="btn btn-info">View Graduates</button>
+                                </td>
+                            </form>
+
+                            <td>
+
+                                <div class="ehe">
+                                    <form action="{% url 'activities:delete_sy' s.years %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="getID2" value="{{s.years}}"><button type="submit" class="btn btn-danger"><i class='bx bx-trash'></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        {% endif %} {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
+<script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script> -->
+    </script>
 
 
 </body>

@@ -34,7 +34,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
                 </li>
-                {% comment %} <li class="nav-item">
+                {% comment %}
+                <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
                 </li> {% endcomment %}
             </ul>
@@ -45,8 +46,7 @@
                         <option value="rotc">ROTC</option>
                         <option value="cwts">CWTS</option>
     
-                    </select><br>
-                    {% comment %} <select class="cl_age" id="ddlAge">
+                    </select><br> {% comment %} <select class="cl_age" id="ddlAge">
                         <option value="all">Select Platoon/ Section</option>
                         <option value="ALPHA">APHA</option>
                         <option value="BRAVO">BRAVO</option>
@@ -99,59 +99,57 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         {% for s in pendings %}
-                            
-                            <tr>
-                    
 
-                                    <td>
+                        <tr>
 
-                                        {{s.idnumber}}
 
-                                    </td>
+                            <td>
 
-        
-                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                    <td>{{s.email}}</td>
-                                    <td id="profile">
-                                        <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
-                                            <img src="{{s.picture.url}}">
-                                        </a>
-                                    </td>
-                                    <td>{{s.section}}</td>
-                                    <td>{{s.field}}</td>
-                                    <td class="tar">
-                                        <a href="{% url 'activities:admin_view_profile' s.id %}"title="Click to view profile">
+                                {{s.idnumber}}
+
+                            </td>
+
+
+                            <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                            <td>{{s.email}}</td>
+                            <td id="profile">
+                                <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
+                                    <img src="{{s.picture.url}}">
+                                </a>
+                            </td>
+                            <td>{{s.section}}</td>
+                            <td>{{s.field}}</td>
+                            <td class="tar">
+                                <a href="{% url 'activities:admin_view_profile' s.id %}" title="Click to view profile">
                                         View Profile
                                         </a>
 
-                                    </td>
-                                    <!-- formsssssss -->
+                            </td>
+                            <!-- formsssssss -->
 
-                                    <td class="actions">
-                                        <div class="ehe">
-                                            <form action="{% url 'activities:approve' s.idnumber %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
-                                            </form>
-                                        </div>
-                                        <div class="ehe">
-                                            <form action="{% url 'activities:decline' s.id %}" method="post">
-                                                {% csrf_token %}
-                                                <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
-                                            </form>
-                                        </div>
+                            <td class="actions">
+                                <div class="ehe">
+                                    <form action="{% url 'activities:approve' s.idnumber %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
+                                    </form>
+                                </div>
+                                <div class="ehe">
+                                    <form action="{% url 'activities:decline' s.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
+                                    </form>
+                                </div>
 
 
-                                    </td>
-                                                      
-                            
-                            </tr>
-                            {% empty %}
-                          
-                        {% endfor %}
-                     
+                            </td>
+
+
+                        </tr>
+                        {% empty %} {% endfor %}
+
                     </tbody>
                 </table>
 
@@ -170,7 +168,7 @@
             text: '{{ msg }}'
         }) 
         {% endfor %}
-    </script>
+    </script> 
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -187,9 +185,9 @@
             } else {
                 $('#myTable tbody tr:has(td)').each(function() {
                     var rowCountry = $.trim($(this).find('td:eq(5)').text());
-              
-                    if (country.toUpperCase() != 'ALL' ) {
-                        if (rowCountry.toUpperCase() == country.toUpperCase() ) {
+
+                    if (country.toUpperCase() != 'ALL') {
+                        if (rowCountry.toUpperCase() == country.toUpperCase()) {
                             $(this).show();
                         } else {
                             $(this).hide();
@@ -202,7 +200,7 @@
                                 $(this).hide();
                             }
                         }
-                        
+
                     }
 
                 });
@@ -232,6 +230,60 @@
                 }
             }
         }
+    </script>
+
+    <script>
+        $(function() {
+            $('table.table').each(function() {
+                var currentPage = 0;
+                var numPerPage = 10;
+                var $table = $(this);
+                $table.bind('repaginate', function() {
+                    $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+                });
+                $table.trigger('repaginate');
+                var numRows = $table.find('tbody tr').length;
+                var numPages = Math.ceil(numRows / numPerPage);
+                var $pager = $('<div class="pager"></div>');
+                var $previous = $('<span class="previous"><<</spnan>');
+                var $next = $('<span class="next">>></spnan>');
+                for (var page = 0; page < numPages; page++) {
+                    $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                        newPage: page
+                    }, function(event) {
+                        currentPage = event.data['newPage'];
+                        $table.trigger('repaginate');
+                        $(this).addClass('active').siblings().removeClass('active');
+                    }).appendTo($pager).addClass('clickable');
+                }
+                $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+                $previous.insertBefore('span.page-number:first');
+                $next.insertAfter('span.page-number:last');
+
+                $next.click(function(e) {
+                    $previous.addClass('clickable');
+                    $pager.find('.active').next('.page-number.clickable').click();
+                });
+                $previous.click(function(e) {
+                    $next.addClass('clickable');
+                    $pager.find('.active').prev('.page-number.clickable').click();
+                });
+                $table.on('repaginate', function() {
+                    $next.addClass('clickable');
+                    $previous.addClass('clickable');
+
+                    setTimeout(function() {
+                        var $active = $pager.find('.page-number.active');
+                        if ($active.next('.page-number.clickable').length === 0) {
+                            $next.removeClass('clickable');
+                        } else if ($active.prev('.page-number.clickable').length === 0) {
+                            $previous.removeClass('clickable');
+                        }
+                    });
+                });
+                $table.trigger('repaginate');
+            });
+        });
     </script>
 
 </body>
