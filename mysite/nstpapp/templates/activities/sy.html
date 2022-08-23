@@ -73,12 +73,14 @@
                 <div class="form-group" id="fgroup">
                     <label for="exampleFormControlInput1" style="float: left;">Current School Year</label><br>&nbsp;<br>
                     <div class="fors">
-                        
-                    {% for s in s_years %}
-                
-                    <h1 class="yss">{{s.years}}</h1>
-              
-                {% endfor %}
+
+                        {% for s in s_years %} {% if s.years %}
+
+                        <h1 class="yss">{{s.years}}</h1>
+                        {% else%}
+
+                        <h1 class="yss">None !</h1>
+                        {% endif %} {% endfor %}
 
                     </div>
 
@@ -87,19 +89,39 @@
 
 
 
+
             </div>
         </div>
+        <div class="haha">
+            {% for s in ewan %} {% if s.years %}
+            <form action="{% url 'activities:allumni_content'  %}" method="POST">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="card-header">
+                        {{s.years}}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <input type="hidden" value="{{s.years}}" name="getYear">
+                        <button type="submit">Open</button>
+                    </div>
+                </div>
+            </form>
+            <br>&nbsp;<br> {% endif %} {% endfor %}
+        </div>
+        <br>
+
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <script>
+    <!-- <script>
         {% for msg in messages %}
-            Swal.fire({
-                icon:    '{{msg.icon}}',
-                text: '{{ msg }}'
-            })
-        {% endfor %}
-    </script> 
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> -->
 
 
 </body>

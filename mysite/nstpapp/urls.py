@@ -47,13 +47,15 @@ urlpatterns = [
     path('admin_staff/', views.admin_staff, name='admin_staff'),
     path('admin_pending/', views.admin_pending, name='admin_pending'),
     path('admin_view_profile/<str:id>', views.admin_view_profile, name='admin_view_profile'),
-    path('approve/<str:id>', views.approve, name='approve'),
+    path('approve/<str:idnumber>', views.approve, name='approve'),
     path('decline/<str:id>', views.decline, name='decline'),
     path('admin_rejected/', views.admin_rejected, name='admin_rejected,'),
     path('custom/', views.custom, name='custom'),
     path('rejected_email_page/<str:id>', views.rejected_email_page, name='rejected_email_page'),
     path('school_years/', views.school_years, name='school_years'),
     path('create_sy/', views.create_sy, name='create_sy'),
+    # path('allumni_page/', views.allumni_page, name='allumni_page'),
+    path('allumni_content/', views.allumni_content, name='allumni_content'),
     
     
     # password reset

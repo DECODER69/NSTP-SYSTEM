@@ -88,10 +88,16 @@
                 </div>
 
                 <div class="table-responsive">
+                    <div class="he">
+                        <br>
+                        <p1 style="margin-left: 10px; color:#ffffff;">Rejected Enrollees. SY:</p1><br>&nbsp;
+                        <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">Rejected</h1><br>
+
+                    </div>
 
 
                     <table class="table table-hover" id="myTable">
-                        <thead class="thead-dark">
+                        <thead class="thead">
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
@@ -103,10 +109,11 @@
                                 <th scope="col">SEND EMAIL</th>
                                 <th scope="col">ACTIONS</th>
 
+
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s in rejected %}
+                            {% for s in rejected %} {% if s.idnumber %}
                             <tr>
 
                                 <td>
@@ -129,10 +136,7 @@
                                 </td>
 
                             </tr>
-
-                            {% empty %}
-                            <h1 style="color: red;">NO REJECTED ENROLLEES !</h1>
-                            {% endfor %}
+                            {% endif %} {% endfor %}
                         </tbody>
                     </table>
 

@@ -77,10 +77,16 @@
 
             </div>
             <div class="table-responsive">
+                <div class="he">
+                    <br>
+                    <p1 style="margin-left: 10px; color:#ffffff;">Pending Enrollees. SY:</p1><br>&nbsp;
+                    <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">Students</h1><br>
+
+                </div>
 
 
                 <table class="table table-bordered" id="myTable">
-                    <thead class="thead-dark">
+                    <thead class="thead">
                         <tr>
                             <th scope="col">ID Number</th>
                             <th scope="col">Full name</th>
@@ -125,15 +131,15 @@
 
                                     <td class="actions">
                                         <div class="ehe">
-                                            <form action="{% url 'activities:approve' s.id %}" method="post">
+                                            <form action="{% url 'activities:approve' s.idnumber %}" method="post">
                                                 {% csrf_token %}
-                                                <input type="hidden" name="getID" value="{{s.id}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
+                                                <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
                                             </form>
                                         </div>
                                         <div class="ehe">
                                             <form action="{% url 'activities:decline' s.id %}" method="post">
                                                 {% csrf_token %}
-                                                <input type="hidden" name="getID2" value="{{s.id}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
+                                                <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
                                             </form>
                                         </div>
 
@@ -143,7 +149,7 @@
                             
                             </tr>
                             {% empty %}
-                            <h1 style="color: red;">NO PENDING ENROLLEES !</h1>
+                          
                         {% endfor %}
                      
                     </tbody>

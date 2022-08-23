@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.home-section {
+    position: relative;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.heads {
+    background: #616161;
+}
+
+.heads .text i {
+    vertical-align: middle;
+}
+
+.sidebar.open~.home-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.home-section .text {
+    /* background: #c51c39; */
+    display: inline-block;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 18px
+}
+
+.bg {
+    width: auto;
+    background-attachment: fixed;
+    /* background-image: url(../images/tupc2.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    padding: 18px;
+}

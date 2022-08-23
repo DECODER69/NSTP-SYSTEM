@@ -137,6 +137,11 @@
     text-align: center;
 }
 
+.haha {
+    padding: 5px;
+    display: flex;
+}
+
 @media screen and (min-width:360px)and (max-width:640px) {
     .add .btns {
         border-radius: 5px;

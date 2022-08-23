@@ -9,6 +9,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
+import datetime
 
 #models imported
 from .models import extenduser,school_year
@@ -117,6 +118,7 @@ def admin_dashboard(request):
     return render(request, 'activities/admin_dashboard.html', context)
 
 def admin_staff(request):
+    
     details = extenduser.objects.filter(status='ENROLLED').order_by('field')
     pendings = extenduser.objects.filter(status='PENDING')
     pending = extenduser.objects.filter(status='PENDING').count()
@@ -125,6 +127,7 @@ def admin_staff(request):
         'pending':pending,
         'details': details,
         'pendings':pendings,
+       
     }
     
     return render(request, 'activities/admin_staffs.html', context)
@@ -161,23 +164,48 @@ def admin_view_profile(request, id):
 
 
 def school_years(request):
+   
     s_years = school_year.objects.all()
-    ss_years = school_year.objects.all()
+    ss_years = extenduser.objects.all()
+    ewan = school_year.objects.all()
 
-    syss = request.POST.get('syss')
 
-
-    print("hahah" + str(syss))
+   
     context = {
+        'ewan':ewan,
         's_years':[s_years.last()],
         'ss_years':ss_years,
         # 'graduates':graduates
         
     }
+ 
+        
+
+        
+ 
 
 
 
     return render(request, 'activities/sy.html', context)
+
+# def allumni_page(request):
+
+#     ss_years = extenduser.objects.all()
+#     ewan = school_year.objects.all()
+
+#     syss = request.POST.get('syss')
+
+#     print("hahah" + str(syss))
+#     context = {
+#         'ewan':ewan,
+      
+#         'ss_years':ss_years,
+#         # 'graduates':graduates
+        
+#     }
+
+    
+    return render(request, 'activities/allumni.html', context)
 
 
   
@@ -330,22 +358,21 @@ def cwts_files(request):
 
 # ADMIN FUNCTIONS ################################
 
-def approve(request, id):
+def approve(request, idnumber):
     stat2 = request.POST.get('getID')
-    name = extenduser.objects.all()
-    name.idnumber = extenduser.objects.filter(id=stat2)
-    # for names in name.idnumber:
-        
-    # print(name.idnumber[0] )
-    extenduser.objects.filter(id=stat2).update(status='ENROLLED')
-    messages.success(request, 'Student ' + str (name.idnumber[0]) + ' has been Approved !')
+  
+    
+
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     return redirect('/admin_pending')
 
 def decline(request, id):
    
     stat2 = request.POST.get('getID2')
+   
     print(stat2)
-    extenduser.objects.filter(id=stat2).update(status='REJECTED')
+    extenduser.objects.filter(idnumber=stat2).update(status='REJECTED')
     messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
     return redirect('/admin_pending')
 
@@ -384,6 +411,25 @@ def create_sy(request):
             return redirect('/school_years')
         
     return redirect('/school_years')
+
+def allumni_content(request):
+    if request.method == 'POST':
+        getYear = request.POST.get('getYear')
+        content = extenduser.objects.filter(s_year=getYear)
+    else:
+        print("hahahahaaha")
+        return render(request, 'activities/allumni.html')
+    context = {
+        'content':content
+    }
+    print(getYear+"hahahahahaaha")
+
+
+    return render(request, 'activities/allumni.html', context)
+
+
+
+    
 
 
 
