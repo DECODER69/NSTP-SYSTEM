@@ -410,7 +410,7 @@ def create_sy(request):
 def allumni_content(request):
     if request.method == 'POST':
         getYear = request.POST.get('getYear')
-        content = extenduser.objects.filter(s_year=getYear)
+        content = extenduser.objects.filter(s_year=getYear).filter(status='GRADUATE')
         content2 = extenduser.objects.filter(s_year=getYear).count()
     else:
         print("hahahahaaha")

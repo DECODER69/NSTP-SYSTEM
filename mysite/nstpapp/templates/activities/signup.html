@@ -13,6 +13,27 @@
 </head>
 
 <body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: red;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Attention !</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+                </div>
+                <div class="modal-body">
+                    Registration is not yet Open!
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %} ############################# {% endcomment %}
     <div class="page">
         <div class="left">
             <div class="logo">
@@ -27,8 +48,8 @@
         <div class="right">
             <div class="cont">
                 <form class="container" action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
-                    {%csrf_token%} {% for s in schools %}
-                    <input type="hidden" name="s_year" value="{{s.years}}"> {% endfor %}
+                    {%csrf_token%} {% for s in schools %} {% if s.years %}
+                    <input type="hidden" name="s_year" value="{{s.years}}">
                     <div class="form-group">
                         <label for="firstname">First Name</label>
                         <input type="text" class="form-control" id="firstname" placeholder="Juan" required name="firstname">
@@ -54,7 +75,7 @@
                     <div class="custom-file mb-3">
                         <input type="file" class="custom-file-input" id="validatedCustomFile" required name="picture">
                         <label class="custom-file-label" for="validatedCustomFile">1 x 1 Picture</label>
-  
+
                     </div><br>
 
                     <div class="form-group">
@@ -66,6 +87,12 @@
                     </div><br>
                     <button type="submit" class="btn btn-success">Sign Up</button><br>&nbsp;<br>
                     <p id="already">Already have an Account? <a href="/login_page"> Login</a></p>
+
+
+
+                    <!-- oppppssssssssssssss -->
+
+                    {% else %} {% endif %} {% endfor %}
                 </form>
 
 
@@ -84,6 +111,7 @@
     {% comment %}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
     <script>
         {% for msg in messages %}
         Swal.fire({
@@ -92,8 +120,8 @@
         }) {% endfor %}
     </script>
 
-
-    <script>
+    {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
+    <script type="text/javascript">
         document.querySelector('.btn').onclick = function() {
 
             var password = document.querySelector('.password1').value,
@@ -117,6 +145,17 @@
             }
         }, 3000)
     </script>
+    {% comment %} {% else %}    {% endif %} {% endfor %} {% endcomment %}
+
+
+    {% for s in schools %} {% if s.years %} {% else %}
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#exampleModal').modal('show');
+        });
+    </script>
+    {% endif %} {% endfor %}
+
 </body>
 
 </html>
