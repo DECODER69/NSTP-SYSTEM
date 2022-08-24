@@ -1,8 +1,13 @@
 from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
+from django.utils.timezone import now
+from datetime import timedelta
+
+
+
 
 
 class extenduser(models.Model):
@@ -43,7 +48,7 @@ class extenduser(models.Model):
     proof = models.FileField(upload_to='proofs/', default='')
     s_year = models.CharField(max_length=100, default='0000')
 
-    
+
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
@@ -55,5 +60,4 @@ class extenduser(models.Model):
 class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
 
-    
     

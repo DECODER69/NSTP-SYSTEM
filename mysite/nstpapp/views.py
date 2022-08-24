@@ -22,6 +22,10 @@ from django.db import IntegrityError
 
 # Create your views here.
 
+# track active users
+from django.utils.timezone import now
+from datetime import timedelta
+
 
 
 #   PAGE SHOWING
@@ -110,10 +114,12 @@ def admin_dashboard(request):
     sy = school_year.objects.all()
     active = extenduser.objects.filter(status='ENROLLED').count()
     pending = extenduser.objects.filter(status='PENDING').count()
+
     context = {
         'active':active,   
         'pending':pending,
         'sy':[sy.last()],
+    
     }
     return render(request, 'activities/admin_dashboard.html', context)
 
@@ -404,7 +410,6 @@ def create_sy(request):
             data.save()
             messages.success(request, 'School year ' + str (years) + ' Successfully Created !')
             return redirect('/school_years')
-        
     return redirect('/school_years')
 
 def allumni_content(request):

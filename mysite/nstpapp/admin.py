@@ -9,3 +9,5 @@ admin.site.register(extenduser)
 admin.site.register(school_year)
 
 
+
+
