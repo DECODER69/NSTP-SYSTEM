@@ -60,6 +60,8 @@ urlpatterns = [
     path('create_platoon_page/', views.create_platoon_page, name='create_platoon_page'),
     path('create_section/', views.create_section, name='create_section'),
     path('counts/', views.counts, name='counts'),
+    path('pl_content/', views.pl_content, name='pl_content'),
+    path('section_content/', views.section_content, name='section_content'),
     
     
     # password reset

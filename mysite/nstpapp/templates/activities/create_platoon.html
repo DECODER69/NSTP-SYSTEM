@@ -122,8 +122,15 @@
 
                         </div>
                         <div class="view">
-                            <a href="#" style="text-decoration: none;">View more  ...</a>
 
+                            <form action="{% url 'activities:section_content'  %}" method="POST">
+                                {% csrf_token %}
+                                <td>
+                                    <input type="hidden" value="{{s.section_created}}" name="platoons">
+                                    <button type="submit" class="btn btn-info">View more  ...</button>
+                                </td>
+                            </form>
+                      
                         </div>
                     </div><br> {% else %} {% endif %} {% empty %}
                     <p style="text-align: center; margin-top:100px;">No Sections Created !</p>

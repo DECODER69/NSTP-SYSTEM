@@ -192,6 +192,7 @@ def school_years(request):
     return render(request, 'activities/sy.html', context)
 
 def create_platoon_page(request):
+    sectionxx = extenduser.objects.all()
     counts = extenduser.objects.filter(status='ENROLLED').count()
     counts1 = extenduser.objects.filter(status='ENROLLED')
     section = sections.objects.all()
@@ -202,10 +203,12 @@ def create_platoon_page(request):
     'counts1':counts1,
     'section':section,
     'section1':section1,
+    'sectionxx':sectionxx,
     }
     return render (request, 'activities/create_platoon.html', context)
 
-
+def pl_content(request):
+    return render(request, 'activities/pl_content.html')
   
      
     
@@ -456,6 +459,21 @@ def counts(request, secton_created):
         
         return redirect('/create_platoon_page', context)
     return redirect('/create_platoon_page', context)
+
+def section_content(request):
+    if request.method == 'POST':
+        getYear = request.POST.get('platoons')
+        content3 = extenduser.objects.filter(platoons=getYear)
+        content4 = sections.objects.filter(section_created=getYear)
+    else:
+        print("hahahahaaha")
+        return render(request, 'activities/pl_content.html')
+    context = {
+        'content3':content3,
+         'content4':content4
+    }
+    print(getYear+"hahahahahaaha")
+    return render(request, 'activities/pl_content.html', context)
 
 
 
