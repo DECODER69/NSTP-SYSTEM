@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import extenduser,school_year
+from .models import extenduser,school_year, sections
 import os
 
 
@@ -30,7 +30,7 @@ from datetime import timedelta
 
 #   PAGE SHOWING
 def index(request):
-    return render(request, 'activities/index.html')
+    return render(request, 'activities/landing.html')
 def signup_page(request):
     schools = school_year.objects.all()
     context = {
@@ -189,24 +189,19 @@ def school_years(request):
 
     return render(request, 'activities/sy.html', context)
 
-# def allumni_page(request):
-
-#     ss_years = extenduser.objects.all()
-#     ewan = school_year.objects.all()
-
-#     syss = request.POST.get('syss')
-
-#     print("hahah" + str(syss))
-#     context = {
-#         'ewan':ewan,
-      
-#         'ss_years':ss_years,
-#         # 'graduates':graduates
+def create_platoon_page(request):
+    counts = extenduser.objects.filter(status='ENROLLED').count()
+    counts1 = extenduser.objects.filter(status='ENROLLED')
+    section = sections.objects.all()
+    section1 = sections.objects.all().count()
+    context = {
         
-#     }
-
-    
-    return render(request, 'activities/allumni.html', context)
+    'counts':counts,
+    'counts1':counts1,
+    'section':section,
+    'section1':section1,
+    }
+    return render (request, 'activities/create_platoon.html', context)
 
 
   
@@ -292,9 +287,6 @@ def edit(request):
                                                             nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
                                                             pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact,
                                             )
-
-
-        
         return redirect('/others')
     else:
         return redirect('/editprofile')
@@ -307,9 +299,7 @@ def edit_others(request, id):
         if os.path.exists(image_path):
             os.remove(image_path)
         hehe.save()
-    
         return redirect('/health')
-       
     return redirect('/others')
 
 @login_required(login_url='/login_page')
@@ -328,9 +318,7 @@ def edit_health(request, id):
         hehes.disease = request.POST.getlist('check')
         hehes.specific = request.POST.get('spec')
         hehes.save()
-    
         return redirect('/health')
-    
     return redirect('/others')
 
 def rotc_files(request):
@@ -440,10 +428,18 @@ def delete_sy(request, years):
         messages.success(request, 'School year ' + str (yrid) + ' Successfully Removed !')
         return redirect('/school_years', context)
 
+def create_section(request):
+    if request.method == 'POST':
+        secs = request.POST.get('secs')
+        if sections.objects.filter(section_created  = secs).exists():
+            messages.info(request, 'Section ' + str (secs) + ' Already exist !')
+            return redirect('/create_platoon_page')
+        else:
+            data = sections(section_created=secs)
+            data.save()
+            messages.info(request, 'Section ' + str (secs) + ' Created !')
+            return redirect('/create_platoon_page')
+    return redirect('/create_platoon_page')
 
 
 
-# PASSWORD RESET EMAIL
-
-# def password_reset(request):
-#     return render (request, 'activities/registration/')

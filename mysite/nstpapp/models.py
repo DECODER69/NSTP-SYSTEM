@@ -59,5 +59,8 @@ class extenduser(models.Model):
     
 class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
+    
+class sections(models.Model):
+    section_created = models.CharField(max_length=20, default='')
 
     

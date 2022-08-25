@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Platoons</title>
+    <link rel="stylesheet" href="../../static/admin_css/create_platoon.css">
+    <link rel="icon" href="../../static/images/tup.png">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <!-- modal for sections -->
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#5d0c0c; color:white;">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Section!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'activities:create_section' %}" method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Add here ...</label>
+                            <input type="text" class="form-control" id="message-text" placeholder="ALPHA" name="secs">
+                        </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Add</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EOF MODAL -->
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</h1><br>
+        </div>
+        <div class="bg">
+            <div class="tops">
+                <div class="left1">
+                    <h1 style="font-size: 25px;">Add Students </h1><br>
+                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
+                    <a href="#" style="text-decoration: none;">
+                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; ">Add Student</button>
+                    </a>
+                </div>
+                <div class="right1">
+                    <h1 style="font-size: 25px;">Add Sections </h1><br>
+                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
+                    <a href="#" style="text-decoration: none;">
+                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Section</button>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="overall">
+                <div class="left">
+                    <h1 style="font-size: 25px;">All Students</h1>
+                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1>
+                    <br>&nbsp;<br>
+                    <div class="table-responsive">
+
+
+                        <table class="table">
+                            <thead>
+                                <tr style="color: rgb(79, 79, 79);">
+                                    <th scope="col">Profile</th>
+                                    <th scope="col">ID Number</th>
+                                    <th scope="col">Full name</th>
+                                    <th scope="col">Section</th>
+                                    <th scope="col">Field</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in counts1 %}
+                                <tr>
+                                    <th scope="row"><img src="{{s.picture.url}}" alt="profile pic" id="profile_pic"></th>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                    <td>{{s.section}}</td>
+                                    <td>{{s.field}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div><br>&nbsp;<br>&nbsp;<br>
+                <div class="right">
+                    <h1 style="font-size: 25px;">All Sections</h1>
+                    <p1 style="color: grey; font-size:15px;"><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Section/s</p1>
+                    {% for s in section %} {% if s.section_created %} {{ s.section_created }} {% else %} {% endif %} {% empty %}
+                    <p style="text-align: center; margin-top:100px;">No Sections Created !</p>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function() {
+            $('table.table').each(function() {
+                var currentPage = 0;
+                var numPerPage = 10;
+                var $table = $(this);
+                $table.bind('repaginate', function() {
+                    $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+                });
+                $table.trigger('repaginate');
+                var numRows = $table.find('tbody tr').length;
+                var numPages = Math.ceil(numRows / numPerPage);
+                var $pager = $('<div class="pager"></div>');
+                var $previous = $('<span class="previous"><<</spnan>');
+                var $next = $('<span class="next">>></spnan>');
+                for (var page = 0; page < numPages; page++) {
+                    $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                        newPage: page
+                    }, function(event) {
+                        currentPage = event.data['newPage'];
+                        $table.trigger('repaginate');
+                        $(this).addClass('active').siblings().removeClass('active');
+                    }).appendTo($pager).addClass('clickable');
+                }
+                $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+                $previous.insertBefore('span.page-number:first');
+                $next.insertAfter('span.page-number:last');
+
+                $next.click(function(e) {
+                    $previous.addClass('clickable');
+                    $pager.find('.active').next('.page-number.clickable').click();
+                });
+                $previous.click(function(e) {
+                    $next.addClass('clickable');
+                    $pager.find('.active').prev('.page-number.clickable').click();
+                });
+                $table.on('repaginate', function() {
+                    $next.addClass('clickable');
+                    $previous.addClass('clickable');
+
+                    setTimeout(function() {
+                        var $active = $pager.find('.page-number.active');
+                        if ($active.next('.page-number.clickable').length === 0) {
+                            $next.removeClass('clickable');
+                        } else if ($active.prev('.page-number.clickable').length === 0) {
+                            $previous.removeClass('clickable');
+                        }
+                    });
+                });
+                $table.trigger('repaginate');
+            });
+        });
+    </script>
+    <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>
+
+</body>
+
+</html>
