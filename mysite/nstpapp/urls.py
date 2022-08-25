@@ -59,6 +59,7 @@ urlpatterns = [
     path('delete_sy/<str:years>', views.delete_sy, name='delete_sy'),
     path('create_platoon_page/', views.create_platoon_page, name='create_platoon_page'),
     path('create_section/', views.create_section, name='create_section'),
+    path('counts/', views.counts, name='counts'),
     
     
     # password reset

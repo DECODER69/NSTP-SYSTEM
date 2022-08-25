@@ -93,8 +93,10 @@ def field_rotc(request):
 
 def admin_nav(request):
     pending = extenduser.objects.filter(status='PENDING').count()
+    
     context = {
-        'pending':pending
+        'pending':pending,
+        
     }
     return render(request, 'activities/admin_nav.html', context)
 def navbar(request):
@@ -440,6 +442,20 @@ def create_section(request):
             messages.info(request, 'Section ' + str (secs) + ' Created !')
             return redirect('/create_platoon_page')
     return redirect('/create_platoon_page')
+
+def counts(request, secton_created):
+    data1 = extenduser.objects.all()
+    if request.method == 'POST':
+        
+        get_section = request.POST.get('get_section')
+        get_count = extenduser.objects.filter(platoons=get_section).filter(status='ENROLLED').count()
+        context = {
+            'get_count':get_count,
+            'data1':data1
+        }
+        
+        return redirect('/create_platoon_page', context)
+    return redirect('/create_platoon_page', context)
 
 
 

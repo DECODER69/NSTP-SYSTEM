@@ -85,7 +85,7 @@
 .right {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: auto;
+    height: 100vh;
     width: 28%;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -136,7 +136,62 @@ div.pager span {
 
 div.pager span.active {
     background: #c00;
+    height: auto;
 }
 
 
 /* EOF PAGER */
+
+.covers {
+    display: block;
+    min-height: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    /* background: rgb(66, 102, 120);
+    background: linear-gradient(90deg, rgba(66, 102, 120, 1) 0%, rgba(164, 21, 158, 1) 100%); */
+}
+
+.cardss {}
+
+.some {
+    display: flex;
+    justify-content: space-between;
+}
+
+.some h1,
+p1 {
+    color: white;
+}
+
+.view {
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.479);
+    text-align: center;
+}
+
+.view a {
+    font-size: 20px;
+    color: white;
+}
+
+.view a:hover {
+    color: rgb(213, 213, 213);
+}
+
+.haha {
+    border-radius: 5px;
+    background: rgb(66, 102, 120);
+    background: linear-gradient(90deg, rgba(66, 102, 120, 1) 0%, rgba(164, 21, 158, 1) 100%);
+}
+
+.some2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.some2 h1 {
+    margin-top: 7%;
+    vertical-align: -webkit-baseline-middle;
+}
