@@ -15,38 +15,64 @@
     <!-- modal for sections -->
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        {% for s in datas %}
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:#5d0c0c; color:white;">
-                    <h5 class="modal-title" id="exampleModalLabel">Create New Section!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{s.firstname}} {{s.lastname}}</h5>
+
+
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'activities:create_section' %}" method="POST">
-                        {% csrf_token %}
-
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Add here ...</label>
-                            <input type="text" class="form-control" id="message-text" placeholder="ALPHA" name="secs" required>
-                        </div>
-
+                    <img src="{{s.picture.url}}" id="viewpic">
+                    <img src="../../static/images/tup.png" id="tups">
                 </div>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Add</button>
+                    <p><i class='bx bx-credit-card-front' style="vertical-align: middle;"></i> {{s.idnumber}}</p>
+                    <h2>|</h2>
+                    <p><i class='bx bx-envelope' style="vertical-align: middle;"></i> {{s.email}}</p>
+                    <a href="/create_platoon_page">
+                        <button type="button" class="btn btn-danger">Close</button>
+                    </a>
                 </div>
-                </form>
             </div>
         </div>
+        {% endfor %}
+
     </div>
 
     <!-- EOF MODAL -->
 
     <!-- MODAL FOR PICTURES -->
 
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {% for s in datas %}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{s.idnumber}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
 
 
     <!-- eof modal for puictures  -->
@@ -97,9 +123,10 @@
                                 <tr>
                                     <th scope="row">
 
-                                        <a href="{% url 'activities:view_images' s.id %}" target="_self" title="Click to view picture">
-                                            <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic">
-
+                                        <a href="{% url 'activities:view_images' s.id %}" data-toggle="modal" data-target="#exampleModal2">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="{{s.id}}" name="img_ur">
+                                            <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic" >
                                         </a>
                                     </th>
                                     <td>{{s.idnumber}}</td>
@@ -215,6 +242,12 @@
         }) {% endfor %}
     </script>  -->
 
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#staticBackdrop').modal('show');
+        });
+    </script>
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
 </body>
 
 </html>

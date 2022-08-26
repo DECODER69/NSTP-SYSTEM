@@ -209,6 +209,26 @@ def create_platoon_page(request):
 
 def pl_content(request):
     return render(request, 'activities/pl_content.html')
+
+
+def create_platoon_page2(request):
+    sectionxx = extenduser.objects.all()
+    counts = extenduser.objects.filter(status='ENROLLED').count()
+    counts1 = extenduser.objects.filter(status='ENROLLED')
+    section = sections.objects.all()
+    section1 = sections.objects.all().count()
+    context = {
+        
+    'counts':counts,
+    'counts1':counts1,
+    'section':section,
+    'section1':section1,
+    'sectionxx':sectionxx,
+    }
+    return render (request, 'activities/create_platoon2.html', context)
+
+def pl_content(request):
+    return render(request, 'activities/pl_content.html')
   
      
     
@@ -436,13 +456,17 @@ def delete_sy(request, years):
 def create_section(request):
     if request.method == 'POST':
         secs = request.POST.get('secs')
-        if sections.objects.filter(section_created  = secs).exists():
-            messages.info(request, 'Section ' + str (secs) + ' Already exist !')
-            return redirect('/create_platoon_page')
+        if secs is not None:
+            if sections.objects.filter(section_created  = secs).exists():
+                messages.info(request, 'Section ' + str (secs) + ' Already exist !')
+                return redirect('/create_platoon_page')
+            else:
+                data = sections(section_created=secs)
+                data.save()
+                messages.info(request, 'Section ' + str (secs) + ' Created !')
+                return redirect('/create_platoon_page')
         else:
-            data = sections(section_created=secs)
-            data.save()
-            messages.info(request, 'Section ' + str (secs) + ' Created !')
+            messages.info(request, 'Please Input Something!! Ex: ALPHA')
             return redirect('/create_platoon_page')
     return redirect('/create_platoon_page')
 
@@ -475,5 +499,27 @@ def section_content(request):
     print(getYear+"hahahahahaaha")
     return render(request, 'activities/pl_content.html', context)
 
+def view_images(request, id):
+    counts = extenduser.objects.filter(status='ENROLLED').count()
+    counts1 = extenduser.objects.filter(status='ENROLLED')
+    section = sections.objects.all()
+    section1 = sections.objects.all().count()
+    datas = extenduser.objects.filter(id=id)
+    sectionxx = extenduser.objects.all()
+    context = {
+        'datas':datas,
+        'counts':counts,
+        'counts1':counts1,
+        'section':section,
+        'section1':section1,
+        'sectionxx':sectionxx,
+    }
+
+    return render(request, 'activities/create_platoon2.html', context)
 
 
+
+
+
+    
+  

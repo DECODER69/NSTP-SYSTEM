@@ -14,7 +14,8 @@
     {% include 'activities/admin_nav.html' %}
     <section class="home-section">
         <div class="heads">{% for s in content4 %}
-            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students | {{s.section_created}}</h1><br>{% endfor %}
+            <a href="/create_platoon_page" style="color: white; text-decoration:none;">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</a> | {{s.section_created}}</h1><br>{% endfor %}
         </div>
         <div class="bg">
             <div class="overall">
