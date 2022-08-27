@@ -233,3 +233,11 @@ p1 {
 .modal-footer {
     justify-content: space-between !important;
 }
+
+
+/* table custom */
+
+.table td,
+.table th {
+    font-size: 15px !important;
+}
