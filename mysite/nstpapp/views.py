@@ -141,11 +141,13 @@ def admin_staff(request):
     return render(request, 'activities/admin_staffs.html', context)
 
 def admin_pending(request):
+    platoons = sections.objects.all()
     pending = extenduser.objects.filter(status='PENDING').count()
     pendings = extenduser.objects.filter(status='PENDING')
     context = {
         'pendings':pendings,
-        'pending':pending
+        'pending':pending,
+        'platoons':platoons
     }
     return render(request, 'activities/admin_pending.html', context)
 
@@ -192,6 +194,8 @@ def school_years(request):
     return render(request, 'activities/sy.html', context)
 
 def create_platoon_page(request):
+    current_datetime = datetime.datetime.now() 
+    userContent = User.objects.all()
     sectionxx = extenduser.objects.all()
     counts = extenduser.objects.filter(status='ENROLLED').count()
     counts1 = extenduser.objects.filter(status='ENROLLED')
@@ -204,6 +208,8 @@ def create_platoon_page(request):
     'section':section,
     'section1':section1,
     'sectionxx':sectionxx,
+    'userContent':userContent,
+    'current_datetime':current_datetime,
     }
     return render (request, 'activities/create_platoon.html', context)
 
@@ -227,8 +233,30 @@ def create_platoon_page2(request):
     }
     return render (request, 'activities/create_platoon2.html', context)
 
-def pl_content(request):
-    return render(request, 'activities/pl_content.html')
+def manage_section(request):
+    current_datetime = datetime.datetime.now() 
+    userContent = User.objects.all()
+    sectionxx = extenduser.objects.all()
+    counts = extenduser.objects.filter(status='ENROLLED').count()
+    counts1 = extenduser.objects.filter(status='ENROLLED')
+    section = sections.objects.all()
+    section1 = sections.objects.all().count()
+    secCount = request.POST.get('secCount')
+    # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
+    context = {
+        
+    'counts':counts,
+    'counts1':counts1,
+    'section':section,
+    'section1':section1,
+    'sectionxx':sectionxx,
+    'userContent':userContent,
+    'current_datetime':current_datetime,
+    # 'counts3':counts3
+    }
+ 
+    print(secCount)
+    return render(request, 'activities/manage_section.html', context)
   
      
     
@@ -374,10 +402,10 @@ def cwts_files(request):
 
 def approve(request, idnumber):
     stat2 = request.POST.get('getID')
-  
+    platoons = request.POST.get('platoons')
     
 
-    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED')
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons=platoons)
     messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     return redirect('/admin_pending')
 
@@ -485,16 +513,21 @@ def counts(request, secton_created):
     return redirect('/create_platoon_page', context)
 
 def section_content(request):
+    userContent = User.objects.all()
     if request.method == 'POST':
         getYear = request.POST.get('platoons')
         content3 = extenduser.objects.filter(platoons=getYear)
         content4 = sections.objects.filter(section_created=getYear)
+        
+
     else:
         print("hahahahaaha")
         return render(request, 'activities/pl_content.html')
     context = {
         'content3':content3,
-         'content4':content4
+         'content4':content4,
+         'userContent':userContent,
+         
     }
     print(getYear+"hahahahahaaha")
     return render(request, 'activities/pl_content.html', context)

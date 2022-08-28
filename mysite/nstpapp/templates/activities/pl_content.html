@@ -32,8 +32,12 @@
                                     <th scope="col">Profile</th>
                                     <th scope="col">ID Number</th>
                                     <th scope="col">Full name</th>
-                                    <th scope="col">Section</th>
-                                    <th scope="col">Field</th>
+                                    <th scope="col">Course / Section</th>
+                                    <th scope="col">Last login</th>
+                                    <th scope="col">Update Status</th>
+                                    <th scope="col">Action</th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +47,17 @@
                                     <td>{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                     <td>{{s.section}}</td>
-                                    <td>{{s.platoons}}</td>
+
+                                    {% for l in userContent %} {% if l.username == s.idnumber %}
+                                    <td style="color: green;">{{l.last_login }}</td>
+                                    {% endif %} {% endfor %}
+                                    <td>
+                                        <select name="status" id="status">
+                                            <option value="">{{s.status}}</option>
+                                            <option value="">DROP</option>
+                                            <option value="">GRADUATE</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -107,6 +121,9 @@
             });
         });
     </script>
+
+    <!-- for editing tables -->
+    <script src="extensions/editable/bootstrap-table-editable.js"></script>
 
 </body>
 

@@ -95,7 +95,9 @@
                             <th scope="col">Course</th>
                             <th scope="col">NSTP Field</th>
                             <th scope="col">View Profile</th>
+                            <!-- <th scope="col">Select Section / Platoon</th> -->
                             <th scope="col">Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -129,6 +131,16 @@
                             </td>
                             <!-- formsssssss -->
 
+                            <!-- <td>
+                                <select name="platoons" id="platoons">
+                                    <option value="{{s.platoons}}">Select Section / Platoon</option>
+                                    {% for s in platoons %}
+                                    <option value="{{s.section_created}}">{{s.section_created}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td> -->
+
+
                             <td class="actions">
                                 <div class="ehe">
                                     <form action="{% url 'activities:approve' s.idnumber %}" method="post">
@@ -161,14 +173,14 @@
     </section>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: 'msg.icon',
             text: '{{ msg }}'
         }) 
         {% endfor %}
-    </script> 
+    </script>  -->
 
     <script type="text/javascript">
         $(document).ready(function() {

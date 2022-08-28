@@ -9,7 +9,6 @@ from datetime import timedelta
 
 
 
-
 class extenduser(models.Model):
     #first part of registration
     firstname = models.CharField(max_length=30, default='', null=True)

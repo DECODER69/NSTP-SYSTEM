@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Platoons</title>
-    <link rel="stylesheet" href="../../static/admin_css/create_platoon.css">
+    <title>Manage sections</title>
+    <link rel="stylesheet" href="../../static/admin_css/manage_section.css">
     <link rel="icon" href="../../static/images/tup.png">
 </head>
 
@@ -52,87 +52,45 @@
     <!-- eof modal for puictures  -->
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</h1><br>
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Sections</h1><br>
         </div>
         <div class="bg">
             <div class="tops">
-                <div class="left1">
-                    <h1 style="font-size: 20px;">Add Students </h1><br>
-                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
-                    <a href="#" style="text-decoration: none;">
-                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; ">Add Student</button>
-                    </a>
-                </div>
-                {% comment %} <div class="right1">
+
+                <div class="right1">
                     <h1 style="font-size: 20px;">Add Sections </h1><br>
                     <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
                     <a href="#" style="text-decoration: none;">
                         <button type="button" class="btn btn-primary" style="margin: auto;display: flex; " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Section</button>
                     </a>
 
-                </div> {% endcomment %}
+                </div>
 
             </div>
 
             <div class="overall">
                 <div class="left">
-                    <h1 style="font-size: 20px;">All Students</h1>
-                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1>
+                    <h1 style="font-size: 20px;">All Sections</h1>
+                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Sections</p1>
                     <br>&nbsp;<br>
-                    <div class="table-responsive">
+                    <div class="car">
+                        {% for s in section %}
+                        <div class="card1">
+                            <p>{{s.section_created}}</p>
 
-
-                        <table class="table">
-                            <thead>
-                                <tr style="color: rgb(79, 79, 79);">
-                                    <th scope="col">Profile</th>
-                                    <th scope="col">ID Number</th>
-                                    <th scope="col">Full name</th>
-                                    <th scope="col">Course / Section</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Field</th>
-                            
-                                    <th scope="col">Platoon / Section</th>
-                                    <th scope="col">Last Login</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for s in counts1 %}
-                                <tr>
-                                    <th scope="row">
-
-                                        <a href="{% url 'activities:view_images' s.id %}" target="_self" title="Click to view picture">
-                                            <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic">
-
-                                        </a>
-                                    </th>
-                                    <td style="font-size: 10px;">{{s.idnumber}}</td>
-                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                    <td>{{s.section}}</td>
-                                    <td style="color:green;">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle;"></i></td>
-                                    <td>{{s.field}}</td>
-                                  
-                                    
-                                    <td>{{s.platoons}}</td>
-                                    {% for l in userContent %} {% if l.username == s.idnumber %}
-
-                                    <td style="color: rgb(196, 10, 10);">
-                                        <i class='bx bxs-time-five'style="vertical-align:middle;" ></i> {{l.last_login}}
-
-                                    </td>
-                                    {% endif %} {% endfor %}
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                        </div>
+                        <br> {% endfor %}
                     </div>
 
-                </div><br>&nbsp;<br>&nbsp;<br>
-                {% comment %} <div class="right">
+
+
+
+                </div>
+
+            </div><br>&nbsp;<br>&nbsp;<br>
+            <!-- <div class="right">
                     <h1 style="font-size: 20px;">All Sections</h1>
-                    <p1 style="color: grey; font-size:15px;font-weight:bold;"><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Section/s</p1><br>&nbsp;<br> 
-                    {% for s in section %}
-                    {% if s.section_created %}
+                    <p1 style="color: grey; font-size:15px;font-weight:bold;"><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Section/s</p1><br>&nbsp;<br> {% for s in section %} {% if s.section_created %}
                     <div class="haha">
                         <div class="covers">
                             <div class="cardss">
@@ -164,9 +122,9 @@
                     </div><br> {% else %} {% endif %} {% empty %}
                     <p style="text-align: center; margin-top:100px;">No Sections Created !</p>
                     {% endfor %}
-                </div> {% endcomment %}
+                </div> -->
 
-            </div>
+        </div>
 
         </div>
     </section>
