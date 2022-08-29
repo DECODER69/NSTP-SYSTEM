@@ -317,16 +317,14 @@ p1 {
 .coverpic {
     height: 150px;
     width: 100%;
-    background-attachment: fixed;
-    background-image: url(../images/tupc2.jpg);
+    background-attachment: scroll;
+    background-image: url(../images/valo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-.profilep {
-    background-color: #000;
-}
+.profilep {}
 
 .profilep img {
     width: 200px;
@@ -341,11 +339,13 @@ p1 {
 
 .row {
     width: 100%;
+    padding-left: 30px !important;
     justify-content: space-between;
 }
 
 .hilera {
     padding: 18px;
+    padding-left: 30px !important;
     width: 100%;
     background-color: antiquewhite;
 }
