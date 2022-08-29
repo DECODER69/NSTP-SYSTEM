@@ -65,6 +65,7 @@ urlpatterns = [
     path('view_images/<str:id>', views.view_images, name='view_images'),
     path('create_platoon_page2/', views.create_platoon_page2, name='create_platoon_page2'),
     path('manage_section/', views.manage_section, name='manage_section'),
+    path('edit_manage/<str:id>', views.edit_manage, name='edit_manage'),
     
     # password reset
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),

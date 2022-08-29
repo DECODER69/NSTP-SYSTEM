@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Platoons</title>
-    <link rel="stylesheet" href="../../static/admin_css/create_platoon.css">
+    <title>Edit Mange</title>
+    <link rel="stylesheet" href="../../static/admin_css/edit_manage.css">
     <link rel="icon" href="../../static/images/tup.png">
 
 
@@ -19,37 +19,61 @@
     <!-- modal for sections -->
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:#5d0c0c; color:white;">
-                    <h5 class="modal-title" id="exampleModalLabel">Create New Section!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
-          <span aria-hidden="true">&times;</span>
-        </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{% url 'activities:create_section' %}" method="POST">
-                        {% csrf_token %}
-
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Add here ...</label>
-                            <input type="text" class="form-control" id="message-text" placeholder="ALPHA" name="secs" required>
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Add</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- EOF MODAL -->
 
     <!-- MODAL FOR PICTURES -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        {% for s in datas %}
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><img src="{{s.picture.url}}" id="viewpic">&nbsp; {{s.lastname}} {{s.firstname}}</h5>
+                    <p id="idnumber"> {{s.idnumber}}</p>
+                </div>
+                <div class="modal-body">
+                    <div class="coverpic"></div>
+                    <div class="over">
+
+                        <div class="profilep">
+                            <img src="{{s.picture.url}}">
+                        </div><br>&nbsp;<br>
+                        <div class="hilera">
+                            <form>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.firstname}}">
+                                        <small id="emailHelp" class="form-text text-muted">First name</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.middlename}}">
+                                        <small id="emailHelp" class="form-text text-muted">Middle name</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.lastname}}">
+                                        <small id="emailHelp" class="form-text text-muted">Last name</small>
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <p><i class='bx bx-credit-card-front' style="vertical-align: middle;"></i> {{s.idnumber}}</p>
+                    <h2>|</h2>
+                    <p><i class='bx bx-envelope' style="vertical-align: middle;"></i> {{s.email}}</p>
+                    <a href="/create_platoon_page">
+                        <button type="button" class="btn btn-danger">Close</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
 
 
 
@@ -148,11 +172,8 @@
 
 
                                     <td>
-                                        <a href="{% url 'activities:edit_manage' s.id %}" target="_self" title="Click to view picture">
-                                            <i class='bx bxs-edit' id="changes"></i>
-
-                                        </a>
-
+                                        <input type="hidden" value="{{s.id}}">
+                                        <button type="submit" id="changes"><i class='bx bxs-edit' ></i> </button>
                                     </td>
                                     {% endif %} {% endfor %}
                                 </tr>
@@ -284,6 +305,13 @@
                 }
             }
         }
+    </script>
+
+
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('#staticBackdrop').modal('show');
+        });
     </script>
 
 </body>

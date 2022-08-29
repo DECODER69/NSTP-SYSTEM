@@ -83,20 +83,15 @@
         <div class="bg">
             <div class="tops">
                 <div class="left1">
-                    <h1 style="font-size: 25px;">Add Students </h1><br>
-                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
-                    <a href="#" style="text-decoration: none;">
-                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; ">Add Student</button>
-                    </a>
-                </div>
-                <div class="right1">
-                    <h1 style="font-size: 25px;">Add Sections </h1><br>
-                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
-                    <a href="#" style="text-decoration: none;">
-                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Section</button>
-                    </a>
+                    <h1 style="font-size: 20px;">Add & Manage </h1><br>
 
+                    <h1 class="adds">Add & Manage Students</h1><br>
+                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
+                    <a href="#" style="text-decoration: none;">
+                        <button type="button" class="btns "> <i class='bx bx-plus' style="vertical-align:middle;"></i> Add Student</button>
+                    </a>
                 </div>
+
 
             </div>
 
@@ -114,8 +109,12 @@
                                     <th scope="col">Profile</th>
                                     <th scope="col">ID Number</th>
                                     <th scope="col">Full name</th>
-                                    <th scope="col">Section</th>
+                                    <th scope="col">Course / Section</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Field</th>
+
+                                    <th scope="col">Platoon / Section</th>
+                                    <th scope="col">Last Login</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -123,16 +122,26 @@
                                 <tr>
                                     <th scope="row">
 
-                                        <a href="{% url 'activities:view_images' s.id %}" data-toggle="modal" data-target="#exampleModal2">
-                                            {% csrf_token %}
-                                            <input type="hidden" value="{{s.id}}" name="img_ur">
-                                            <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic" >
+                                        <a href="{% url 'activities:view_images' s.id %}" target="_self" title="Click to view picture">
+                                            <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic">
+
                                         </a>
                                     </th>
-                                    <td>{{s.idnumber}}</td>
+                                    <td style="font-size: 10px;">{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                     <td>{{s.section}}</td>
+                                    <td style="color:green;">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle;"></i></td>
                                     <td>{{s.field}}</td>
+
+
+                                    <td>{{s.platoons}}</td>
+                                    {% for l in userContent %} {% if l.username == s.idnumber %}
+
+                                    <td style="color: rgb(196, 10, 10);">
+                                        <i class='bx bxs-time-five' style="vertical-align:middle;"></i> {{l.last_login}}
+
+                                    </td>
+                                    {% endif %} {% endfor %}
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -140,7 +149,7 @@
                     </div>
 
                 </div><br>&nbsp;<br>&nbsp;<br>
-                <div class="right">
+                <!-- <div class="right">
                     <h1 style="font-size: 25px;">All Sections</h1>
                     <p1 style="color: grey; font-size:15px;font-weight:bold;"><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Section/s</p1><br>&nbsp;<br> {% for s in section %} {% if s.section_created %}
                     <div class="haha">
@@ -174,7 +183,7 @@
                     </div><br> {% else %} {% endif %} {% empty %}
                     <p style="text-align: center; margin-top:100px;">No Sections Created !</p>
                     {% endfor %}
-                </div>
+                </div> -->
 
             </div>
 

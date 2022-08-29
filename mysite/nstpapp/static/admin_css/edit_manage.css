@@ -250,13 +250,15 @@ p1 {
 }
 
 #viewpic {
-    width: 700px;
-    height: 700px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
 }
 
-.modal-body {
-    background-color: rgb(125, 153, 164);
+.modal-header {
+    background-color: rgb(115, 5, 5);
     display: flex;
+    color: white;
 }
 
 #tups {
@@ -297,4 +299,53 @@ p1 {
     background-color: rgb(34, 178, 34);
     color: white;
     padding: 5px;
+}
+
+#idnumber {
+    color: white;
+    font-size: 30px;
+    font-style: italic;
+}
+
+
+/* eidt infos */
+
+.over {
+    display: flex;
+}
+
+.coverpic {
+    height: 150px;
+    width: 100%;
+    background-attachment: fixed;
+    background-image: url(../images/tupc2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.profilep {
+    background-color: #000;
+}
+
+.profilep img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: -70px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    border: 10px solid rgba(255, 255, 255, 0.502);
+}
+
+.row {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.hilera {
+    padding: 18px;
+    width: 100%;
+    background-color: antiquewhite;
 }

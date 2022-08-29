@@ -539,6 +539,7 @@ def view_images(request, id):
     section1 = sections.objects.all().count()
     datas = extenduser.objects.filter(id=id)
     sectionxx = extenduser.objects.all()
+    userContent = User.objects.all()
     context = {
         'datas':datas,
         'counts':counts,
@@ -546,9 +547,29 @@ def view_images(request, id):
         'section':section,
         'section1':section1,
         'sectionxx':sectionxx,
+        'userContent':userContent
     }
 
     return render(request, 'activities/create_platoon2.html', context)
+
+def edit_manage(request, id):
+    counts = extenduser.objects.filter(status='ENROLLED').count()
+    counts1 = extenduser.objects.filter(status='ENROLLED')
+    section = sections.objects.all()
+    section1 = sections.objects.all().count()
+    datas = extenduser.objects.filter(id=id)
+    sectionxx = extenduser.objects.all()
+    userContent = User.objects.all()
+    context = {
+        'datas':datas,
+        'counts':counts,
+        'counts1':counts1,
+        'section':section,
+        'section1':section1,
+        'sectionxx':sectionxx,
+        'userContent':userContent
+    }
+    return render (request, 'activities/edit_manage.html', context)
 
 
 
