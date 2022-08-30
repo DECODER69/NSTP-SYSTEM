@@ -29,7 +29,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel"><img src="{{s.picture.url}}" id="viewpic">&nbsp; {{s.lastname}} {{s.firstname}}</h5>
-                    <p id="idnumber"> {{s.idnumber}}</p>
+                    <p id="idnumber">ID No: {{s.idnumber}}</p>
                 </div>
                 <div class="modal-body">
                     <div class="coverpic"></div>
@@ -42,17 +42,71 @@
                             <form>
                                 <div class="row">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.firstname}}">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.firstname}}">
                                         <small id="emailHelp" class="form-text text-muted">First name</small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.middlename}}">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.middlename}}">
                                         <small id="emailHelp" class="form-text text-muted">Middle name</small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.lastname}}">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.lastname}}">
                                         <small id="emailHelp" class="form-text text-muted">Last name</small>
                                     </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.email}}">
+                                        <small id="emailHelp" class="form-text text-muted">Email</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.idnumber}}">
+                                        <small id="emailHelp" class="form-text text-muted">ID Number</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.gender}}">
+                                        <small id="emailHelp" class="form-text text-muted">Gender</small>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-12" style="padding-left:0 !important;padding-right:0 !important;">
+                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.address}}" style="width:100%;">
+                                        <small id="emailHelp" class="form-text text-muted">Address</small>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.cpnumber}}">
+                                        <small id="emailHelp" class="form-text text-muted">Phone Number</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.birthday}}">
+                                        <small id="emailHelp" class="form-text text-muted">Birth date</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.age}}">
+                                        <small id="emailHelp" class="form-text text-muted">Age</small>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.section}}">
+                                        <small id="emailHelp" class="form-text text-muted">Course / Section</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.status}}">
+                                        <small id="emailHelp" class="form-text text-muted">Civil Status</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.field}}">
+                                        <small id="emailHelp" class="form-text text-muted">Field</small>
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
