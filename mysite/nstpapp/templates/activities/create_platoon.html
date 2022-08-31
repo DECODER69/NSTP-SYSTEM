@@ -91,11 +91,12 @@
 
 
                     <!-- EOF tabs -->
+                    <!-- <button onclick="ExportToExcel('xlsx')">Export table to excel</button> -->
 
                     <div class="table-responsive">
 
-
                         <table class="table" id="myTable">
+
                             <thead>
                                 <tr style="color: rgb(79, 79, 79);">
                                     <th scope="col">Profile</th>
@@ -283,6 +284,23 @@
                     }
                 }
             }
+        }
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+    <script type="text/javascript">
+        function ExportToExcel(type, fn, dl) {
+            var elt = document.getElementById('myTable');
+            var wb = XLSX.utils.table_to_book(elt, {
+                sheet: "sheet1"
+            });
+            return dl ?
+                XLSX.write(wb, {
+                    bookType: type,
+                    bookSST: true,
+                    type: 'base64'
+                }) :
+                XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
         }
     </script>
 

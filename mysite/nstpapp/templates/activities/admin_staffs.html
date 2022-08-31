@@ -11,6 +11,9 @@
 
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
@@ -40,45 +43,6 @@
 
             </ul>
             <div class="inside">
-                <div class="filters">
-                    <div class="filter_in">
-                        <select class="cl_country" id="ddlCountry">
-                            <option value="all">Select Field </option>
-                            <option value="rotc">ROTC</option>
-                            <option value="cwts">CWTS</option>
-        
-                        </select><br> &nbsp;
-                        <br>
-                        <select class="cl_age" id="ddlAge">
-                            <option value="all">Select Platoon/ Section</option>
-                            <option value="ALPHA">APHA</option>
-                            <option value="BRAVO">BRAVO</option>
-                            <option value="CHARLIE">CHARLIE</option>
-                            <option value="DELTA">DELTA</option>
-                            <option value="ECHO">ECHO</option>
-                            <option value="FOXTROT">FOXTROT</option>
-                            <option value="GOLF">GOLF</option>
-                            <option value="HOTEL">HOTEL</option>
-                            <option value="INDIA">INDIA</option>
-                            <option value="JULIET">JULIET</option>
-                            <option value="KILO">KILO</option>
-                            <option value="LIMA">LIMA</option>
-                            <option value="MIKE">MIKE</option>
-                            <option value="SECTION A">SECTION A</option>
-                            <option value="SECTION B">SECTION B</option>
-                            <option value="SECTION C">SECTION C</option>
-                            <option value="SECTION D">SECTION D</option>
-        
-                        </select>
-                    </div>
-
-                    <div class="sear">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xF002; Search names here" title="Type in a name" style="font-family: Arial, 'Font Awesome 5 Free'">
-                    </div>
-
-
-
-                </div>
 
                 <div class="table-responsive">
                     <div class="he">
@@ -88,7 +52,7 @@
 
                     </div>
 
-                    <table class="table table-hover" id="myTable">
+                    <table id="myTable" class="table table-bordered table-hover ">
                         <thead class="thead">
                             <tr>
                                 <th scope="col">ID NUMBER</th>
@@ -199,7 +163,7 @@
         }
     </script>
 
-    <script>
+    <!-- <script>
         $(function() {
             $('table.table').each(function() {
                 var currentPage = 0;
@@ -251,8 +215,14 @@
                 $table.trigger('repaginate');
             });
         });
+    </script> -->
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
     </script>
-
 </body>
 
 </html>

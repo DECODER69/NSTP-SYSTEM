@@ -1,9 +1,14 @@
 from dataclasses import field
+import csv
+
+import xlwt
+from http.client import HTTPResponse
 from multiprocessing import context
 from pickle import FALSE
 from re import S
 from tabnanny import check
 from tkinter import FLAT
+from urllib import response
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
@@ -573,7 +578,17 @@ def edit_manage(request, id):
 
 
 
-
+def export(request):
+    normal_style = xlwt.easyxf("""
+     font:
+         name Verdana
+     """) 
+    response = HTTPResponse(content_type='application/ms-excel')
+    wb = xlwt.Workbook()
+    ws0 = wb.add_sheet('Worksheet')
+    ws0.write(0, 0, "something", normal_style)
+    wb.save(response)
+    return response
 
     
   
