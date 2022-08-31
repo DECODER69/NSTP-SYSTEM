@@ -40,7 +40,9 @@
                         </div><br>&nbsp;<br>
                         <div class="hilera">
                             <form>
+                                <h1 style="font-size: 20px; padding-left:20px;">Personal Informations</h1><br>
                                 <div class="row">
+
                                     <div class="form-group">
                                         <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.firstname}}">
                                         <small id="emailHelp" class="form-text text-muted">First name</small>
@@ -99,58 +101,65 @@
                                         <small id="emailHelp" class="form-text text-muted">Course / Section</small>
                                     </div>
                                     <div class="form-group">
+                                        <select name="" type="text" class="form-control is-valid">
+                                            <option value=" {{s.field}} ">{{s.field}}</option>
+                                            <option value="ROTC">ROTC</option>
+                                            <option value="CWTS">CWTS</option>
+
+                                        </select>
+
+                                        <small id="emailHelp " class="form-text text-muted ">Field</small>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.status}}">
                                         <small id="emailHelp" class="form-text text-muted">Civil Status</small>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.field}}">
-                                        <small id="emailHelp" class="form-text text-muted">Field</small>
-                                    </div>
+
 
                                 </div><br>
-                                <h1 style="font-size: 20px; padding-left:20px;">Parents Informations</h1>
-                                <div class="row">
+                                <h1 style="font-size: 20px; padding-left:20px; ">Parents Informations</h1>
+                                <div class="row ">
 
-                                    <div class="form-group">
-                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.nfather}}">
-                                        <small id="emailHelp" class="form-text text-muted">Father's Name</small>
+                                    <div class="form-group ">
+                                        <input type="email " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.nfather}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Father's Name</small>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.foccupation}}">
-                                        <small id="emailHelp" class="form-text text-muted">Father's Profession</small>
+                                    <div class="form-group ">
+                                        <input type="text " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.foccupation}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Father's Profession</small>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.pcontact}}">
-                                        <small id="emailHelp" class="form-text text-muted">Father's COntact</small>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-
-                                    <div class="form-group">
-                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.nmother}}">
-                                        <small id="emailHelp" class="form-text text-muted">Mother's Name</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.moccupation}}">
-                                        <small id="emailHelp" class="form-text text-muted">Mother's Profession</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.pcontact}}">
-                                        <small id="emailHelp" class="form-text text-muted">Mother's COntact</small>
+                                    <div class="form-group ">
+                                        <input type="text " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.pcontact}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Father's COntact</small>
                                     </div>
 
                                 </div>
-                                <h1 style="font-size: 20px; padding-left:20px;">Health Status</h1>
-                                <div class="row">
+                                <div class="row ">
 
-                                    <div class="form-group col-5" style="padding-left:0 !important;padding-right:0 !important;">
-                                        <input type="email" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.disease}}">
-                                        <small id="emailHelp" class="form-text text-muted">Health Issues</small>
+                                    <div class="form-group ">
+                                        <input type="email " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.nmother}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Mother's Name</small>
                                     </div>
-                                    <div class="form-group col-5" style="padding-left:0 !important;padding-right:0 !important;">
-                                        <input type="text" class="form-control is-valid" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{s.specific}}">
-                                        <small id="emailHelp" class="form-text text-muted">Specific Disease</small>
+                                    <div class="form-group ">
+                                        <input type="text " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.moccupation}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Mother's Profession</small>
+                                    </div>
+                                    <div class="form-group ">
+                                        <input type="text " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.pcontact}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Mother's COntact</small>
+                                    </div>
+
+                                </div>
+                                <h1 style="font-size: 20px; padding-left:20px; ">Health Status</h1>
+                                <div class="row ">
+
+                                    <div class="form-group col-5 " style="padding-left:0 !important;padding-right:0 !important; ">
+                                        <input type="email " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.disease}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Health Issues</small>
+                                    </div>
+                                    <div class="form-group col-5 " style="padding-left:0 !important;padding-right:0 !important; ">
+                                        <input type="text " class="form-control is-valid " id="exampleInputEmail1 " aria-describedby="emailHelp " value="{{s.specific}} ">
+                                        <small id="emailHelp " class="form-text text-muted ">Specific Disease</small>
                                     </div>
 
 
@@ -163,12 +172,12 @@
 
                 </div>
 
-                <div class="modal-footer">
-                    <p><i class='bx bx-credit-card-front' style="vertical-align: middle;"></i> {{s.idnumber}}</p>
+                <div class="modal-footer ">
+                    <p><i class='bx bx-credit-card-front' style="vertical-align: middle; "></i> {{s.idnumber}}</p>
                     <h2>|</h2>
-                    <p><i class='bx bx-envelope' style="vertical-align: middle;"></i> {{s.email}}</p>
-                    <a href="/create_platoon_page">
-                        <button type="button" class="btn btn-danger">Close</button>
+                    <p><i class='bx bx-envelope' style="vertical-align: middle; "></i> {{s.email}}</p>
+                    <a href="/create_platoon_page ">
+                        <button type="button " class="btn btn-danger ">Close</button>
                     </a>
                 </div>
             </div>
@@ -180,36 +189,36 @@
 
 
     <!-- eof modal for puictures  -->
-    <section class="home-section">
-        <div class="heads">
-            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</h1><br>
+    <section class="home-section ">
+        <div class="heads ">
+            <h1 class="text "><i class='bx bxs-dashboard'></i> Manage Students</h1><br>
         </div>
-        <div class="bg">
-            <div class="tops">
-                <div class="left1">
-                    <h1 style="font-size: 20px;">Add & Manage </h1><br>
+        <div class="bg ">
+            <div class="tops ">
+                <div class="left1 ">
+                    <h1 style="font-size: 20px; ">Add & Manage </h1><br>
 
-                    <h1 class="adds">Add & Manage Students</h1><br>
-                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
-                    <a href="#" style="text-decoration: none;">
-                        <button type="button" class="btns "> <i class='bx bx-plus' style="vertical-align:middle;"></i> Add Student</button>
+                    <h1 class="adds ">Add & Manage Students</h1><br>
+                    <!-- <p1 style="color: grey; font-size:15px; "><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder; "></i> {{counts}} Active Students</p1> -->
+                    <a href="# " style="text-decoration: none; ">
+                        <button type="button " class="btns "> <i class='bx bx-plus' style="vertical-align:middle; "></i> Add Student</button>
                     </a>
                 </div>
 
 
             </div>
 
-            <div class="overall">
-                <div class="left">
-                    <div class="headd">
+            <div class="overall ">
+                <div class="left ">
+                    <div class="headd ">
                         <div>
-                            <h1 style="font-size: 20px;">All Students</h1>
-                            <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1>
+                            <h1 style="font-size: 20px; ">All Students</h1>
+                            <p1 style="color:green; font-size:15px; font-weight:bold; "><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder; "></i> {{counts}} Active Students</p1>
                             <br>&nbsp;<br>
                         </div>
 
-                        <div class="sear">
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xF002; Search names here" title="Type in a name" style="font-family: Arial, 'Font Awesome 5 Free'">
+                        <div class="sear ">
+                            <input type="text " id="myInput " onkeyup="myFunction() " placeholder="&#xF002; Search names here " title="Type in a name " style="font-family: Arial, 'Font Awesome 5 Free' ">
                         </div>
 
                     </div>
@@ -218,64 +227,54 @@
 
                     <!-- EOF tabs -->
 
-                    <div class="table-responsive">
+                    <div class="table-responsive ">
 
 
-                        <table class="table" id="myTable">
+                        <table class="table " id="myTable ">
                             <thead>
-                                <tr style="color: rgb(79, 79, 79);">
-                                    <th scope="col">Profile</th>
-                                    <th scope="col">ID Number</th>
-                                    <th scope="col">Full name</th>
-                                    <th scope="col">Course / Section</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Field</th>
+                                <tr style="color: rgb(79, 79, 79); ">
+                                    <th scope="col ">Profile</th>
+                                    <th scope="col ">ID Number</th>
+                                    <th scope="col ">Full name</th>
+                                    <th scope="col ">Course / Section</th>
+                                    <th scope="col ">Status</th>
+                                    <th scope="col ">Field</th>
 
-                                    <th scope="col">Platoon / Section</th>
-                                    <th scope="col">Last Login</th>
-                                    <th scope="col">VIew Profile</th>
+                                    <th scope="col ">Platoon / Section</th>
+                                    <th scope="col ">Last Login</th>
 
-                                    <th scope="col">Edit</th>
+
+                                    <th scope="col ">Edit</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for s in counts1 %}
                                 <tr>
-                                    <th scope="row">
+                                    <th scope="row ">
 
-                                        <a href="{% url 'activities:view_images' s.id %}" target="_self" title="Click to view picture">
-                                            <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic">
+                                        <a href="{% url 'activities:view_images' s.id %} " target="_self " title="Click to view picture ">
+                                            <img src="{{s.picture.url}} " alt="profile pic " id="profile_pic " class="profile_pic">
 
                                         </a>
                                     </th>
-                                    <td style="font-size: 10px;">{{s.idnumber}}</td>
+                                    <td style="font-size: 10px; ">{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                     <td>{{s.section}}</td>
-                                    <td style="color:green;">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle;"></i></td>
+                                    <td style="color:green; ">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle; "></i></td>
                                     <td>{{s.field}}</td>
 
 
                                     <td>{{s.platoons}}</td>
                                     {% for l in userContent %} {% if l.username == s.idnumber %}
 
-                                    <td style="color: rgb(196, 10, 10);">
-                                        <i class='bx bxs-time-five' style="vertical-align:middle;"></i> {{l.last_login}}
+                                    <td style="color: rgb(196, 10, 10); ">
+                                        <i class='bx bxs-time-five' style="vertical-align:middle; "></i> {{l.last_login}}
 
                                     </td>
-                                    <td class="viewProfile">
-                                        <i class='bx bxs-low-vision'></i>
-                                        <a href="#">
-                                             View Profile
-
-                                        </a>
-
-                                    </td>
-
-
                                     <td>
                                         <input type="hidden" value="{{s.id}}">
-                                        <button type="submit" id="changes"><i class='bx bxs-edit' ></i> </button>
+                                        <button type="submit" id="changes"><i class='bx bxs-edit'></i> </button>
                                     </td>
                                     {% endif %} {% endfor %}
                                 </tr>
@@ -285,17 +284,17 @@
                     </div>
 
                 </div><br>&nbsp;<br>&nbsp;<br> {% comment %}
-                <div class="right">
-                    <h1 style="font-size: 20px;">All Sections</h1>
-                    <p1 style="color: grey; font-size:15px;font-weight:bold;"><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Section/s</p1><br>&nbsp;<br> {% for s in section %} {% if s.section_created %}
-                    <div class="haha">
-                        <div class="covers">
-                            <div class="cardss">
-                                <div class="some">
+                <div class="right ">
+                    <h1 style="font-size: 20px; ">All Sections</h1>
+                    <p1 style="color: grey; font-size:15px;font-weight:bold; "><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder; "></i> {{section1}} Section/s</p1><br>&nbsp;<br> {% for s in section %} {% if s.section_created %}
+                    <div class="haha ">
+                        <div class="covers ">
+                            <div class="cardss ">
+                                <div class="some ">
 
-                                    <div class="some2">
+                                    <div class="some2 ">
                                         <h1>{{s.section_created}}</h1>
-                                        <i class='bx bxs-user-detail' style="color: grey;"></i>
+                                        <i class='bx bxs-user-detail' style="color: grey; "></i>
                                     </div>
                                 </div>
 
@@ -305,19 +304,19 @@
 
 
                         </div>
-                        <div class="view">
+                        <div class="view ">
 
-                            <form action="{% url 'activities:section_content'  %}" method="POST">
+                            <form action="{% url 'activities:section_content' %} " method="POST ">
                                 {% csrf_token %}
                                 <td>
-                                    <input type="hidden" value="{{s.section_created}}" name="platoons">
-                                    <button type="submit" class="btn btn-info" id="viewMore">View more </button>
+                                    <input type="hidden " value="{{s.section_created}} " name="platoons ">
+                                    <button type="submit " class="btn btn-info " id="viewMore ">View more </button>
                                 </td>
                             </form>
 
                         </div>
                     </div><br> {% else %} {% endif %} {% empty %}
-                    <p style="text-align: center; margin-top:100px;">No Sections Created !</p>
+                    <p style="text-align: center; margin-top:100px; ">No Sections Created !</p>
                     {% endfor %}
                 </div> {% endcomment %}
 
@@ -325,7 +324,7 @@
 
         </div>
     </section>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11 "></script>
     <script>
         $(function() {
             $('table.table').each(function() {
@@ -338,11 +337,11 @@
                 $table.trigger('repaginate');
                 var numRows = $table.find('tbody tr').length;
                 var numPages = Math.ceil(numRows / numPerPage);
-                var $pager = $('<div class="pager"></div>');
-                var $previous = $('<span class="previous"><<</spnan>');
-                var $next = $('<span class="next">>></spnan>');
+                var $pager = $('<div class="pager "></div>');
+                var $previous = $('<span class="previous "><<</spnan>');
+                var $next = $('<span class="next ">>></spnan>');
                 for (var page = 0; page < numPages; page++) {
-                    $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                    $('<span class="page-number "></span>').text(page + 1).bind('click', {
                         newPage: page
                     }, function(event) {
                         currentPage = event.data['newPage'];
@@ -390,19 +389,19 @@
     <script>
         function myFunction() {
             var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
+            input = document.getElementById("myInput ");
             filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
+            table = document.getElementById("myTable ");
+            tr = table.getElementsByTagName("tr ");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td ")[1];
 
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = '';
                     } else {
-                        tr[i].style.display = "none";
+                        tr[i].style.display = "none ";
                     }
                 }
             }
@@ -410,11 +409,12 @@
     </script>
 
 
-    <script type="text/javascript">
+    <script type="text/javascript ">
         $(window).on('load', function() {
             $('#staticBackdrop').modal('show');
         });
     </script>
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
 
 </body>
 

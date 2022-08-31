@@ -282,6 +282,18 @@ p1 {
     font-size: 15px !important;
 }
 
+.table-responsive {
+    font-size: 15px;
+}
+
+.table-responsive input,
+select,
+label {
+    border-radius: 5px;
+    font-weight: 100;
+    color: rgb(0, 0, 0);
+}
+
 #selections {
     height: 30px;
     border-radius: 5px;

@@ -177,7 +177,8 @@ select:focus {
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: auto;
-    font-size: 20px;
+    font-size: 15px;
+    padding: 10px;
 }
 
 .table {
@@ -194,7 +195,7 @@ select:focus {
 
 .table th {
     color: rgb(0, 0, 0);
-    font-size: 20px;
+    font-size: 15px;
 }
 
 

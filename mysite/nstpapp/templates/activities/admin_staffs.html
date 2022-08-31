@@ -51,15 +51,13 @@
                         <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">Students</h1><br>
 
                     </div>
-
+                    <br>
                     <table id="myTable" class="table table-bordered table-hover ">
                         <thead class="thead">
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
                                 <th scope="col">EMAIL</th>
-                                <th scope="col">ADDRESS</th>
-                                <th scope="col">GENDER</th>
                                 <th scope="col">PROFILE PICTURE</th>
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
@@ -72,8 +70,6 @@
                                 <td>{{s.idnumber}}</td>
                                 <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                 <td>{{s.email}}</td>
-                                <td>{{s.address}}</td>
-                                <td>{{s.gender}}</td>
                                 <td id="profile"><img src="{{s.picture.url}}"></td>
                                 <td>{{s.section}}</td>
                                 {% if s.field == 'ROTC' %}
