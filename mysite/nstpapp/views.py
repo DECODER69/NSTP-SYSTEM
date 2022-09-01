@@ -492,16 +492,16 @@ def create_section(request):
         if secs is not None:
             if sections.objects.filter(section_created  = secs).exists():
                 messages.info(request, 'Section ' + str (secs) + ' Already exist !')
-                return redirect('/create_platoon_page')
+                return redirect('/manage_section')
             else:
                 data = sections(section_created=secs)
                 data.save()
                 messages.info(request, 'Section ' + str (secs) + ' Created !')
-                return redirect('/create_platoon_page')
+                return redirect('/manage_section')
         else:
             messages.info(request, 'Please Input Something!! Ex: ALPHA')
-            return redirect('/create_platoon_page')
-    return redirect('/create_platoon_page')
+            return redirect('/manage_section')
+    return redirect('/manage_section')
 
 def counts(request, secton_created):
     data1 = extenduser.objects.all()
@@ -517,25 +517,7 @@ def counts(request, secton_created):
         return redirect('/create_platoon_page', context)
     return redirect('/create_platoon_page', context)
 
-def section_content(request):
-    userContent = User.objects.all()
-    if request.method == 'POST':
-        getYear = request.POST.get('platoons')
-        content3 = extenduser.objects.filter(platoons=getYear)
-        content4 = sections.objects.filter(section_created=getYear)
-        
 
-    else:
-        print("hahahahaaha")
-        return render(request, 'activities/pl_content.html')
-    context = {
-        'content3':content3,
-         'content4':content4,
-         'userContent':userContent,
-         
-    }
-    print(getYear+"hahahahahaaha")
-    return render(request, 'activities/pl_content.html', context)
 
 def view_images(request, id):
     counts = extenduser.objects.filter(status='ENROLLED').count()
@@ -590,5 +572,58 @@ def export(request):
     wb.save(response)
     return response
 
+def edit_student(request, id):
+    idnums = request.POST.get('geti')
+
+    firstname = request.POST.get('firstname')
+    middle = request.POST.get('middle')
+    lastname = request.POST.get('lastname')
+    email = request.POST.get('email')
+    idnumber = request.POST.get('idnumber')
+    gender = request.POST.get('gender')
+    address = request.POST.get('address')
+    cpnumber = request.POST.get('cpnumber')
+    birthday = request.POST.get('birthday')
+    age = request.POST.get('age')
+    section = request.POST.get('section')
+    civil = request.POST.get('civil')
+    nfather = request.POST.get('nfather')
+    foccupation  =request.POST.get('foccupation')
+    pcontact = request.POST.get('pcontact')
+    nmother = request.POST.get('nmother')
+    moccupation  =request.POST.get('moccupation')
+    pcontact = request.POST.get('pcontact')
+    disease = request.POST.get('disease')
+    specific = request.POST.get('specific')
     
-  
+    extenduser.objects.filter(id=idnums).update(firstname=firstname, middlename = middle, 
+                                                lastname=lastname, email=email, idnumber=idnumber, gender=gender,
+                                                address=address, cpnumber=cpnumber, birthday=birthday, age=age, 
+                                                section=section, civil=civil, nfather=nfather, foccupation=foccupation,
+                                                pcontact=pcontact, nmother=nmother, moccupation=moccupation, disease=disease, specific=specific)
+
+    return redirect('/create_platoon_page')
+    
+    
+def attendance_page(request):
+    return render(request, 'activities/attendance_page.html')
+
+
+def section_content(request):
+    userContent = User.objects.all()
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+    else:
+        print("hahahahaaha")
+        return render(request, 'activities/pl_content.html')
+    context = {
+        'content3':content3,
+        'userContent':userContent,
+        'content33':content33,
+         
+    }
+    print(content33)
+    print(getSection+"hahahahahaaha")
+    return render(request, 'activities/pl_content.html', context)

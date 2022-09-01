@@ -302,11 +302,13 @@ label {
 #changes {
     text-align: center;
     font-size: 23px;
-    width: 70px;
+    width: 40%;
     height: 40px;
     border-radius: 5px;
     border: none;
-    background-color: rgb(34, 178, 34);
+    background-color: rgb(70, 168, 87);
     color: white;
     padding: 5px;
+    text-align: center;
+    margin: auto;
 }

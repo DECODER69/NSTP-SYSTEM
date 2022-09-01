@@ -12,16 +12,18 @@
 
 <body>
     {% include 'activities/admin_nav.html' %}
+
     <section class="home-section">
-        <div class="heads">{% for s in content4 %}
+        <div class="heads">{% for s in getSection %}
             <a href="/create_platoon_page" style="color: white; text-decoration:none;">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</a> | {{s.section_created}}</h1><br>{% endfor %}
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</h1>
+            </a> | {{s.section_created}}<br>{% endfor %}
         </div>
         <div class="bg">
             <div class="overall">
                 <div class="left">
                     <h1 style="font-size: 25px;">All Students</h1>
-                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1>
+                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{content33}} Active Students</p1>
                     <br>&nbsp;<br>
                     <div class="table-responsive">
 
@@ -66,7 +68,9 @@
 
                 </div><br>&nbsp;<br>&nbsp;<br>
             </div>
+        </div>
     </section>
+
 
     <script>
         $(function() {
