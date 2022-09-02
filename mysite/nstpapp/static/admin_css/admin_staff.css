@@ -155,18 +155,7 @@
 }
 
 
-/* select {
-    height: 25px !important;
-    border: no;
-    border-top-style: hidden !important;
-    border-right-style: hidden !important;
-    border-left-style: hidden !important;
-}
 
-select:focus {
-    outline: none !important;
-    box-shadow: none !important;
-} */
 
 .sear input {
     width: 350px;
