@@ -215,8 +215,8 @@ p1 {
 }
 
 .modal-body {
-    background-color: rgb(125, 153, 164);
-    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
 }
 
 #tups {
@@ -232,6 +232,14 @@ p1 {
 
 .modal-footer {
     justify-content: space-between !important;
+}
+
+#message-text {
+    width: 100% !important;
+}
+
+.form-group {
+    width: 100%;
 }
 
 
