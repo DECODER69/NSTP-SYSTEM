@@ -8,6 +8,11 @@
     <title>platoon content</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/pl_content.css">
+
+
+    <!-- pagination css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -16,11 +21,89 @@
     <section class="home-section">
         <div class="heads">
             <a href="/manage_section">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Section</h1>
-            </a>|
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Section &nbsp;|</h1>
+            </a>
+
+            <h1 class="text"><i class='bx bx-intersect'></i> {{getSection}}
+            </h1>
 
         </div>
         <div class="bg">
+            <div class="inside">
+
+                <div class="table-responsive">
+                    <div class="he">
+                        <br>
+
+                        <p1 style="margin-left: 10px; color:#000000;">Officially Enrolled Students</p1><br>&nbsp;
+                        <h1 style="margin-left: 10px; font-size:30px; color:#000000">Students</h1><br>
+
+                    </div>
+                    <br>
+                    <table id="myTable" class="table table-bordered table-hover ">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">ID NUMBER</th>
+                                <th scope="col">FULL NAME</th>
+                                <th scope="col">EMAIL</th>
+
+                                <th scope="col">COURSE</th>
+                                <th scope="col">FIELD</th>
+                                <th scope="col">SECTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in content3 %}
+                            <tr>
+                                <td>{{s.idnumber}}</td>
+                                <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                <td>{{s.email}}</td>
+
+                                <td>{{s.section}}</td>
+                                {% if s.field == 'ROTC' %}
+                                <td style="color:red; font-weight:bolder;">{{s.field}}</td>
+                                {% elif s.field == 'CWTS' %}
+                                <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
+                                {% endif %}
+                                <td>{{s.platoons}}</td>
+
+                            </tr>
+
+                            {% empty %}
+                            <h1 style="color: red;">NO STUDENTS AVAILABLE!</h1>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="inside1">
+                <div class="hes">
+                    <br>
+                    <p1 style="margin-left: 10px; color:#000000;">Announcements for {{getSection}} Student only</p1><br>&nbsp;
+                    <h1 style="margin-left: 10px; font-size:30px; color:#000000">Create Announcements<i class='bx bxs-megaphone' style="color: #c21515;"></i></h1><br>
+                    <div class="announce">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Subject</label>
+                            <input type="text" class="form-control" name="subject" placeholder="ANNOUNCEMENT SUBJECT" id="subject">
+
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Content</label>
+                            <textarea class="form-control" name="content" id="content" placeholder="CONTENT"></textarea>
+
+                        </div><br>
+                        <button type="submit" class="btn btn-success" id="post"><i class='bx bx-cloud-upload' ></i> Post</button>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </section>
 
@@ -29,6 +112,16 @@
 
     <!-- for editing tables -->
     <script src="extensions/editable/bootstrap-table-editable.js"></script>
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
 
 </body>
 

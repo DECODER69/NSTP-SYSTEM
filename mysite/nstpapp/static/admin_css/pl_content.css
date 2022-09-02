@@ -6,6 +6,8 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {}
+
 .home-section {
     position: relative;
     top: 0;
@@ -57,3 +59,81 @@
 
 
 /* own css */
+
+.inside {
+    padding: 18px;
+}
+
+.inside1 {
+    min-height: 100vh;
+    padding: 18px;
+}
+
+
+/* table */
+
+.table #profile img {
+    width: 50px;
+}
+
+.table-responsive {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    font-size: 15px;
+    padding: 10px;
+    background-color: white;
+}
+
+.table {
+    margin: auto;
+    background-color: #aaaaaa;
+    width: auto;
+}
+
+.he p1,
+h1 {
+    width: auto;
+    color: #616161;
+}
+
+.table th {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+}
+
+.hes {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    font-size: 15px;
+    padding: 10px;
+    background-color: white;
+}
+
+
+/* ANNOUNCEMENTS */
+
+.announce {
+    width: 100%;
+    height: fit-content;
+}
+
+#subject {
+    height: 50px !important;
+    font-size: 16px;
+}
+
+#content {
+    height: 80px;
+    font-size: 16px;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    font-size: 15px !important;
+}
+
+
+/* EOF ANNOUNCEMENTS */

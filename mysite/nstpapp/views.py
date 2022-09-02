@@ -470,7 +470,7 @@ def allumni_content(request):
         'content':content,
         'content2':content2
     }
-    print(getYear+"hahahahahaaha")
+    print(getYear)
 
 
     return render(request, 'activities/allumni.html', context)
@@ -611,6 +611,7 @@ def attendance_page(request):
 
 def section_content(request):
     userContent = User.objects.all()
+    schools = school_year.objects.all()
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
@@ -622,8 +623,12 @@ def section_content(request):
         'content3':content3,
         'userContent':userContent,
         'content33':content33,
+        'getSection':getSection,
+        'schools':[schools.last()],
          
     }
     print(content33)
-    print(getSection+"hahahahahaaha")
+    print(getSection)
     return render(request, 'activities/pl_content.html', context)
+    
+ 
