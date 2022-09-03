@@ -86,7 +86,7 @@
 }
 
 .left {
-    min-height: 150vh !important;
+    height: auto;
     padding: 10px;
     padding-bottom: 20px !important;
     width: 100%;
@@ -129,7 +129,6 @@
 }
 
 .column {
-    float: left;
     width: 25%;
     padding: 0 10px;
 }
@@ -149,10 +148,6 @@
     padding: 10px;
     text-align: center;
     background-color: #f1f1f1;
-}
-
-.card button {
-    bottom: 0;
 }
 
 @media screen and (max-width: 600px) {

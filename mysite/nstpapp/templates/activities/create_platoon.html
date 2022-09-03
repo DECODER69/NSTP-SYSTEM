@@ -154,42 +154,7 @@
                         </table>
                     </div>
 
-                </div><br>&nbsp;<br>&nbsp;<br> {% comment %}
-                <div class="right">
-                    <h1 style="font-size: 20px;">All Sections</h1>
-                    <p1 style="color: grey; font-size:15px;font-weight:bold;"><i class='bx bx-intersect' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Section/s</p1><br>&nbsp;<br> {% for s in section %} {% if s.section_created %}
-                    <div class="haha">
-                        <div class="covers">
-                            <div class="cardss">
-                                <div class="some">
-
-                                    <div class="some2">
-                                        <h1>{{s.section_created}}</h1>
-                                        <i class='bx bxs-user-detail' style="color: grey;"></i>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-
-
-                        </div>
-                        <div class="view">
-
-                            <form action="{% url 'activities:section_content'  %}" method="POST">
-                                {% csrf_token %}
-                                <td>
-                                    <input type="hidden" value="{{s.section_created}}" name="platoons">
-                                    <button type="submit" class="btn btn-info" id="viewMore">View more </button>
-                                </td>
-                            </form>
-
-                        </div>
-                    </div><br> {% else %} {% endif %} {% empty %}
-                    <p style="text-align: center; margin-top:100px;">No Sections Created !</p>
-                    {% endfor %}
-                </div> {% endcomment %}
+                </div><br>&nbsp;<br>&nbsp;<br> 
 
             </div>
 
@@ -197,13 +162,13 @@
     </section>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-{% comment %} <script>
+<script>
         {% for msg in messages %}
         Swal.fire({
             icon: 'success',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>   {% endcomment %}
+    </script>   
     <!-- search  -->
     <script>
         function myFunction() {

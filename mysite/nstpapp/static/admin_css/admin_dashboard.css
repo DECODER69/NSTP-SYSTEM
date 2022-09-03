@@ -47,7 +47,6 @@
 
 .container-fluid {
     width: 100%;
-    height: auto;
 }
 
 .stats {
@@ -150,6 +149,23 @@ p {
 
 .more i {
     vertical-align: middle;
+}
+
+
+/* announcements */
+
+.inside1 {
+    min-height: 100vh;
+    padding: 18px;
+}
+
+.hes {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    font-size: 15px;
+    padding: 10px;
+    background-color: white;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {

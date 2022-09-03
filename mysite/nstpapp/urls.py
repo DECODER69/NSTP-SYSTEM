@@ -70,6 +70,7 @@ urlpatterns = [
     path('edit_student/<str:id>', views.edit_student, name='edit_student'),
     path('attendance_page/', views.attendance_page, name='attendance_page'),
     path('create_day/',views.create_day, name='create_day'),
+    path('create_annoucement/', views.create_announcement, name='create_announcement'),
     # password reset
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

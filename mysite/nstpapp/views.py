@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import extenduser,school_year, sections, training_day
+from .models import extenduser,school_year, sections, training_day,Announcement
 import os
 
 
@@ -656,3 +656,21 @@ def create_day(request):
             messages.info(request, 'Please Input Something!! Ex: ALPHA')
             return redirect('/attendance_page')
     return redirect('/attendance_page')
+
+def section_day(request):
+    return redirect('/attendance_page')
+
+def create_announcement(request):
+    if request.method == 'POST':
+        assign = request.POST.get('assign')
+        subject = request.POST.get('subject')
+        content = request.POST.get('content')
+        context = {
+            'assign':assign
+        }
+        
+        alls = Announcement(assign=assign, subject=subject, content=content)
+        alls.save()
+        messages.info(request, 'Announcement' + str(subject + 'has been posted.'))
+        return redirect('/section_content', context)
+    return redirect('/section_content')

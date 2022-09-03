@@ -98,6 +98,34 @@
 
 
             <!-- end of statistics -->
+            <div class="inside1">
+                <div class="hes">
+                    <br>
+                    <p1 style="margin-left: 10px; color:#000000;">Announcements for {{getSection}} Student only</p1><br>&nbsp;
+                    <h1 style="margin-left: 10px; font-size:30px; color:#000000">Create Announcements<i class='bx bxs-megaphone' style="color: #c21515;"></i></h1><br>
+                    <div class="announce">
+                        <form action="{% url 'activities:create_announcement' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Subject</label>
+                                <input type="text" class="form-control" name="subject" placeholder="ANNOUNCEMENT SUBJECT" id="subject" required>
+
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Content</label>
+                                <textarea class="form-control" name="content" id="content" placeholder="CONTENT" required></textarea>
+
+                            </div><br>
+                            <input type="hidden" value="{{getSection}}" name="assign">
+                            <button type="submit" class="btn btn-success" id="post"><i class='bx bx-cloud-upload' ></i> Post</button>
+                        </form>
+                    </div>
+
+                </div>
+
+
+            </div>
 
         </div>
     </section>

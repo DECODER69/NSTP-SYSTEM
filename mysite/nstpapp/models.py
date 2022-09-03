@@ -70,5 +70,12 @@ class training_day(models.Model):
     def __str__(self):
         return self.title
     
+class Announcement(models.Model):
+    assign = models.CharField(max_length=20, default='')
+    subject = models.CharField(max_length=20, default='')
+    content = models.CharField(max_length=500, default='')
+    
+    def __str__(self):
+        return self.subject
 
     
