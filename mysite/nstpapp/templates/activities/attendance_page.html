@@ -12,14 +12,90 @@
 
 <body>
     {% include 'activities/admin_nav.html' %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#616161; color:white;">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Training Day!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'activities:create_day' %}" method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Pick Date</label>
+                            <input type="date" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="day" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Training day Number</label>
+                            <input type="text" class="form-control" id="message-text" placeholder="Ex: Training day 1" name="title" required>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-list-check'></i> Manage Attendance</h1><br>
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance</h1><br>
         </div>
         <div class="bg">
+            <div class="tops">
+
+                <div class="right1">
+                    <h1 style="font-size: 20px;">Add Training Day </h1><br>
+                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
+                    <a href="#" style="text-decoration: none;">
+                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Day</button>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="overall">
+                <div class="left">
+                    <h1 style="font-size: 20px;">All Training Days</h1>
+                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{day_count}} Training Day</p1>
+                    <br>&nbsp;<br>
+                    <div class="row">
+                        {% for s in days %}
+                        <form action="{% url 'activities:section_content' %}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                
+                                <p>{{s.day_created}}</p><br>
+                                <input type="hidden" value="{{s.section_created}}" name="getSection">
+                                <button type="submit" class="btn btn-info">Open</button>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div><br>&nbsp;<br>&nbsp;<br>
+
         </div>
+
+        
     </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> 
 
 </body>
 

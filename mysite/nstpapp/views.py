@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import extenduser,school_year, sections
+from .models import extenduser,school_year, sections, training_day
 import os
 
 
@@ -264,7 +264,14 @@ def manage_section(request):
     return render(request, 'activities/manage_section.html', context)
   
      
-    
+def attendance_page(request):
+    days = training_day.objects.all()
+    day_count = training_day.objects.all().count()
+    context = {
+        'days':days,
+        'day_count':day_count
+    }
+    return render(request, 'activities/attendance_page.html', context)
 
 
 
@@ -605,8 +612,7 @@ def edit_student(request, id):
     return redirect('/create_platoon_page')
     
     
-def attendance_page(request):
-    return render(request, 'activities/attendance_page.html')
+
 
 
 def section_content(request):
@@ -630,5 +636,23 @@ def section_content(request):
     print(content33)
     print(getSection)
     return render(request, 'activities/pl_content.html', context)
+
+
+def create_day(request):
+    if request.method == 'POST':
+        day = request.POST.get('day')
+        title = request.POST.get('title')
+        if day is not None:
+            if training_day.objects .filter(title=title).exists():
+                messages.info(request, (title) + ' Already exist !')
+                return redirect('/attendance_page')
     
- 
+            else:
+                data = training_day(day_created=day, title=title)
+                data.save()
+                messages.info(request, (title) + ' Created !')
+                return redirect('/attendance_page')
+        else:
+            messages.info(request, 'Please Input Something!! Ex: ALPHA')
+            return redirect('/attendance_page')
+    return redirect('/attendance_page')

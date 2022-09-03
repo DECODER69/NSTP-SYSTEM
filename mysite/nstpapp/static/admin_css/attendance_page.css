@@ -65,3 +65,100 @@
     padding: 18px; */
     height: auto;
 }
+
+
+/* OWWWWWWWWWN CSSSS */
+
+.tops {
+    justify-content: space-between;
+    padding: 18px;
+    width: 100%;
+    display: flex;
+    min-height: 20vh;
+}
+
+.overall {
+    justify-content: space-between;
+    padding: 18px;
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+}
+
+.left {
+    min-height: 150vh !important;
+    padding: 10px;
+    padding-bottom: 20px !important;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.right {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 28%;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.left1 {
+    color: white;
+    border-radius: 5px;
+    background: rgb(87, 4, 4);
+    background: linear-gradient(90deg, rgba(87, 4, 4, 1) 0%, rgba(208, 10, 10, 1) 50%, rgba(131, 5, 5, 1) 100%);
+    height: auto;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.right1 {
+    /* overflow-y: scroll;
+    overflow-x: hidden; */
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.row {
+    display: inline-block;
+    justify-content: space-between;
+    height: 90%;
+}
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* this adds the "card" effect */
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+}
+
+.card button {
+    bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}

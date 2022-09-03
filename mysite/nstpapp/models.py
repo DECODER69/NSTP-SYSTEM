@@ -61,5 +61,14 @@ class school_year(models.Model):
     
 class sections(models.Model):
     section_created = models.CharField(max_length=20, default='')
+    
+class training_day(models.Model):
+    title =  models.CharField(max_length=20, default='')
+    day_created = models.CharField(max_length=20, default='')
+    
+
+    def __str__(self):
+        return self.title
+    
 
     
