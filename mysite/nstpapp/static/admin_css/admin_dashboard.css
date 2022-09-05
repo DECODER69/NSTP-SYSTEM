@@ -6,6 +6,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    background-color: #dddddd !important;
+}
+
 .home-section {
     position: relative;
     top: 0;
@@ -35,7 +39,7 @@
 
 .bg {
     background-attachment: fixed;
-    background-image: url(../images/tupc2.jpg);
+    /* background-image: url(../images/tupc2.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -47,10 +51,11 @@
 
 .container-fluid {
     width: 100%;
+    height: 30vh;
 }
 
 .stats {
-    height: 100vh;
+    height: 20vh;
     padding: 10px;
     justify-content: space-between;
     display: flex;
@@ -60,7 +65,7 @@
 .cards {
     border-radius: 8px;
     /* background-color: #16a1b4; */
-    height: 18%;
+    height: 60%;
     width: 21%;
 }
 
@@ -154,18 +159,31 @@ p {
 
 /* announcements */
 
-.inside1 {
-    min-height: 100vh;
+.inside2 {
+    height: auto;
     padding: 18px;
 }
 
 .hes {
+    border-radius: 5px;
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: auto;
     font-size: 15px;
     padding: 10px;
     background-color: white;
+}
+
+#creates {
+    font-size: 14px;
+}
+
+#mega {
+    font-size: 16px !important;
+}
+
+#subject {
+    height: 30px !important;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {
@@ -180,7 +198,21 @@ p {
         border-radius: 8px;
         width: 100%;
         margin: auto;
-        height: 100%;
+        height: 120px;
+    }
+    .left h1 {
+        font-size: 16px;
+    }
+    #creates {
+        font-size: 13px;
+        text-align: center !important;
+        font-style: italic;
+    }
+    #mega {
+        font-size: 15px !important;
+    }
+    .container-fluid {
+        height: auto;
     }
 }
 
@@ -198,11 +230,14 @@ p {
         height: 100%;
         width: 100%;
     }
+    .container-fluid {
+        height: auto;
+    }
 }
 
 @media screen and (min-width:1025px) and (max-width:1080px) {
     .stats {
-        height: 100vh;
+        height: auto;
         padding: 10px;
         justify-content: space-between;
         display: inline-flex;
@@ -219,32 +254,49 @@ p {
         margin: auto;
         width: 60px;
     }
+    .container-fluid {
+        height: auto;
+        width: 100%;
+        height: 30vh;
+    }
+    .cards {
+        border-radius: 8px;
+        /* background-color: #16a1b4; */
+        height: 20%;
+        width: 20%;
+        gap: 10px;
+    }
 }
 
 @media screen and (min-width:1081px) and (max-width:1920px) {
     .stats {
-        height: 100vh;
+        height: auto;
         padding: 10px;
         justify-content: space-between;
         display: inline-flex;
         width: 100%;
     }
-    .cards {
-        border-radius: 8px;
-        /* background-color: #16a1b4; */
-        height: 20%;
-        width: 100%;
-    }
-    .cards {
-        border-radius: 8px;
-        /* background-color: #16a1b4; */
-        height: 20%;
-        width: 23%;
-    }
     p {
         margin-top: 0;
         margin-bottom: 1rem;
         font-size: 11px;
+    }
+    .left h1 {
+        font-size: 20px;
+    }
+    .container-fluid {
+        height: auto;
+        width: 100%;
+        height: 30vh;
+    }
+    .cards {
+        border-radius: 8px;
+        /* background-color: #16a1b4; */
+        height: 100%;
+        width: 22%;
+    }
+    .right img {
+        width: 50%;
     }
 }
 
@@ -256,5 +308,20 @@ p {
         font-size: 15px;
         font-weight: 500;
         margin: 18px
+    }
+    .container-fluid {
+        height: auto;
+        width: 100%;
+        height: 30vh;
+    }
+    .cards {
+        border-radius: 8px;
+        /* background-color: #16a1b4; */
+        height: 20%;
+        width: 22%;
+        gap: 10px;
+    }
+    .right img {
+        width: 50%;
     }
 }

@@ -64,7 +64,7 @@ class sections(models.Model):
     
 class training_day(models.Model):
     title =  models.CharField(max_length=20, default='')
-    day_created = models.CharField(max_length=20, default='')
+    day_created = models.DateTimeField(default='')
     
 
     def __str__(self):
@@ -74,6 +74,7 @@ class Announcement(models.Model):
     assign = models.CharField(max_length=20, default='')
     subject = models.CharField(max_length=20, default='')
     content = models.CharField(max_length=500, default='')
+    date_posted = models.DateTimeField(default='')
     
     def __str__(self):
         return self.subject

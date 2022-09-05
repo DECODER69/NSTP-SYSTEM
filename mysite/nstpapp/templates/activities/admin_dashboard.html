@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../../static/admin_css/admin_dashboard.css">
     <link rel="icon" href="../../static/images/tup.png">
     <title>ADMIN DASHBOARD</title>
+    <!-- pagination css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -18,6 +21,7 @@
             <h1 class="text"><i class='bx bx-home'></i> NSTP SYSTEM ADMIN</h1><br>
         </div>
         <div class="bg">
+
             <div class="container-fluid">
                 <div class="stats">
                     <div class="cards" id="blue">
@@ -96,28 +100,38 @@
             </div>
 
 
-
-            <!-- end of statistics -->
-            <div class="inside1">
+            <div class="inside2">
                 <div class="hes">
                     <br>
-                    <p1 style="margin-left: 10px; color:#000000;">Announcements for {{getSection}} Student only</p1><br>&nbsp;
-                    <h1 style="margin-left: 10px; font-size:30px; color:#000000">Create Announcements<i class='bx bxs-megaphone' style="color: #c21515;"></i></h1><br>
+                    <p1 style="margin-left: 10px; color:#838383; font-style:italic;" id="creates">Create Custom and General Announcements</p1>&nbsp;
+                    <h1 style="margin-left: 10px; font-size:20px; color:#000000" id="mega">Create Announcements<i class='bx bxs-megaphone' style="color: #c21515;"></i></h1><br>
                     <div class="announce">
                         <form action="{% url 'activities:create_announcement' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Subject</label>
-                                <input type="text" class="form-control" name="subject" placeholder="ANNOUNCEMENT SUBJECT" id="subject" required>
+
+                                <label for="exampleFormControlInput1" style="font-size:14px;">Target Audience</label>
+                                <select class="form-control" name="assign">
+                                    <option value="ALL">ALL</option>
+                                    {% for s in audience %}
+                                    <option value="{{s.section_created}}">{{s.section_created}}</option>
+                                    {% endfor %}
+
+                                </select>
 
                             </div>
-                            <br>
                             <div class="form-group">
-                                <label for="exampleFormControlInput1">Content</label>
-                                <textarea class="form-control" name="content" id="content" placeholder="CONTENT" required></textarea>
+                                <label for="exampleFormControlInput1" style="font-size:14px;">Subject</label>
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" id="subject" required style="font-size:12px;">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" style="font-size:14px;">Content</label>
+                                <textarea class="form-control" name="content" id="content" placeholder="Content" required style="font-size:12px;"></textarea>
 
                             </div><br>
-                            <input type="hidden" value="{{getSection}}" name="assign">
+
                             <button type="submit" class="btn btn-success" id="post"><i class='bx bx-cloud-upload' ></i> Post</button>
                         </form>
                     </div>
@@ -127,8 +141,70 @@
 
             </div>
 
+            {% comment %} announcements list {% endcomment %}
+            <div class="inside2">
+                <div class="hes">
+                    <br>
+                    <p1 style="margin-left: 10px; color:#838383; font-style:italic;" id="creates">List of All Announcements</p1>&nbsp;
+                    <h1 style="margin-left: 10px; font-size:20px; color:#000000" id="mega">Announcements List<i class='bx bx-list-ol' style="color: #c21515;"></i></h1><br>
+                    <div class="announce">
+                        <div class="table-responsive">
+                            <table id="myTable" class="table table-bordered table-hover ">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Target Audience</th>
+                                        <th scope="col">Date Posted</th>
+                                        <th scope="col">Content</th>
+
+                                        <th scope="col">Edit</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for s in ann %}
+                                    <tr>
+                                        <td>{{s.subject}}</td>
+                                        <td>{{s.assign}}</td>
+                                        <td style="color: rgb(232, 0, 0);">{{s.date_posted}}</td>
+                                        <td>{{s.content}}</td>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-success" title="Edit"><i class='bx bx-edit-alt' ></i></button>
+                                        </td>
+                                    </tr>
+
+                                    {% empty %}
+                                    <h1 style="color: red;">NO ANNOUNCEMENTS AVAILABLE!</h1>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
     </section>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>   -->
 
 </body>
 

@@ -118,6 +118,8 @@ def logout_student(request):
 # ADMIN PAGE DISPLAYS
 
 def admin_dashboard(request):
+    audience = sections.objects.all()
+    ann = Announcement.objects.all()
     sy = school_year.objects.all()
     active = extenduser.objects.filter(status='ENROLLED').count()
     pending = extenduser.objects.filter(status='PENDING').count()
@@ -126,6 +128,8 @@ def admin_dashboard(request):
         'active':active,   
         'pending':pending,
         'sy':[sy.last()],
+        'audience':audience,
+        'ann':ann,
     
     }
     return render(request, 'activities/admin_dashboard.html', context)
@@ -661,6 +665,7 @@ def section_day(request):
     return redirect('/attendance_page')
 
 def create_announcement(request):
+    date = datetime.datetime.now()  
     if request.method == 'POST':
         assign = request.POST.get('assign')
         subject = request.POST.get('subject')
@@ -669,8 +674,8 @@ def create_announcement(request):
             'assign':assign
         }
         
-        alls = Announcement(assign=assign, subject=subject, content=content)
+        alls = Announcement(assign=assign, subject=subject, content=content, date_posted=date)
         alls.save()
-        messages.info(request, 'Announcement' + str(subject + 'has been posted.'))
-        return redirect('/section_content', context)
-    return redirect('/section_content')
+        messages.info(request, 'Announcement ' + str(subject + ' has been posted.'))
+        return redirect('/admin_dashboard', context)
+    return redirect('/admin_dashboard')
