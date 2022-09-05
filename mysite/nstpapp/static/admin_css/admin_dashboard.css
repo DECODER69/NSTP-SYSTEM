@@ -186,18 +186,24 @@ p {
     height: 30px !important;
 }
 
-td input {
+td textarea {
     border: none;
 }
 
-td input:focus {
+td textarea:focus {
     background-color: transparent;
     border: none;
     outline: none;
 }
 
-td input:hover {
+td textarea:hover {
     background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#posted {
+    color: #db7609;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {
