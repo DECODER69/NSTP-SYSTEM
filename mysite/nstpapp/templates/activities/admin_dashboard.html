@@ -16,6 +16,11 @@
 <body>
     {% include 'activities/admin_nav.html' %}
 
+    <!-- MODAL FOR EDIT ANNOUNCEMENTS -->
+
+
+    <!-- eof     MODAL FOR EDIT ANNOUNCEMENTS -->
+
     <section class="home-section">
         <div class="heads">
             <h1 class="text"><i class='bx bx-home'></i> NSTP SYSTEM ADMIN</h1><br>
@@ -164,13 +169,28 @@
                                 <tbody>
                                     {% for s in ann %}
                                     <tr>
-                                        <td>{{s.subject}}</td>
-                                        <td>{{s.assign}}</td>
-                                        <td style="color: rgb(232, 0, 0);">{{s.date_posted}}</td>
-                                        <td>{{s.content}}</td>
-                                        <td style="text-align: center;">
-                                            <button type="button" class="btn btn-success" title="Edit"><i class='bx bx-edit-alt' ></i></button>
-                                        </td>
+                                        <form action="{% url 'activities:edit_announcement' s.id %}" method="POST">
+                                            {% csrf_token %}
+
+                                            <td>{{s.subject}}</td>
+                                            <td>{{s.assign}}</td>
+                                            <td style="color: rgb(232, 0, 0);">{{s.date_posted}}</td>
+                                            <td contenteditable="True" style="width: 40%;">
+                                                <textarea type="text" style="width: 100%; height:100%;" name="content">{{s.content}}</textarea>
+                                            </td>
+
+                                            <td style="justify-content:space-between;   background-color:orange;">
+
+                                                <input type="hidden" value="{{s.id}}" name="ID">
+                                                <button type="submit" class="btn btn-success" title="Edit"><i class='bx bx-save' ></i> Save</button>
+
+
+                                                <a href="/delete_announcement/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class='bx bx-trash'></i> Delete</a>
+
+                                            </td>
+                                        </form>
+
+
                                     </tr>
 
                                     {% empty %}
@@ -198,13 +218,41 @@
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
+    <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>   -->
+    </script>
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
 
 </body>
 

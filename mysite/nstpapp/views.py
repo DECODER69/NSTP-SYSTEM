@@ -679,3 +679,17 @@ def create_announcement(request):
         messages.info(request, 'Announcement ' + str(subject + ' has been posted.'))
         return redirect('/admin_dashboard', context)
     return redirect('/admin_dashboard')
+
+def edit_announcement(request, id):
+    if request.method == 'POST':
+        ID = request.POST.get('ID')
+        content = request.POST.get('content')
+        Announcement.objects.filter(id=ID).update(content=content)
+        # messages.info(request, 'Edit Success')
+        return redirect('/admin_dashboard')
+    return redirect('/admin_dashboard')
+def delete_announcement(request, id):
+    Announcement.objects.filter(id=id).delete()
+  
+    return redirect('/admin_dashboard')
+

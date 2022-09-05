@@ -186,6 +186,20 @@ p {
     height: 30px !important;
 }
 
+td input {
+    border: none;
+}
+
+td input:focus {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+td input:hover {
+    background-color: transparent;
+}
+
 @media screen and (min-width:360px)and (max-width:640px) {
     .stats {
         height: auto;
