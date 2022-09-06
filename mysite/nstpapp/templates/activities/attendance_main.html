@@ -37,7 +37,7 @@
                     <div class="he">
                         <br>
 
-                        <p1 style="margin-left: 10px; color:#000000;">List of All Students in {{getSection}}</p1><br>&nbsp;
+                        <p1 style="margin-left: 10px; color:#000000;">List of All Students in {{ids}}</p1><br>&nbsp;
                         <h1 style="margin-left: 10px; font-size:30px; color:#000000">Students</h1><br>
 
                     </div>
@@ -66,8 +66,8 @@
 
                                 </td>
                                 <td>
-                                    <a href="#">
-                                        Update
+                                    <a href="{% url 'activities:record' s.id %}" method="POST">
+                                        <input type="hidden" value="{{s.id}}" name="ids"> update
 
                                     </a>
                                 </td>

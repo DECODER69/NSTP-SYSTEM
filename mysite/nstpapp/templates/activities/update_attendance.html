@@ -55,12 +55,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s in content3 %}
+                            {% for s in names2 %}
                             <tr>
-
-                                {% csrf_token %}
-                                <input type="hidden" value="{{s.id}}" name="ids">
-                                <input type="hidden" value="{{getSection}}" name="sectionz">
                                 <td>{{s.idnumber}}</td>
                                 <td>
 

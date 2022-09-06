@@ -718,20 +718,10 @@ def attendance_sections(request):
 def attendance_main(request):
     schools = school_year.objects.all()
     if request.method == 'POST':
-
-
-        
         getSection = request.POST.get('getSection')
-        
-
-
         sectionx = sections.objects.all()
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
-     
-
-        
-        
     else:
         return redirect('/attendance_sections')
     context = {
@@ -744,7 +734,10 @@ def attendance_main(request):
     return render(request, 'activities/attendance_main.html', context)
   
 
-def record(request):
-    if request.method == 'POST':
-        pass
-    return redirect('/attendance_main')
+def record(request, id):
+    ids = request.POST.get('ids')
+    names2 = extenduser.objects.filter(id=ids)
+    context = {
+        'names2':names2
+    }
+    return render(request, 'activities/update_attendance.html', context)
