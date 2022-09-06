@@ -73,6 +73,10 @@ urlpatterns = [
     path('create_annoucement/', views.create_announcement, name='create_announcement'),
     path('edit_announcement/<str:id>', views.edit_announcement, name='edit_announcement'),
     path('delete_announcement/<str:id>', views.delete_announcement, name='delete_announcement'),
+    path('attendance_sections/', views.attendance_sections, name='attendance_sections'),
+    path('attendance_main/', views.attendance_main, name='attendance_main'),
+    path('attendance_main_page/', views.attendance_main_page, name='attendance_main_page'),
+    path('record/<str:id>', views.record, name='record'),
     # password reset
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

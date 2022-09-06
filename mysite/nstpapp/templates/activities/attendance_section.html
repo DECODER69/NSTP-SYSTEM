@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/attendance_section.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="home-section">
+        <div class="heads">
+            <a href="/attendance_page">
+                <h1 class="text"><i class='bx bxs-dashboard' style="vertical-align: middle;"></i> Manage Attendance &nbsp;|</h1>
+            </a>
+
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Sections
+            </h1>
+        </div>
+        <div class="bg">
+            <div class="overall">
+                <div class="left">
+                    <h1 style="font-size: 20px;">All Sections</h1>
+                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Sections</p1>
+                    <br>&nbsp;<br>
+                    <div class="row">
+                        {% for s in platoons %}
+                        <form action="{% url 'activities:attendance_main' %}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                                <p>{{s.section_created}}</p>
+                                <input type="hidden" value="{{s.section_created}}" name="getSection">
+                                <button type="submit" class="btn btn-info">Open</button>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -69,10 +69,10 @@
                     <br>&nbsp;<br>
                     <div class="row">
                         {% for s in days %}
-                        <form action="{% url 'activities:section_content' %}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:attendance_sections' %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
-                
+
                                 <p>{{s.day_created}}</p><br>
                                 <input type="hidden" value="{{s.day_created}}" name="getSection">
                                 <button type="submit" class="btn btn-info">Open</button>
@@ -86,16 +86,16 @@
 
         </div>
 
-        
+
     </section>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script> 
+    </script>  -->
 
 </body>
 

@@ -1,5 +1,7 @@
 from dataclasses import field
 import csv
+from pkgutil import extend_path
+from django.http import HttpResponseRedirect
 
 import xlwt
 from http.client import HTTPResponse
@@ -9,7 +11,7 @@ from re import S
 from tabnanny import check
 from tkinter import FLAT
 from urllib import response
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  reverse
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
@@ -276,6 +278,18 @@ def attendance_page(request):
         'day_count':day_count
     }
     return render(request, 'activities/attendance_page.html', context)
+
+
+
+
+
+# MALI ITOOO
+
+def attendance_main_page(request):
+    return render(request, 'activities/attendance_main.html')
+
+
+# eof mali
 
 
 
@@ -693,3 +707,44 @@ def delete_announcement(request, id):
   
     return redirect('/admin_dashboard')
 
+def attendance_sections(request):
+    platoons = sections.objects.all()
+    context = {
+        'platoons':platoons
+    }
+    return render(request, 'activities/attendance_section.html', context)
+
+
+def attendance_main(request):
+    schools = school_year.objects.all()
+    if request.method == 'POST':
+
+
+        
+        getSection = request.POST.get('getSection')
+        
+
+
+        sectionx = sections.objects.all()
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+     
+
+        
+        
+    else:
+        return redirect('/attendance_sections')
+    context = {
+        'content3':content3,
+        'content33':content33,
+        'getSection':getSection,
+        'schools':[schools.last()],
+        'sectionx':sectionx
+    }
+    return render(request, 'activities/attendance_main.html', context)
+  
+
+def record(request):
+    if request.method == 'POST':
+        pass
+    return redirect('/attendance_main')

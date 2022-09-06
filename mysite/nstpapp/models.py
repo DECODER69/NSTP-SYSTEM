@@ -46,10 +46,24 @@ class extenduser(models.Model):
     specific = models.CharField(max_length=100, default='')
     proof = models.FileField(upload_to='proofs/', default='')
     s_year = models.CharField(max_length=100, default='0000')
-
-
-    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    # attendance
+    TD1= models.CharField(max_length=100, default='')
+    TD2= models.CharField(max_length=100, default='')
+    TD3= models.CharField(max_length=100, default='')
+    TD4= models.CharField(max_length=100, default='')
+    TD5= models.CharField(max_length=100, default='')
+    TD6= models.CharField(max_length=100, default='')
+    TD7= models.CharField(max_length=100, default='')
+    TD8= models.CharField(max_length=100, default='')
+    TD9= models.CharField(max_length=100, default='')
+    TD10= models.CharField(max_length=100, default='')
+    TD11= models.CharField(max_length=100, default='')
+    TD12= models.CharField(max_length=100, default='')
+    TD13= models.CharField(max_length=100, default='')
+    TD14= models.CharField(max_length=100, default='')
+    TD15= models.CharField(max_length=100, default='')
     
     
     
