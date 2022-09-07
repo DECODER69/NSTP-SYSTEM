@@ -2,9 +2,11 @@ from dataclasses import field
 import csv
 from pkgutil import extend_path
 from django.http import HttpResponseRedirect
+from django.http.request import QueryDict
 
 import xlwt
 from http.client import HTTPResponse
+from django.urls import reverse
 from multiprocessing import context
 from pickle import FALSE
 from re import S
@@ -714,14 +716,24 @@ def attendance_sections(request):
     }
     return render(request, 'activities/attendance_section.html', context)
 
+# def attendance_main_page(request):
+#     return render(request, 'activities/attendance_main.html', context)
+
 
 def attendance_main(request):
     schools = school_year.objects.all()
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
+        print("pogi ako talaga  " +str(getSection))
         sectionx = sections.objects.all()
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+
+
+
+    
+    
+    
     else:
         return redirect('/attendance_sections')
     context = {
@@ -734,10 +746,58 @@ def attendance_main(request):
     return render(request, 'activities/attendance_main.html', context)
   
 
-def record(request, id):
-    ids = request.POST.get('ids')
-    names2 = extenduser.objects.filter(id=ids)
-    context = {
-        'names2':names2
-    }
-    return render(request, 'activities/update_attendance.html', context)
+
+
+def update_attendance(request):
+    if request.method == 'POST':
+        td1 = request.POST.getlist('td1[]')
+        td2 = request.POST.getlist('td2[]')
+        td3 = request.POST.getlist('td3[]')
+        td4 = request.POST.getlist('td4[]')
+        td5 = request.POST.getlist('td5[]')
+        td6 = request.POST.getlist('td6[]')
+        td7 = request.POST.getlist('td7[]')
+        td8 = request.POST.getlist('td8[]')
+        td9 = request.POST.getlist('td9[]')
+        td10 = request.POST.getlist('td10[]')
+        td11 = request.POST.getlist('td11[]')
+        td12 = request.POST.getlist('td12[]')
+        td13 = request.POST.getlist('td13[]')
+        td14 = request.POST.getlist('td14[]')
+        td15 = request.POST.getlist('td15[]')
+        for s in td1:
+            extenduser.objects.filter(id=s).update(TD1='PRESENT')
+        for s in td2:
+            extenduser.objects.filter(id=s).update(TD2='PRESENT')
+        for s in td3:
+            extenduser.objects.filter(id=s).update(TD3='PRESENT')
+        for s in td4:
+            extenduser.objects.filter(id=s).update(TD4='PRESENT')
+        for s in td5:
+            extenduser.objects.filter(id=s).update(TD5='PRESENT')
+        for s in td6:
+            extenduser.objects.filter(id=s).update(TD6='PRESENT')
+
+        for s in td7:
+            extenduser.objects.filter(id=s).update(TD7='PRESENT')
+        for s in td8:
+            extenduser.objects.filter(id=s).update(TD8='PRESENT')
+        for s in td9:
+            extenduser.objects.filter(id=s).update(TD9='PRESENT')
+        for s in td10:
+            extenduser.objects.filter(id=s).update(TD10='PRESENT')
+        for s in td11:
+            extenduser.objects.filter(id=s).update(TD11='PRESENT')
+        for s in td12:
+            extenduser.objects.filter(id=s).update(TD12='PRESENT')
+        for s in td13:
+            extenduser.objects.filter(id=s).update(TD13='PRESENT')
+        for s in td14:
+            extenduser.objects.filter(id=s).update(TD14='PRESENT')
+        for s in td15:
+            extenduser.objects.filter(id=s).update(TD15='PRESENT')
+    return redirect('/attendance_sections')
+
+
+
+    # return HttpResponseRedirect(request.session['getSection1'])

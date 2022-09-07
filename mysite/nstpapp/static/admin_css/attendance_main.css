@@ -167,3 +167,18 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+/* checkboxes color */
+
+#cb1 {
+    accent-color: #ee1e1e;
+}
+
+#cb2 {
+    accent-color: #19e212;
+}
+
+#cb3 {
+    accent-color: #e74c3c;
+}

@@ -30,12 +30,12 @@
                     <br>&nbsp;<br>
                     <div class="row">
                         {% for s in platoons %}
-                        <form action="{% url 'activities:attendance_main' %}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:attendance_main'  %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
                                 <p>{{s.section_created}}</p>
                                 <input type="hidden" value="{{s.section_created}}" name="getSection">
-                                <button type="submit" class="btn btn-info">Open</button>
+                                <button type="submit" class="btn btn-info">Take Attendance</button>
                             </div>
                         </form>
                         {% endfor %}

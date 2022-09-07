@@ -76,7 +76,8 @@ urlpatterns = [
     path('attendance_sections/', views.attendance_sections, name='attendance_sections'),
     path('attendance_main/', views.attendance_main, name='attendance_main'),
     path('attendance_main_page/', views.attendance_main_page, name='attendance_main_page'),
-    path('record/<str:id>', views.record, name='record'),
+    # path('record/<str:id>', views.record, name='record'),
+    path('update_attendance/', views.update_attendance, name='update_attendance'),
     # password reset
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

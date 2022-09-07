@@ -30,8 +30,10 @@
             <a href="/attendance_sections">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Sections &nbsp;|</h1>
             </a>
-
-            <h1 class="text"><i class='bx bx-star'></i> {{getSection}}</h1>
+            <a href="/attendance_main/">
+                <h1 class="text"><i class='bx bx-star'></i> {{sectionz}}</h1>
+            </a>
+            <h1 class="text"><i class='bx bx-star'></i> {{sectionz}}</h1>
         </div>
         <div class="bg">
             <div class="inside">
@@ -49,7 +51,9 @@
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
-                                <th scope="col">UPDATE ATTENDANCE</th>
+                                <th scope="col">TD 1</th>
+                                <th scope="col">Save</th>
+
 
 
                             </tr>
@@ -57,19 +61,27 @@
                         <tbody>
                             {% for s in names2 %}
                             <tr>
-                                <td>{{s.idnumber}}</td>
-                                <td>
+                                <form action="{% url 'activities:update_attendance' ALPHA %}" method="POST">
+                                    {% csrf_token %}
+                                    <td>{{s.platoons}}</td>
+                                    <td>
 
-                                    {{s.firstname}} {{s.middlename}} {{s.lastname}}
+                                        {{s.firstname}} {{s.middlename}} {{s.lastname}}
 
-                                </td>
-                                <td>
-                                    <a href="#">
-                                        Update
-
-                                    </a>
-                                </td>
-
+                                    </td>
+                                    <td>
+                                        <select name="td1" id="td1">
+                                            <option value="{{s.TD1}}">{{s.TD1}}</option>
+                                            <option value="PRESENT">PRESENT</option>
+                                            <option value="LATE">LATE</option>
+                                            <option value="ABSENT">ABSENT</option>
+                                    </select>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" value="{{s.id}}" name="ids">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </td>
+                                </form>
                             </tr>
 
                             {% empty %}

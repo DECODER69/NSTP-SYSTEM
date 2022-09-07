@@ -33,53 +33,155 @@
         </div>
         <div class="bg">
             <div class="inside">
+
                 <div class="table-responsive">
-                    <div class="he">
+                    <form action="{% url 'activities:update_attendance' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="he">
+                            <br>
+
+                            <p1 style="margin-left: 10px; color:#000000;">List of All Students in {{ids}}</p1><br>&nbsp;
+                            <h1 style="margin-left: 10px; font-size:30px; color:#000000">Students</h1><br>
+
+                        </div>
                         <br>
+                        <table id="myTable" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">ID NUMBER</th>
+                                    <th scope="col">FULL NAME</th>
+                                    <th scope="col">TD1
+                                        <input type="checkbox" name="td1" id="td1">
+                                    </th>
+                                    <th scope="col">TD2</th>
+                                    <th scope="col">TD3</th>
+                                    <th scope="col">TD4</th>
+                                    <th scope="col">TD5</th>
+                                    <th scope="col">TD6</th>
+                                    <th scope="col">TD7</th>
+                                    <th scope="col">TD8</th>
+                                    <th scope="col">TD9</th>
+                                    <th scope="col">TD10</th>
+                                    <th scope="col">TD11</th>
+                                    <th scope="col">TD12</th>
+                                    <th scope="col">TD13</th>
+                                    <th scope="col">TD14</th>
+                                    <th scope="col">TD15</th>
 
-                        <p1 style="margin-left: 10px; color:#000000;">List of All Students in {{ids}}</p1><br>&nbsp;
-                        <h1 style="margin-left: 10px; font-size:30px; color:#000000">Students</h1><br>
-
-                    </div>
-                    <br>
-                    <table id="myTable" class="table table-bordered table-hover ">
-                        <thead class="thead">
-                            <tr>
-                                <th scope="col">ID NUMBER</th>
-                                <th scope="col">FULL NAME</th>
-                                <th scope="col">UPDATE ATTENDANCE</th>
 
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for s in content3 %}
-                            <tr>
+                                </tr>
+                            </thead>
 
-                                {% csrf_token %}
-                                <input type="hidden" value="{{s.id}}" name="ids">
-                                <input type="hidden" value="{{getSection}}" name="sectionz">
-                                <td>{{s.idnumber}}</td>
-                                <td>
+                            <tbody>
+                                {% for s in content3 %}
+                                <tr>
 
-                                    {{s.firstname}} {{s.middlename}} {{s.lastname}}
+                                    <td>{{s.idnumber}}</td>
+                                    <td>
 
-                                </td>
-                                <td>
-                                    <a href="{% url 'activities:record' s.id %}" method="POST">
-                                        <input type="hidden" value="{{s.id}}" name="ids"> update
+                                        {{s.firstname}} {{s.middlename}} {{s.lastname}}
 
-                                    </a>
-                                </td>
+                                    </td>
+                                    <td>
+                                        {% if s.TD1 == 'PRESENT' %}
+                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD1 == '' %}
+                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb3">{% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD2 == 'PRESENT' %}
+                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD2 == '' %}
+                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD3 == 'PRESENT' %}
+                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD3 == '' %}
+                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD4 == 'PRESENT' %}
+                                        <input type="checkbox" name="td4[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD4 == '' %}
+                                        <input type="checkbox" name="td4[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD5 == 'PRESENT' %}
+                                        <input type="checkbox" name="td5[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD5 == '' %}
+                                        <input type="checkbox" name="td5[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD6 == 'PRESENT' %}
+                                        <input type="checkbox" name="td6[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD6 == '' %}
+                                        <input type="checkbox" name="td6[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD7 == 'PRESENT' %}
+                                        <input type="checkbox" name="td7[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD7 == '' %}
+                                        <input type="checkbox" name="td7[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD8 == 'PRESENT' %}
+                                        <input type="checkbox" name="td8[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD8 == '' %}
+                                        <input type="checkbox" name="td8[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD9 == 'PRESENT' %}
+                                        <input type="checkbox" name="td9[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD9 == '' %}
+                                        <input type="checkbox" name="td9[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD10 == 'PRESENT' %}
+                                        <input type="checkbox" name="td10[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD10 == '' %}
+                                        <input type="checkbox" name="td10[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD11 == 'PRESENT' %}
+                                        <input type="checkbox" name="td11[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD11 == '' %}
+                                        <input type="checkbox" name="td11[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD12 == 'PRESENT' %}
+                                        <input type="checkbox" name="td12[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD12 == '' %}
+                                        <input type="checkbox" name="td12[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD13 == 'PRESENT' %}
+                                        <input type="checkbox" name="td13[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD13 == '' %}
+                                        <input type="checkbox" name="td13[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD14 == 'PRESENT' %}
+                                        <input type="checkbox" name="td14[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD14 == '' %}
+                                        <input type="checkbox" name="td14[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if s.TD15 == 'PRESENT' %}
+                                        <input type="checkbox" name="td15[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD15 == '' %}
+                                        <input type="checkbox" name="td15[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                    </td>
 
-                            </tr>
 
-                            {% empty %}
-                            <h1 style="color: red;">NO STUDENTS AVAILABLE!</h1>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+
+
+
+
+
+                                </tr>
+
+                                {% endfor %}
+
+
+
+                            </tbody>
+
+
+
+                        </table>
+                        <input type="hidden" value="PRESENT" name="vals">
+                        <button type="submit" class="btn btn-danger">Danger</button>
+                    </form>
+
                 </div>
+
             </div>
         </div>
     </section>
@@ -88,6 +190,31 @@
     <script>
         $(document).ready(function() {
             $('#myTable').dataTable();
+        });
+    </script>
+
+
+    <!-- <script>
+        $('#td1').click(function(event) {
+            if (this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $("th input[type='checkbox']").on("change", function() {
+            var cb = $(this), //checkbox that was changed
+                th = cb.parent(), //get parent th
+                col = th.index() + 1; //get column index. note nth-child starts at 1, not zero
+            $("tbody td:nth-child(" + col + ") input").prop("checked", this.checked); //select the inputs and [un]check it
         });
     </script>
 
