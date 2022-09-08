@@ -751,7 +751,9 @@ def attendance_main(request):
 def update_attendance(request):
     if request.method == 'POST':
         td1 = request.POST.getlist('td1[]')
+        td1A = request.POST.getlist('td1A[]')
         td2 = request.POST.getlist('td2[]')
+        td2A = request.POST.getlist('td2A[]')
         td3 = request.POST.getlist('td3[]')
         td4 = request.POST.getlist('td4[]')
         td5 = request.POST.getlist('td5[]')
@@ -767,8 +769,12 @@ def update_attendance(request):
         td15 = request.POST.getlist('td15[]')
         for s in td1:
             extenduser.objects.filter(id=s).update(TD1='PRESENT')
+        for a in td1A:
+            extenduser.objects.filter(id=a).update(TD1='ABSENT')
         for s in td2:
             extenduser.objects.filter(id=s).update(TD2='PRESENT')
+        for a in td2A:
+            extenduser.objects.filter(id=a).update(TD2='ABSENT')
         for s in td3:
             extenduser.objects.filter(id=s).update(TD3='PRESENT')
         for s in td4:

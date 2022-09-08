@@ -50,9 +50,7 @@
                                 <tr>
                                     <th scope="col">ID NUMBER</th>
                                     <th scope="col">FULL NAME</th>
-                                    <th scope="col">TD1
-                                        <input type="checkbox" name="td1" id="td1">
-                                    </th>
+                                    <th scope="col">TD1</th>
                                     <th scope="col">TD2</th>
                                     <th scope="col">TD3</th>
                                     <th scope="col">TD4</th>
@@ -85,18 +83,41 @@
                                     </td>
                                     <td>
                                         {% if s.TD1 == 'PRESENT' %}
-                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD1 == '' %}
-                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb3">{% endif %}
+                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb2" checked> P
+                                        <input type="checkbox" name="td1A[]" value="{{s.id}}" id="cb2"> A
+                                        {% elif s.TD1 == 'ABSENT' %}
+                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb2"> P
+                                        <input type="checkbox" name="td1A[]" value="{{s.id}}" id="cb1" checked> A
+                                        {% elif s.TD1 == '' %}
+                                        <input type="checkbox" name="td1[]" value="{{s.id}}" id="cb1"> P
+                                        <input type="checkbox" name="td1A[]" value="{{s.id}}" id="cb2" > A
+                                        {% endif %}
                                     </td>
                                     <td>
                                         {% if s.TD2 == 'PRESENT' %}
-                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD2 == '' %}
-                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb2" checked> P
+                                        <input type="checkbox" name="td2A[]" value="{{s.id}}" id="cb2" > A
+                                        
+                                        {% elif s.TD2 == 'ABSENT' %}
+                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb2"> P
+                                        <input type="checkbox" name="td2A[]" value="{{s.id}}" id="cb1" checked> A
+                                        {% elif s.TD2 == '' %}
+                                        <input type="checkbox" name="td2[]" value="{{s.id}}" id="cb1"> P
+                                        <input type="checkbox" name="td2A[]" value="{{s.id}}" id="cb2"> A
+                                         {% endif %}
                                     </td>
                                     <td>
                                         {% if s.TD3 == 'PRESENT' %}
-                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb2" checked>{% elif s.TD3 == '' %}
-                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb3"> {% endif %}
+                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb2" checked> P
+                                        <input type="checkbox" name="td3A[]" value="{{s.id}}" id="cb2" > A
+                                        
+                                        {% elif s.TD3 == 'ABSENT' %}
+                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb2"> P
+                                        <input type="checkbox" name="td3A[]" value="{{s.id}}" id="cb1" checked> A
+                                        {% elif s.TD3 == '' %}
+                                        <input type="checkbox" name="td3[]" value="{{s.id}}" id="cb1"> P
+                                        <input type="checkbox" name="td3A[]" value="{{s.id}}" id="cb2"> A
+                                         {% endif %}
                                     </td>
                                     <td>
                                         {% if s.TD4 == 'PRESENT' %}
@@ -208,15 +229,15 @@
             }
         });
     </script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
+    {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> {% endcomment %}
+    {% comment %} <script>
         $("th input[type='checkbox']").on("change", function() {
             var cb = $(this), //checkbox that was changed
                 th = cb.parent(), //get parent th
                 col = th.index() + 1; //get column index. note nth-child starts at 1, not zero
             $("tbody td:nth-child(" + col + ") input").prop("checked", this.checked); //select the inputs and [un]check it
         });
-    </script>
+    </script> {% endcomment %}
 
 
 
