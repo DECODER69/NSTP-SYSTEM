@@ -24,7 +24,7 @@
     <section class="home-section">
         <div class="heads">
             <h1 class="text"><i class='bx bx-home'></i> NSTP SYSTEM ADMIN</h1><br>
-        </div>
+        </div><br>
         <div class="bg">
 
             <div class="container-fluid">
@@ -174,7 +174,7 @@
 
                                             <td>{{s.subject}}</td>
                                             <td>{{s.assign}}</td>
-                                            <td id="posted"> <i class='bx bx-calendar' ></i> {{s.date_posted}}</td>
+                                            <td id="posted"> <i class='bx bx-calendar'></i> {{s.date_posted}}</td>
                                             <td contenteditable="True" style="width: 40%;">
                                                 <textarea type="text" style="width: 100%; height:100%;" name="content">{{s.content}}</textarea>
                                             </td>
@@ -219,11 +219,14 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        {% for msg in messages %}
+        { %
+            for msg in messages %
+        }
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
-        }) {% endfor %}
+        }) { % endfor %
+        }
     </script>
 
     <script>
@@ -253,7 +256,7 @@
             })
         })
     </script>
-    
+
 
 </body>
 

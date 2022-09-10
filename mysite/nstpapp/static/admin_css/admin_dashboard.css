@@ -6,10 +6,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    background-color: #b4b4b4 !important;
-}
-
 .home-section {
     position: relative;
     top: 0;
@@ -20,7 +16,7 @@ body {
 }
 
 .heads {
-    background: #616161;
+    background: #7F0918;
 }
 
 .sidebar.open~.home-section {

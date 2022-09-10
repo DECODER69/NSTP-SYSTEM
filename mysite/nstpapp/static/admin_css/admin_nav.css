@@ -19,10 +19,21 @@
     height: 100%;
     width: 78px;
     /* background: #11101D; */
-    background: #1E272C;
+    /* background: #1E272C; */
+    /* background: #212A39; */
+    /* background: #5F0706; */
+    /* background: #272119; */
+    background: #696B6A;
     padding: 6px 14px;
     z-index: 99;
     transition: all 0.5s ease;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
 }
 
 .sidebar.open {
@@ -169,7 +180,9 @@
     text-decoration: none;
     transition: all 0.4s ease;
     /* background: #11101D; */
-    background: #222d32;
+    /* background: #212A39; */
+    /* background: #5F0706; */
+    background: #696B6A;
 }
 
 .sidebar li a:hover {
