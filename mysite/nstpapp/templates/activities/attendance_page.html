@@ -12,7 +12,7 @@
 
 <body>
     {% include 'activities/admin_nav.html' %}
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:#616161; color:white;">
@@ -24,14 +24,9 @@
                 <div class="modal-body">
                     <form action="{% url 'activities:create_day' %}" method="POST">
                         {% csrf_token %}
-
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Pick Date</label>
-                            <input type="date" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="day" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Training day Number</label>
-                            <input type="text" class="form-control" id="message-text" placeholder="Ex: Training day 1" name="title" required>
+                            <label for="message-text" class="col-form-label">Training day Number(Please follow the given format)</label>
+                            <input type="text" class="form-control" id="message-text" placeholder="Ex: TD-1" name="title" required>
                         </div>
 
                 </div>
@@ -42,48 +37,39 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <section class="home-section">
         <div class="heads">
             <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance</h1><br>
         </div>
         <div class="bg">
-            <div class="tops">
 
-                <div class="right1">
-                    <h1 style="font-size: 20px;">Add Training Day </h1><br>
-                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
-                    <a href="#" style="text-decoration: none;">
-                        <button type="button" class="btn btn-primary" style="margin: auto;display: flex; " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Add Day</button>
-                    </a>
-
-                </div>
-
-            </div>
 
             <div class="overall">
                 <div class="left">
-                    <h1 style="font-size: 20px;">All Training Days</h1>
-                    <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{day_count}} Training Day</p1>
+                    <h1 style="font-size: 20px; color:#e3e3e3;">All Sections and Platoons</h1>
+                    <p1 style="color:#ffffff; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:#ffffff; font-weight:bolder;"></i> </p1>
                     <br>&nbsp;<br>
                     <div class="row">
-                        {% for s in days %}
-                        <form action="{% url 'activities:attendance_sections' %}" class="column" style="text-decoration: none;" method="POST">
+                        {% for s in platoons %}
+                        <form action="{% url 'activities:attendance_main' %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
-
-                                <p>{{s.day_created}}</p><br>
-                                <h1>{{s.title}}</h1>
-                                <input type="hidden" value="{{s.day_created}}" name="getSection">
-                                <button type="submit" class="btn btn-info">Open</button>
+                                <p>Training day</p><br>
+                                <h1>{{s.section_created}}</h1>
+                                <input type="hidden" name="t_day" id="" value="{{s.title}}">
+                                <div class="btnss" style="float: right;">
+                                    <button type="submit" class="btn btn-success" title="Take Attendance" style="background: #D87D80; border:none; color:rgb(214, 214, 214);">Take Attendance</button>
+                                    <input type="hidden" value="{{s.section_created}}" name="getSection">
+                                    <!-- <button type="button" class="btn btn-info" title="Attendance Report"><i class='bx bxs-report' ></i></button> -->
+                                </div>
                             </div>
-                        </form>
-                        {% endfor %}
+                        </form><br> {% endfor %}
                     </div>
                 </div>
 
-            </div><br>&nbsp;<br>&nbsp;<br>
+            </div>
 
         </div>
 

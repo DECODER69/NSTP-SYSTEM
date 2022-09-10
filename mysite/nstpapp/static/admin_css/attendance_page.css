@@ -6,6 +6,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    background-color: #121828 !important;
+}
+
 .home-section {
     position: relative;
     top: 0;
@@ -16,7 +20,8 @@
 }
 
 .heads {
-    background: #616161;
+    /* background: #616161; */
+    background-color: #212A39!important;
 }
 
 .count {
@@ -86,6 +91,7 @@
 }
 
 .left {
+    background-color: #212A39;
     height: auto;
     padding: 10px;
     padding-bottom: 20px !important;
@@ -114,8 +120,10 @@
 }
 
 .right1 {
+    color: rgb(192, 192, 192);
     /* overflow-y: scroll;
     overflow-x: hidden; */
+    background-color: #212A39;
     height: auto;
     width: 100%;
     padding: 10px;
@@ -124,11 +132,12 @@
 
 .row {
     display: inline-block;
-    justify-content: space-between;
     height: 90%;
+    padding: 10px;
 }
 
 .column {
+    height: 220px;
     width: 25%;
     padding: 0 10px;
 }
@@ -143,11 +152,12 @@
 }
 
 .card {
+    color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     /* this adds the "card" effect */
     padding: 10px;
     text-align: center;
-    background-color: #f1f1f1;
+    background-color: #161C2C !important;
 }
 
 @media screen and (max-width: 600px) {

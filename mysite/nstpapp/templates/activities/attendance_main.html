@@ -25,9 +25,9 @@
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance &nbsp;|</h1>
             </a>
 
-            <a href="/attendance_sections">
+            {% comment %} <a href="/attendance_sections">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Sections &nbsp;|</h1>
-            </a>
+            </a> {% endcomment %}
 
             <h1 class="text"><i class='bx bx-star'></i> {{getSection}}</h1>
         </div>
@@ -270,7 +270,7 @@
 
                         </table>
                         <input type="hidden" value="PRESENT" name="vals">
-                        <button type="submit" class="btn btn-danger">Danger</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                     </form>
 
                 </div>

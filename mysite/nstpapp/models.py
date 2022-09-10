@@ -78,7 +78,8 @@ class sections(models.Model):
     
 class training_day(models.Model):
     title =  models.CharField(max_length=20, default='')
-    day_created = models.DateTimeField(default='')
+
+
     
 
     def __str__(self):

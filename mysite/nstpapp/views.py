@@ -271,15 +271,7 @@ def manage_section(request):
     print(secCount)
     return render(request, 'activities/manage_section.html', context)
   
-     
-def attendance_page(request):
-    days = training_day.objects.all()
-    day_count = training_day.objects.all().count()
-    context = {
-        'days':days,
-        'day_count':day_count
-    }
-    return render(request, 'activities/attendance_page.html', context)
+
 
 
 
@@ -660,21 +652,19 @@ def section_content(request):
 
 def create_day(request):
     if request.method == 'POST':
-        day = request.POST.get('day')
+   
         title = request.POST.get('title')
-        if day is not None:
-            if training_day.objects .filter(title=title).exists():
-                messages.info(request, (title) + ' Already exist !')
-                return redirect('/attendance_page')
-    
-            else:
-                data = training_day(day_created=day, title=title)
-                data.save()
-                messages.info(request, (title) + ' Created !')
-                return redirect('/attendance_page')
-        else:
-            messages.info(request, 'Please Input Something!! Ex: ALPHA')
+  
+        if training_day.objects .filter(title=title).exists():
+            messages.info(request, (title) + ' Already exist !')
             return redirect('/attendance_page')
+
+        else:
+            data = training_day( title=title)
+            data.save()
+            messages.info(request, (title) + ' Created !')
+            return redirect('/attendance_page')
+
     return redirect('/attendance_page')
 
 def section_day(request):
@@ -709,10 +699,29 @@ def delete_announcement(request, id):
   
     return redirect('/admin_dashboard')
 
+# for attendance only
+     
+def attendance_page(request):
+    platoons = sections.objects.all()
+    days = training_day.objects.all()
+    day_count = training_day.objects.all().count()
+    context = {
+        'days':days,
+        'day_count':day_count,
+        'platoons':platoons
+    }
+    return render(request, 'activities/attendance_page.html', context)
+
 def attendance_sections(request):
     platoons = sections.objects.all()
+  
+    t_days = request.POST.get('t_day')
+    he = training_day.objects.filter(title=t_days)
+
+
     context = {
-        'platoons':platoons
+        'platoons':platoons,
+        'he':he
     }
     return render(request, 'activities/attendance_section.html', context)
 
@@ -722,19 +731,16 @@ def attendance_sections(request):
 
 def attendance_main(request):
     schools = school_year.objects.all()
+
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
-        print("pogi ako talaga  " +str(getSection))
+        # t_day = request.POST.get('t_day')
+        # print("pogi ako talaga  " +str( t_day))
         
         sectionx = sections.objects.all()
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
 
-
-
-    
-    
-    
     else:
         return redirect('/attendance_sections')
     context = {
@@ -742,7 +748,9 @@ def attendance_main(request):
         'content33':content33,
         'getSection':getSection,
         'schools':[schools.last()],
-        'sectionx':sectionx
+        'sectionx':sectionx,
+        # 't_day':t_day
+       
     }
     return render(request, 'activities/attendance_main.html', context)
   
@@ -851,7 +859,7 @@ def update_attendance(request):
         for a in td15A:
             extenduser.objects.filter(id=a).update(TD15='ABSENT')
             
-    return redirect('/attendance_sections')
+    return redirect('/attendance_page')
 
 
 

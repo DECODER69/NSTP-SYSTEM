@@ -25,7 +25,7 @@
         <div class="bg">
             <div class="overall">
                 <div class="left">
-                    <h1 style="font-size: 20px;">All Sections</h1>
+                    <h1 style="font-size: 20px;">All Sections {{s.title}}</h1>
                     <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{section1}} Sections</p1>
                     <br>&nbsp;<br>
                     <div class="row">
@@ -33,8 +33,11 @@
                         <form action="{% url 'activities:attendance_main'  %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
-                                <p>{{s.section_created}}</p>
+                                <p>{{s.section_created}}</p><br>
+
+
                                 <input type="hidden" value="{{s.section_created}}" name="getSection">
+
                                 <button type="submit" class="btn btn-info">Take Attendance</button>
                             </div>
                         </form>
