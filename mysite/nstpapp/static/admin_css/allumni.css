@@ -6,6 +6,15 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
 .home-section {
     position: relative;
     top: 0;
@@ -16,7 +25,12 @@
 }
 
 .heads {
-    background: #616161;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 0.9444152661064426) 56%);
+}
+
+.heads .text i {
+    color: #fb5800;
 }
 
 .heads .text i {

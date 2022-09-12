@@ -48,19 +48,20 @@
 
             <div class="overall">
                 <div class="left">
-                    <h1 style="font-size: 20px; color:#e3e3e3;">All Sections and Platoons</h1>
-                    <p1 style="color:#ffffff; font-size:15px; font-weight:bold;"><i class='bx bxs-grid' style="vertical-align:middle; font-size: 20px; color:#ffffff; font-weight:bolder;"></i> </p1>
+                    <h1 style="font-size: 20px; color:#030303;">All Sections and Platoons</h1>
+
+                    <hr>
                     <br>&nbsp;<br>
                     <div class="row">
                         {% for s in platoons %}
                         <form action="{% url 'activities:attendance_main' %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
-                                <p>Training day</p><br>
+                                <img src="../../static/images/att.png" alt="" id="att"><br>
                                 <h1>{{s.section_created}}</h1>
                                 <input type="hidden" name="t_day" id="" value="{{s.title}}">
                                 <div class="btnss" style="float: right;">
-                                    <button type="submit" class="btn btn-success" title="Take Attendance" style="background: #D87D80; border:none; color:rgb(214, 214, 214);">Take Attendance</button>
+                                    <button type="submit" class="btn btn-success" title="Take Attendance" style="background: #707070; border:none; color:rgb(255, 255, 255);">Take Attendance</button>
                                     <input type="hidden" value="{{s.section_created}}" name="getSection">
                                     <!-- <button type="button" class="btn btn-info" title="Attendance Report"><i class='bx bxs-report' ></i></button> -->
                                 </div>

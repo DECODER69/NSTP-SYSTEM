@@ -23,7 +23,7 @@
     /* background: #212A39; */
     /* background: #5F0706; */
     /* background: #272119; */
-    background: #696B6A;
+    background: #010101;
     padding: 6px 14px;
     z-index: 99;
     transition: all 0.5s ease;
@@ -83,7 +83,7 @@
 }
 
 .sidebar i {
-    color: #fff;
+    color: #c4c4c4;
     height: 60px;
     min-width: 50px;
     font-size: 28px;
@@ -108,7 +108,7 @@
     left: calc(100% + 15px);
     z-index: 3;
     background: #fff;
-    box-shadow: 0 5px 10px #222d32;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 15px;
@@ -180,9 +180,7 @@
     text-decoration: none;
     transition: all 0.4s ease;
     /* background: #11101D; */
-    /* background: #212A39; */
-    /* background: #5F0706; */
-    background: #696B6A;
+    background: #000000;
 }
 
 .sidebar li a:hover {
@@ -190,7 +188,7 @@
 }
 
 .sidebar li a .links_name {
-    color: #fff;
+    color: #afafaf;
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
@@ -215,10 +213,6 @@
     line-height: 50px;
     font-size: 18px;
     border-radius: 12px;
-}
-
-.pendings {
-    color: rgb(255, 0, 0);
 }
 
 
