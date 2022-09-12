@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>students_list</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/pl_content.css">
+
+
+
+    <!-- pagination css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+</head>
+
+<body style="padding: 10px;">
+    {% include 'activities/wala.html' %}
+    <br>
+
+    <div class="table-responsive">
+        <div class="he">
+
+            <div class="ada">
+                <p1 style="margin-left: 10px; color:#000000;">Officially Enrolled Students</p1><br>&nbsp;
+                <h1 style="margin-left: 10px; font-size:30px; color:#ff7300">Select Student/s for {{platoon}}</h1><br>
+            </div>
+        </div>
+        <br>
+        <form action="{% url 'activities:assign_section' %}" method="POST">
+            {% csrf_token %}
+            <table id="myTable" class="table table-bordered table-hover ">
+                <thead class="thead">
+                    <tr>
+                        <th scope="col">Select</th>
+                        <th scope="col">ID NUMBER</th>
+                        <th scope="col">FULL NAME</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">COURSE</th>
+                        <th scope="col">FIELD</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in allstudent %}
+                    <tr>
+                        <input type="hidden" value="{{platoon}}" name="platoons">
+                        <td>
+                            <input class="myCheckBox" type="checkbox" value="{{a.id}}" name="students[]">
+                        </td>
+                        <td>{{a.idnumber}}</td>
+                        <td>{{a.firstname}} {{a.middlename}} {{a.lastname}}</td>
+                        <td>{{a.email}}</td>
+
+                        <td>{{a.section}}</td>
+                        {% if a.field == 'ROTC' %}
+                        <td style="color:red; font-weight:bolder;">{{a.field}}</td>
+                        {% elif a.field == 'CWTS' %}
+                        <td style="color:#4EC3D0;font-weight:bolder;">{{a.field}}</td>
+                        {% endif %}
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if all_student %}
+
+            <button type="submit" class="btn btn-success" style="width:100%; height:40px; font-size:15px;" id="confirmButton">Add to {{platoon}}</button> {% else %}
+
+            <button type="submit" class="btn btn-success" style="width:100%; height:40px; font-size:15px;" id="confirmButton" disabled>Add to {{platoon}}</button> {% endif %}
+        </form>
+    </div>
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% for msg in messages %}
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          }) {% endfor %}
+    </script>  
+
+
+    <script>
+        var boxes = $('.myCheckBox');
+
+        boxes.on('change', function() {
+            $('#confirmButton').prop('disabled', !boxes.filter(':checked').length);
+        }).trigger('change');
+    </script>
+
+
+</body>
+
+</html>

@@ -45,6 +45,9 @@
                             <h1 style="margin-left: 10px; font-size:30px; color:#000000">Students</h1><br>
 
                         </div>
+                        <div class="reports">
+
+                        </div>
                         <br>
                         <table id="myTable" class="table table-bordered table-hover ">
                             <thead class="thead">
@@ -239,7 +242,7 @@
 
                         </table>
                         <input type="hidden" value="PRESENT" name="vals">
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success" style="width:100%; height:40px; font-size:15px;">Save</button>
                     </form>
 
                 </div>
@@ -254,6 +257,14 @@
             $('#myTable').dataTable();
         });
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>  
 
 
     <!-- <script>

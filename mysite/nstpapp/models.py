@@ -74,7 +74,8 @@ class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
     
 class sections(models.Model):
-    section_created = models.CharField(max_length=20, default='')
+    fiel = models.CharField(max_length=20, default='')
+    section_created = models.CharField(max_length=20, default='', primary_key=True)
     
 class training_day(models.Model):
     title =  models.CharField(max_length=20, default='')

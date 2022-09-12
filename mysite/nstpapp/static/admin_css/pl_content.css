@@ -87,7 +87,7 @@ body {
 
 .table-responsive {
     width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.815), 0 6px 20px 0 rgba(0, 0, 0, 0.774);
     height: auto;
     font-size: 15px;
     padding: 10px;
@@ -98,6 +98,21 @@ body {
     margin: auto;
     background-color: #aaaaaa;
     width: auto;
+}
+
+.he {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adda {
+    width: 16%;
+    float: right !important;
+    padding: 10px;
+}
+
+.ada {
+    float: left;
 }
 
 .he p1,

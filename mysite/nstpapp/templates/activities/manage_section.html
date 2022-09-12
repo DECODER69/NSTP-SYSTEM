@@ -27,9 +27,15 @@
                 <div class="modal-body">
                     <form action="{% url 'activities:create_section' %}" method="POST">
                         {% csrf_token %}
-
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Add here ...</label>
+                            <label for="message-text" class="col-form-label">Select Field</label>
+                            <select name="field" id="" class="form-control">
+                                <option value="ROTC">ROTC</option>
+                                <option value="CWTS">CWTS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Add here</label>
                             <input type="text" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="secs" required>
                         </div>
 
@@ -75,13 +81,22 @@
                     <br>&nbsp;<br>
                     <div class="row">
                         {% for s in section %}
-                        <form action="{% url 'activities:section_content' %}" class="column" style="text-decoration: none;" method="POST">
-                            {% csrf_token %}
+                        <form action="{% url 'activities:section_content'%}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
+                                <img src="../../static/images/phil.png" alt="phil flag" id="phil">
                                 <p>{{s.section_created}}</p>
                                 <input type="hidden" value="{{s.section_created}}" name="getSection">
                                 <button type="submit" class="btn btn-info">Open</button>
                             </div>
+                            {% elif s.fiel == 'CWTS' %}
+                            <div class="card">
+                                <img src="../../static/images/cwt.jpg" alt="phil flag" id="phil">
+                                <p>{{s.section_created}}</p>
+                                <input type="hidden" value="{{s.section_created}}" name="getSection">
+                                <button type="submit" class="btn btn-info">Open</button>
+                            </div>
+                            {% endif %}
                         </form>
                         {% endfor %}
                     </div>

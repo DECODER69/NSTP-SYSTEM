@@ -1,5 +1,6 @@
 from dataclasses import field
 import csv
+from distutils.command.build_scripts import first_line_re
 from pkgutil import extend_path
 from django.http import HttpResponseRedirect
 from django.http.request import QueryDict
@@ -508,12 +509,13 @@ def delete_sy(request, years):
 def create_section(request):
     if request.method == 'POST':
         secs = request.POST.get('secs')
-        if secs is not None:
+        field = request.POST.get('field')
+        if secs is not None and field is not None:
             if sections.objects.filter(section_created  = secs).exists():
                 messages.info(request, 'Section ' + str (secs) + ' Already exist !')
                 return redirect('/manage_section')
             else:
-                data = sections(section_created=secs)
+                data = sections(section_created=secs, fiel=field)
                 data.save()
                 messages.info(request, 'Section ' + str (secs) + ' Created !')
                 return redirect('/manage_section')
@@ -648,6 +650,8 @@ def section_content(request):
     print(content33)
     print(getSection)
     return render(request, 'activities/pl_content.html', context)
+
+
 
 
 def create_day(request):
@@ -864,3 +868,35 @@ def update_attendance(request):
 
 
     # return HttpResponseRedirect(request.session['getSection1'])
+    
+    
+    
+def add_students(request):
+    if request.method == 'POST':
+        platoon = request.POST.get('platoon')
+        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='')
+    else:
+        return redirect('/manage_section')
+    context = {
+        'allstudent':allstudent,
+        'platoon':platoon
+    }
+    return render(request, 'activities/students_list.html', context)
+
+def assign_section(request):
+    if request.method == 'POST':
+        platoons=request.POST.get('platoons')
+        lists = request.POST.getlist('students[]')
+ 
+        for s in lists:
+            extenduser.objects.filter(id=s).update(platoons=platoons)
+            print("id ito" +str(s))
+            messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
+
+        messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
+        print("tanga")
+        return redirect('/manage_section')
+         
+    else:
+        return redirect('/manage_section')
+

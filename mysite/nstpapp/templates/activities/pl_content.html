@@ -33,10 +33,21 @@
 
                 <div class="table-responsive">
                     <div class="he">
-                        <br>
 
-                        <p1 style="margin-left: 10px; color:#000000;">Officially Enrolled Students</p1><br>&nbsp;
-                        <h1 style="margin-left: 10px; font-size:30px; color:#000000">Students</h1><br>
+                        <div class="ada">
+                            <p1 style="margin-left: 10px; color:#000000;">Officially Enrolled Students</p1><br>&nbsp;
+                            <h1 style="margin-left: 10px; font-size:30px; color:#000000">{{content33}} Students</h1><br>
+                        </div>
+
+                        <div class="adda">
+                            <form action="{% url 'activities:add_students' %}" method="POST" target="_blank">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="platoon">
+                                <button class="btn btn-success" type="submit" style="width: 100%;">Add Student</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+                        </div>
+
 
                     </div>
                     <br>
@@ -77,7 +88,7 @@
                 </div>
             </div>
             <br>
-           
+
         </div>
     </section>
 
@@ -97,14 +108,14 @@
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
+    <!-- <script>
 
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>  
+    </script>   -->
 
 </body>
 
