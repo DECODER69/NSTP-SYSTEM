@@ -72,7 +72,10 @@ class extenduser(models.Model):
     
 class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
-    
+    status = models.CharField(max_length=20, default='OPEN')
+    def __str__(self):
+        return self.years
+
 class sections(models.Model):
     fiel = models.CharField(max_length=20, default='')
     section_created = models.CharField(max_length=20, default='', primary_key=True)

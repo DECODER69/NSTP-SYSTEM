@@ -36,11 +36,11 @@
 
                         <div class="ada">
                             <p1 style="margin-left: 10px; color:#000000;">Officially Enrolled Students</p1><br>&nbsp;
-                            <h1 style="margin-left: 10px; font-size:30px; color:#000000">{{content33}} Students</h1><br>
+                            <h1 style="margin-left: 10px; font-size:30px; color:#000000">{{content33}} Student/s</h1><br>
                         </div>
 
                         <div class="adda">
-                            <form action="{% url 'activities:add_students' %}" method="POST" target="_blank">
+                            <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{getSection}}" name="platoon">
                                 <button class="btn btn-success" type="submit" style="width: 100%;">Add Student</button>

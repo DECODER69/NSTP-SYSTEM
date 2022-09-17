@@ -56,7 +56,7 @@ urlpatterns = [
     path('create_sy/', views.create_sy, name='create_sy'),
     # path('allumni_page/', views.allumni_page, name='allumni_page'),
     path('allumni_content/', views.allumni_content, name='allumni_content'),
-    path('delete_sy/<str:years>', views.delete_sy, name='delete_sy'),
+    path('delete_sy/<str:id>', views.delete_sy, name='delete_sy'),
     path('create_platoon_page/', views.create_platoon_page, name='create_platoon_page'),
     path('create_section/', views.create_section, name='create_section'),
     path('counts/', views.counts, name='counts'),
@@ -80,6 +80,7 @@ urlpatterns = [
     path('update_attendance/', views.update_attendance, name='update_attendance'),
     path('add_students/', views.add_students, name='add_students'),
     path('assign_section/', views.assign_section, name='assign_section'),
+    path('update_sy/', views.update_sy, name='update_sy'),
     # password resets
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

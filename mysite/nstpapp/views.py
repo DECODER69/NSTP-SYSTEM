@@ -192,6 +192,7 @@ def school_years(request):
     s_years = school_year.objects.all()
     ss_years = extenduser.objects.all()
     ewan = school_year.objects.all()
+    
 
 
    
@@ -227,8 +228,7 @@ def create_platoon_page(request):
     }
     return render (request, 'activities/create_platoon.html', context)
 
-def pl_content(request):
-    return render(request, 'activities/pl_content.html')
+
 
 
 def create_platoon_page2(request):
@@ -384,18 +384,24 @@ def edit_others(request, id):
 def edit_health(request, id):
     hehes = extenduser.objects.get(id=id)
     if request.method == 'POST':
-        hehes.proof = request.FILES['proof']
-        proof_path = hehes.proof.path
-        if os.path.exists(proof_path):
-            os.remove(proof_path)
-            hehes.disease = request.POST.getlist('check')
-            hehes.specific = request.POST.get('spec')
-            hehes.save()
-            return redirect('/health')
-
-        hehes.disease = request.POST.getlist('check')
-        hehes.specific = request.POST.get('spec')
-        hehes.save()
+        proof = request.FILES['prof']
+        if proof is not None:
+            proof_path = proof.path
+            if os.path.exists(proof_path):
+                os.remove(proof_path)
+                disease = request.POST.getlist('check')
+                specific = request.POST.get('spec')
+                hehes=extenduser(disease=disease, specific=specific)
+                hehes.save()
+                return redirect('/health')
+            else:
+                disease = request.POST.getlist('check')
+                specific = request.POST.get('spec')
+                hehes=extenduser(disease=disease, specific=specific)
+                hehes.save()
+                return redirect('/health')
+    else:
+        print("DONE")
         return redirect('/health')
     return redirect('/others')
 
@@ -496,15 +502,10 @@ def allumni_content(request):
     return render(request, 'activities/allumni.html', context)
 
 
-def delete_sy(request, years):
-    if request.method == 'POST':
-        yrid = request.POST.get('getID2')
-        syid = school_year.objects.filter(years=yrid).delete()
-        context = {
-            'syid':syid,
-        }
-        messages.success(request, 'School year ' + str (yrid) + ' Successfully Removed !')
-        return redirect('/school_years', context)
+def delete_sy(request, id):
+    school_year.objects.filter(id=id).delete()
+    print(id)
+    return redirect('/school_years')
 
 def create_section(request):
     if request.method == 'POST':
@@ -869,7 +870,8 @@ def update_attendance(request):
 
     # return HttpResponseRedirect(request.session['getSection1'])
     
-    
+def pl_content(request):
+    return render(request, 'activities/pl_content.html')
     
 def add_students(request):
     if request.method == 'POST':
@@ -899,4 +901,14 @@ def assign_section(request):
          
     else:
         return redirect('/manage_section')
+    
+    
+def update_sy(request, ):
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        current = request.POST.get('current')
+        
+        school_year.objects.filter(id=current).update(status=status)
+        print("School year status Updated")
+    return redirect('/school_years')
 

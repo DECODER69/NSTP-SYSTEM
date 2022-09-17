@@ -128,9 +128,9 @@ td {
 /* navs tabs */
 
 .nav-item .nav-link {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
     color: rgb(0, 0, 0);
+    font-weight: bold;
 }
 
 .filters {

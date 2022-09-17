@@ -8,6 +8,9 @@
     <title>School years</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/sy.css">
+    <!-- pagination css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -47,7 +50,7 @@
                 <div class="form-group">
                     <form action="{% url 'activities:create_sy' %}" method="POST">
                         {% csrf_token %}
-                        <label for="exampleFormControlInput1" style="float: left;">Add School Year</label>
+                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar' style="vertical-align: midddle;"></i> Add School Year </label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="2022-2023" required name="year"><br>
                         <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
                     </form>
@@ -56,18 +59,53 @@
                 </div>
                 <br>
                 <div class="form-group" id="fgroup">
-                    <label for="exampleFormControlInput1" style="float: left;">Current School Year</label><br>&nbsp;<br>
+                    <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar-check'  style="vertical-align: midddle;"></i>Current School Year</label><br>&nbsp;<br>
                     <div class="fors">
 
                         {% for s in s_years %} {% if s.years %}
 
-                        <h1 class="yss">{{s.years}}</h1>
+                        <h1 class="yss" style="font-size: 28px;;">{{s.years}}</h1>
                         {% else%}
 
                         <h1 class="yss">None !</h1>
                         {% endif %} {% endfor %}
 
                     </div>
+
+
+                </div>
+                <br>
+                <div class="form-group" id="fgroup">
+                    <form action="{% url 'activities:update_sy' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-info-circle' style="vertical-align: midddle;"></i> School Year Status </label>
+                        <div class="hold">
+                            {% for s in s_years %}
+                            <div class="sh" style="width: 100%;">
+                                <select name="status" id="statuss" class="form-control">
+                                    <option value="{{s.status}}" selected >{{s.status}}</option>
+                                    <option value="OPEN">OPEN</option>
+                                    <option value="CLOSED">CLOSED</option>
+                                    <option value="ENDED">ENDED</option>
+                                </select>
+                                <div class="sh2" style="width: 10%; margin:auto;">
+                                    {% if s.status == 'OPEN' %}
+                                    <i class='bx bxs-check-circle' style="font-size: 25px; color:rgb(18, 156, 0); "></i> {% elif s.status == 'CLOSED' %}
+
+                                    <i class='bx bxs-x-circle' style="font-size: 25px; color:rgb(245, 78, 12); vertical-align:middle;"></i> {% elif s.status == 'ENDED' %}
+                                    <i class='bx bx-history' style="font-size: 25px; color:rgb(202, 0, 0); vertical-align:middle;"></i> {% endif %}
+                                </div>
+
+                            </div>
+                            <input type="hidden" value="{{s.id}}" name="current">
+                            <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
+
+                        </div>
+
+                        <br>
+
+                        <button type="submit" class="btn btn-primary"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Status</button>
+                    </form>
 
 
                 </div>
@@ -78,19 +116,18 @@
             </div>
         </div>
         <div class="inside">
+
             <div class="table-responsive">
-                <div class="he">
-                    <br>
-                    <p1 style="margin-left: 10px; color:#ffffff;">School Year List and History:</p1><br>&nbsp;
-                    <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">School Years</h1><br>
 
-                </div>
+                <p1 style=" color:#000000d4; font-size:14px;">School Year List and History:</p1><br>&nbsp;
 
-                <table class="table table-hover" id="myTable">
+
+
+                <table class="table table-bordered table-hover " id="myTable">
                     <thead class="thead">
                         <tr>
                             <th scope="col">SCHOOL YEARS</th>
-                            <th scope="col">GRADUATES</th>
+                            <th scope="col">HISTORY</th>
                             <th scope="col">ACTIONS</th>
 
                         </tr>
@@ -101,19 +138,18 @@
                             <td>{{ s.years }}</td>
                             <form action="{% url 'activities:allumni_content'  %}" method="POST">
                                 {% csrf_token %}
-                                <td>
+                                <td style="text-align: center;">
                                     <input type="hidden" value="{{s.years}}" name="getYear">
-                                    <button type="submit" class="btn btn-info">View Graduates</button>
+                                    <button type="submit" class="btn btn-info" id="open"><i class='bx bx-history' ></i> Open History {{counted}}</button>
                                 </td>
                             </form>
 
-                            <td>
+                            <td style="text-align: center;">
 
                                 <div class="ehe">
-                                    <form action="{% url 'activities:delete_sy' s.years %}" method="post" id="myform">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="getID2" value="{{s.years}}" onclick="confirm()"><button type="submit" class="btn btn-danger" onclick="confirm()"><i class='bx bx-trash'></i></button>
-                                    </form>
+
+                                    <input type="hidden" name="getID2" value="{{s.years}}">
+                                    <a href="/delete_sy/{{s.id}}" class="btn btn-danger" title="Edit" id="del"><i class='bx bx-trash'></i> Delete</a>
                                 </div>
                             </td>
                         </tr>
@@ -129,32 +165,48 @@
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>
+    </script> -->
 
     <script>
-        function confirm() {
-            swal({
-                    title: 'warning!',
-                    text: 'do you want to delete?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    cancelButtonText: 'no',
-                    confirmButtonText: 'yes'
-                },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        document.querySelector('#myform').submit();
-                    }
-                })
-        }
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
     </script>
 
 

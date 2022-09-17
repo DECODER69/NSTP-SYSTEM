@@ -41,10 +41,10 @@
 
 
                         <hr> {% for e in uwus %}
-                        <form action="{% url 'activities:edit_health' e.id %}" method="POST" enctype="multipart/form-data">
+                        <form action="{% url 'activities:edit_health' e.id %}" method="POST">
                             {% csrf_token %}
                             <div class="blocks">
-                                <h1 class="ti">Health Status Assessment (Please leave it blank if you are not have any health issues)</h1>
+                                <h1 class="ti" style="color: red;">Health Status Assessment (Please leave it blank if you are not have any health issues)</h1>
 
                             </div>
 
@@ -85,7 +85,7 @@
                             </div><br>
                             <div class="block" id="prof">
                                 <p>Submit your Proof here &nbsp; *.xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf only</p>
-                                <input type="file" class="proff" name="proof" accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" required>
+                                <input type="file" class="proff" name="prof" accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf">
 
 
                             </div>
