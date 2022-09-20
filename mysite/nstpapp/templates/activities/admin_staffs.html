@@ -14,6 +14,8 @@
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 
+
+
 </head>
 
 <body>
@@ -42,26 +44,21 @@
                 </li>
 
             </ul>
+            <br>
             <div class="inside">
-
                 <div class="table-responsive">
-                    <div class="he">
-                        <br>
-                        <p1 style="margin-left: 10px; color:#ffffff;">Officially Enrolled Students. SY:</p1><br>&nbsp;
-                        <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">Students</h1><br>
-
-                    </div>
-                    <br>
+                    <p1 style="font-size:14px;color:#000000;">Officially Enrolled Students. SY:</p1><br>&nbsp;
                     <table id="myTable" class="table table-bordered table-hover ">
                         <thead class="thead">
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
                                 <th scope="col">EMAIL</th>
-                                <th scope="col">PROFILE PICTURE</th>
+                                <!-- <th scope="col">PROFILE PICTURE</th> -->
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
                                 <th scope="col">SECTION</th>
+                                <th scope="col">OPTIONS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,7 +67,7 @@
                                 <td>{{s.idnumber}}</td>
                                 <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                 <td>{{s.email}}</td>
-                                <td id="profile"><img src="{{s.picture.url}}"></td>
+                                <!-- <td id="profile"><img src="{{s.picture.url}}"></td> -->
                                 <td>{{s.section}}</td>
                                 {% if s.field == 'ROTC' %}
                                 <td style="color:red; font-weight:bolder;">{{s.field}}</td>
@@ -78,6 +75,14 @@
                                 <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
                                 {% endif %}
                                 <td>{{s.platoons}}</td>
+                                <td>
+                                    <select name="slc" id="slc">
+                                        <option value="{{s.status}}">{{s.status}}</option>
+                                        <option value="PENDING">PENDING</option>
+                                        <option value="REJECT">REJECT</option>
+                                        <option value="DROP">DROP</option>
+                                    </select>
+                                </td>
 
                             </tr>
 
