@@ -863,16 +863,16 @@ def update_attendance(request):
             extenduser.objects.filter(id=a).update(TD14='ABSENT')
         for a in td15A:
             extenduser.objects.filter(id=a).update(TD15='ABSENT')
-            
+
     return redirect('/attendance_page')
 
 
 
     # return HttpResponseRedirect(request.session['getSection1'])
-    
+
 def pl_content(request):
     return render(request, 'activities/pl_content.html')
-    
+
 def add_students(request):
     if request.method == 'POST':
         platoon = request.POST.get('platoon')
@@ -898,16 +898,13 @@ def assign_section(request):
         messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
         print("tanga")
         return redirect('/manage_section')
-         
     else:
         return redirect('/manage_section')
-    
-    
+
 def update_sy(request, ):
     if request.method == 'POST':
         status = request.POST.get('status')
         current = request.POST.get('current')
-        
         school_year.objects.filter(id=current).update(status=status)
         print("School year status Updated")
     return redirect('/school_years')

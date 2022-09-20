@@ -127,6 +127,7 @@
                     <thead class="thead">
                         <tr>
                             <th scope="col">SCHOOL YEARS</th>
+                            <th scope="col">STATUS</th>
                             <th scope="col">HISTORY</th>
                             <th scope="col">ACTIONS</th>
 
@@ -136,6 +137,15 @@
                         {% for s in ewan %} {% if s.years %}
                         <tr>
                             <td>{{ s.years }}</td>
+                            <td>
+                                {% if s.status == 'OPEN' %}
+                                <p1 style="color: green;">{{s.status}} <i class='bx bxs-lock-open-alt' style="font-size: 20px; color:rgb(5, 158, 0); vertical-align:middle; float:right;"></i></p1>
+                                {% elif s.status == 'CLOSED' %}
+                                <p1 style="color: rgb(224, 14, 14);">{{s.status}} <i class='bx bxs-lock-alt' style="font-size: 20px; color:rgb(202, 0, 0); vertical-align:middle; float:right;"></i></p1>
+                                {% endif %}
+
+
+                            </td>
                             <form action="{% url 'activities:allumni_content'  %}" method="POST">
                                 {% csrf_token %}
                                 <td style="text-align: center;">
