@@ -141,7 +141,7 @@ def admin_dashboard(request):
 
 def admin_staff(request):
     
-    details = extenduser.objects.filter(status='ENROLLED').order_by('field')
+    details = extenduser.objects.filter(status='ENROLLED')
     pendings = extenduser.objects.filter(status='PENDING')
     pending = extenduser.objects.filter(status='PENDING').count()
 
@@ -908,4 +908,11 @@ def update_sy(request, ):
         school_year.objects.filter(id=current).update(status=status)
         print("School year status Updated")
     return redirect('/school_years')
+
+def update_officially(request, id):
+    if request.method == 'POST':
+        stats = request.POST.get('slc')
+        idd = request.POST.get('idd')
+        extenduser.objects.filter(id=idd).update(status=stats)
+    return redirect('/admin_staff')
 

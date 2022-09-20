@@ -57,33 +57,40 @@
                                 <!-- <th scope="col">PROFILE PICTURE</th> -->
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
-                                <th scope="col">SECTION</th>
+                                <th scope="col">FIELD SECTION</th>
                                 <th scope="col">OPTIONS</th>
+                                <th scope="col">SAVE</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for s in details %}
                             <tr>
-                                <td>{{s.idnumber}}</td>
-                                <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                <td>{{s.email}}</td>
-                                <!-- <td id="profile"><img src="{{s.picture.url}}"></td> -->
-                                <td>{{s.section}}</td>
-                                {% if s.field == 'ROTC' %}
-                                <td style="color:red; font-weight:bolder;">{{s.field}}</td>
-                                {% elif s.field == 'CWTS' %}
-                                <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
-                                {% endif %}
-                                <td>{{s.platoons}}</td>
-                                <td>
-                                    <select name="slc" id="slc">
-                                        <option value="{{s.status}}">{{s.status}}</option>
+                                <form action="{% url 'activities:update_officially' s.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                    <td>{{s.email}}</td>
+                                    <!-- <td id="profile"><img src="{{s.picture.url}}"></td> -->
+                                    <td>{{s.section}}</td>
+                                    {% if s.field == 'ROTC' %}
+                                    <td style="color:red; font-weight:bolder;">{{s.field}}</td>
+                                    {% elif s.field == 'CWTS' %}
+                                    <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
+                                    {% endif %}
+                                    <td>{{s.platoons}}</td>
+                                    <td>
+                                        <select name="slc" id="slc">
+                                        <option value="{{s.status}}" selected>{{s.status}}</option>
                                         <option value="PENDING">PENDING</option>
                                         <option value="REJECT">REJECT</option>
                                         <option value="DROP">DROP</option>
                                     </select>
-                                </td>
-
+                                    </td>
+                                    <td>
+                                        <input type="hidden" value="{{s.id}}" name="idd">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </td>
+                                </form>
                             </tr>
 
                             {% empty %}

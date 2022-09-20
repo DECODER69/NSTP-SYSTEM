@@ -10,6 +10,8 @@
 
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -39,59 +41,18 @@
                     <a class="nav-link disabled">Disabled</a>
                 </li> {% endcomment %}
             </ul>
-            <div class="filters">
-                <div class="filter_in">
-                    <select class="cl_country" id="ddlCountry">
-                        <option value="all">Select Field </option>
-                        <option value="rotc">ROTC</option>
-                        <option value="cwts">CWTS</option>
-    
-                    </select><br> {% comment %} <select class="cl_age" id="ddlAge">
-                        <option value="all">Select Platoon/ Section</option>
-                        <option value="ALPHA">APHA</option>
-                        <option value="BRAVO">BRAVO</option>
-                        <option value="CHARLIE">CHARLIE</option>
-                        <option value="DELTA">DELTA</option>
-                        <option value="ECHO">ECHO</option>
-                        <option value="FOXTROT">FOXTROT</option>
-                        <option value="GOLF">GOLF</option>
-                        <option value="HOTEL">HOTEL</option>
-                        <option value="INDIA">INDIA</option>
-                        <option value="JULIET">JULIET</option>
-                        <option value="KILO">KILO</option>
-                        <option value="LIMA">LIMA</option>
-                        <option value="MIKE">MIKE</option>
-                        <option value="SECTION A">SECTION A</option>
-                        <option value="SECTION B">SECTION B</option>
-                        <option value="SECTION C">SECTION C</option>
-                        <option value="SECTION D">SECTION D</option>
-    
-                    </select> {% endcomment %}
-                </div>
+            <br>
 
-                <div class="sear">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xF002; Search names here" title="Type in a name" style="font-family: Arial, 'Font Awesome 5 Free'">
-                </div>
-
-
-
-            </div>
             <div class="table-responsive">
-                <div class="he">
-                    <br>
-                    <p1 style="margin-left: 10px; color:#ffffff;">Pending Enrollees. SY:</p1><br>&nbsp;
-                    <h1 style="margin-left: 10px; font-size:30px; color:#ffffff">Students</h1><br>
-
-                </div>
-
-
+                <br>
+                <p1 style="font-size:14px; color:#000000;">Pending Enrollees. SY:</p1><br>&nbsp;
                 <table class="table table-bordered" id="myTable">
                     <thead class="thead">
                         <tr>
                             <th scope="col">ID Number</th>
                             <th scope="col">Full name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Profile picture</th>
+
                             <th scope="col">Course</th>
                             <th scope="col">NSTP Field</th>
                             <th scope="col">View Profile</th>
@@ -101,46 +62,21 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         {% for s in pendings %}
-
                         <tr>
-
-
                             <td>
-
                                 {{s.idnumber}}
-
                             </td>
-
-
                             <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                             <td>{{s.email}}</td>
-                            <td id="profile">
-                                <a href="{{s.picture.url}}" target="_blank" title="Click to view picture">
-                                    <img src="{{s.picture.url}}">
-                                </a>
-                            </td>
+
                             <td>{{s.section}}</td>
                             <td>{{s.field}}</td>
                             <td class="tar">
                                 <a href="{% url 'activities:admin_view_profile' s.id %}" title="Click to view profile">
                                         View Profile
                                         </a>
-
                             </td>
-                            <!-- formsssssss -->
-
-                            <!-- <td>
-                                <select name="platoons" id="platoons">
-                                    <option value="{{s.platoons}}">Select Section / Platoon</option>
-                                    {% for s in platoons %}
-                                    <option value="{{s.section_created}}">{{s.section_created}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td> -->
-
-
                             <td class="actions">
                                 <div class="ehe">
                                     <form action="{% url 'activities:approve' s.idnumber %}" method="post">
@@ -182,119 +118,15 @@
         {% endfor %}
     </script>  -->
 
-    <script type="text/javascript">
+
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
         $(document).ready(function() {
-            $("#ddlCountry,#ddlAge").on("change", function() {
-                var country = $('#ddlCountry').find("option:selected").val();
-                var age = $('#ddlAge').find("option:selected").val();
-                SearchData(country, age)
-            });
-        });
-
-        function SearchData(country, age) {
-            if (country.toUpperCase() == 'ALL' && age.toUpperCase() == 'ALL') {
-                $('#myTable tbody tr').show();
-            } else {
-                $('#myTable tbody tr:has(td)').each(function() {
-                    var rowCountry = $.trim($(this).find('td:eq(5)').text());
-
-                    if (country.toUpperCase() != 'ALL') {
-                        if (rowCountry.toUpperCase() == country.toUpperCase()) {
-                            $(this).show();
-                        } else {
-                            $(this).hide();
-                        }
-                    } else if ($(this).find('td:eq(5)').text() != '' || $(this).find('td:eq(5)').text() != '') {
-                        if (country != 'all') {
-                            if (rowCountry.toUpperCase() == country.toUpperCase()) {
-                                $(this).show();
-                            } else {
-                                $(this).hide();
-                            }
-                        }
-
-                    }
-
-                });
-            }
-        }
-    </script>
-
-
-    <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                td2 = tr[i].getElementsByTagName("td")[2];
-                td3 = tr[i].getElementsByTagName("td")[3];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-
-    <script>
-        $(function() {
-            $('table.table').each(function() {
-                var currentPage = 0;
-                var numPerPage = 10;
-                var $table = $(this);
-                $table.bind('repaginate', function() {
-                    $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
-                });
-                $table.trigger('repaginate');
-                var numRows = $table.find('tbody tr').length;
-                var numPages = Math.ceil(numRows / numPerPage);
-                var $pager = $('<div class="pager"></div>');
-                var $previous = $('<span class="previous"><<</spnan>');
-                var $next = $('<span class="next">>></spnan>');
-                for (var page = 0; page < numPages; page++) {
-                    $('<span class="page-number"></span>').text(page + 1).bind('click', {
-                        newPage: page
-                    }, function(event) {
-                        currentPage = event.data['newPage'];
-                        $table.trigger('repaginate');
-                        $(this).addClass('active').siblings().removeClass('active');
-                    }).appendTo($pager).addClass('clickable');
-                }
-                $pager.insertAfter($table).find('span.page-number:first').addClass('active');
-                $previous.insertBefore('span.page-number:first');
-                $next.insertAfter('span.page-number:last');
-
-                $next.click(function(e) {
-                    $previous.addClass('clickable');
-                    $pager.find('.active').next('.page-number.clickable').click();
-                });
-                $previous.click(function(e) {
-                    $next.addClass('clickable');
-                    $pager.find('.active').prev('.page-number.clickable').click();
-                });
-                $table.on('repaginate', function() {
-                    $next.addClass('clickable');
-                    $previous.addClass('clickable');
-
-                    setTimeout(function() {
-                        var $active = $pager.find('.page-number.active');
-                        if ($active.next('.page-number.clickable').length === 0) {
-                            $next.removeClass('clickable');
-                        } else if ($active.prev('.page-number.clickable').length === 0) {
-                            $previous.removeClass('clickable');
-                        }
-                    });
-                });
-                $table.trigger('repaginate');
-            });
+            $('#myTable').dataTable();
         });
     </script>
 
