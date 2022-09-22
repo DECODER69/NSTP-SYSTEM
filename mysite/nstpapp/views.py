@@ -926,7 +926,7 @@ def cert_page(request):
 def generate(request):
     if request.method == 'POST':
         years = request.POST.get('years')
-        namess = extenduser.objects.filter(s_year=years)
+        namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
         
         context = {
             'namess':namess

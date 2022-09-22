@@ -53,7 +53,6 @@ body {
 
 .bg {
     width: auto;
-    background-color: aqua;
     background-attachment: fixed;
     /* background-image: url(../images/tupc2.jpg); */
     background-repeat: no-repeat;
@@ -69,7 +68,6 @@ body {
 
 .inside {
     padding: 5px;
-    background-color: #fb5800;
     width: 50%;
 }
 
