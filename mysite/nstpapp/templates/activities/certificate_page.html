@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School years</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/cert_page.css">
+
+    <!-- pagination css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+    <!-- modals -->
+
+
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-certification'></i> CERTIFICATION</h1><br>
+        </div>
+        <div class="bg">
+            <div class="inside">
+                <div class="table-responsive">
+                    <p1 style="font-size:14px;color:#000000;">List of all School Years for Certifications</p1><br>&nbsp;
+                    <table id="myTable" class="table table-bordered table-hover ">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">SCHOOL YEAR</th>
+                                <th scope="col">OPEN</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in sys %}
+                            <tr>
+                                <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
+                                    {% csrf_token %}
+                                    <td>{{s.years}}</td>
+                                    <td>
+                                        <input type="hidden" value="{{s.years}}" name="years">
+                                        <button type="submit" class="btn btn-success">GENERATE CERTIFICATE</button>
+                                    </td>
+
+                                </form>
+                            </tr>
+
+                            {% empty %} {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="details">
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> -->
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+
+
+</body>
+
+</html>

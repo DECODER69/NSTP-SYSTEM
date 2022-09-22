@@ -82,6 +82,8 @@ urlpatterns = [
     path('assign_section/', views.assign_section, name='assign_section'),
     path('update_sy/', views.update_sy, name='update_sy'),
     path('update_officially/<str:id>', views.update_officially, name='update_officially'),
+    path('cert_page/', views.cert_page, name='cert_page'),
+    path('generate/', views.generate, name='generate'),
     # password resets
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

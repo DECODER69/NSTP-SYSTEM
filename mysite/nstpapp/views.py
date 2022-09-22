@@ -916,3 +916,19 @@ def update_officially(request, id):
         extenduser.objects.filter(id=idd).update(status=stats)
     return redirect('/admin_staff')
 
+def cert_page(request):
+    sys = school_year.objects.all()
+    context = {
+        'sys':sys
+    }
+    return render(request, 'activities/certificate_page.html', context)
+
+def generate(request):
+    if request.method == 'POST':
+        years = request.POST.get('years')
+        namess = extenduser.objects.filter(s_year=years)
+        
+        context = {
+            'namess':namess
+        }
+        return render(request, 'activities/certificate.html', context)
