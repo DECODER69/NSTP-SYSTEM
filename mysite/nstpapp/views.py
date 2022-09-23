@@ -942,7 +942,10 @@ def open_cert_page(request):
 def generate(request):
     if request.method == 'POST':
         years = request.POST.get('years')
-        namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
+        section = request.POST.get('section')
+        namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED').filter(platoons=section)
+        print(section)
+        print(years)
         
         context = {
             'namess':namess

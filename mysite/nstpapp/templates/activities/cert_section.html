@@ -52,15 +52,16 @@
 
                                 <td>{{s.section_created}}</td>
                                 <td style="text-align: center;">
-
                                     <button type="submit" class="btn btn-success">OPEN</button>
                                 </td>
 
-                                <form action="{% url 'activities:generate' %}" method="POST">
+                                <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
                                     {% csrf_token %}
                                     <td style="text-align: center;">
-                                        <input type="hidden" value="{{s.section_created}}" name="years">
-                                        <button type="button" class="btn btn-warning">GENERATE CERTIFICATE</button>
+                                        <input type="hidden" value="{{s.section_created}}" name="section"> {% for s in sen5 %}
+                                        <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
+
+                                        <button type="submit" class="btn btn-warning">GENERATE CERTIFICATE</button>
                                     </td>
                                 </form>
                             </tr>
