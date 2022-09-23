@@ -70,6 +70,7 @@ body {
 .inside {
     padding: 5px;
     width: 48%;
+    height: 85vh;
 }
 
 .table-responsive {
@@ -90,15 +91,26 @@ body {
 }
 
 .details {
+    height: 85vh;
     padding: 5px;
     width: 48%;
+    display: block;
+    position: relative;
+    justify-content: space-evenly;
 }
 
 .out {
     padding: 10px !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: auto;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
+}
+
+.cwts {
+    padding: 10px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    background-color: rgb(255, 255, 255);
 }
 
 #acts {
