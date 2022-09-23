@@ -295,7 +295,7 @@ def attendance_main_page(request):
 
 def signup(request):
     if request.method == 'POST':
-        firstname = request.POST.get('fistname')
+        firstname = request.POST.get('firstname')
         middle = request.POST.get('middle')
         lastname = request.POST.get('lastname')
         email = request.POST.get('email')
@@ -923,6 +923,22 @@ def cert_page(request):
     }
     return render(request, 'activities/certificate_page.html', context)
 
+def open_cert_page(request):
+    section = sections.objects.all()
+    if request.method == 'POST':
+        sy = request.POST.get('years')
+        bracket = extenduser.objects.filter(s_year=sy)
+        sen5 = school_year.objects.filter(years=sy)
+
+        context = {
+            'bracket':bracket,
+            'section':section,
+            'sen5':sen5
+         
+        }
+    
+    return render(request, 'activities/cert_section.html', context)
+
 def generate(request):
     if request.method == 'POST':
         years = request.POST.get('years')
@@ -932,3 +948,4 @@ def generate(request):
             'namess':namess
         }
         return render(request, 'activities/certificate.html', context)
+    

@@ -61,6 +61,7 @@ body {
     height: auto;
     padding: 18px;
     display: flex;
+    justify-content: space-between;
 }
 
 
@@ -68,7 +69,7 @@ body {
 
 .inside {
     padding: 5px;
-    width: 50%;
+    width: 48%;
 }
 
 .table-responsive {
@@ -86,4 +87,23 @@ body {
 
 .table td {
     font-size: 13px;
+}
+
+.details {
+    padding: 5px;
+    width: 48%;
+}
+
+.out {
+    padding: 10px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    background-color: #fff;
+}
+
+#acts {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
 }

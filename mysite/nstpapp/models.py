@@ -73,6 +73,7 @@ class extenduser(models.Model):
 class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
     status = models.CharField(max_length=20, default='OPEN')
+    acts = models.CharField(max_length=20, default='PENDING')
     def __str__(self):
         return self.years
 

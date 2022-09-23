@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School years</title>
+    <title>cert sections</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/cert_page.css">
 
@@ -22,44 +22,47 @@
 
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bxs-certification'></i> CERTIFICATION</h1><br>
+            <a href="/cert_page">
+                <h1 class="text"><i class='bx bxs-certification'></i> CERTIFICATION &nbsp;|</h1>
+            </a>
+
+            <h1 class="text"><i class='bx bx-intersect'></i> SECTIONS
+            </h1>
+
         </div>
         <div class="bg">
             <div class="inside">
                 <div class="table-responsive">
-                    <p1 style="font-size:14px;color:#000000;">List of all School Years for Certifications</p1><br>&nbsp;
+                    {% for s in sen5 %}
+                    <p1 style="font-size:14px;color:#000000;">List of all Sections for Certifications. SY: {{s.years}}</p1><br>&nbsp; {% endfor %}
                     <table id="myTable" class="table table-bordered table-hover ">
                         <thead class="thead">
                             <tr>
-                                <th scope="col">SCHOOL YEAR</th>
+                                <th scope="col">SECTIONS</th>
                                 <th scope="col">OPEN</th>
-                                <th scope="col">STATUS</th>
-                                <th scope="col">UPDATE</th>
+                                <th scope="col">GENERATE ALL</th>
+
 
 
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s in sys %}
+                            {% for s in section %}
                             <tr>
-                                <form action="{% url 'activities:open_cert_page' %}" method="POST">
+
+                                <td>{{s.section_created}}</td>
+                                <td style="text-align: center;">
+
+                                    <button type="submit" class="btn btn-success">OPEN</button>
+                                </td>
+
+                                <form action="{% url 'activities:generate' %}" method="POST">
                                     {% csrf_token %}
-                                    <td>{{s.years}}</td>
                                     <td style="text-align: center;">
-                                        <input type="hidden" value="{{s.years}}" name="years">
-                                        <button type="submit" class="btn btn-success">OPEN</button>
+                                        <input type="hidden" value="{{s.section_created}}" name="years">
+                                        <button type="button" class="btn btn-warning">GENERATE CERTIFICATE</button>
                                     </td>
                                 </form>
-                                <td>
-                                    <select name="acts" id="acts">
-                                        <option value="{{s.acts}}">{{s.acts}}</option>
-                                        <option value="PENDING">PENDING</option>
-                                        <option value="DONE">DONE</option>
-                                    </select>
-                                </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn btn-warning">Update</button>
-                                </td>
                             </tr>
 
                             {% empty %} {% endfor %}
