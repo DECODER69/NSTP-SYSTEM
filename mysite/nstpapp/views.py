@@ -943,7 +943,7 @@ def generate(request):
     if request.method == 'POST':
         years = request.POST.get('years')
         section = request.POST.get('section')
-        namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED').filter(platoons=section)
+        namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
         print(section)
         print(years)
         

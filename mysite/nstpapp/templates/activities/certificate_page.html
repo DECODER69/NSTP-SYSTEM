@@ -25,84 +25,74 @@
             <h1 class="text"><i class='bx bxs-certification'></i> CERTIFICATION</h1><br>
         </div>
         <div class="bg">
-            <div class="inside">
-                <div class="table-responsive">
-                    <p1 style="font-size:14px;color:#000000;">List of all School Years for Certifications</p1><br>&nbsp;
-                    <table id="myTable" class="table table-bordered table-hover ">
-                        <thead class="thead">
-                            <tr>
-                                <th scope="col">SCHOOL YEAR</th>
-                                <th scope="col">OPEN</th>
-                                <th scope="col">PRINTING STATUS</th>
-                                <th scope="col">UPDATE</th>
+            <div class="upper">
+                <div class="left">
+                    <div class="out">
+                        <p1 style="font-size:14px;color:#000000;">Set All Details to be display on Certificates (ROTC)</p1><br>&nbsp;
+                        <div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Commandant</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Assistant Commandant</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
+                            </div>
+                            <br>
+                            <button type="button" class="btn btn-primary btn-lg btn-block">SAVE</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="right">
+
+                </div>
+
+            </div>
+            <div class="hehe">
 
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for s in sys %}
-                            <tr>
-                                <form action="{% url 'activities:open_cert_page' %}" method="POST">
-                                    {% csrf_token %}
-                                    <td>{{s.years}}</td>
-                                    <td style="text-align: center;">
-                                        <input type="hidden" value="{{s.years}}" name="years">
-                                        <button type="submit" class="btn btn-success">OPEN</button>
-                                    </td>
-                                </form>
-                                <td>
-                                    <select name="acts" id="acts">
+                <div class="inside">
+                    <div class="table-responsive">
+                        <p1 style="font-size:14px;color:#000000;">List of all School Years for Certifications</p1><br>&nbsp;
+                        <table id="myTable" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">SCHOOL YEAR</th>
+                                    <th scope="col">GENERATE</th>
+                                    <th scope="col">PRINTING STATUS</th>
+                                    <th scope="col">UPDATE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in sys %}
+                                <tr>
+                                    <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
+                                        {% csrf_token %}
+                                        <td>{{s.years}}</td>
+                                        <td style="text-align: center;">
+                                            <input type="hidden" value="{{s.years}}" name="years">
+                                            <button type="submit" class="btn btn-success">GENERATE</button>
+                                        </td>
+                                    </form>
+                                    <td>
+                                        <select name="acts" id="acts">
                                         <option value="{{s.acts}}">{{s.acts}}</option>
                                         <option value="PENDING">PENDING</option>
                                         <option value="DONE">DONE</option>
                                     </select>
-                                </td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn btn-warning">Update</button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <button type="button" class="btn btn-warning">Update</button>
+                                    </td>
+                                </tr>
 
-                            {% empty %} {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="details">
-
-                <div class="out">
-                    <p1 style="font-size:14px;color:#000000;">Set All Details to be display on Certificates (ROTC)</p1><br>&nbsp;
-                    <div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Commandant</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Assistant Commandant</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
-                        </div>
-                        <br>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">SAVE</button>
-
+                                {% empty %} {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-
-                </div>
-                <br>
-                <div class="cwts">
-                    <p1 style="font-size:14px;color:#000000;">Set All Details to be display on Certificates (CWTS)</p1><br>&nbsp;
-                    <div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Commandant</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Assistant Commandant</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
-                        </div>
-
-                    </div>
-                    <br>
-                    <button type="button" class="btn btn-primary btn-lg btn-block">SAVE</button>
-
                 </div>
 
             </div>

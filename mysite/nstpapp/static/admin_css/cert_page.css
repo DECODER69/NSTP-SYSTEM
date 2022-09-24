@@ -60,16 +60,22 @@ body {
     background-position: center;
     height: auto;
     padding: 18px;
+}
+
+.hehe {
+    width: auto;
+    height: auto;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
+    background-color: #613219;
 }
 
 
 /* own css */
 
 .inside {
-    padding: 5px;
-    width: 48%;
+    width: 100%;
     height: 85vh;
 }
 
@@ -118,4 +124,18 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 3px;
+}
+
+
+/* UPER PART */
+
+.upper {
+    padding: 5px;
+    width: 100%;
+    height: 60vh;
+    background-color: #a0938c;
+}
+
+.left {
+    width: 48%;
 }
