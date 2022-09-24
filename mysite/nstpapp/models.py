@@ -113,8 +113,8 @@ class certification(models.Model):
     
     # for rotc
     school_year2 = models.CharField(max_length=20, default='')
-    commandant = models.CharField(max_length=20, default='')
-    registrar = models.CharField(max_length=20, default='')
+    commandant = models.CharField(max_length=40, default='')
+    registrar = models.CharField(max_length=40, default='')
     month = models.CharField(max_length=20, default='')
     date = models.CharField(max_length=20, default='')
     year = models.CharField(max_length=20, default='')
