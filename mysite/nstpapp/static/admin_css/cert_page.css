@@ -68,7 +68,6 @@ body {
     padding: 5px;
     display: flex;
     justify-content: space-between;
-    background-color: #613219;
 }
 
 
@@ -139,13 +138,15 @@ body {
     padding: 5px;
     width: 100%;
     height: 60vh;
+    display: flex;
+    justify-content: space-between;
 }
 
 .left {
     border-radius: 5px;
     padding: 10px !important;
     float: left;
-    width: 48%;
+    width: 45%;
     height: 55vh;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -170,7 +171,8 @@ body {
     width: 100%;
     height: 90%;
     border: solid 3px black;
-    background-color: #f7efbd;
+    background-color: #ffffff;
+    padding: 5px;
 }
 
 #cwts_cover {
@@ -185,6 +187,18 @@ body {
     background-color: #ffffff;
 }
 
+#arrow {
+    color: #fb5800;
+    font-size: 50px;
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.arrow {
+    height: 55vh;
+    padding-top: 12%;
+}
+
 
 /* .box {
     color: #fff;
@@ -192,3 +206,371 @@ body {
     display: none;
     margin-top: 20px;
 } */
+
+.inner1 {
+    margin: auto;
+    width: 99.5%;
+    height: 98%;
+    border: solid 1px black;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 3px;
+}
+
+.inner1 .line1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: darkred;
+    font-family: 'Times New Roman';
+}
+
+.inner1 .line2 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.inner1 .name {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.inner1 .line4 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.inner1 .line5 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.inner1 .dated {
+    font-size: 25p;
+    font-weight: bold;
+}
+
+.inner1 .date {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#img1 {
+    position: relative;
+}
+
+#img1 img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+#img2 {
+    position: relative;
+}
+
+#img2 img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.inner1 {
+    background-image: url('../../static/images/lowop.png');
+    background-position: center;
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+.inner1 .up1 {
+    font-size: 10px;
+    color: #6a6d73;
+}
+
+.inner1 .up2 {
+    font-size: 10px;
+    color: #6a6d73;
+}
+
+.inner1 .up3 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.inner1 .up4 {
+    font-size: 12px;
+    color: #6a6d73;
+}
+
+.inner1 .up5 {
+    font-size: 10px;
+    color: #6a6d73;
+}
+
+.inner1 .line7 {
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+.inner1 .line8 {
+    font-size: 45px;
+    font-weight: bolder;
+}
+
+.inner1 .line9 {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #6a6d73;
+}
+
+.inner1 .line10 {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #6a6d73;
+}
+
+.inner1 .line11 {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.inner1 .line12 {
+    font-size: 25px;
+    color: #6a6d73;
+}
+
+.lastline {
+    width: 100%;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.control {
+    float: right;
+    margin-right: 10px;
+}
+
+.bot {
+    width: 100%;
+    margin-top: 100px;
+    justify-content: space-between;
+}
+
+.comm {
+    margin-left: 80px;
+}
+
+.com {
+    margin-left: 100px;
+}
+
+.outer {
+    margin: auto;
+}
+
+@media screen and (max-width:900px) {
+    .outer {
+        width: 600px;
+        height: 400px;
+        text-align: center;
+    }
+    .inner2 {
+        width: 590px;
+        height: 390px;
+        text-align: center;
+        border: 3px solid black;
+    }
+    .inner1 {
+        width: 545px;
+        height: 345px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .inner1 .up1 {
+        font-size: 12px;
+        color: #6a6d73;
+    }
+    .inner1 .up2 {
+        font-size: 12px;
+        color: #6a6d73;
+    }
+    .inner1 .up3 {
+        font-size: 12px;
+        color: #6a6d73;
+    }
+    .inner1 .up4 {
+        font-size: 12px;
+        color: #6a6d73;
+    }
+    .inner1 .up5 {
+        font-size: 12px;
+        color: #6a6d73;
+    }
+    .inner1 .line1 {
+        font-size: 30px;
+        font-weight: bold;
+        color: darkred;
+    }
+    .inner1 .line7 {
+        font-size: 15px;
+        color: #6a6d73;
+    }
+    .inner1 .line8 {
+        font-size: 25px;
+        font-weight: bolder;
+    }
+    .inner1 .line9 {
+        font-size: 10px;
+        font-weight: bolder;
+        color: #6a6d73;
+    }
+    .inner1 .line10 {
+        font-size: 10px;
+        font-weight: bolder;
+        color: #6a6d73;
+    }
+    .inner1 .line11 {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+    .inner1 .line12 {
+        font-size: 11px;
+        color: #6a6d73;
+    }
+    .bot {
+        margin-top: 30px;
+        font-size: 12px;
+    }
+    .inner1 {
+        background-image: url('../image/lowop.png');
+        background-position: center;
+        background-size: 300px;
+        background-repeat: no-repeat;
+    }
+    #img1 {
+        position: relative;
+    }
+    #img1 img {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 10px;
+        height: 10px;
+    }
+    #img2 {
+        position: relative;
+    }
+    #img2 img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .outer {
+        width: 400px;
+        height: 300px;
+        text-align: center;
+    }
+    .inner2 {
+        width: 390px;
+        height: 289px;
+        text-align: center;
+        border: 3px solid black;
+    }
+    .inner1 {
+        width: 345px;
+        height: 245px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .inner1 .up1 {
+        font-size: 9px;
+        color: #6a6d73;
+    }
+    .inner1 .up2 {
+        font-size: 9px;
+        color: #6a6d73;
+    }
+    .inner1 .up3 {
+        font-size: 9px;
+        color: #6a6d73;
+    }
+    .inner1 .up4 {
+        font-size: 9px;
+        color: #6a6d73;
+    }
+    .inner1 .up5 {
+        font-size: 9px;
+        color: #6a6d73;
+    }
+    .inner1 .line1 {
+        font-size: 20px;
+        font-weight: bold;
+        color: darkred;
+        font-family: 'Times New Roman';
+        margin-top: 50px;
+    }
+    .inner1 .line7 {
+        font-size: 10px;
+        color: #6a6d73;
+    }
+    .inner1 .line8 {
+        font-size: 10px;
+        font-weight: bolder;
+    }
+    .inner1 .line9 {
+        font-size: 8px;
+        font-weight: bolder;
+        color: #6a6d73;
+    }
+    .inner1 .line10 {
+        font-size: 8px;
+        font-weight: bolder;
+        color: #6a6d73;
+    }
+    .inner1 .line11 {
+        font-size: 9px;
+        font-weight: bolder;
+    }
+    .inner1 .line12 {
+        font-size: 7px;
+        color: #6a6d73;
+    }
+    .bot {
+        margin-top: 10px;
+        font-size: 8px;
+    }
+    .inner1 {
+        background-image: url('../image/lowop.png');
+        background-position: center;
+        background-size: 200px;
+        background-repeat: no-repeat;
+    }
+    #img1 {
+        position: relative;
+    }
+    #img1 img {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 10px;
+        height: 10px;
+    }
+    #img2 {
+        position: relative;
+    }
+    #img2 img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 10px;
+        height: 10px;
+    }
+}
