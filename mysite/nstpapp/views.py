@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import extenduser,school_year, sections, training_day,Announcement
+from .models import extenduser,school_year, sections, training_day,Announcement, certification
 import os
 
 
@@ -918,8 +918,12 @@ def update_officially(request, id):
 
 def cert_page(request):
     sys = school_year.objects.all()
+    last = school_year.objects.all()
+    details = certification.objects.all()
     context = {
-        'sys':sys
+        'sys':sys,
+        'details':[details.last()],
+        'last':[last.last()],
     }
     return render(request, 'activities/certificate_page.html', context)
 
@@ -943,12 +947,25 @@ def generate(request):
     if request.method == 'POST':
         years = request.POST.get('years')
         section = request.POST.get('section')
+        details = certification.objects.all()
         namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
         print(section)
         print(years)
         
         context = {
-            'namess':namess
+            'namess':namess,
+            'details':details
         }
         return render(request, 'activities/certificate.html', context)
     
+def add_details(request):
+    if request.method == 'POST':
+        sys1 = request.POST.get('sys1')
+        commandant = request.POST.get('commandant')
+        registrar = request.POST.get('registrar')
+        month = request.POST.get('month')
+        date = request.POST.get('date')
+        year = request.POST.get('year')
+        data = certification(school_year2=sys1, commandant=commandant, registrar=registrar, month=month, date=date, year=year)
+        data.save()
+    return redirect('/cert_page', context)

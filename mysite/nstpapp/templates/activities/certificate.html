@@ -11,6 +11,7 @@
 
 <body>
     {% for s in namess %}
+
     <div class="outer" id="outer">
 
         <div class="inner2">
@@ -35,18 +36,19 @@
                 <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
 
                 <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
-                <span class="line12"><i>Given this xx day of Month xxxx at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
+                {% for s in details %}
+                <span class="line12"><i>Given this {{s.date}} day of {{s.month}} {{s.year}}at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
                 <div class="bot">
 
                  
-                    <span class="lastline"> <u class="com">CDR JERMIAS AHMED A SIBAL</u>&nbsp;&nbsp; &nbsp;  <u class="comm">PN	REMEDIOS H FALLESGON</u>&emsp;<u class="control">236-20-{{ forloop.counter }}</u></span>
+                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}</u>&emsp;<u class="control">236-20-{{ forloop.counter }}</u></span>
                 </div>
 
             </div>
 
         </div>
 
-    </div>&nbsp; {% endfor %}
+    </div>&nbsp; {% endfor %} {% endfor %}
 
 
 </body>

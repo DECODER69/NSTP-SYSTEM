@@ -6,6 +6,8 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
 from datetime import timedelta
 
+# from mysite.nstpapp.views import school_years
+
 
 
 
@@ -74,6 +76,14 @@ class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
     status = models.CharField(max_length=20, default='OPEN')
     acts = models.CharField(max_length=20, default='PENDING')
+    
+    # for certificates
+    
+    commandant = models.CharField(max_length=20, default='')
+    registrar = models.CharField(max_length=20, default='')
+    month = models.CharField(max_length=20, default='')
+    date = models.CharField(max_length=20, default='')
+    year = models.CharField(max_length=20, default='')
     def __str__(self):
         return self.years
 
@@ -98,5 +108,21 @@ class Announcement(models.Model):
     
     def __str__(self):
         return self.subject
+    
+class certification(models.Model):
+    
+    # for rotc
+    school_year2 = models.CharField(max_length=20, default='')
+    commandant = models.CharField(max_length=20, default='')
+    registrar = models.CharField(max_length=20, default='')
+    month = models.CharField(max_length=20, default='')
+    date = models.CharField(max_length=20, default='')
+    year = models.CharField(max_length=20, default='')
+    
+        
+    def __str__(self):
+        return self.year
+    
+    
 
     
