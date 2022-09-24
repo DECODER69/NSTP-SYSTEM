@@ -27,19 +27,48 @@
         <div class="bg">
             <div class="upper">
                 <div class="left">
-                    <div class="out">
-                        <p1 style="font-size:14px;color:#000000;">Set All Details to be display on Certificates (ROTC)</p1><br>&nbsp;
+                    <h3>Select Field you want to Modify</h3>
+                    <div>
+                        <select class="selections form-control" id="selections ">
+                            <option value="rotc ">ROTC</option>
+                            <option value="cwts ">CWTS</option>
+                        </select>
+
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="rotc box " id="rotc ">
+                        <p1 style="font-size:14px;color:#000000; ">Set All Details to be display on Certificates (ROTC)</p1><br>&nbsp;
                         <div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Commandant</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
+                            <div class="form-group ">
+                                <label for="exampleFormControlInput1 ">Commandant</label>
+                                <input type="email " class="form-control " id="exampleFormControlInput1 " placeholder="Commandant 's  Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Assistant Commandant</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's  Name">
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Commandant's Name ">
                             </div>
                             <br>
-                            <button type="button" class="btn btn-primary btn-lg btn-block">SAVE</button>
+                            <button type="button " class="btn btn-primary btn-lg btn-block ">SAVE</button>
+
+                        </div>
+
+                    </div>
+                    <div class="cwts box " id="cwts ">
+                        <p1 style="font-size:14px;color:#000000; ">Set All Details to be display on Certificates (CWTS)</p1><br>&nbsp;
+                        <div>
+                            <div class="form-group ">
+                                <label for="exampleFormControlInput1 ">Coordinator</label>
+                                <input type="email " class="form-control " id="exampleFormControlInput1 " placeholder="Coordinator's  Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Instructor</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Instructor's Name ">
+                            </div>
+                            <br>
+                            <button type="button " class="btn btn-primary btn-lg btn-block ">SAVE</button>
 
                         </div>
 
@@ -47,23 +76,38 @@
 
                 </div>
                 <div class="right">
+                    <div class="rotc box" id="rotc_cover">
+                        <h3>Preview of ROTC Certificate</h3>
+                        <div id="rotc_cert">
+
+                        </div>
+
+                    </div>
+                    <div class="cwts box" id="cwts_cover">
+                        <h3>Preview of CWTS Certificate</h3>
+                        <div id="cwts_cert">
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
-            <div class="hehe">
+            <br>
+            <div class="hehe ">
 
 
-                <div class="inside">
-                    <div class="table-responsive">
-                        <p1 style="font-size:14px;color:#000000;">List of all School Years for Certifications</p1><br>&nbsp;
-                        <table id="myTable" class="table table-bordered table-hover ">
-                            <thead class="thead">
+                <div class="inside ">
+                    <div class="table-responsive ">
+                        <p1 style="font-size:14px;color:#000000; ">List of all School Years for Certifications</p1><br>&nbsp;
+                        <table id="myTable " class="table table-bordered table-hover ">
+                            <thead class="thead ">
                                 <tr>
-                                    <th scope="col">SCHOOL YEAR</th>
-                                    <th scope="col">GENERATE</th>
-                                    <th scope="col">PRINTING STATUS</th>
-                                    <th scope="col">UPDATE</th>
+                                    <th scope="col ">SCHOOL YEAR</th>
+                                    <th scope="col ">GENERATE</th>
+                                    <th scope="col ">PRINTING STATUS</th>
+                                    <th scope="col ">UPDATE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,7 +144,7 @@
         </div>
     </section>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11 "></script>
     <!-- <script>
         {% for msg in messages %}
         Swal.fire({
@@ -117,21 +161,21 @@
 
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
+                text: "You won 't be able to revert this!",
+                icon: 'warning ',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6 ',
+                cancelButtonColor: '#d33 ',
 
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, delete it! '
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
+                        'Deleted! ',
+                        'Your file has been deleted. ',
+                        'success '
                     )
-                    location.href = self.attr('href')
+                    location.href = self.attr('href ')
                 }
             })
         })
@@ -141,21 +185,27 @@
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#myTable').dataTable();
+            $('#myTable ').dataTable();
         });
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        $('#divit').change(function() {
-            hideotherdivs($(this).val());
+        $(document).ready(function() {
+            $(".selections").change(function() {
+                $(this).find("option:selected").each(function() {
+                    var optionValue = $(this).attr("value");
+                    if (optionValue) {
+                        $(".box").not("." + optionValue).hide();
+                        $("." + optionValue).show();
+                    } else {
+                        $(".box").hide();
+                    }
+                });
+            }).change();
         });
-
-        function hideotherdivs(div_not_to_hide) {
-            $('#div1').hide();
-            $('#div2').hide();
-            $(eval(div_not_to_hide)).show();
-        }
     </script>
+
 
 
 </body>

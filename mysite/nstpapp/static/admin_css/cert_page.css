@@ -112,12 +112,18 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-.cwts {
+
+/* .cwts {
     padding: 10px !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: auto;
-    background-color: rgb(255, 255, 255);
 }
+
+.rotc {
+    padding: 10px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+} */
 
 #acts {
     position: relative;
@@ -133,9 +139,56 @@ body {
     padding: 5px;
     width: 100%;
     height: 60vh;
-    background-color: #a0938c;
 }
 
 .left {
+    border-radius: 5px;
+    padding: 10px !important;
+    float: left;
     width: 48%;
+    height: 55vh;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.right {
+    padding: 10px !important;
+    border-radius: 5px;
+    width: 48%;
+    float: right;
+    height: 55vh;
+    background-color: rgb(230, 230, 230);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#rotc_cover {
+    width: 100%;
+    height: 100%;
+}
+
+#rotc_cert {
+    width: 100%;
+    height: 90%;
+    border: solid 3px black;
+    background-color: #f7efbd;
+}
+
+#cwts_cover {
+    width: 100%;
+    height: 100%;
+}
+
+#cwts_cert {
+    width: 100%;
+    height: 90%;
+    border: solid 3px black;
+    background-color: #ffffff;
+}
+
+
+/* .box {
+    color: #fff;
+    padding: 20px;
+    display: none;
+    margin-top: 20px;
+} */
