@@ -44,11 +44,15 @@
                         <div>
                             <div class="form-group ">
                                 <label for="exampleFormControlInput1 ">Commandant</label>
-                                <input type="email " class="form-control " id="exampleFormControlInput1 " placeholder="Commandant 's  Name">
+                                <input type="text" class="form-control " id="exampleFormControlInput1 " placeholder="Commandant 's  Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlInput1">Registrar</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Registrar ">
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Registrar ">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Date</label>
+                                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Registrar ">
                             </div>
                             <br>
                             <button type="button " class="btn btn-primary btn-lg btn-block ">SAVE</button>
@@ -100,16 +104,14 @@
                                 <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br>
                                 <span class="line1">Certificate of Completion</span><br>
                                 <span class="line7"><i>is herby awarded to</i></span><br>
-                                <span class="line8"><i>DELA CRUZ JUAN</i></span><br>&nbsp;<br>&nbsp;
+                                <span class="line8"><i>DELA CRUZ JUAN</i></span><br>&nbsp;
                                 <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
                                 <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
 
                                 <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
                                 <span class="line12"><i>Given this xx day of Month xxxx at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
                                 <div class="bot">
-
-
-                                    <span class="lastline"> <u class="com">CDR JERMIAS AHMED A SIBAL</u>&nbsp;&nbsp; &nbsp;  <u class="comm">PN	REMEDIOS H FALLESGON</u>&emsp;<u class="control">236-20-{{ forloop.counter }}</u></span>
+                                    <span class="lastline"> <u class="com">CDR JERMIAS AHMED A SIBAL</u>&nbsp;&nbsp; &nbsp;  <u class="comm">PN	REMEDIOS H FALLESGON</u>&emsp;<u class="control">236-20-1</u></span>
                                 </div>
 
                             </div>
@@ -133,16 +135,16 @@
             <div class="hehe ">
 
 
-                <div class="inside ">
-                    <div class="table-responsive ">
+                <div class="inside">
+                    <div class="table-responsive">
                         <p1 style="font-size:14px;color:#000000; ">List of all School Years for Certifications</p1><br>&nbsp;
-                        <table id="myTable " class="table table-bordered table-hover ">
-                            <thead class="thead ">
+                        <table id="myTable" class="table table-bordered table-hover">
+                            <thead class="thead">
                                 <tr>
-                                    <th scope="col ">SCHOOL YEAR</th>
-                                    <th scope="col ">GENERATE</th>
-                                    <th scope="col ">PRINTING STATUS</th>
-                                    <th scope="col ">UPDATE</th>
+                                    <th scope="col">SCHOOL YEAR</th>
+                                    <th scope="col">GENERATE</th>
+                                    <th scope="col">PRINTING STATUS</th>
+                                    <th scope="col">UPDATE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -151,7 +153,7 @@
                                     <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
                                         {% csrf_token %}
                                         <td>{{s.years}}</td>
-                                        <td style="text-align: center;">
+                                        <td style="text-align:center;">
                                             <input type="hidden" value="{{s.years}}" name="years">
                                             <button type="submit" class="btn btn-success">GENERATE</button>
                                         </td>
@@ -163,7 +165,7 @@
                                         <option value="DONE">DONE</option>
                                     </select>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td style="text-align:center;">
                                         <button type="button" class="btn btn-warning">Update</button>
                                     </td>
                                 </tr>
@@ -220,11 +222,11 @@
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#myTable ').dataTable();
+            $('#myTable').dataTable();
         });
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
     <script>
         $(document).ready(function() {
             $(".selections").change(function() {
