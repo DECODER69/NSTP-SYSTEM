@@ -196,7 +196,7 @@ body {
 
 .arrow {
     height: 55vh;
-    padding-top: 12%;
+    padding-top: 15%;
 }
 
 
@@ -356,7 +356,7 @@ body {
 
 .bot {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 20px;
     justify-content: space-between;
 }

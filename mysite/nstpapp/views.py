@@ -954,7 +954,7 @@ def generate(request):
         
         context = {
             'namess':namess,
-            'details':details
+            'details':[details.last()],
         }
         return render(request, 'activities/certificate.html', context)
     
