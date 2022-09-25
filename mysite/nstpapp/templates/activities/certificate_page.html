@@ -27,7 +27,7 @@
         <div class="bg">
             <div class="upper">
                 <div class="left">
-                    <h3>Select Field you want to Modify</h3>
+                    <h3 style="font-weight: bold;">Select Field you want to Modify</h3>
                     <div>
                         <select class="selections form-control" id="selections ">
                             <option value="rotc" style="color: black;">ROTC</option>
@@ -37,8 +37,7 @@
                     </div>
                     <br>
                     <br>
-                    <hr>
-                    <br>
+
                     <div class="rotc box " id="rotc ">
                         <form action="{% url 'activities:add_details' %}" method="POST">
                             {% csrf_token %}
@@ -55,11 +54,11 @@
                                 {% for s in details %}
                                 <div class="form-group ">
                                     <label for="exampleFormControlInput1 ">Commandant</label>
-                                    <input type="text" class="form-control " id="exampleFormControlInput1 " placeholder="Commandant 's  Name" name="commandant" value="{{s.commandant}}">
+                                    <input type="text" class="form-control " id="exampleFormControlInput1 " placeholder="Commandant 's  Name" name="commandant" value="{{s.commandant}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Registrar</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Registrar" name="registrar" value="{{s.registrar}}">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Registrar" name="registrar" value="{{s.registrar}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Given Date</label>
@@ -72,9 +71,10 @@
                                 </div>
                                 {% endfor %}
                                 <br>
-                                <button type="button " class="btn btn-primary btn-lg btn-block ">SAVE</button>
+
 
                             </div>
+                            <button type="submit" class="btn btn-info btn-lg btn-block">SAVE</button>
                         </form>
 
                     </div>
@@ -106,7 +106,7 @@
 
                     <div class="rotc box" id="rotc_cover">
 
-                        <h3>Preview of ROTC Certificate</h3>
+                        <h3 style="font-weight: bold; text-align:center;">Preview of ROTC Certificate</h3>
 
                         <div id="rotc_cert">
 
@@ -196,33 +196,49 @@
                         <table id="myTable" class="table table-bordered table-hover">
                             <thead class="thead">
                                 <tr>
-                                    <th scope="col">SCHOOL YEAR</th>
+
+                                    <th scope="col">School Year</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Date Generated</th>
                                     <th scope="col">GENERATE</th>
-                                    <th scope="col">PRINTING STATUS</th>
-                                    <th scope="col">UPDATE</th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for s in sys %}
                                 <tr>
+
                                     <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
                                         {% csrf_token %}
-                                        <td>{{s.years}}</td>
+                                        <td id="syears">{{s.years}}</td>
+                                        <!-- for pendings -->
+                                        {% if s.acts == 'PENDING' %}
+                                        <td id="pends">
+                                            <h3><i class='bx bxs-time-five'></i></h3>
+                                            <div class="fin">
+                                                <h2>{{s.acts}}</h2>
+                                            </div>
+
+                                        </td>
+                                        {% else %}
+                                        <td id="pends">
+                                            <h3><i class='bx bxs-check-circle' id="ch"></i></h3>
+                                            <div class="fin">
+                                                <h2>{{s.acts}}</h2>
+                                            </div>
+
+                                        </td>
+                                        {% endif %}
+                                        <td>September 25, 2022</td>
                                         <td style="text-align:center;">
                                             <input type="hidden" value="{{s.years}}" name="years">
                                             <button type="submit" class="btn btn-success">GENERATE</button>
                                         </td>
                                     </form>
-                                    <td>
-                                        <select name="acts" id="acts">
-                                        <option value="{{s.acts}}">{{s.acts}}</option>
-                                        <option value="PENDING">PENDING</option>
-                                        <option value="DONE">DONE</option>
-                                    </select>
-                                    </td>
-                                    <td style="text-align:center;">
-                                        <button type="button" class="btn btn-warning">Update</button>
-                                    </td>
+
+
+
                                 </tr>
 
                                 {% empty %} {% endfor %}

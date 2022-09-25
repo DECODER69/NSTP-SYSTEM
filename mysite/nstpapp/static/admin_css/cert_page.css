@@ -124,13 +124,6 @@ body {
     height: auto;
 } */
 
-#acts {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-}
-
 
 /* UPER PART */
 
@@ -188,7 +181,7 @@ body {
 }
 
 #arrow {
-    color: #fb5800;
+    color: #023039;
     font-size: 50px;
     vertical-align: middle !important;
     text-align: center;
@@ -375,6 +368,64 @@ body {
 
 .outer {
     margin: auto;
+}
+
+#acts {
+    position: relative;
+    width: 90%;
+    height: 100%;
+    border-radius: 3px;
+}
+
+#statusx {
+    display: flex;
+    justify-content: space-between;
+}
+
+#chc {
+    font-size: 20px;
+    color: green;
+    font-weight: bolder;
+    background-color: transparent;
+    border: hidden;
+}
+
+#pends {
+    display: flex;
+}
+
+#pends h3 {
+    padding-top: 2px;
+    height: 100%;
+}
+
+#pends h3 i {
+    color: rgb(245, 98, 0);
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+#pends h3 #ch {
+    color: rgb(17, 172, 0);
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.fin h2 {
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.bx {
+    color: #023039;
+}
+
+#syears {
+    color: #000000;
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 

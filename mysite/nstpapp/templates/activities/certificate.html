@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../static/images/tup.png">
     <title></title>
     <link rel="stylesheet" href="../../static/admin_css/certificate.css">
 </head>
@@ -31,25 +32,24 @@
                 <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br><br/>
                 <span class="line1">Certificate of Completion</span><br>
                 <span class="line7"><i>is herby awarded to</i></span><br><br>
-                <span class="line8"><i>{{s.lastname}} {{s.firstname}}</i></span><br>&nbsp;<br>&nbsp;
+                <span class="line8"><i>cadet&nbsp;</i></span><span class="line8"> <i> {{s.lastname}}</i></span> <span class="line8"><i>{{s.firstname}}</i></span><br>&nbsp;<br>&nbsp;
                 <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
                 <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
 
-                <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
-                {% for s in details %}
+                <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br> {% for s in details %}
                 <span class="line12"><i>Given this {{s.date}} day of {{s.month}} {{s.year}}at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
                 <div class="bot">
 
-                 
-                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}</u>&emsp;<u class="control">236-20-{{ forloop.counter }}</u></span>
+
+                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}  {% endfor %}</u>&emsp;<u class="control">236-20-{{forloop.counter}}</u></span>
                 </div>
-                {% endfor %}
+
 
             </div>
 
         </div>
 
-    </div>&nbsp; {% endfor %} 
+    </div><br>{% endfor %}
 
 
 </body>

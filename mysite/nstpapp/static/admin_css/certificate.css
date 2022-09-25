@@ -179,6 +179,12 @@
 .inner1 .line8 {
     font-size: 45px;
     font-weight: bolder;
+    display: inline-block;
+    text-transform: lowercase;
+}
+
+.inner1 .line8::first-letter {
+    text-transform: uppercase
 }
 
 .inner1 .line9 {
