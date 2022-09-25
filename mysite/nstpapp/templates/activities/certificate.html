@@ -8,10 +8,15 @@
     <link rel="icon" href="../../static/images/tup.png">
     <title></title>
     <link rel="stylesheet" href="../../static/admin_css/certificate.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 </head>
 
 <body>
-    {% for s in namess %}
+
+    <button onclick="window.print()"><i class='bx bx-printer' ></i> PRINT</button> {% for s in namess %}
+
 
     <div class="outer" id="outer">
 
@@ -50,6 +55,9 @@
         </div>
 
     </div><br>{% endfor %}
+
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 
 </body>

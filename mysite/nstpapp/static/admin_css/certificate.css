@@ -6,6 +6,7 @@
         position: relative;
         left: 0;
         top: 0;
+        background-color: transparent;
     }
 }
 
@@ -238,7 +239,39 @@
     margin: auto;
 }
 
-@media screen and (max-width:900px) {
+.prints {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(127, 255, 212, 0.229);
+}
+
+button {
+    width: 20%;
+    height: 100px;
+    margin: auto;
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 40%;
+    background-color: rgba(221, 13, 13, 0.871);
+    font-size: 50px;
+    color: rgb(194, 194, 194);
+}
+
+button:hover {
+    width: 20%;
+    height: 100px;
+    margin: auto;
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 40%;
+    background-color: rgba(174, 61, 61, 0.871);
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+}
+
+
+/* @media screen and (max-width:900px) {
     .outer {
         width: 600px;
         height: 400px;
@@ -440,4 +473,4 @@
         width: 50px;
         height: 50px;
     }
-}
+} */
