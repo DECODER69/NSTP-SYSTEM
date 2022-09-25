@@ -14,9 +14,13 @@
 </head>
 
 <body>
-
-    <button onclick="window.print()"><i class='bx bx-printer' ></i> PRINT</button> {% for s in namess %}
-
+    {% for s in sys1 %}
+    <form action="{% url 'activities:update_acts' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" onclick="windows.print()" value="{{s.years}}" name="ids">
+        <button type="submit"><i class='bx bx-printer' ></i>{{s.years}}</button>
+    </form>
+    {% endfor %} {% for s in namess %}
 
     <div class="outer" id="outer">
 

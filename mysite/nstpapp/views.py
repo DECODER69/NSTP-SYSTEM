@@ -918,12 +918,12 @@ def update_officially(request, id):
 
 def cert_page(request):
     sys = school_year.objects.all()
-    last = school_year.objects.all()
+    # last = school_year.objects.all()
     details = certification.objects.all()
     context = {
         'sys':sys,
         'details':[details.last()],
-        'last':[last.last()],
+        # 'last':[last.last()],
     }
     return render(request, 'activities/certificate_page.html', context)
 
@@ -944,8 +944,10 @@ def open_cert_page(request):
     return render(request, 'activities/cert_section.html', context)
 
 def generate(request):
+    
     if request.method == 'POST':
         years = request.POST.get('years')
+        sys1 = school_year.objects.filter(years=years)
         section = request.POST.get('section')
         details = certification.objects.all()
         namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
@@ -953,8 +955,10 @@ def generate(request):
         print(years)
         
         context = {
+            'sys1':sys1,
             'namess':namess,
             'details':[details.last()],
+            
         }
         return render(request, 'activities/certificate.html', context)
     
@@ -969,3 +973,11 @@ def add_details(request):
         data = certification(school_year2=sys1, commandant=commandant, registrar=registrar, month=month, date=date, year=year)
         data.save()
     return redirect('/cert_page', context)
+
+def update_acts(request):
+    if request.method == 'POST':
+        ids= request.POST.get('ids')
+        school_year.objects.filter(years=ids).update(acts='DONE')
+        print("hahahaha" + str(ids))
+        return redirect('/cert_page')
+        
