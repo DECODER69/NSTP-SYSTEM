@@ -230,7 +230,14 @@
 
                                         </td>
                                         {% endif %}
-                                        <td>September 25, 2022</td>
+                                        <td>
+                                            {% if s.date_generated != None %}
+                                            <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated}} </h2>
+                                            {% else %}
+                                            <h2 style="color:rgb(188, 100, 0); font-size:15px;">{{s.date_generated}} </h2>
+                                            {% endif %}
+
+                                        </td>
                                         <td style="text-align:center;">
                                             <input type="hidden" value="{{s.years}}" name="years">
                                             <button type="submit" class="btn btn-success">GENERATE</button>

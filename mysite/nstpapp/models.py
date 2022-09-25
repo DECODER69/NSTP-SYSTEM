@@ -76,6 +76,7 @@ class school_year(models.Model):
     years = models.CharField(max_length=20, default='')
     status = models.CharField(max_length=20, default='OPEN')
     acts = models.CharField(max_length=20, default='PENDING')
+    date_generated = models.DateField(max_length=40, default='PENDING')
     
     # for certificates
     
