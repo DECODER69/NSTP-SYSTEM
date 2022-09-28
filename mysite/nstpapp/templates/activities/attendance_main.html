@@ -54,7 +54,7 @@
                                 <tr>
                                     <th scope="col">ID NUMBER</th>
                                     <th scope="col">FULL NAME</th>
-                                    <th scope="col">TD1</th>
+                                    <th scope="col" title="September 26, 2022">TD1</th>
                                     <th scope="col">TD2</th>
                                     <th scope="col">TD3</th>
                                     <th scope="col">TD4</th>
@@ -252,12 +252,15 @@
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        {% for msg in messages %}
+        { %
+            for msg in messages %
+        }
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
-        }) {% endfor %}
-    </script>  
+        }) { % endfor %
+        }
+    </script>
 
 
     <!-- <script>

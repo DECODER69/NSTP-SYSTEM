@@ -10,7 +10,7 @@ from http.client import HTTPResponse
 from django.urls import reverse
 from multiprocessing import context
 from pickle import FALSE
-from re import S
+# from re import S
 from tabnanny import check
 from tkinter import FLAT
 from urllib import response
@@ -918,11 +918,13 @@ def update_officially(request, id):
 
 def cert_page(request):
     sys = school_year.objects.all()
+    pota = extenduser.objects.filter(status='ENROLLED')
     # last = school_year.objects.all()
     details = certification.objects.all()
     context = {
         'sys':sys,
         'details':[details.last()],
+        'pota':pota,
         # 'last':[last.last()],
     }
     return render(request, 'activities/certificate_page.html', context)
@@ -950,11 +952,13 @@ def generate(request):
         sys1 = school_year.objects.filter(years=years)
         section = request.POST.get('section')
         details = certification.objects.all()
+        yyy =  extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
         namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
         print(section)
         print(years)
         
         context = {
+            'yyy':yyy,
             'sys1':sys1,
             'namess':namess,
             'details':[details.last()],

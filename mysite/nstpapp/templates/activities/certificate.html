@@ -14,13 +14,17 @@
 </head>
 
 <body>
-    {% for s in sys1 %}
-    <form action="{% url 'activities:update_acts' %}" method="POST">
+    {% for s in sys1 %} {% for s in yyy %}
+    <form action="{% url 'activities:update_acts' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="hidden" onclick="windows.print()" value="{{s.years}}" name="ids">
-        <button type="submit"><i class='bx bx-printer' ></i>{{s.years}}</button>
+        <input type="hidden" value="{{s.years}}" name="ids">
+        <button type="submit" onclick="window.print()"><i class='bx bx-printer'></i> PRINT</button>
     </form>
-    {% endfor %} {% for s in namess %}
+    {% endfor %}{% endfor %}
+    <!--     
+    baba -->
+
+    {% for s in namess %}
 
     <div class="outer" id="outer">
 
