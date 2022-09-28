@@ -5,7 +5,7 @@ from pkgutil import extend_path
 from django.http import HttpResponseRedirect
 from django.http.request import QueryDict
 
-import xlwt
+
 from http.client import HTTPResponse
 from django.urls import reverse
 from multiprocessing import context
