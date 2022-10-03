@@ -982,6 +982,7 @@ def update_acts(request):
     if request.method == 'POST':
         current_datetime = datetime.datetime.now() 
         ids= request.POST.get('ids')
+        print("hahahaha" + str(ids))
         school_year.objects.filter(years=ids).update(acts='DONE', date_generated=current_datetime)
         print("hahahaha" + str(ids))
         return redirect('/cert_page')

@@ -14,13 +14,13 @@
 </head>
 
 <body>
-    {% for s in sys1 %} {% for s in yyy %}
-    <form action="{% url 'activities:update_acts' %}" method="POST" enctype="multipart/form-data">
+    {% for s in sys1 %}
+    <form action="{% url 'activities:update_acts' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" value="{{s.years}}" name="ids">
         <button type="submit" onclick="window.print()"><i class='bx bx-printer'></i> PRINT</button>
     </form>
-    {% endfor %}{% endfor %}
+    {% endfor %}
     <!--     
     baba -->
 
@@ -38,7 +38,7 @@
                     <img src="../../static/images/NRCEN.png">
                 </div>
 
-                <span class="up1">Naval Reserve Center-National Capital Region</span><br>
+                <span class="up1">Naval Reserve Center-National Capital Region</span><br>+
                 <span class="up2">Department of Naval Science and Tactics</span><br>
                 <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br>
                 <span class="up4">Technological University of the Philippines-Cavite</span><br>
