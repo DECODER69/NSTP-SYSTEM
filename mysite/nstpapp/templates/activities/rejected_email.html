@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,149 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>admin rejected students</title>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
     <link rel="stylesheet" href="../../static/admin_css/admin_rejected.css">
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
+
+    <!-- for table pagination -->
+
 
 </head>
 
 <body>
     {% include 'activities/admin_nav.html' %}
-
-
-
-
-
-
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-user-minus'></i> REJECTED</h1><br>
+            <h1 class="text"><i class='bx bx-user-minus' style="vertical-align: middle;"></i> REJECTED</h1><br>
         </div>
         <div class="bg">
             <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
+                    <a href="/school_years" class="nav-link">School Year</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" style="background-color:#FBC007;" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
+                    <a class="nav-link " href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
+                    <a class="nav-link" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link active" style="background-color: red;" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
+                </li>
+
+
             </ul>
             <!-- modal -->
 
-
             <div class="inside">
-                <div class="filters">
-                    <div class="filter_in">
-                        <select class="cl_country" id="ddlCountry">
-                            <option value="all">Select Field </option>
-                            <option value="rotc">ROTC</option>
-                            <option value="cwts">CWTS</option>
-        
-                        </select><br>
-                        <!-- <select class="cl_age" id="ddlAge">
-                            <option value="all">Select Platoon/ Section</option>
-                            <option value="ALPHA">APHA</option>
-                            <option value="BRAVO">BRAVO</option>
-                            <option value="CHARLIE">CHARLIE</option>
-                            <option value="DELTA">DELTA</option>
-                            <option value="ECHO">ECHO</option>
-                            <option value="FOXTROT">FOXTROT</option>
-                            <option value="GOLF">GOLF</option>
-                            <option value="HOTEL">HOTEL</option>
-                            <option value="INDIA">INDIA</option>
-                            <option value="JULIET">JULIET</option>
-                            <option value="KILO">KILO</option>
-                            <option value="LIMA">LIMA</option>
-                            <option value="MIKE">MIKE</option>
-                            <option value="SECTION A">SECTION A</option>
-                            <option value="SECTION B">SECTION B</option>
-                            <option value="SECTION C">SECTION C</option>
-                            <option value="SECTION D">SECTION D</option>
-        
-                        </select> -->
-                    </div>
-
-                    <div class="sear">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="&#xF002; Search names here" title="Type in a name" style="font-family: Arial, 'Font Awesome 5 Free'">
-                    </div>
-
-
-
-                </div>
-
                 <div class="table-responsive">
-
-
-                    <table class="table table-hover" id="myTable">
-                        <thead class="thead-dark">
+                    <p1 style="font-size:14px;color:#000000;">List of all Rejected Student/s.</p1><br>
+                    <table id="table1" class="table table-bordered table-hover ">
+                        <thead class="thead">
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
                                 <th scope="col">EMAIL</th>
-                                <th scope="col">ADDRESS</th>
-                                <th scope="col">GENDER</th>
                                 <th scope="col">PROFILE PICTURE</th>
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
-                                <th scope="col">SECTION</th>
+                                <th scope="col">VIEW PROFILE</th>
+                                <th scope="col">SEND EMAIL</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s in rejects %}
-                                <tr>
+                            {% for s in rejects %} {% if s.idnumber %}
+                            <tr>
 
-                                    <td>
-                                        {{s.idnumber}}
-                                    </td>
-                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                    <td>{{s.email}}</td>
-                                    <td id="profile"><img src="{{s.picture.url}}"></td>
-                                    <td>{{s.section}}</td>
-                                    <td>{{s.field}}</td>
-                                    <td>
-                                        <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
-                                            <button type="button" class="btn btn-primary"><i class='bx bx-book-open' style="vertical-align: middle;"></i> View Profile</button>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
-                                            <button type="button" class="btn btn-info"> <i class='bx bx-envelope' style="vertical-align: middle;"></i> Send Email</button>
-                                        </a>
-                                    </td>
+                                <td>
+                                    {{s.idnumber}}
+                                </td>
+                                <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                <td>{{s.email}}</td>
+                                <td id="profile"><img src="{{s.picture.url}}"></td>
+                                <td>{{s.section}}</td>
+                                <td>{{s.field}}</td>
+                                <td>
+                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
+                                        <button type="button" class="btn btn-primary"><i class='bx bx-book-open' style="vertical-align: middle;"></i> View Profile</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
+                                        <button type="button" class="btn btn-info"> <i class='bx bx-envelope' style="vertical-align: middle;"></i> Send Email</button>
+                                    </a>
+                                </td>
 
-                                </tr>
-
-                                {% empty %}
-                                    <td style="color: red;">NO REJECTED ENROLLEES !</td>
-                            {% endfor %}
+                            </tr>
+                            {% endif %} {% endfor %}
                         </tbody>
                     </table>
-
-
                 </div>
-
             </div>
 
+
+
+
+
+
+
         </div>
+
+
     </section>
+
     <div>{% for k in ems %}
         <form action="{% url 'activities:custom'%}" method="post">
             {% csrf_token %}
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Compose Email</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+
+
                         </div>
                         <div class="modal-body">
                             <form>
@@ -181,80 +141,19 @@
     </div>
 
 
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+
     <script type="text/javascript">
         $(document).ready(function() {
             $("#exampleModal").modal('show');
         });
     </script>
-
-    <script>
-        function myFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                td2 = tr[i].getElementsByTagName("td")[2];
-                td3 = tr[i].getElementsByTagName("td")[3];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#ddlCountry,#ddlAge").on("change", function() {
-                var country = $('#ddlCountry').find("option:selected").val();
-                var age = $('#ddlAge').find("option:selected").val();
-                SearchData(country, age)
-            });
-        });
-
-        function SearchData(country, age) {
-            if (country.toUpperCase() == 'ALL' && age.toUpperCase() == 'ALL') {
-                $('#myTable tbody tr').show();
-            } else {
-                $('#myTable tbody tr:has(td)').each(function() {
-                    var rowCountry = $.trim($(this).find('td:eq(9)').text());
-                    var rowAge = $.trim($(this).find('td:eq(10)').text());
-                    if (country.toUpperCase() != 'ALL' && age.toUpperCase() != 'ALL') {
-                        if (rowCountry.toUpperCase() == country.toUpperCase() && rowAge == age) {
-                            $(this).show();
-                        } else {
-                            $(this).hide();
-                        }
-                    } else if ($(this).find('td:eq(9)').text() != '' || $(this).find('td:eq(9)').text() != '') {
-                        if (country != 'all') {
-                            if (rowCountry.toUpperCase() == country.toUpperCase()) {
-                                $(this).show();
-                            } else {
-                                $(this).hide();
-                            }
-                        }
-                        if (age != 'all') {
-                            if (rowAge == age) {
-                                $(this).show();
-                            } else {
-                                $(this).hide();
-                            }
-                        }
-                    }
-
-                });
-            }
-        }
-    </script>
-    </div>
-    </section>
+    <!-- pagination -->
 
 </body>
 

@@ -167,49 +167,6 @@
             </div>
 
 
-            <!-- <div class="inside2">
-                <div class="hes">
-                    <br>
-
-                    <p1 style="margin-left: 10px; color:#838383; font-style:italic;" id="creates">Create Custom and General Announcements</p1>&nbsp;
-                    <h1 style="margin-left: 10px; font-size:20px; color:#000000" id="mega">Create Announcements<i class='bx bxs-megaphone' style="color: #c21515;"></i></h1><br>
-                    <div class="announce">
-                        <form action="{% url 'activities:create_announcement' %}" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="form-group">
-
-                                <label for="exampleFormControlInput1" style="font-size:14px;">Target Audience</label>
-                                <select class="form-control" name="assign">
-                                    <option value="ALL">ALL</option>
-                                    {% for s in audience %}
-                                    <option value="{{s.section_created}}">{{s.section_created}}</option>
-                                    {% endfor %}
-
-                                </select>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1" style="font-size:14px;">Subject</label>
-                                <input type="text" class="form-control" name="subject" placeholder="Subject" id="subject" required style="font-size:12px;">
-
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1" style="font-size:14px;">Content</label>
-                                <textarea class="form-control" name="content" id="content" placeholder="Content" required style="font-size:12px;"></textarea>
-
-                            </div><br>
-
-                            <button type="submit" class="btn btn-success" id="post"><i class='bx bx-cloud-upload' ></i> Post</button>
-                        </form>
-                    </div>
-
-                </div>
-
-
-            </div> -->
-
-            {% comment %} announcements list {% endcomment %}
             <div class="inside2">
                 <div class="hes">
                     <br>

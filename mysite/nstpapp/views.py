@@ -140,7 +140,7 @@ def admin_dashboard(request):
     return render(request, 'activities/admin_dashboard.html', context)
 
 def admin_staff(request):
-    
+    s_years = school_year.objects.all()
     details = extenduser.objects.filter(status='ENROLLED')
     pendings = extenduser.objects.filter(status='PENDING')
     pending = extenduser.objects.filter(status='PENDING').count()
@@ -149,6 +149,7 @@ def admin_staff(request):
         'pending':pending,
         'details': details,
         'pendings':pendings,
+        's_years':[s_years.last()]
        
     }
     
@@ -460,15 +461,19 @@ def rejected_email_page(request, id):
         'ems':ems
     }
     
+    
     return render(request, 'activities/rejected_email.html', context)
 
 def custom(request):
     if request.method == 'POST':
-        sub = request.POST.get('emailtext')
-        msg = request.POST.get('message')
-        emaila = request.POST.get('cusemail')
-        send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
-        return redirect('/admin_rejected')
+        try:
+            sub = request.POST.get('emailtext')
+            msg = request.POST.get('message')
+            emaila = request.POST.get('cusemail')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+            return redirect('/admin_rejected')
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return redirect('/admin_rejected')\
         
 def create_sy(request):
@@ -913,6 +918,7 @@ def update_officially(request, id):
     if request.method == 'POST':
         stats = request.POST.get('slc')
         idd = request.POST.get('idd')
+        print("hahaha" +str(idd))
         extenduser.objects.filter(id=idd).update(status=stats)
     return redirect('/admin_staff')
 

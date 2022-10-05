@@ -89,12 +89,8 @@ td {
 }
 
 .actions {
-    justify-content: center;
     display: flex;
-}
-
-.ehe {
-    padding: 10px;
+    justify-content: center;
 }
 
 .tar {
@@ -106,15 +102,14 @@ td {
     color: white;
     background-color: #36bda4;
     border: #1f8270 solid 2px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .decline {
     color: white;
     background-color: #f25370;
-    width: 150px;
     border: #9a2036 solid 2px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .approve i {

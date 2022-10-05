@@ -155,13 +155,6 @@ body {
     display: flex;
 }
 
-.filter_in select {
-    padding: 5px;
-    border-radius: 5px;
-    height: 40px;
-    width: auto;
-}
-
 .sear {
     padding-top: 20px;
     width: 60%;
@@ -223,13 +216,15 @@ div.pager span.active {
 }
 
 #slc {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
 }
 
 #slc:focus {
     border: rgb(187, 187, 187);
+}
+
+#merg {
+    display: flex;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {

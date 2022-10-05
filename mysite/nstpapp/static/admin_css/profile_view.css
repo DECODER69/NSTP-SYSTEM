@@ -56,18 +56,6 @@ body {
     margin: 18px
 }
 
-.bg {
-    padding-bottom: 200px;
-    width: auto;
-    background-attachment: fixed;
-    background-image: url(../images/tupc2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    padding: 18px;
-}
-
 #spacer {
     display: inline-block;
     color: #ffffff;
@@ -85,7 +73,7 @@ OWN CSS */
     margin: auto;
     height: auto;
     width: 80%;
-    background-color: #ffffff;
+    background-color: transparent;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

@@ -10,8 +10,9 @@
 
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <!-- for table pagination -->
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 
 <body>
@@ -73,7 +74,7 @@
                             <td>{{s.section}}</td>
                             <td>{{s.field}}</td>
                             <td class="tar">
-                                <a href="{% url 'activities:admin_view_profile' s.id %}" title="Click to view profile">
+                                <a href="{% url 'activities:admin_view_profile' s.id %}" title="Click to view profile"><i class='bx bxs-show' style="vertical-align: middle;"></i>
                                         View Profile
                                         </a>
                             </td>
@@ -81,13 +82,13 @@
                                 <div class="ehe">
                                     <form action="{% url 'activities:approve' s.idnumber %}" method="post">
                                         {% csrf_token %}
-                                        <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="approve"><i class='bx bx-check'></i>  Approve</button>
+                                        <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="btn btn-success"><i class='bx bx-check'></i>  Approve</button>
                                     </form>
-                                </div>
+                                </div><br>&nbsp;<br>
                                 <div class="ehe">
                                     <form action="{% url 'activities:decline' s.id %}" method="post">
                                         {% csrf_token %}
-                                        <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="decline"><i class='bx bx-x-circle'></i> Decline</button>
+                                        <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="btn btn-danger"><i class='bx bx-x-circle'></i> Decline</button>
                                     </form>
                                 </div>
 
@@ -122,11 +123,14 @@
 
 
 
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
     <script>
         $(document).ready(function() {
-            $('#myTable').dataTable();
+            $('#myTable').DataTable({
+                pagingType: 'full_numbers',
+            });
         });
     </script>
 
