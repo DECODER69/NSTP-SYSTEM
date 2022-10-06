@@ -450,6 +450,24 @@ def decline(request, id):
     messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
     return redirect('/admin_pending')
 
+def r_approve(request, idnumber):
+    stat2 = request.POST.get('getID')
+    platoons = request.POST.get('platoons')
+    
+
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons=platoons)
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    return redirect('/admin_rejected')
+
+def r_decline(request, id):
+   
+    stat2 = request.POST.get('getID2')
+   
+    print(stat2)
+    extenduser.objects.filter(idnumber=stat2).update(status='REJECTED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
+    return redirect('/admin_rejected')
+
 
 
 # EMAILS
@@ -741,6 +759,7 @@ def attendance_sections(request):
 
 def attendance_main(request):
     schools = school_year.objects.all()
+    counts = 3
 
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
@@ -759,6 +778,7 @@ def attendance_main(request):
         'getSection':getSection,
         'schools':[schools.last()],
         'sectionx':sectionx,
+        'counts':counts
         # 't_day':t_day
        
     }
@@ -881,7 +901,7 @@ def pl_content(request):
 def add_students(request):
     if request.method == 'POST':
         platoon = request.POST.get('platoon')
-        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='')
+        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING')
     else:
         return redirect('/manage_section')
     context = {

@@ -51,12 +51,12 @@
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
                                 <th scope="col">EMAIL</th>
-                                <th scope="col">PROFILE PICTURE</th>
+
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
                                 <th scope="col">VIEW PROFILE</th>
                                 <th scope="col">SEND EMAIL</th>
-
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,18 +68,34 @@
                                 </td>
                                 <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                 <td>{{s.email}}</td>
-                                <td id="profile"><img src="{{s.picture.url}}"></td>
+
                                 <td>{{s.section}}</td>
                                 <td>{{s.field}}</td>
                                 <td>
-                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
-                                        <button type="button" class="btn btn-primary"><i class='bx bx-book-open' style="vertical-align: middle;"></i> View Profile</button>
-                                    </a>
+                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email"><i class='bx bxs-show' style="vertical-align: middle;"></i>
+                                        View Profile</a>
                                 </td>
                                 <td>
                                     <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
                                         <button type="button" class="btn btn-info"> <i class='bx bx-envelope' style="vertical-align: middle;"></i> Send Email</button>
                                     </a>
+                                </td>
+
+                                <td class="actions">
+                                    <div class="ehe">
+                                        <form action="{% url 'activities:r_approve' s.idnumber %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="btn btn-success"><i class='bx bx-check'></i>  Approve</button>
+                                        </form>
+                                    </div><br>&nbsp;<br>
+                                    <div class="ehe">
+                                        <form action="{% url 'activities:r_decline' s.id %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="btn btn-danger"><i class='bx bx-x-circle'></i> Remove</button>
+                                        </form>
+                                    </div>
+
+
                                 </td>
 
                             </tr>

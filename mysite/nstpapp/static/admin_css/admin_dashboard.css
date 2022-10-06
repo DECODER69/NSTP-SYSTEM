@@ -237,7 +237,9 @@ td textarea:hover {
 
 .bbt {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
 }
 
 @media screen and (min-width:360px)and (max-width:640px) {

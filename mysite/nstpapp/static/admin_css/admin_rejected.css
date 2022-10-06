@@ -195,6 +195,16 @@ body {
     height: 50px;
 }
 
+.tar {
+    padding: 10px;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
 
 /* .he {
     width: 100%;
