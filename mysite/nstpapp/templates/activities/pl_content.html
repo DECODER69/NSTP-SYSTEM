@@ -35,17 +35,27 @@
                     <div class="he">
 
                         <div class="ada">
-                            <p1 style="margin-left: 10px; color:#000000;">Officially Enrolled Students</p1><br>&nbsp;
-                            <h1 style="margin-left: 10px; font-size:30px; color:#000000">{{content33}} Student/s</h1><br>
+                            <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
+                            <p1 style="margin-left: 10px; font-size:15px; color:#000000">{{content33}} Student/s</p1><br>
                         </div>
 
                         <div class="adda">
+                            <form action="{% url 'activities:download' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
                             <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{getSection}}" name="platoon">
-                                <button class="btn btn-success" type="submit" style="width: 100%;">Add Student</button>
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Add Student</button>
                                 <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                             </form>
+
+
+
+
                         </div>
 
 
@@ -80,9 +90,7 @@
 
                             </tr>
 
-                            {% empty %}
-                            <h1 style="color: red;">NO STUDENTS AVAILABLE!</h1>
-                            {% endfor %}
+                            {% empty %} {% endfor %}
                         </tbody>
                     </table>
                 </div>

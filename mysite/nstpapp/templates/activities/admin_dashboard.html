@@ -31,15 +31,19 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">ANNOUNCEMENT</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        
               <span aria-hidden="true">&times;</span>
+              
             </button>
+
                 </div>
                 <div class="modal-body">
+                    <p1 style=" color:#838383; font-style:italic; text-align:center;" id="creates">Create Custom and General Announcements</p1>&nbsp;<br>
                     <div class="inside3">
                         <div class="hess">
 
-                            <p1 style="margin-left: 10px; color:#838383; font-style:italic;" id="creates">Create Custom and General Announcements</p1>&nbsp;
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000" id="mega">Create Announcements<i class='bx bxs-megaphone' style="color: #c21515;"></i></h1><br>
+
+
                             <div class="announce">
                                 <form action="{% url 'activities:create_announcement' %}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
@@ -171,7 +175,7 @@
                 <div class="hes">
                     <br>
                     <div class="for">
-                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega">Announcements List<i class='bx bx-list-ol' style="color: #c21515;"></i></h1><br>
+                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega">Announcements List</h1><br>
                         <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD NEW ANNOUNCEMENT</button>
                     </div>
                     <br>
@@ -183,6 +187,7 @@
                             <thead class="thead">
                                 <tr>
                                     <th scope="col">Subject</th>
+
                                     <th scope="col">Target Audience</th>
                                     <th scope="col">Date Posted</th>
                                     <th scope="col">Content</th>
@@ -221,9 +226,76 @@
 
                                 </tr>
 
-                                {% empty %}
-                                <h1 style="color: red;">NO ANNOUNCEMENTS AVAILABLE!</h1>
-                                {% endfor %}
+                                {% empty %} {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- </div> -->
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- message from landing page -->
+
+            <br>
+            <div class="inside2">
+                <div class="hes">
+                    <br>
+                    <div class="for">
+                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega">Messages List</h1><br>
+
+                    </div>
+                    <br>
+                    <br>
+                    <div class="announce">
+
+                        <table id="example2" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">Sender</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Date Sent</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Action</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in ann %}
+                                <tr>
+                                    <form action="{% url 'activities:edit_announcement' s.id %}" method="POST">
+                                        {% csrf_token %}
+
+                                        <td>{{s.subject}}</td>
+                                        <td>{{s.assign}}</td>
+                                        <td id="posted"> <i class='bx bx-calendar'></i></td>
+                                        <td contenteditable="True" style="width: 40%;">
+                                            <textarea type="text" style="width: 100%; height:100%;" name="content"></textarea>
+                                        </td>
+
+                                        <td>
+
+                                            <div class="bbt">
+                                                <input type="hidden" value="{{s.id}}" name="ID">
+                                                <button type="submit" class="btn btn-success" title="Update Announcement"><i class='bx bx-check' ></i> Update</button><br>&nbsp;<br>
+
+
+                                                <a href="/delete_announcement/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class='bx bx-trash'></i> Delete</a>
+                                            </div>
+
+
+                                        </td>
+                                    </form>
+
+
+                                </tr>
+
+                                {% empty %} {% endfor %}
                             </tbody>
                         </table>
                         <!-- </div> -->
@@ -237,6 +309,11 @@
 
         </div>
     </section>
+    <!-- for chart -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- EOF CHART -->
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
@@ -248,6 +325,14 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example2').DataTable({
                 pagingType: 'full_numbers',
             });
         });

@@ -106,9 +106,21 @@ body {
 }
 
 .adda {
-    width: 16%;
+    width: 20%;
     float: right !important;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#dl {
+    background-color: #006b86 !important;
+    border-color: transparent !important;
+}
+
+#adds {
+    background-color: #727c00 !important;
+    border-color: transparent !important;
 }
 
 .ada {

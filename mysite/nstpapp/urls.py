@@ -89,6 +89,8 @@ urlpatterns = [
     path('update_acts/', views.update_acts, name='update_acts'),
     path('r_approve/<str:idnumber>', views.r_approve, name='r_approve'),
     path('r_decline/<str:idnumber>', views.r_decline, name='r_decline'),
+    path('download/', views.download, name='download'),
+    path('download1/', views.download1, name='download1'),
     # password resets
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

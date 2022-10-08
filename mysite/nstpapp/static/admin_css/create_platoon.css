@@ -96,7 +96,7 @@ body {
     padding: 18px;
     width: 100%;
     display: flex;
-    min-height: 100vh;
+    background-color: white;
 }
 
 .left {
@@ -156,6 +156,11 @@ body {
     text-align: center;
 }
 
+#dl {
+    background-color: #006b86 !important;
+    border-color: transparent !important;
+}
+
 .right1 {
     /* overflow-y: scroll;
     overflow-x: hidden; */
@@ -174,28 +179,6 @@ body {
 
 
 /* table pagers */
-
-div.pager {
-    text-align: center;
-    margin: 1em 0;
-}
-
-div.pager span {
-    display: inline-block;
-    width: 1.8em;
-    height: 1.8em;
-    line-height: 1.8;
-    text-align: center;
-    cursor: pointer;
-    background: #000;
-    color: #fff;
-    margin-right: 0.5em;
-}
-
-div.pager span.active {
-    background: #c00;
-    height: auto;
-}
 
 
 /* EOF PAGER */
@@ -298,6 +281,7 @@ p1 {
 
 .table-responsive {
     font-size: 15px;
+    color: black;
 }
 
 .table-responsive input,

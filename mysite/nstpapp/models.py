@@ -77,10 +77,10 @@ class extenduser(models.Model):
         return self.idnumber
     
 class school_year(models.Model):
-    years = models.CharField(max_length=20, default='')
+    years = models.CharField(blank=True, null=True, max_length=20)
     status = models.CharField(max_length=20, default='OPEN')
     acts = models.CharField(max_length=20, default='PENDING')
-    date_generated = models.DateField(max_length=40, default='PENDING')
+    date_generated = models.DateTimeField(null=True)
     
     # for certificates
     

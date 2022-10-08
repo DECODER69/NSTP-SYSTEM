@@ -12,9 +12,12 @@
 
     <!-- icon for seacrch -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css">
-
+    <!-- 
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"> -->
+
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 
 <body>
@@ -62,27 +65,24 @@
             <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</h1><br>
         </div>
         <div class="bg">
-            <div class="tops">
-                <div class="left1">
-                    <h1 style="font-size: 20px;">Add & Manage </h1><br>
 
-                    <h1 class="adds">Add & Manage Students</h1><br>
-                    <!-- <p1 style="color: grey; font-size:15px;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1> -->
-                    <a href="#" style="text-decoration: none;">
-                        <button type="button" class="btns "> <i class='bx bx-plus' style="vertical-align:middle;"></i> Add Student</button>
-                    </a>
-                </div>
-
-
-            </div>
 
             <div class="overall">
                 <div class="left">
                     <div class="headd">
                         <div>
                             <h1 style="font-size: 20px;">All Students</h1>
-                            <p1 style="color:green; font-size:15px; font-weight:bold;"><i class='bx bx-check' style="vertical-align:middle; font-size: 20px; color:green; font-weight:bolder;"></i> {{counts}} Active Students</p1>
+                            <p1 style="color:rgb(0, 0, 0); font-size:15px; font-weight:bold;"> {{counts}} total enrollee(s)</p1>
                             <br>&nbsp;<br>
+                        </div>
+                        <div class="butts">
+                            <form action="{% url 'activities:download1' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+
                         </div>
 
 
@@ -93,11 +93,11 @@
                     <div class="table-responsive"><br>
 
 
-                        <table class="table table-bordered" id="myTable">
+                        <table class="table table-bordered" id="table1">
                             <hr>
 
                             <thead>
-                                <tr style="color: rgb(79, 79, 79);">
+                                <tr style="color: rgb(0, 0, 0);">
                                     <th scope="col">Profile</th>
                                     <th scope="col">ID Number</th>
                                     <th scope="col">Full name</th>
@@ -126,14 +126,14 @@
                                     <td style="font-size: 10px;">{{s.idnumber}}</td>
                                     <td>{{s.lastname}} {{s.firstname}} {{s.middlename}}</td>
                                     <td>{{s.section}}</td>
-                                    <td style="color:green;">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle;"></i></td>
+                                    <td style="color:rgb(11, 109, 0); ">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle;"></i></td>
                                     <td>{{s.field}}</td>
 
 
                                     <td>{{s.platoons}}</td>
                                     {% for l in userContent %} {% if l.username == s.idnumber %}
 
-                                    <td style="color: rgb(196, 10, 10);" >
+                                    <td style="color: rgb(196, 10, 10);">
                                         <i class='bx bxs-time-five' style="vertical-align:middle;"></i> {{l.last_login}}
 
                                     </td>
@@ -154,7 +154,7 @@
                         </table>
                     </div>
 
-                </div><br>&nbsp;<br>&nbsp;<br> 
+                </div><br>&nbsp;<br>&nbsp;<br>
 
             </div>
 
@@ -162,13 +162,13 @@
     </section>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: 'success',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>   
+    </script>    -->
     <!-- search  -->
     <script>
         function myFunction() {
@@ -210,11 +210,22 @@
     </script>
 
 
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <!-- <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#myTable').dataTable();
+        });
+    </script> -->
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table1').DataTable({
+                pagingType: 'full_numbers',
+            });
         });
     </script>
 

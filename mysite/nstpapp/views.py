@@ -24,7 +24,9 @@ import datetime
 #models imported
 from .models import extenduser,school_year, sections, training_day,Announcement, certification
 import os
+import csv  
 
+from django.http import HttpResponse, Http404
 
 # emails
 from django.core.mail import send_mail
@@ -35,6 +37,7 @@ from django.db import IntegrityError
 # track active users
 from django.utils.timezone import now
 from datetime import timedelta
+import datetime
 
 
 
@@ -496,14 +499,14 @@ def custom(request):
         
 def create_sy(request):
     if request.method == 'POST':
-        years = request.POST.get('year')
-        if school_year.objects.filter(years=years).exists():
-                messages.info(request, 'School year ' + str (years) + ' ALready exist !')
-                return redirect('/school_years')
+        yearsz = request.POST.get('year')
+        if school_year.objects.filter(years=yearsz).exists():
+            messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
+            return redirect('/school_years')
         else:
-            data = school_year(years=years)
+            data = school_year(years=yearsz)
             data.save()
-            messages.success(request, 'School year ' + str (years) + ' Successfully Created !')
+            messages.success(request, 'School year ' + str (yearsz) + ' Successfully Created !')
             return redirect('/school_years')
     return redirect('/school_years')
 
@@ -657,11 +660,13 @@ def section_content(request):
     userContent = User.objects.all()
     schools = school_year.objects.all()
     if request.method == 'POST':
+     
         getSection = request.POST.get('getSection')
+        print(getSection)
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
     else:
-        print("hahahahaaha")
+       
         return render(request, 'activities/pl_content.html')
     context = {
         'content3':content3,
@@ -675,6 +680,33 @@ def section_content(request):
     print(getSection)
     return render(request, 'activities/pl_content.html', context)
 
+def download(request):
+    if request.method == 'POST':
+        getSection = request.POST.get('cate')
+        csvfile = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        response = HttpResponse(content_type='text/csv')  
+        print("CSV FILE ITO" + str(csvfile))
+        print("CSV FILE ITO" + str(getSection))
+        response['Content-Disposition'] = 'attachment; filename="Student list.csv"'  
+        writer = csv.writer(response)  
+        for s in csvfile:  
+            writer.writerow([s.idnumber, s.firstname])  
+    return response  
+
+def download1(request):
+    if request.method == 'POST':
+    
+        csvfile = extenduser.objects.filter(status='ENROLLED')
+        response = HttpResponse(content_type='text/csv')  
+        print("CSV FILE ITO" + str(csvfile))
+        
+        response['Content-Disposition'] = 'attachment; filename="Student list.csv"  '
+        writer = csv.writer(response)  
+        writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'NSTP COMPONENT', 'NSTP SECTION'])  
+        for s in csvfile:  
+   
+            writer.writerow([s.idnumber, s.firstname, s.lastname, s.field, s.platoons])  
+    return response  
 
 
 
@@ -901,7 +933,7 @@ def pl_content(request):
 def add_students(request):
     if request.method == 'POST':
         platoon = request.POST.get('platoon')
-        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING')
+        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='')
     else:
         return redirect('/manage_section')
     context = {
