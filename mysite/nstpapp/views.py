@@ -319,7 +319,7 @@ def signup(request):
             datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,picture=picture,user=user)
             datas.save()
             auth.login(request, user)
-            messages.info(request, 'Account created successfully')
+            messages.info(request, 'Account created successfully\nPlease Login and complete profile for verification')
             return redirect('/signup_page')
     else:
         return redirect('/')
