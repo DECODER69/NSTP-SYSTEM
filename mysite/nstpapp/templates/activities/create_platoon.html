@@ -109,7 +109,7 @@
                                     <th scope="col">Last Login</th>
 
 
-                                    <th scope="col" id="momo">Modify Profile</th>
+                                    <th scope="col" id="momo">Modify</th>
 
                                 </tr>
                             </thead>
@@ -126,23 +126,27 @@
                                     <td style="font-size: 10px;">{{s.idnumber}}</td>
                                     <td>{{s.lastname}} {{s.firstname}} {{s.middlename}}</td>
                                     <td>{{s.section}}</td>
-                                    <td style="color:rgb(11, 109, 0); ">{{s.status}} <i class='bx bxs-check-circle' style="vertical-align:middle;"></i></td>
+
+                                    <td>
+                                        <i class='bx bxs-check-circle' id="times2">  {{s.status}}</i>
+
+                                    </td>
                                     <td>{{s.field}}</td>
 
 
                                     <td>{{s.platoons}}</td>
                                     {% for l in userContent %} {% if l.username == s.idnumber %}
 
-                                    <td style="color: rgb(196, 10, 10);">
-                                        <i class='bx bxs-time-five' style="vertical-align:middle;"></i> {{l.last_login}}
+                                    <td>
+                                        <i class='bx bxs-time-five' id="times">  {{l.last_login}}</i>
 
                                     </td>
 
 
 
                                     <td style="text-align:center;">
-                                        <a href="{% url 'activities:edit_manage' s.id %}" target="_self" title="Edit Profile">
-                                            <i class='bx bxs-edit' id="changes"></i>
+                                        <a href="{% url 'activities:edit_manage' s.id %}" target="_self" title="Edit Profile" id="changes">
+                                            <i class='bx bxs-edit'></i> View Profile
 
                                         </a>
 

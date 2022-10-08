@@ -171,8 +171,15 @@ body {
 }
 
 #profile_pic {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+#profile_pic2 {
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
 }
@@ -299,14 +306,33 @@ label {
 
 #changes {
     text-align: center;
-    font-size: 23px;
+    font-size: 15px;
     width: 40%;
     height: 40px;
     border-radius: 5px;
     border: none;
-    background-color: rgb(70, 168, 87);
+    background-color: rgb(149, 132, 0);
     color: white;
     padding: 5px;
     text-align: center;
     margin: auto;
+    text-decoration: none !important;
+}
+
+#changes:hover {
+    background-color: rgb(57, 50, 0);
+}
+
+#times {
+    background-color: #880000 !important;
+    color: white;
+    padding: 4px;
+    border-radius: 7px;
+}
+
+#times2 {
+    background-color: #004d1a !important;
+    color: white;
+    padding: 4px;
+    border-radius: 7px;
 }

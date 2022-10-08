@@ -6,15 +6,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    background-attachment: fixed;
-    background-image: url(../images/sd2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-}
-
 .home-section {
     position: relative;
     top: 0;
@@ -22,6 +13,15 @@ body {
     width: calc(100% - 78px);
     transition: all 0.5s ease;
     z-index: 2;
+}
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
 }
 
 .heads {
@@ -93,273 +93,64 @@ body {
 
 .overall {
     justify-content: space-between;
-    padding: 18px;
+    padding: 100px;
     width: 100%;
     display: flex;
-    min-height: 100vh;
 }
 
 .left {
+    display: block;
     height: auto;
-    padding: 10px;
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 30%;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .right {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 100vh;
-    width: 28%;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    float: right;
+    width: 30%;
 }
 
-.left1 {
-    color: white;
-    border-radius: 5px;
-    background: rgb(54, 55, 56);
-    background: linear-gradient(90deg, rgba(54, 55, 56, 1) 0%, rgba(22, 72, 87, 1) 99%);
+.mid {
+    width: 30%;
+}
+
+.square {
+    background-color: #ffffff;
     height: auto;
     padding: 10px;
-    padding-bottom: 50px !important;
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.left1 button {
-    background-color: rgb(255, 106, 0);
-    color: white;
-    margin: auto;
-    height: 50px;
-    width: 200px;
-    border-radius: 5px;
-    border: none;
-    font-size: 20px;
-}
-
-.left1 button:hover {
-    background-color: rgb(202, 91, 12);
-    color: white;
-    margin: auto;
-    border: none;
-}
-
-.left1 a {
-    display: flex;
-    margin: auto;
-}
-
-.adds {
-    font-size: 80px;
-    color: white;
-    text-align: center;
-}
-
-.right1 {
-    /* overflow-y: scroll;
-    overflow-x: hidden; */
-    height: auto;
-    width: 48%;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.profile_pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
-}
-
-
-/* table pagers */
-
-div.pager {
-    text-align: center;
-    margin: 1em 0;
-}
-
-div.pager span {
-    display: inline-block;
-    width: 1.8em;
-    height: 1.8em;
-    line-height: 1.8;
-    text-align: center;
-    cursor: pointer;
-    background: #000;
-    color: #fff;
-    margin-right: 0.5em;
-}
-
-div.pager span.active {
-    background: #c00;
-    height: auto;
-}
-
-
-/* EOF PAGER */
-
-.covers {
-    display: block;
-    min-height: 150px;
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    /* background: rgb(66, 102, 120);
-    background: linear-gradient(90deg, rgba(66, 102, 120, 1) 0%, rgba(164, 21, 158, 1) 100%); */
-}
-
-.cardss {}
-
-.some {
-    display: flex;
-    justify-content: space-between;
-}
-
-.some h1,
-p1 {
-    color: white;
-}
-
-.view {
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.479);
-    text-align: center;
-}
-
-.view a {
-    font-size: 20px;
-    color: white;
-}
-
-.view a:hover {
-    color: rgb(213, 213, 213);
-}
-
-.haha {
-    border-radius: 5px;
-    background: rgb(66, 102, 120);
-    background: linear-gradient(90deg, rgba(66, 102, 120, 1) 0%, rgba(164, 21, 158, 1) 100%);
-}
-
-.some2 {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.some2 h1 {
-    margin-top: 7%;
-    vertical-align: -webkit-baseline-middle;
-}
-
-.some2 i {
-    font-size: 100px;
-}
-
-#viewMore {
-    background-color: transparent !important;
-    border: none;
-}
-
-#viewpic {
-    width: 70px;
-    height: 70px;
+#profile_pic {
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-}
-
-.modal-header {
-    background-color: rgb(115, 5, 5);
+    margin: auto !important;
     display: flex;
-    color: white;
 }
 
-#tups {
-    width: 300px;
-    height: 300px;
-    margin: auto;
-}
-
-.modal-dialog {
-    width: auto !important;
-    margin: auto;
-}
-
-.modal-footer {
-    justify-content: space-between !important;
-}
-
-
-/* table custom */
-
-.table td,
-.table th {
-    font-size: 15px !important;
-}
-
-#selections {
-    height: 30px;
-    border-radius: 5px;
-}
-
-#changes {
+#name {
     text-align: center;
-    font-size: 23px;
-    width: 70px;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(34, 178, 34);
-    color: white;
-    padding: 5px;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
-#idnumber {
-    color: white;
-    font-size: 30px;
-    font-style: italic;
-}
-
-
-/* eidt infos */
-
-.over {
+#mess {
+    margin: auto;
     display: flex;
+    background-color: #c96624;
+    border: hidden;
 }
 
-.coverpic {
-    height: 150px;
+.form-group {
     width: 100%;
-    background-attachment: scroll;
-    background-image: url(../images/valo.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 }
 
-.profilep {}
-
-.profilep img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-top: -70px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    border: 10px solid rgba(255, 255, 255, 0.502);
+.form-group input {
+    width: 85% !important;
 }
 
-.row {
-    width: 100%;
-    padding-left: 30px !important;
-    justify-content: space-between;
-}
-
-.hilera {
-    padding: 18px;
-    padding-left: 30px !important;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
+.form-group #address1 {
+    width: 60% !important;
 }

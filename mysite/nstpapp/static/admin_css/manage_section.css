@@ -103,13 +103,14 @@ body {
     height: auto;
     font-size: 15px;
     padding: 10px;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .column {
     float: left;
     width: 20%;
     padding: 5px;
+    padding-top: 20px;
 }
 
 
@@ -181,5 +182,5 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: center;
-    background-color: #f1f1f1;
+    background-color: #F7F7F7 !important;
 }
