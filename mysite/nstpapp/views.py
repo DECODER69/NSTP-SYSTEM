@@ -612,9 +612,14 @@ def edit_manage(request, id):
             msg = request.POST.get('message')
             emaila = request.POST.get('rname')
             send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
-            messages.success(request, 'Email Sent')
+            messages.success(request, 'Email Sent to ' +str(emaila))
+            
         except ImportError:
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+
+    return render (request, 'activities/edit_manage.html', context)
+
+def update_manage(request):
     if request.method == 'POST':
         ids = request.POST.get('ids')
         firstname = request.POST.get('firstname')
@@ -645,10 +650,13 @@ def edit_manage(request, id):
                                                  civil=civil,email=email,idnumber=idnumber,status=status,field=field,
                                                  platoons=platoons, section=section2,nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
                                                  pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact)
-        messages.success(request, 'Updated')
-    return render (request, 'activities/edit_manage.html', context)
+        messages.success(request, str(idnumber)+' has been Updated')
+        return redirect('/create_platoon_page')
 
-
+    return redirect('/create_platoon_page')
+        
+        
+        
     
 
 

@@ -188,9 +188,10 @@ h5 {
 }
 
 #update {
+    bottom: 0;
     float: right !important;
-    height: 90px !important;
+    height: 50px !important;
     width: 150px !important;
     border: none !important;
-    background-color: #cb5100 !important;
+    background-color: #00ae17 !important;
 }

@@ -91,6 +91,7 @@ urlpatterns = [
     path('r_decline/<str:idnumber>', views.r_decline, name='r_decline'),
     path('download/', views.download, name='download'),
     path('download1/', views.download1, name='download1'),
+    path('update_manage/', views.update_manage, name='update_manage'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
