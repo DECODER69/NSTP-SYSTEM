@@ -2,6 +2,7 @@ from dataclasses import field
 import csv
 from distutils.command.build_scripts import first_line_re
 from pkgutil import extend_path
+from subprocess import IDLE_PRIORITY_CLASS
 from django.http import HttpResponseRedirect
 from django.http.request import QueryDict
 
@@ -495,7 +496,7 @@ def custom(request):
             return redirect('/admin_rejected')
         except ImportError:
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
-    return redirect('/admin_rejected')\
+    return redirect('/admin_rejected')
         
 def create_sy(request):
     if request.method == 'POST':
@@ -604,8 +605,20 @@ def edit_manage(request, id):
         'sectionxx':sectionxx,
         'userContent':userContent
     }
+    if request.method == 'POST':
+        try:
+            id= request.POST.get('ids')
+            sub = request.POST.get('emailtext')
+            msg = request.POST.get('message')
+            emaila = request.POST.get('rname')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+            messages.success(request, 'Email Sent')
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return render (request, 'activities/edit_manage.html', context)
 
+
+    
 
 
 def export(request):

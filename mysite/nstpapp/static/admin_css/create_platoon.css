@@ -283,7 +283,7 @@ p1 {
 
 .table td,
 .table th {
-    font-size: 15px !important;
+    font-size: 12px !important;
 }
 
 .table-responsive {
@@ -306,7 +306,7 @@ label {
 
 #changes {
     text-align: center;
-    font-size: 15px;
+    font-size: 12px;
     width: 40%;
     height: 40px;
     border-radius: 5px;

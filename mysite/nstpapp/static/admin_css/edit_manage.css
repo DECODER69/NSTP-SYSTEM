@@ -93,7 +93,7 @@ body {
 
 .overall {
     justify-content: space-between;
-    padding: 100px;
+    padding: 20px;
     width: 100%;
     display: flex;
 }
@@ -101,17 +101,18 @@ body {
 .left {
     display: block;
     height: auto;
-    width: 30%;
+    width: 32%;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.39), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .right {
     float: right;
-    width: 30%;
+    width: 32%;
 }
 
 .mid {
-    width: 30%;
+    width: 32%;
+    display: block;
 }
 
 .square {
@@ -123,8 +124,8 @@ body {
 }
 
 #profile_pic {
-    width: 180px;
-    height: 180px;
+    width: 142px;
+    height: 142px;
     border-radius: 50%;
     margin: auto !important;
     display: flex;
@@ -134,12 +135,13 @@ body {
     text-align: center;
     font-family: sans-serif;
     font-weight: bold;
+    font-size: 20px !important;
 }
 
 #mess {
     margin: auto;
     display: flex;
-    background-color: #c96624;
+    background-color: #123d4f;
     border: hidden;
 }
 
@@ -147,10 +149,34 @@ body {
     width: 100%;
 }
 
-.form-group input {
+.form-inline {
+    background-color: rgb(255, 255, 255);
+}
+
+.square .form-group input {
     width: 85% !important;
+    font-size: 12px !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+.form-group label {
+    font-size: 12px !important;
+}
+
+.form-group select {
+    font-size: 12px !important;
 }
 
 .form-group #address1 {
     width: 60% !important;
+}
+
+.form-group {
+    justify-content: space-between !important;
+}
+
+h5 {
+    font-weight: bold !important;
+    font-size: 14px !important;
+    color: #343434 !important;
 }
