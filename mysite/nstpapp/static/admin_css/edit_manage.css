@@ -78,6 +78,7 @@ body {
     /* min-height: 100vh;
     padding: 18px; */
     height: auto;
+    padding: 10px;
 }
 
 
@@ -165,10 +166,15 @@ body {
 
 .form-group select {
     font-size: 12px !important;
+    color: black !important;
 }
 
 .form-group #address1 {
     width: 60% !important;
+}
+
+.form-group #address2 {
+    width: 85% !important;
 }
 
 .form-group {
@@ -179,4 +185,12 @@ h5 {
     font-weight: bold !important;
     font-size: 14px !important;
     color: #343434 !important;
+}
+
+#update {
+    float: right !important;
+    height: 90px !important;
+    width: 150px !important;
+    border: none !important;
+    background-color: #cb5100 !important;
 }

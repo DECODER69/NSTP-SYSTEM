@@ -615,6 +615,37 @@ def edit_manage(request, id):
             messages.success(request, 'Email Sent')
         except ImportError:
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        address = request.POST.get('address')
+        cpnumber = request.POST.get('cpnumber')
+        birthday = request.POST.get('birthday')
+        age = request.POST.get('age')
+        civil = request.POST.get('civil')
+        email = request.POST.get('email')
+        idnumber = request.POST.get('idnumber')
+        status =request.POST.get('status')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        section2 = request.POST.get('section')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation  = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        goccupation = request.POST.get('goccupation')
+        gcontact = request.POST.get('gcontact')
+        
+        extenduser.objects.filter(id=ids).update(firstname = firstname, middlename = middlename, lastname = lastname, 
+                                                 address = address, cpnumber=cpnumber, birthday=birthday, age=age,
+                                                 civil=civil,email=email,idnumber=idnumber,status=status,field=field,
+                                                 platoons=platoons, section=section2,nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
+                                                 pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact)
+        messages.success(request, 'Updated')
     return render (request, 'activities/edit_manage.html', context)
 
 
