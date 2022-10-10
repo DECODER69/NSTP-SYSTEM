@@ -143,6 +143,7 @@
                                     </td>
 
 
+                                    {% endif %} {% endfor %}
 
                                     <td style="text-align:center;">
                                         <a href="{% url 'activities:edit_manage' s.id %}" target="_self" title="Edit Profile" id="changes">
@@ -151,7 +152,8 @@
                                         </a>
 
                                     </td>
-                                    {% endif %} {% endfor %}
+
+
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -172,7 +174,7 @@
             icon: 'success',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>   
+    </script>
     <!-- search  -->
     <script>
         function myFunction() {

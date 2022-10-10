@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folder Content</title>
+    <link rel="stylesheet" href="../../static/admin_css/open_folder.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <section class="home-section">
+        <div class="heads">
+            <a href="/admin_files">
+                <h1 class="text"><i class='bx bxs-folder-open'></i> FILE EXPLORER &nbsp;|</h1>
+            </a>
+
+            <h1 class="text"><i class='bx bxs-dashboard'></i> {{getSection}}</h1>
+
+
+        </div><br>
+        <div class="bg">
+            <label for="images" class="drop-container">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" id="images"  required>
+              </label>
+
+
+
+        </div>
+    </section>
+
+
+</body>
+
+</html>

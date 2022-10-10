@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.home-section {
+    position: relative;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.heads {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 0.9444152661064426) 56%);
+}
+
+.heads .text i {
+    color: #fb5800;
+}
+
+.count {
+    color: rgb(185, 2, 2);
+    font-size: 30px;
+    float: right;
+}
+
+.heads .text i {
+    vertical-align: middle;
+}
+
+.headd {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sear input {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.sidebar.open~.home-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.home-section .text {
+    /* background: #c51c39; */
+    display: inline-block;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 18px
+}
+
+.bg {
+    width: auto;
+    background-attachment: fixed;
+    /* background-image: url(../images/tupc2.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* min-height: 100vh;
+    padding: 18px; */
+    height: auto;
+    padding: 10px;
+}
+
+
+/* own css */
+
+.outer {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    padding: 20px;
+}
+
+.column {
+    float: left;
+    width: 10%;
+    padding: 5px;
+    height: fit-content !important;
+}
+
+
+/* Remove extra left and right margins, due to padding */
+
+
+/* .row {
+    margin: 0 -5px;
+    padding: 10px;
+} */
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#folders {
+    text-decoration: none !important;
+    color: #243f54;
+    font-size: 120px;
+    height: auto;
+    border: none !important;
+    background-color: transparent;
+}
+
+#folders2 {
+    text-decoration: none !important;
+    color: #243f54;
+    font-size: 120px;
+    height: auto;
+    border: none !important;
+    background-color: transparent;
+}
+
+#folders:hover {
+    color: #132635;
+}
+
+#folders h5 {
+    color: #383838 !important;
+    text-align: left !important;
+}
+
+#folders2:hover {
+    color: #132635;
+}
+
+#folders2 h5 {
+    color: #383838 !important;
+    text-align: left !important;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}

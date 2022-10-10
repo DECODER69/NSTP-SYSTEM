@@ -1,0 +1,46 @@
+<!DOCTYPE html>{% load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Files</title>
+    <link rel="stylesheet" href="../../static/admin_css/admin_files.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <section class="home-section">
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-folder-open'></i> FILE EXPLORER</h1><br>
+        </div><br>
+        <div class="bg">
+            <div class="outer">
+                <div class="row">
+                    {% for s in section %}
+                    <form action="{% url 'activities:open_folder' s.section_created %}" class="column" style="text-decoration: none;" method="POST">
+                        {% csrf_token %} {% if s.fiel == 'ROTC' %}
+
+
+
+                        <input type="hidden" value="{{s.section_created}}" name="getSection">
+
+                        <button type="submit" class="bx bxs-folder-open" id="folders"></button><br>
+                        <label for="folders">{{s.section_created}}</label> {% elif s.fiel == 'CWTS' %}
+
+
+                        <input type="hidden" value="{{s.section_created}}" name="getSection">
+                        <button type="submit" class="bx bx-folder-open" id="folders2"></button><br>
+                        <label for="folders2">{{s.section_created}}</label> {% endif %}
+                    </form>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

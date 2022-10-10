@@ -650,6 +650,7 @@ def update_manage(request):
                                                  civil=civil,email=email,idnumber=idnumber,status=status,field=field,
                                                  platoons=platoons, section=section2,nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
                                                  pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact)
+        User.objects.filter(id=ids).update(username=idnumber)
         messages.success(request, str(idnumber)+' has been Updated')
         return redirect('/create_platoon_page')
 
@@ -1097,3 +1098,19 @@ def update_acts(request):
         print("hahahaha" + str(ids))
         return redirect('/cert_page')
         
+def admin_files(request):
+    section = sections.objects.all()
+    context = {
+        'section':section
+    }
+    return render(request, 'activities/admin_files.html', context)
+
+def open_folder(request,section_created):
+   
+    getSection = request.POST.get('getSection')
+    print("hahahahahahaha" +str(getSection))
+    context = {
+    'getSection':getSection
+    }
+
+    return render(request, 'activities/open_folder.html', context)

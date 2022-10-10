@@ -102,7 +102,7 @@
                             <h2 id="name">{{s.firstname}} {{s.lastname}}</h2>
                             <h5 style="text-align: center; font-style:italic;">Student</h5>
 
-                            <button type="button" class="btn btn-dark" id="mess" data-toggle="modal" data-target="#exampleModal"><i class='bx bxs-envelope' style="vertical-align: middle !important; font-size:20px; color:rgb(255, 255, 255); padding-top:2px;"></i>&nbsp;Send email</button>
+                            <button type="button" class="btn btn-dark" id="mess" data-toggle="modal" data-target="#exampleModal"><i class='bx bxs-envelope' style="vertical-align: middle !important; font-size:20px; color:rgb(255, 255, 255); padding-top:2px;" title="Click to send email"></i>&nbsp;Send email</button>
 
                         </div>
                         <br>
@@ -218,6 +218,7 @@
                                     <option value="ENROLLED">ENROLLED</option>
                                     <option value="REJECTED">REJECT</option>
                                     <option value="DROP">DROP</option>
+                                    <option value="GRADUATE">GRADUATE</option>
                                 </select>
                                 </div><br>
                                 <div class="form-group">
@@ -374,13 +375,13 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: 'success',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script> 
+    </script>  -->
     <!-- search  -->
     <script>
         function myFunction() {
@@ -440,6 +441,9 @@
             });
         });
     </script>
+
+
+
 
 </body>
 
