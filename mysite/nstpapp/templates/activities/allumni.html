@@ -5,53 +5,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>allumni</title>
+    <title>Manage sections</title>
     <link rel="stylesheet" href="../../static/admin_css/allumni.css">
+    <link rel="icon" href="../../static/images/tup.png">
 </head>
 
 <body>
     {% include 'activities/admin_nav.html' %}
+    <!-- modal for sections -->
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#ffffff; color:white;">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Section!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'activities:create_section' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Select Component</label>
+                            <select name="field" id="" class="form-control">
+                                <option value="ROTC">ROTC</option>
+                                <option value="CWTS">CWTS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Add here</label>
+                            <input type="text" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="secs" required>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EOF MODAL -->
+
+    <!-- MODAL FOR PICTURES -->
+
+
+
+    <!-- eof modal for puictures  -->
     <section class="home-section">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-user-pin'></i> ALLUMNI</h1><br>
-        </div>
+            <h1 class="text"><i class='bx bxs-dashboard'></i> Alumni Records</h1><br>
+        </div><br>
         <div class="bg">
-            <div class="table-responsive">
 
 
-                <table class="table table-hover" id="myTable">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">ID NUMBER</th>
-                            <th scope="col">FULL NAME</th>
-                            <th scope="col">SCHOOL YEAR</th>
+            <div class="overall">
+                <div class="left">
+                    <div class="tss">
 
 
+                        <div class="txt ">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega">School years</h1>
 
-                        </tr>
-                    </thead>
-                    <tbody> {{content2}} {% for s in content %}
-                        <tr>
-
-                            <td>
-                                {{s.idnumber}}
-                            </td>
-                            <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                            <td>{{s.content.count}}</td>
+                        </div>
+                        <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD SCHOOL YEAR</button>
 
 
-                        </tr>
-                        {% empty %}
-                        <h1 style="color: red;">NO GRADUATES YET !</h1>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        {% for s in school_years %}
+                        <form action="{% url 'activities:allumni_content' %}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                                <i class='bx bxs-graduation' id="ro_logo"></i>
+                                <h5 class="title">{{s.years}}</h5>
+                                <input type="hidden" value="{{s.years}}" name="getYear"><br>
+                                <button type="submit" class="btn btn-dark">Open</button>
+
+                            </div>
+
+                        </form>
                         {% endfor %}
-                    </tbody>
-                </table>
+                    </div>
 
 
+
+                </div>
             </div>
 
         </div>
+
+
+
     </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11 "></script>
+
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>  -->
 
 </body>
 

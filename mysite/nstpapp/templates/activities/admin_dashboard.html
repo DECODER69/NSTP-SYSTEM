@@ -245,7 +245,7 @@
                 <div class="hes">
                     <br>
                     <div class="for">
-                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega">Messages List</h1><br>
+                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega">Feedback</h1><br>
 
                     </div>
                     <br>
@@ -261,41 +261,40 @@
                                     <th scope="col">Subject</th>
                                     <th scope="col">Message</th>
                                     <th scope="col">Action</th>
+                                    <th scope="col">Send Response</th>
 
 
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in ann %}
-                                <tr>
-                                    <form action="{% url 'activities:edit_announcement' s.id %}" method="POST">
-                                        {% csrf_token %}
 
-                                        <td>{{s.subject}}</td>
-                                        <td>{{s.assign}}</td>
-                                        <td id="posted"> <i class='bx bx-calendar'></i></td>
+                                <tr>
+                                    <form action="" method="POST">
+                                        <td>Christian Rapal</td>
+                                        <td>christianrapal2000@gmail.com</td>
+                                        <td id="posted"><i class='bx bx-calendar'></i> Oct. 11, 2022</td>
+                                        <td>Service</td>
                                         <td contenteditable="True" style="width: 40%;">
-                                            <textarea type="text" style="width: 100%; height:100%;" name="content"></textarea>
+                                            <textarea type="text" style="width: 100%; height:100%;" name="content">I would like to claim my certificate,  I graduated on june 1999</textarea>
                                         </td>
 
                                         <td>
+                                            <select name="" id="" class="form-control">
+                                                <option value="done">Done</option>
 
-                                            <div class="bbt">
-                                                <input type="hidden" value="{{s.id}}" name="ID">
-                                                <button type="submit" class="btn btn-success" title="Update Announcement"><i class='bx bx-check' ></i> Update</button><br>&nbsp;<br>
-
-
-                                                <a href="/delete_announcement/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class='bx bx-trash'></i> Delete</a>
-                                            </div>
+                                            </select>
 
 
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning"><i class='bx bx-message-rounded-check'></i> Send Response</button>
                                         </td>
                                     </form>
 
 
                                 </tr>
 
-                                {% empty %} {% endfor %}
+
                             </tbody>
                         </table>
                         <!-- </div> -->

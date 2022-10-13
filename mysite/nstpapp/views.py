@@ -518,15 +518,18 @@ def allumni_content(request):
         content2 = extenduser.objects.filter(s_year=getYear).count()
     else:
         print("hahahahaaha")
-        return render(request, 'activities/allumni.html')
+        return render(request, 'activities/allumni_content.html')
     context = {
         'content':content,
-        'content2':content2
+        'content2':content2,
+        'getYear':getYear,
     }
     print(getYear)
 
 
-    return render(request, 'activities/allumni.html', context)
+    return render(request, 'activities/allumni_content.html', context)
+
+
 
 
 def delete_sy(request, id):
@@ -854,6 +857,7 @@ def attendance_main(request):
         sectionx = sections.objects.all()
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+        # messages.info(request, 'Attendance Up to date')
 
     else:
         return redirect('/attendance_sections')
@@ -973,7 +977,8 @@ def update_attendance(request):
             extenduser.objects.filter(id=a).update(TD14='ABSENT')
         for a in td15A:
             extenduser.objects.filter(id=a).update(TD15='ABSENT')
-
+   
+        messages.info(request, 'Attendance Up to date')
     return redirect('/attendance_page')
 
 
@@ -1114,3 +1119,46 @@ def open_folder(request,section_created):
     }
 
     return render(request, 'activities/open_folder.html', context)
+
+def dropped(request):
+    current_datetime = datetime.datetime.now() 
+    userContent = User.objects.all()
+    sectionxx = extenduser.objects.all()
+    counts = extenduser.objects.filter(status='DROPPED').count()
+    counts1 = extenduser.objects.filter(status='DROPPED')
+    section = sections.objects.all()
+    section1 = sections.objects.all().count()
+    context = {
+        
+    'counts':counts,
+    'counts1':counts1,
+    'section':section,
+    'section1':section1,
+    'sectionxx':sectionxx,
+    'userContent':userContent,
+    'current_datetime':current_datetime,
+    }
+    return render (request, 'activities/dropped.html', context)
+
+def download3(request):
+    if request.method == 'POST':
+    
+        csvfile = extenduser.objects.filter(status='DROPPED')
+        response = HttpResponse(content_type='text/csv')  
+        print("CSV FILE ITO" + str(csvfile))
+        
+        response['Content-Disposition'] = 'attachment; filename="Drop list.csv"  '
+        writer = csv.writer(response)  
+        writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'NSTP COMPONENT', 'NSTP SECTION', 'STATUS'])  
+        for s in csvfile:  
+   
+            writer.writerow([s.idnumber, s.firstname, s.lastname, s.field, s.platoons, s.status])  
+    return response  
+
+
+def alumni_page(request):
+    school_years = school_year.objects.all()
+    context = {
+        'school_years':school_years
+    }
+    return render(request, 'activities/allumni.html', context)
