@@ -196,3 +196,33 @@ body {
 #cb3 {
     accent-color: #e74c3c;
 }
+
+.he {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adda {
+    width: 15%;
+    float: right !important;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+#dl {
+    height: 90%;
+    background-color: #006b86 !important;
+    border-color: transparent !important;
+}
+
+#adds {
+    height: 90%;
+    background-color: #727c00 !important;
+    border-color: transparent !important;
+}
+
+.ada {
+    float: left;
+}

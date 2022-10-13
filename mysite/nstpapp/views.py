@@ -3,6 +3,7 @@ import csv
 from distutils.command.build_scripts import first_line_re
 from pkgutil import extend_path
 from subprocess import IDLE_PRIORITY_CLASS
+from webbrowser import get
 from django.http import HttpResponseRedirect
 from django.http.request import QueryDict
 
@@ -738,17 +739,18 @@ def section_content(request):
 
 def download(request):
     if request.method == 'POST':
-        getSection = request.POST.get('cate')
-        csvfile = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+    
+        csvfile = extenduser.objects.filter(status='ENROLLED')
         response = HttpResponse(content_type='text/csv')  
         print("CSV FILE ITO" + str(csvfile))
-        print("CSV FILE ITO" + str(getSection))
-        response['Content-Disposition'] = 'attachment; filename="Student list.csv"'  
+        
+        response['Content-Disposition'] = 'attachment; filename="List.csv"  '
         writer = csv.writer(response)  
+        writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'NSTP COMPONENT', 'NSTP SECTION', 'STATUS'])  
         for s in csvfile:  
-            writer.writerow([s.idnumber, s.firstname])  
+   
+            writer.writerow([s.idnumber, s.firstname, s.lastname, s.field, s.platoons, s.status])  
     return response  
-
 def download1(request):
     if request.method == 'POST':
     
@@ -1162,3 +1164,19 @@ def alumni_page(request):
         'school_years':school_years
     }
     return render(request, 'activities/allumni.html', context)
+
+
+def download4(request):
+    if request.method == 'POST':
+        getSection = request.POST.get('cate')
+        csvfile = extenduser.objects.filter(status='ENROLLED').filter(platoons=getSection)
+        response = HttpResponse(content_type='text/csv')  
+        print("CSV FILE ITO" + str(csvfile))
+        
+        response['Content-Disposition'] = 'attachment; filename="Attendance.csv"  '
+        writer = csv.writer(response)  
+        writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'SIGNATURE', 'REMARKS'])  
+        for s in csvfile:  
+   
+            writer.writerow([s.idnumber, s.firstname, s.lastname])  
+    return response  
