@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.home-section {
+    position: relative;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.heads {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 0.9444152661064426) 56%);
+}
+
+.heads .text i {
+    vertical-align: middle;
+    color: #fb5800;
+}
+
+.count {
+    color: rgb(185, 2, 2);
+    font-size: 30px;
+    float: right;
+}
+
+.heads .text i {
+    vertical-align: middle;
+}
+
+.sidebar.open~.home-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.home-section .text {
+    /* background: #c51c39; */
+    display: inline-block;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 18px
+}
+
+.bg {
+    width: auto;
+    background-attachment: fixed;
+    /* background-image: url(../images/tupc2.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 18px;
+    height: auto;
+}
+
+
+/* own css */
+
+.overall {
+    padding: 10px;
+}
+
+.left {
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.886), 0 6px 20px 0 rgba(94, 94, 94, 0.837);
+    height: auto;
+    font-size: 15px;
+    padding: 10px;
+    /* background-color: white; */
+}
+
+.column {
+    float: left;
+    width: 20%;
+    padding: 5px;
+    padding-top: 20px;
+}
+
+
+/* Remove extra left and right margins, due to padding */
+
+.row {
+    margin: 0 -5px;
+    padding: 10px;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.tss {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.txt {
+    float: left;
+}
+
+.btn {
+    float: right;
+}
+
+#ro_logo {
+    width: 60px;
+    margin: auto;
+    font-size: 70px;
+}
+
+#new {
+    background-color: #78000a !important;
+    color: white;
+    height: 50px;
+    padding: 5px;
+}
+
+
+/* for modal only */
+
+.modal-title {
+    color: rgb(61, 61, 61);
+    font-weight: bolder;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #F7F7F7 !important;
+}

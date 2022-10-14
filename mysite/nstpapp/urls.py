@@ -100,6 +100,9 @@ urlpatterns = [
     path('download4/', views.download4, name='download4'),
     path('sample_attendance/', views.sample_attendance, name='sample_attendance'),
     path('create_td/', views.create_td, name='create_td'),
+    path('open_date/', views.open_date, name='open_date'),
+    path('open_sections/', views.open_sections, name='open_sections'),
+    path('all_sections/', views.all_sections, name='all_sections'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

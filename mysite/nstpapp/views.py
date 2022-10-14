@@ -1195,8 +1195,47 @@ def sample_attendance(request):
 def create_td(request):
     if request.method == 'POST':
         td = request.POST.get('td')
-        alls = training_day(td=td)
+        td_count = request.POST.get('td_count')
+        alls = training_day(td=td, td_count=td_count)
         alls.save()
         return redirect('/sample_attendance')
     return redirect('/sample_attendance')
-    
+
+def open_date(request):
+    section = sections.objects.all()
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        context = {
+            'date':date,
+            'section':section
+        }
+        return render(request, 'activities/open_date.html', context)
+    return render(request, 'activities/open_date.html')
+
+def all_sections(request):
+    all_section = sections.objects.all()
+    date = training_day.objects.all()
+    context = {
+        'all_section':all_section,
+        'date':[date.last()],
+    }
+    return render(request, 'activities/all_sections.html', context)
+
+def open_sections(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        date1 = request.POST.get('date1')
+        getSection = request.POST.get('getSection')
+        student = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        counts =  extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+        print(getSection)
+        print(date)
+        print(date1)
+        context = {
+            'date':date,
+            'getSection':getSection,
+            'student':student,
+            'counts':counts,
+            'date1':date1
+        }
+    return render(request, 'activities/open_sections.html', context)

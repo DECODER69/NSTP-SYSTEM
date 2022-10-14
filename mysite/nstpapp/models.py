@@ -98,6 +98,7 @@ class sections(models.Model):
     
 class training_day(models.Model):
     td = models.DateField(max_length=30, default='')
+    td_count = models.CharField(max_length=254, default='')
     def __str__(self):
         return self.td
     

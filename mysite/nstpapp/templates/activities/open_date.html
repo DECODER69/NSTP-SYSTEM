@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../../static/images/tup.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/admin_css/sample_attendance.css">
+    <title>Document</title>
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <section class="home-section">
+        <div class="heads">
+            <a href="/sample_attendance">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance &nbsp;|</h1>
+            </a>
+
+            <h1 class="text"><i class='bx bx-intersect'></i> SECTIONS
+            </h1>
+
+        </div><br>
+        <div class="bg">
+
+            <div class="overall">
+                <div class="left">
+                    <div class="tss">
+
+
+                        <div class="txt ">
+                            <h1 style="margin-left: 10px; font-size:25px; color:#000000; font-weight:bold;" id="mega">All Sections</h1>
+
+                        </div>
+                        <!-- <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD NEW SECTION</button> -->
+
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        {% for s in section %}
+                        <form action="{% url 'activities:open_sections'%}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %} {% if s.fiel == 'ROTC' %}
+                            <div class="card">
+                                <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
+                                <h5 class="title ">{{s.section_created}}</h5>
+                                <input type="hidden" name="date" id="" value="{{date}}">
+                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
+                                <button type="submit" class="btn btn-dark">Open</button><br>
+                                <p class="card-text"><small class="text-muted">Created for ROTC Only</small></p>
+                            </div>
+                            {% elif s.fiel == 'CWTS' %}
+                            <div class="card">
+                                <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
+                                <h5 class="title ">{{s.section_created}}</h5>
+                                <input type="hidden" name="date" id="" value="{{date}}">
+                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
+                                <button type="submit" class="btn btn-dark">Open</button><br>
+                                <p class="card-text"><small class="text-muted">Created for CWTS Only</small></p>
+                            </div>
+                            {% endif %}
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="../../static/images/tup.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,11 +32,15 @@
                             <label for="message-text" class="col-form-label">Add date</label>
                             <input type="date" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="td" required>
                         </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Training day count</label>
+                            <input type="number" class="form-control" id="message-text" placeholder="Ex: 1" name="td_count" required>
+                        </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
+                    <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
                 </div>
                 </form>
             </div>
@@ -50,8 +55,6 @@
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance &nbsp;|</h1>
             </a>
 
-            <h1 class="text"><i class='bx bx-intersect'></i>
-            </h1>
 
         </div>
         <div class="bg">
@@ -73,12 +76,13 @@
 
                     <div class="row">
                         {% for s in date %}
-                        <form action="{% url 'activities:allumni_content' %}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:open_date' %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
                                 <i class='bx bxs-calendar-check' id="ro_logo"></i>
                                 <h5 class="title">{{s.td}}</h5>
-                                <input type="hidden" value="{{s.years}}" name="getYear"><br>
+                                <input type="hidden" value="{{s.td}}" name="date">
+                                <p>Training day {{s.td_count}}</p>
                                 <button type="submit" class="btn btn-dark">Open</button>
 
                             </div>
