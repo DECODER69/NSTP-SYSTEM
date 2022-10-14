@@ -42,7 +42,7 @@ from datetime import timedelta
 import datetime
 
 
-
+import pandas as pd
 #   PAGE SHOWING
 def index(request):
     return render(request, 'activities/landing.html')
@@ -1180,3 +1180,23 @@ def download4(request):
    
             writer.writerow([s.idnumber, s.firstname, s.lastname])  
     return response  
+
+def sample_attendance(request):
+    
+
+    date = training_day.objects.all()
+
+    context = {
+        'date':date
+    }
+
+    return render(request, 'activities/sample_attendance.html', context)
+
+def create_td(request):
+    if request.method == 'POST':
+        td = request.POST.get('td')
+        alls = training_day(td=td)
+        alls.save()
+        return redirect('/sample_attendance')
+    return redirect('/sample_attendance')
+    

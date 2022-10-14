@@ -97,13 +97,9 @@ class sections(models.Model):
     section_created = models.CharField(max_length=20, default='', primary_key=True)
     
 class training_day(models.Model):
-    title =  models.CharField(max_length=20, default='')
-
-
-    
-
+    td = models.DateField(max_length=30, default='')
     def __str__(self):
-        return self.title
+        return self.td
     
 class Announcement(models.Model):
     assign = models.CharField(max_length=20, default='')

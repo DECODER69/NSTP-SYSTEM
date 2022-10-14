@@ -25,6 +25,8 @@ body {
 }
 
 .heads {
+    justify-content: space-between;
+    display: flex;
     background: rgb(0, 0, 0);
     background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 0.9444152661064426) 56%);
 }
