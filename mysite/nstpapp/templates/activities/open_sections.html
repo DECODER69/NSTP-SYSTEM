@@ -57,8 +57,7 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:rec_attendance' %}" method="post">
-
+                    <form action="{% url 'activities:rec_attendance' %}" method="POST">
                         {% csrf_token %}
                         <table id="myTable" class="table table-bordered table-hover ">
                             <thead class="thead">
@@ -73,9 +72,9 @@
                                     <th scope="col">CHECK</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 {% for s in student %}
-
                                 <tr>
                                     <td>{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
@@ -91,19 +90,22 @@
 
 
                                     <td style="text-align: center;">
-                                        <input type="checkbox" name="ids" id="check" value="{{s.id}}">
-                                        <input type="hidden" value="{{date1}}" name="check1">
-                                        <input type="hidden" value="{{date0}}" name="check0">
+                                        {% if s.TD1 != '' %}
+                                        <input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> {% else %}
+                                        <input type="checkbox" name="id4" id="check" value="{{s.id}}"> {% endif %}
                                     </td>
-
-
                                 </tr>
                                 {% endfor %}
-                                <button type="submit" class="btn btn-dark">Save</button>
-
                             </tbody>
+                            <input type="hidden" value="{{date1}}" name="check1">
+                            <input type="hidden" value="{{date0}}" name="check0">
+                            <input type="hidden" value="{{td_count}}" name="td_count">
+
                         </table>
+
+                        <button type="submit" class="btn btn-dark" id="save">Save</button>
                     </form>
+
                 </div>
             </div>
             <br>
@@ -127,6 +129,33 @@
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        $('.btn-dark').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able edit this after saving\nPlease double check it\nThank you",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: 'maroon',
+
+                confirmButtonText: 'Save it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Done',
+                        'Saved.',
+                        'success'
+                    )
+                    location.href = self.attr('href="/all_sections"')
+                }
+            })
+        })
+    </script> -->
 
 </body>
 

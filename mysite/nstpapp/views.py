@@ -2,6 +2,7 @@ from dataclasses import field
 import csv
 from distutils.command.build_scripts import first_line_re
 from genericpath import exists
+
 from pkgutil import extend_path
 import re
 from subprocess import IDLE_PRIORITY_CLASS
@@ -1176,14 +1177,109 @@ def download5(request):
 def rec_attendance(request):
     if request.method == 'POST':
         td_count = request.POST.get('td_count')
-        ids = request.POST.getlist('ids')
+        ids = request.POST.getlist('id4')
+        
         date1 = request.POST.get('check1')
         date0 = request.POST.get('check0')
         print("date 0 ito " +str(date0))
         print("date 1 ito " +str(date1))
-        print("id to " + str(ids))
-        # if date1 is not None:
-        return redirect('/all_sections')
+        if date0:
+            if td_count == str(1):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD1=date0)
+            elif td_count == str(2):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD2=date0)
+            elif td_count == str(3):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD3=date0)
+            elif td_count == str(4):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD4=date0)
+            elif td_count == str(5):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD5=date0)
+            elif td_count == str(6):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD6=date0)
+            elif td_count == str(7):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD7=date0)
+            elif td_count == str(8):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD8=date0)
+            elif td_count == str(9):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD9=date0)
+            elif td_count == str(10):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD10=date0)
+            elif td_count == str(11):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD11=date0)
+            elif td_count == str(12):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD12=date0)
+            elif td_count == str(13):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD13=date0)
+            elif td_count == str(14):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD14=date0)
+            elif td_count == str(15):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD15=date0)
+                    
+        elif date1:
+            if td_count == str(1):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD1=date1)
+            elif td_count == str(2):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD2=date0)
+            elif td_count == str(3):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD3=date0)
+            elif td_count == str(4):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD4=date0)
+            elif td_count == str(5):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD5=date0)
+            elif td_count == str(6):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD6=date0)
+            elif td_count == str(7):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD7=date0)
+            elif td_count == str(8):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD8=date0)
+            elif td_count == str(9):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD9=date0)
+            elif td_count == str(10):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD10=date0)
+            elif td_count == str(11):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD11=date0)
+            elif td_count == str(12):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD12=date0)
+            elif td_count == str(13):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD13=date0)
+            elif td_count == str(14):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD14=date0)
+            elif td_count == str(15):
+                for i in ids:
+                    extenduser.objects.filter(id=i).update(TD15=date0)
+                    
+
+
+        
     return redirect('/all_sections')
 
 
@@ -1230,9 +1326,11 @@ def update_attendance(request):
 
         for s in td1:
             extenduser.objects.filter(id=s).update(TD1='PRESENT')
+            print(s)
         
         for s in td2:
             extenduser.objects.filter(id=s).update(TD2='PRESENT')
+            print(s)
         
         for s in td3:
             extenduser.objects.filter(id=s).update(TD3='PRESENT')

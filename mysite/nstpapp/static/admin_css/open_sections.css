@@ -166,3 +166,10 @@ h1 {
     height: 20px;
     margin: auto;
 }
+
+#save {
+    width: 30%;
+    background-color: #114d4e !important;
+    float: right !important;
+    margin-right: 200px !important;
+}
