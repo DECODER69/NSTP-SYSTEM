@@ -97,7 +97,7 @@ class sections(models.Model):
     section_created = models.CharField(max_length=20, default='', primary_key=True)
     
 class training_day(models.Model):
-    td = models.DateField(max_length=30, default='')
+    td = models.DateField(blank= True,null=True)
     td_count = models.CharField(max_length=254, default='')
     def __str__(self):
         return self.td

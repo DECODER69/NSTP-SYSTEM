@@ -39,12 +39,13 @@
                         <div class="ada">
                             <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
                             <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{counts}} Student/s</p1><br>
-                            <p>{{date1}}</p>
-                            <p>{{date}}</p>
+                            <p>date 1 {{date1}}</p>
+                            <p>date 0 {{date0}}</p>
+                            <p>{{td_count}}</p>
                         </div>
 
                         <div class="adda">
-                            <form action="{% url 'activities:download' %}" method="POST">
+                            <form action="{% url 'activities:download5' %}" method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{getSection}}" name="cate">
                                 <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
@@ -56,42 +57,53 @@
 
                     </div>
                     <br>
-                    <table id="myTable" class="table table-bordered table-hover ">
-                        <thead class="thead">
-                            <tr>
-                                <th scope="col">ID NUMBER</th>
-                                <th scope="col">FULL NAME</th>
-                                <th scope="col">EMAIL</th>
+                    <form action="{% url 'activities:rec_attendance' %}" method="post">
 
-                                <th scope="col">COURSE</th>
-                                <th scope="col">FIELD</th>
-                                <th scope="col">SECTION</th>
-                                <th scope="col">CHECK</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for s in student %}
-                            <tr>
-                                <td>{{s.idnumber}}</td>
-                                <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                <td>{{s.email}}</td>
+                        {% csrf_token %}
+                        <table id="myTable" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">ID NUMBER</th>
+                                    <th scope="col">FULL NAME</th>
+                                    <th scope="col">EMAIL</th>
 
-                                <td>{{s.section}}</td>
-                                {% if s.field == 'ROTC' %}
-                                <td style="color:red; font-weight:bolder;">{{s.field}}</td>
-                                {% elif s.field == 'CWTS' %}
-                                <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
-                                {% endif %}
-                                <td>{{s.platoons}}</td>
-                                <td style="text-align: center;">
-                                    <input type="checkbox" name="check" id="check">
-                                </td>
+                                    <th scope="col">COURSE</th>
+                                    <th scope="col">FIELD</th>
+                                    <th scope="col">SECTION</th>
+                                    <th scope="col">CHECK</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in student %}
 
-                            </tr>
+                                <tr>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                    <td>{{s.email}}</td>
 
-                            {% empty %} {% endfor %}
-                        </tbody>
-                    </table>
+                                    <td>{{s.section}}</td>
+                                    {% if s.field == 'ROTC' %}
+                                    <td style="color:red; font-weight:bolder;">{{s.field}}</td>
+                                    {% elif s.field == 'CWTS' %}
+                                    <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
+                                    {% endif %}
+                                    <td>{{s.platoons}}</td>
+
+
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" name="ids" id="check" value="{{s.id}}">
+                                        <input type="hidden" value="{{date1}}" name="check1">
+                                        <input type="hidden" value="{{date0}}" name="check0">
+                                    </td>
+
+
+                                </tr>
+                                {% endfor %}
+                                <button type="submit" class="btn btn-dark">Save</button>
+
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
             <br>

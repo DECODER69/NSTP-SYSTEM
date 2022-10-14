@@ -31,7 +31,9 @@
 
                         <div class="txt ">
                             <h1 style="margin-left: 10px; font-size:25px; color:#000000; font-weight:bold;" id="mega">All Sections</h1>
-
+                            {% for s in date %}
+                            <p>{{s.td}}</p>
+                            {% endfor %}
                         </div>
                         <!-- <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD NEW SECTION</button> -->
 
@@ -47,7 +49,9 @@
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
-                                {% for s in date %}
+
+                                {% for s in td_count %}
+                                <input type="hidden" value="{{s.td_count}}" name="td_count"> {% endfor %} {% for s in date %}
                                 <input type="hidden" name="date1" id="" value="{{s.td}}"> {% endfor %}
                                 <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
                                 <button type="submit" class="btn btn-dark">Open</button><br>
@@ -57,7 +61,8 @@
                             <div class="card">
                                 <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
-                                {% for s in date %}
+                                {% for s in td_count %}
+                                <input type="hidden" value="{{s.td_count}}" name="td_count"> {% endfor %} {% for s in date %}
                                 <input type="hidden" name="date1" id="" value="{{s.td}}"> {% endfor %}
                                 <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
                                 <button type="submit" class="btn btn-dark">Open</button><br>

@@ -1,7 +1,9 @@
 from dataclasses import field
 import csv
 from distutils.command.build_scripts import first_line_re
+from genericpath import exists
 from pkgutil import extend_path
+import re
 from subprocess import IDLE_PRIORITY_CLASS
 from webbrowser import get
 from django.http import HttpResponseRedirect
@@ -878,110 +880,6 @@ def attendance_main(request):
 
 
 
-def update_attendance(request):
-    if request.method == 'POST':
-        # presents
-        td1 = request.POST.getlist('td1[]')
-        td2 = request.POST.getlist('td2[]')
-        td3 = request.POST.getlist('td3[]')
-        td4 = request.POST.getlist('td4[]')
-        td5 = request.POST.getlist('td5[]')
-        td6 = request.POST.getlist('td6[]')
-        td7 = request.POST.getlist('td7[]')
-        td8 = request.POST.getlist('td8[]')
-        td9 = request.POST.getlist('td9[]')
-        td10 = request.POST.getlist('td10[]')
-        td11 = request.POST.getlist('td11[]')
-        td12 = request.POST.getlist('td12[]')
-        td13 = request.POST.getlist('td13[]')
-        td14 = request.POST.getlist('td14[]')
-        td15 = request.POST.getlist('td15[]')
-        
-        # ABSENTS
-        td1A = request.POST.getlist('td1A[]')
-        td2A = request.POST.getlist('td2A[]')
-        td3A = request.POST.getlist('td3A[]')
-        td4A = request.POST.getlist('td4A[]')
-        td5A = request.POST.getlist('td5A[]')
-        td6A = request.POST.getlist('td6A[]')
-        td7A = request.POST.getlist('td7A[]')
-        td8A = request.POST.getlist('td8A[]')
-        td9A = request.POST.getlist('td9A[]')
-        td10A = request.POST.getlist('td10A[]')
-        td11A = request.POST.getlist('td11A[]')
-        td12A = request.POST.getlist('td12A[]')
-        td13A = request.POST.getlist('td13A[]')
-        td14A = request.POST.getlist('td14A[]')
-        td15A = request.POST.getlist('td15A[]')
-
-        for s in td1:
-            extenduser.objects.filter(id=s).update(TD1='PRESENT')
-        
-        for s in td2:
-            extenduser.objects.filter(id=s).update(TD2='PRESENT')
-        
-        for s in td3:
-            extenduser.objects.filter(id=s).update(TD3='PRESENT')
-        for s in td4:
-            extenduser.objects.filter(id=s).update(TD4='PRESENT')
-        for s in td5:
-            extenduser.objects.filter(id=s).update(TD5='PRESENT')
-        for s in td6:
-            extenduser.objects.filter(id=s).update(TD6='PRESENT')
-
-        for s in td7:
-            extenduser.objects.filter(id=s).update(TD7='PRESENT')
-        for s in td8:
-            extenduser.objects.filter(id=s).update(TD8='PRESENT')
-        for s in td9:
-            extenduser.objects.filter(id=s).update(TD9='PRESENT')
-        for s in td10:
-            extenduser.objects.filter(id=s).update(TD10='PRESENT')
-        for s in td11:
-            extenduser.objects.filter(id=s).update(TD11='PRESENT')
-        for s in td12:
-            extenduser.objects.filter(id=s).update(TD12='PRESENT')
-        for s in td13:
-            extenduser.objects.filter(id=s).update(TD13='PRESENT')
-        for s in td14:
-            extenduser.objects.filter(id=s).update(TD14='PRESENT')
-        for s in td15:
-            extenduser.objects.filter(id=s).update(TD15='PRESENT')
-            
-            # ABSENNNNNNNNT
-        for a in td1A:
-            extenduser.objects.filter(id=a).update(TD1='ABSENT')
-        for a in td2A:
-            extenduser.objects.filter(id=a).update(TD2='ABSENT')
-        for a in td3A:
-            extenduser.objects.filter(id=a).update(TD3='ABSENT')
-        for a in td4A:
-            extenduser.objects.filter(id=a).update(TD4='ABSENT')
-        for a in td5A:
-            extenduser.objects.filter(id=a).update(TD5='ABSENT')
-        for a in td6A:
-            extenduser.objects.filter(id=a).update(TD6='ABSENT')
-        for a in td7A:
-            extenduser.objects.filter(id=a).update(TD7='ABSENT')
-        for a in td8A:
-            extenduser.objects.filter(id=a).update(TD8='ABSENT')
-        for a in td9A:
-            extenduser.objects.filter(id=a).update(TD9='ABSENT')
-        for a in td10A:
-            extenduser.objects.filter(id=a).update(TD10='ABSENT')
-        for a in td11A:
-            extenduser.objects.filter(id=a).update(TD11='ABSENT')
-        for a in td12A:
-            extenduser.objects.filter(id=a).update(TD12='ABSENT')
-        for a in td13A:
-            extenduser.objects.filter(id=a).update(TD13='ABSENT')
-        for a in td14A:
-            extenduser.objects.filter(id=a).update(TD14='ABSENT')
-        for a in td15A:
-            extenduser.objects.filter(id=a).update(TD15='ABSENT')
-   
-        messages.info(request, 'Attendance Up to date')
-    return redirect('/attendance_page')
 
 
 
@@ -1196,18 +1094,27 @@ def create_td(request):
     if request.method == 'POST':
         td = request.POST.get('td')
         td_count = request.POST.get('td_count')
-        alls = training_day(td=td, td_count=td_count)
-        alls.save()
-        return redirect('/sample_attendance')
+        if training_day.objects.filter(td=td).exists():
+            messages.error(request, 'Training Day already exists ' +str(td))
+            return redirect('/sample_attendance')
+        elif training_day.objects.filter(td_count =td_count).exists():
+            messages.error(request, 'Training Day count exists ' +str(td_count))
+            return redirect('/sample_attendance')
+        else:
+            alls = training_day(td=td, td_count=td_count)
+            alls.save()
+            return redirect('/sample_attendance')
     return redirect('/sample_attendance')
 
 def open_date(request):
     section = sections.objects.all()
     if request.method == 'POST':
+        td_count = request.POST.get('td_count')
         date = request.POST.get('date')
         context = {
             'date':date,
-            'section':section
+            'section':section,
+            'td_count':td_count
         }
         return render(request, 'activities/open_date.html', context)
     return render(request, 'activities/open_date.html')
@@ -1215,27 +1122,177 @@ def open_date(request):
 def all_sections(request):
     all_section = sections.objects.all()
     date = training_day.objects.all()
+    td_count = training_day.objects.all()
     context = {
         'all_section':all_section,
         'date':[date.last()],
+        'td_count':[td_count.last()],
     }
     return render(request, 'activities/all_sections.html', context)
 
 def open_sections(request):
     if request.method == 'POST':
-        date = request.POST.get('date')
+        td_count = request.POST.get('td_count')
+        date0 = request.POST.get('date')
         date1 = request.POST.get('date1')
         getSection = request.POST.get('getSection')
+
         student = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         counts =  extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
         print(getSection)
-        print(date)
+        print(date0)
         print(date1)
         context = {
-            'date':date,
+            'date0':date0,
             'getSection':getSection,
             'student':student,
             'counts':counts,
-            'date1':date1
+            'date1':date1,
+            'td_count':td_count
+          
         }
     return render(request, 'activities/open_sections.html', context)
+    
+def del_tday(request, id):
+
+    training_day.objects.filter(id=id).delete()
+    return redirect('/sample_attendance')
+
+def download5(request):
+    if request.method == 'POST':
+        getSection = request.POST.get('cate')
+        csvfile = extenduser.objects.filter(status='ENROLLED').filter(platoons=getSection)
+        response = HttpResponse(content_type='text/csv')  
+        print("CSV FILE ITO" + str(csvfile))
+        
+        response['Content-Disposition'] = 'attachment; filename="Attendance.csv"  '
+        writer = csv.writer(response)  
+        writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'SIGNATURE', 'REMARKS'])  
+        for s in csvfile:  
+   
+            writer.writerow([s.idnumber, s.firstname, s.lastname])  
+    return response  
+
+def rec_attendance(request):
+    if request.method == 'POST':
+        td_count = request.POST.get('td_count')
+        ids = request.POST.getlist('ids')
+        date1 = request.POST.get('check1')
+        date0 = request.POST.get('check0')
+        print("date 0 ito " +str(date0))
+        print("date 1 ito " +str(date1))
+        print("id to " + str(ids))
+        # if date1 is not None:
+        return redirect('/all_sections')
+    return redirect('/all_sections')
+
+
+
+
+
+
+
+def update_attendance(request):
+    if request.method == 'POST':
+        # presents
+        td1 = request.POST.getlist('td1[]')
+        td2 = request.POST.getlist('td2[]')
+        td3 = request.POST.getlist('td3[]')
+        td4 = request.POST.getlist('td4[]')
+        td5 = request.POST.getlist('td5[]')
+        td6 = request.POST.getlist('td6[]')
+        td7 = request.POST.getlist('td7[]')
+        td8 = request.POST.getlist('td8[]')
+        td9 = request.POST.getlist('td9[]')
+        td10 = request.POST.getlist('td10[]')
+        td11 = request.POST.getlist('td11[]')
+        td12 = request.POST.getlist('td12[]')
+        td13 = request.POST.getlist('td13[]')
+        td14 = request.POST.getlist('td14[]')
+        td15 = request.POST.getlist('td15[]')
+        
+        # ABSENTS
+        td1A = request.POST.getlist('td1A[]')
+        td2A = request.POST.getlist('td2A[]')
+        td3A = request.POST.getlist('td3A[]')
+        td4A = request.POST.getlist('td4A[]')
+        td5A = request.POST.getlist('td5A[]')
+        td6A = request.POST.getlist('td6A[]')
+        td7A = request.POST.getlist('td7A[]')
+        td8A = request.POST.getlist('td8A[]')
+        td9A = request.POST.getlist('td9A[]')
+        td10A = request.POST.getlist('td10A[]')
+        td11A = request.POST.getlist('td11A[]')
+        td12A = request.POST.getlist('td12A[]')
+        td13A = request.POST.getlist('td13A[]')
+        td14A = request.POST.getlist('td14A[]')
+        td15A = request.POST.getlist('td15A[]')
+
+        for s in td1:
+            extenduser.objects.filter(id=s).update(TD1='PRESENT')
+        
+        for s in td2:
+            extenduser.objects.filter(id=s).update(TD2='PRESENT')
+        
+        for s in td3:
+            extenduser.objects.filter(id=s).update(TD3='PRESENT')
+        for s in td4:
+            extenduser.objects.filter(id=s).update(TD4='PRESENT')
+        for s in td5:
+            extenduser.objects.filter(id=s).update(TD5='PRESENT')
+        for s in td6:
+            extenduser.objects.filter(id=s).update(TD6='PRESENT')
+
+        for s in td7:
+            extenduser.objects.filter(id=s).update(TD7='PRESENT')
+        for s in td8:
+            extenduser.objects.filter(id=s).update(TD8='PRESENT')
+        for s in td9:
+            extenduser.objects.filter(id=s).update(TD9='PRESENT')
+        for s in td10:
+            extenduser.objects.filter(id=s).update(TD10='PRESENT')
+        for s in td11:
+            extenduser.objects.filter(id=s).update(TD11='PRESENT')
+        for s in td12:
+            extenduser.objects.filter(id=s).update(TD12='PRESENT')
+        for s in td13:
+            extenduser.objects.filter(id=s).update(TD13='PRESENT')
+        for s in td14:
+            extenduser.objects.filter(id=s).update(TD14='PRESENT')
+        for s in td15:
+            extenduser.objects.filter(id=s).update(TD15='PRESENT')
+            
+            # ABSENNNNNNNNT
+        for a in td1A:
+            extenduser.objects.filter(id=a).update(TD1='ABSENT')
+        for a in td2A:
+            extenduser.objects.filter(id=a).update(TD2='ABSENT')
+        for a in td3A:
+            extenduser.objects.filter(id=a).update(TD3='ABSENT')
+        for a in td4A:
+            extenduser.objects.filter(id=a).update(TD4='ABSENT')
+        for a in td5A:
+            extenduser.objects.filter(id=a).update(TD5='ABSENT')
+        for a in td6A:
+            extenduser.objects.filter(id=a).update(TD6='ABSENT')
+        for a in td7A:
+            extenduser.objects.filter(id=a).update(TD7='ABSENT')
+        for a in td8A:
+            extenduser.objects.filter(id=a).update(TD8='ABSENT')
+        for a in td9A:
+            extenduser.objects.filter(id=a).update(TD9='ABSENT')
+        for a in td10A:
+            extenduser.objects.filter(id=a).update(TD10='ABSENT')
+        for a in td11A:
+            extenduser.objects.filter(id=a).update(TD11='ABSENT')
+        for a in td12A:
+            extenduser.objects.filter(id=a).update(TD12='ABSENT')
+        for a in td13A:
+            extenduser.objects.filter(id=a).update(TD13='ABSENT')
+        for a in td14A:
+            extenduser.objects.filter(id=a).update(TD14='ABSENT')
+        for a in td15A:
+            extenduser.objects.filter(id=a).update(TD15='ABSENT')
+   
+        messages.info(request, 'Attendance Up to date')
+    return redirect('/attendance_page')

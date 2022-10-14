@@ -31,7 +31,7 @@
 
                         <div class="txt ">
                             <h1 style="margin-left: 10px; font-size:25px; color:#000000; font-weight:bold;" id="mega">All Sections</h1>
-
+                            {{date}} <br> {{td_count}}
                         </div>
                         <!-- <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD NEW SECTION</button> -->
 
@@ -48,6 +48,7 @@
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
                                 <input type="hidden" name="date" id="" value="{{date}}">
+                                <input type="hidden" value="{{td_count}}" name="td_count">
                                 <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
                                 <button type="submit" class="btn btn-dark">Open</button><br>
                                 <p class="card-text"><small class="text-muted">Created for ROTC Only</small></p>
@@ -57,6 +58,7 @@
                                 <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
                                 <input type="hidden" name="date" id="" value="{{date}}">
+                                <input type="hidden" value="{{td_count}}" name="td_count">
                                 <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
                                 <button type="submit" class="btn btn-dark">Open</button><br>
                                 <p class="card-text"><small class="text-muted">Created for CWTS Only</small></p>

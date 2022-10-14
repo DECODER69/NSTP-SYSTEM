@@ -40,6 +40,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
                     <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
                 </div>
                 </form>
@@ -83,11 +84,17 @@
                                 <h5 class="title">{{s.td}}</h5>
                                 <input type="hidden" value="{{s.td}}" name="date">
                                 <p>Training day {{s.td_count}}</p>
-                                <button type="submit" class="btn btn-dark">Open</button>
+                                <div class="multi">
+                                    <input type="hidden" value="{{s.td_count}}" name="td_count">
+                                    <button type="submit" class="btn btn-info" id="sub">Open</button>
+                                    <a href="/del_tday/{{s.id}}" class="btn btn-dark" id="del"><i class='bx bx-trash'></i> </a>
+                                </div>
+
 
                             </div>
-
                         </form>
+                        {% empty %}
+                        <p1 style="text-align: center; margin:auto;">No Training Day Created <i class='bx bx-sad'></i></p1>
                         {% endfor %}
                     </div>
 
@@ -97,8 +104,42 @@
             </div>
         </div>
     </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>  -->
 
+    <script>
+        $('.btn-dark').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
 
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
 
 
 

@@ -151,3 +151,19 @@ body {
     text-align: center;
     background-color: #F7F7F7 !important;
 }
+
+.multi {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#sub {
+    width: 70%;
+}
+
+#del {
+    background-color: #78000a!important;
+    border: none;
+}
