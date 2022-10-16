@@ -969,10 +969,10 @@ def generate(request):
         sys1 = school_year.objects.filter(years=years)
         section = request.POST.get('section')
         details = certification.objects.all()
-        yyy =  extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
-        namess = extenduser.objects.filter(s_year=years).filter(status='ENROLLED')
+        yyy =  extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
+        namess = extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
         print(section)
-        print(years)
+        print("pogi"+str(years))
         
         context = {
             'yyy':yyy,
