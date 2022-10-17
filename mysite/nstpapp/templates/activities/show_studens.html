@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attendance peoples</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/attendance_main.css">
+    <!-- pagination css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+
+
+
+    <section class="home-section">
+        <div class="heads">
+            <a href="/sample_attendance">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance &nbsp;|</h1>
+            </a>
+
+            {% comment %}
+            <a href="/attendance_sections">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Sections &nbsp;|</h1>
+            </a> {% endcomment %}
+
+            <h1 class="text"><i class='bx bx-star'></i> {{getSection}}</h1>
+        </div>
+        <div class="bg">
+            <div class="inside">
+
+                <div class="table-responsive">
+
+                    <div class="he">
+
+                        <div class="ada">
+                            <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
+                            <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{content33}} Student/s</p1><br>
+                        </div>
+
+                        <div class="adda">
+                            <form action="{% url 'activities:download4' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form><br>
+                            <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="platoon">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Add Student</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                    <div class="reports">
+
+                    </div>
+                    <br>
+                    <!-- <form action="{% url 'activities:update_attendance' %}" method="POST"> -->
+                    {% csrf_token %}
+                    <table id="myTable" class="table table-bordered table-hover ">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">ID NUMBER</th>
+                                <th scope="col">FULL NAME</th>
+
+                                <th scope="col">TD1</th>
+
+                                <th scope="col">TD2</th>
+                                <th scope="col">TD3</th>
+                                <th scope="col">TD4</th>
+                                <th scope="col">TD5</th>
+                                <th scope="col">TD6</th>
+                                <th scope="col">TD7</th>
+                                <th scope="col">TD8</th>
+                                <th scope="col">TD9</th>
+                                <th scope="col">TD10</th>
+                                <th scope="col">TD11</th>
+                                <th scope="col">TD12</th>
+                                <th scope="col">TD13</th>
+                                <th scope="col">TD14</th>
+                                <th scope="col">TD15</th>
+
+
+
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for s in content3 %}
+                            <tr>
+
+                                <td>{{s.idnumber}}</td>
+
+                                <td>
+
+                                    {{s.firstname}} {{s.middlename}} {{s.lastname}}
+
+
+                                </td>
+                                <td>
+
+                                    {% if s.TD1 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD1}}</p1>
+                                    {% elif s.TD1 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD1}}</p1>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+
+                                    {% if s.TD2 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD2}}</p1>
+                                    {% elif s.TD2 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD2}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD3 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD3}}</p1>
+                                    {% elif s.TD3 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD3}}</p1>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+
+                                    {% if s.TD4 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD4}}</p1>
+                                    {% elif s.TD4 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+
+                                    <p1 class="present">{{s.TD4}}</p1>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+
+                                    {% if s.TD5 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD5}}</p1>
+                                    {% elif s.TD5 == '' %}
+                                    <p1></p1>
+
+                                    {% else %}
+                                    <p1 class="present">{{s.TD5}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD6 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD6}}</p1>
+                                    {% elif s.TD6 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD6}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD7 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD7}}</p1>
+                                    {% elif s.TD7 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD7}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD8 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD8}}</p1>
+                                    {% elif s.TD8 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD8}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD9 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD9}}</p1>
+                                    {% elif s.TD9 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD9}}</p1>
+                                    {% endif %}
+                                </td>
+
+                                <td>
+
+                                    {% if s.TD10 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD10}}</p1>
+                                    {% elif s.TD10 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD10}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD11 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD11}}</p1>
+                                    {% elif s.TD11 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD11}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD12 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD12}}</p1>
+                                    {% elif s.TD12 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD12}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD13 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD13}}</p1>
+                                    {% elif s.TD13 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD13}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD14 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD14}}</p1>
+                                    {% elif s.TD14 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD14}}</p1>
+                                    {% endif %}
+                                </td>
+                                <td>
+
+                                    {% if s.TD15 == 'ABSENT' %}
+                                    <p1 class="absent">{{s.TD15}}</p1>
+                                    {% elif s.TD15 == '' %}
+                                    <p1></p1>
+                                    {% else %}
+                                    <p1 class="present">{{s.TD15}}</p1>
+                                    {% endif %}
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+
+
+                        </tbody>
+
+
+
+                    </table>
+                    <!-- <input type="hidden" value="PRESENT" name="vals">
+                    <button type="submit" class="btn btn-success" style="width:100%; height:40px; font-size:15px;">Save</button> -->
+                    <!-- </form> -->
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> -->
+
+
+    <!-- <script>
+        $('#td1').click(function(event) {
+            if (this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+    </script> -->
+    {% comment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> {% endcomment %} {% comment %}
+    <script>
+        $("th input[type='checkbox']").on("change", function() {
+            var cb = $(this), //checkbox that was changed
+                th = cb.parent(), //get parent th
+                col = th.index() + 1; //get column index. note nth-child starts at 1, not zero
+            $("tbody td:nth-child(" + col + ") input").prop("checked", this.checked); //select the inputs and [un]check it
+        });
+    </script> {% endcomment %}
+
+
+
+
+</body>
+
+</html>

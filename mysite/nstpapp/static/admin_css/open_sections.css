@@ -162,9 +162,18 @@ h1 {
 }
 
 #check {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin: auto;
+}
+
+#check1 {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    background-color: red;
+    border: 2px red;
+    color: red !important;
 }
 
 #save {
