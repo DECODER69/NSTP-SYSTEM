@@ -40,15 +40,14 @@ body {
     width: calc(100% - 250px);
 }
 
-
-/* .home-section .text {
-    background: #c51c39;
+.home-section .text {
+    /* background: #c51c39; */
     display: inline-block;
     color: #ffffff;
     font-size: 20px;
     font-weight: 500;
     margin: 18px
-} */
+}
 
 .bg {
     background-attachment: fixed;
@@ -360,14 +359,6 @@ td textarea:hover {
 }
 
 @media screen and (min-width:1366px) and (max-width:1920px) {
-    .home-section .text {
-        /* background: #c51c39; */
-        display: inline-block;
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 500;
-        margin: 18px
-    }
     .container-fluid {
         height: auto;
         width: 100%;

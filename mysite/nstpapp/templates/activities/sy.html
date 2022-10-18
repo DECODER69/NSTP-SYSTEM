@@ -9,9 +9,9 @@
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/sy.css">
     <!-- pagination css -->
- <!-- for table pagination -->
- <link rel="stylesheet" href="../../static/admin_css/minmin.css">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- for table pagination -->
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 
 <body>
@@ -77,17 +77,22 @@
                 </div>
                 <br>
                 <div class="form-group" id="fgroup">
+                    <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar-check'  style="vertical-align: midddle;"></i>Enrollment options</label><br>&nbsp;<br>
+
+                </div>
+                <br>
+                <div class="form-group" id="fgroup">
                     <form action="{% url 'activities:update_sy' %}" method="POST">
                         {% csrf_token %}
-                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-info-circle' style="vertical-align: midddle;"></i> School Year Status </label>
+                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-info-circle' style="vertical-align: midddle;"></i> Term </label>
                         <div class="hold">
                             {% for s in s_years %}
                             <div class="sh" style="width: 100%;">
                                 <select name="status" id="statuss" class="form-control">
-                                    <option value="{{s.status}}" selected >{{s.status}}</option>
-                                    <option value="OPEN">OPEN</option>
-                                    <option value="CLOSED">CLOSED</option>
-                                    <option value="ENDED">ENDED</option>
+                                    <option value="{{s.sem}}" selected >{{s.sem}}</option>
+                                    <option value="First Term">First Term</option>
+                                    <option value="Second Term">Second term</option>
+                                    
                                 </select>
                                 <div class="sh2" style="width: 10%; margin:auto;">
                                     {% if s.status == 'OPEN' %}
@@ -105,7 +110,7 @@
 
                         <br>
 
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Status</button>
+                        <button type="submit" class="btn btn-primary"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Semester</button>
                     </form>
 
 
@@ -176,13 +181,13 @@
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>
+    </script> -->
 
     <script>
         $('.btn-danger').on('click', function(e) {
