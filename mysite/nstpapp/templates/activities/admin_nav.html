@@ -99,13 +99,13 @@
             <br> -->
             <li>
                 <a href="/sample_attendance">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Setting</span>
+                    <i class='bx bx-file'></i>
+                    <span class="links_name">Attendance</span>
                 </a>
-                <span class="tooltip">Setting</span>
+                <span class="tooltip">Attendance</span>
             </li>
             <br>&nbsp;<br>
-            <li>
+            <li id="logout">
                 <a href="/logout_student">
                     <i class='bx bx-power-off'></i>
                     <span class="links_name">Logout</span>
@@ -128,10 +128,7 @@
             menuBtnChange(); //calling the function(optional)
         });
 
-        searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
+
 
         // following are the code to change sidebar button(optional)
         function menuBtnChange() {

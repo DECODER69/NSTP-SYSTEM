@@ -132,11 +132,19 @@ body {
 }
 
 .form-group {
+    border-left: solid 5px #0E0E0E;
     text-align: center;
-    width: 23%;
+    width: 22%;
     padding: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.539), 0 6px 20px 0 rgba(29, 14, 14, 0.309);
 }
+
+
+/* 
+#sys {
+    border-left: solid 5px rgb(174, 152, 123);
+} */
 
 .form-group h1 {
     font-size: 20px;

@@ -54,6 +54,11 @@
     transition: all 0.5s ease;
 }
 
+#logout {
+    position: absolute;
+    bottom: 0px !important;
+}
+
 .sidebar .logo-details .logo_name {
     color: #fff;
     font-size: 20px;

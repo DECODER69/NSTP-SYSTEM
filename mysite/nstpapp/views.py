@@ -194,7 +194,7 @@ def admin_view_profile(request, id):
         'pending':pending
     }
     return render(request, 'activities/profile_view.html', context)
-
+ 
 
 
 def school_years(request):
@@ -917,6 +917,15 @@ def update_sy(request, ):
     if request.method == 'POST':
         status = request.POST.get('status')
         current = request.POST.get('current')
+        school_year.objects.filter(id=current).update(sem=status)
+        print("School year status Updated")
+    return redirect('/school_years')
+
+
+def update_sys(request, ):
+    if request.method == 'POST':
+        status = request.POST.get('status_sys')
+        current = request.POST.get('current')
         school_year.objects.filter(id=current).update(status=status)
         print("School year status Updated")
     return redirect('/school_years')
@@ -1089,12 +1098,15 @@ def sample_attendance(request):
     return render(request, 'activities/sample_attendance.html', context)
 
 def show_students(request):
-    counted = training_day.objects.all()
+    counted = training_day.objects.values_list('td_count', flat=True).count()
     getSection = request.POST.get('getSection')
     content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+    content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
     context = {
         'content3':content3,
         'getSection':getSection,
+        'counted':counted,
+        'content33':content33,
     }
     return render(request, 'activities/show_studens.html', context)
 
@@ -1197,283 +1209,283 @@ def rec_attendance(request):
         # print("date 0 ito " +str(date0))
         # print("date 1 ito " +str(date1))
         print("td count ito "+str(td_count))
-        if date0 == 'None':
-            if td_count == str(1):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD1=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD1='ABSENT')
-                    
-            elif td_count == str(2):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD2=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD2='ABSENT')
-            elif td_count == str(3):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD3=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD3='ABSENT')
-            elif td_count == str(4):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD4=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD4='ABSENT')
-            elif td_count == str(5):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD5=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD5='ABSENT')
-            elif td_count == str(6):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD6=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD6='ABSENT')
-            elif td_count == str(7):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD7=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD7='ABSENT')
-            elif td_count == str(8):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD8=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD8='ABSENT')
-            elif td_count == str(9):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD9=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD9='ABSENT')
-            elif td_count == str(10):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD10=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD10='ABSENT')
-            elif td_count == str(11):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD11=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD11='ABSENT')
-            elif td_count == str(12):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD12=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD12='ABSENT')
-            elif td_count == str(13):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD13=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD13='ABSENT')
-            elif td_count == str(14):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD14=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD14='ABSENT')
-            elif td_count == str(15):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD15=date1)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD15='ABSENT')
+
+        if td_count == str(1):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD1='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD1='0')
+                
+        elif td_count == str(2):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD2='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD2='0')
+        elif td_count == str(3):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD3='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD3='0')
+        elif td_count == str(4):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD4='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD4='0')
+        elif td_count == str(5):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD5='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD5='0')
+        elif td_count == str(6):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD6='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD6='0')
+        elif td_count == str(7):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD7='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD7='0')
+        elif td_count == str(8):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD8='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD8='0')
+        elif td_count == str(9):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD9='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD9='0')
+        elif td_count == str(10):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD10='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD10='0')
+        elif td_count == str(11):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD11='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD11='0')
+        elif td_count == str(12):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD12='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD12='0')
+        elif td_count == str(13):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD13='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD13='0')
+        elif td_count == str(14):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD14='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD14='0')
+        elif td_count == str(15):
+            if ids:
+                for i in ids:
+                    print("present date 0 "+str(i))
+                    extenduser.objects.filter(id=i).update(TD15='1')
+            if id2:
+                for j in id2:
+                    print("absent date 0 "+str(j))
+                    extenduser.objects.filter(id=j).update(TD15='0')
                     
                     # absents
 
                     
-        if date1 == 'None':
-            if td_count == str(1):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD1=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD1='ABSENT')
-            elif td_count == str(2):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD2=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD2='ABSENT')
-            elif td_count == str(3):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD3=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD3='ABSENT')
-            elif td_count == str(4):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD4=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD4='ABSENT')
-            elif td_count == str(5):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD5=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD5='ABSENT')
-            elif td_count == str(6):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD6=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD6='ABSENT')
-            elif td_count == str(7):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD7=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD7='ABSENT')
-            elif td_count == str(8):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD8=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD8='ABSENT')
-            elif td_count == str(9):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD9=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD9='ABSENT')
-            elif td_count == str(10):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD10=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD10='ABSENT')
-            elif td_count == str(11):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD11=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD11='ABSENT')
-            elif td_count == str(12):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD12=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD12='ABSENT')
-            elif td_count == str(13):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD13=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD13='ABSENT')
-            elif td_count == str(14):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD14=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD14='ABSENT')
-            elif td_count == str(15):
-                if ids:
-                    for i in ids:
-                        print("present date 0 "+str(i))
-                        extenduser.objects.filter(id=i).update(TD15=date0)
-                if id2:
-                    for j in id2:
-                        print("absent date 0 "+str(j))
-                        extenduser.objects.filter(id=j).update(TD15='ABSENT')
+        # if date1 == 'None':
+        #     if td_count == str(1):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD1=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD1='ABSENT')
+        #     elif td_count == str(2):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD2=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD2='ABSENT')
+        #     elif td_count == str(3):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD3=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD3='ABSENT')
+        #     elif td_count == str(4):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD4=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD4='ABSENT')
+        #     elif td_count == str(5):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD5=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD5='ABSENT')
+        #     elif td_count == str(6):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD6=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD6='ABSENT')
+        #     elif td_count == str(7):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD7=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD7='ABSENT')
+        #     elif td_count == str(8):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD8=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD8='ABSENT')
+        #     elif td_count == str(9):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD9=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD9='ABSENT')
+        #     elif td_count == str(10):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD10=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD10='ABSENT')
+        #     elif td_count == str(11):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD11=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD11='ABSENT')
+        #     elif td_count == str(12):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD12=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD12='ABSENT')
+        #     elif td_count == str(13):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD13=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD13='ABSENT')
+        #     elif td_count == str(14):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD14=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD14='ABSENT')
+        #     elif td_count == str(15):
+        #         if ids:
+        #             for i in ids:
+        #                 print("present date 0 "+str(i))
+        #                 extenduser.objects.filter(id=i).update(TD15=date0)
+        #         if id2:
+        #             for j in id2:
+        #                 print("absent date 0 "+str(j))
+        #                 extenduser.objects.filter(id=j).update(TD15='ABSENT')
 
     return redirect('/sample_attendance', context)
 
@@ -1589,3 +1601,16 @@ def update_attendance(request):
    
         messages.info(request, 'Attendance Up to date')
     return redirect('/attendance_page')
+
+def update_att_credits(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('getId')
+        credits = request.POST.getlist('credits')
+        print("creds "+ str(credits))
+        print("ids"+ str(ids))
+        
+        for i, j in zip(ids, credits):
+            print("id" + str(i), "creds"+ str(j))
+            extenduser.objects.filter(id=i).update(att_credits=j)
+        # extenduser.objects.filter
+    return redirect('/sample_attendance')

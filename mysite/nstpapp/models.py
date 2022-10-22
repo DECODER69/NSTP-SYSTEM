@@ -69,6 +69,7 @@ class extenduser(models.Model):
     TD13= models.CharField(max_length=100, default='')
     TD14= models.CharField(max_length=100, default='')
     TD15= models.CharField(max_length=100, default='')
+    att_credits = models.CharField(max_length=100, default='')
     
     # date_enrolled = models.DateTimeField(max_length=40, default='WAITING')
     
@@ -89,6 +90,7 @@ class school_year(models.Model):
     month = models.CharField(max_length=20, default='')
     date = models.CharField(max_length=20, default='')
     year = models.CharField(max_length=20, default='')
+    status = models.CharField(max_length=20, default='')
     def __str__(self):
         return self.years
 

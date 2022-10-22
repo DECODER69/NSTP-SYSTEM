@@ -39,6 +39,10 @@ body {
     float: right;
 }
 
+#count {
+    display: none !important;
+}
+
 .heads .text i {
     vertical-align: middle;
 }
@@ -86,6 +90,11 @@ body {
     margin: auto;
     background-color: #aaaaaa;
     width: auto;
+}
+
+.table input {
+    width: 60px !important;
+    border: none;
 }
 
 .he p1,
@@ -203,28 +212,40 @@ body {
 }
 
 .adda {
-    width: 15%;
+    width: 23%;
     float: right !important;
     padding: 5px;
-    display: flex;
-    justify-content: space-between;
     height: 50px;
 }
 
 #dl {
+    width: 170px !important;
+    float: right !important;
+    font-size: 15px !important;
     height: 90%;
-    background-color: #006b86 !important;
+    background-color: #38707e !important;
     border-color: transparent !important;
 }
 
+#dd {
+    float: right !important;
+}
+
+
+/* #calc {
+    font-size: 15px !important;
+    height: 90%;
+    background-color: #400718 !important;
+    border-color: transparent !important;
+} */
+
 #adds {
+    float: right !important;
+    width: 170px !important;
+    font-size: 15px !important;
     height: 90%;
     background-color: #727c00 !important;
     border-color: transparent !important;
-}
-
-.ada {
-    float: left;
 }
 
 .present {

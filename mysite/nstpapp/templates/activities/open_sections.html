@@ -22,7 +22,8 @@
             <a href="/sample_attendance">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance &nbsp;|</h1>
             </a>
-            {% comment %} <a href="/all_sections">
+            {% comment %}
+            <a href="/all_sections">
                 <h1 class="text"><i class='bx bx-intersect'></i> SECTIONS &nbsp;|</h1>
             </a> {% endcomment %}
 
@@ -90,199 +91,169 @@
                                     <td>{{s.platoons}}</td>
                                     {% if td_count == '1' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD1 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD1 == '' %}
+                                        {% if s.TD1 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD1 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                        {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
-   
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
                                     </td>
                                     {% elif td_count == '2' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD2 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD2 == '' %}
+                                        {% if s.TD2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD2 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                        {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '3' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD3 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label> 
-                                        {% elif s.TD3 == '' %}
+                                        {% if s.TD3 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD3 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                        {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '4' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD4 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label> 
-                                        {% elif s.TD4 == '' %}
+                                        {% if s.TD4 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD4 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                        {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}"  disabled> Absent</label> {% endif %}
                                     </td>
                                     {% elif td_count == '5' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD5 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD5 == '' %}
+                                        {% if s.TD5 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD5 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled>  Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '6' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD6 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD6 == '' %}
+                                        {% if s.TD6 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD6 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '7' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD7 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD7 == '' %}
+                                        {% if s.TD7 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD7 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
 
                                     {% elif td_count == '8' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD8 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD8 == '' %}
+                                        {% if s.TD8 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD8 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '9' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD9 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD9 == '' %}
+                                        {% if s.TD9 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD9 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '10' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD10 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD10 == '' %}
+                                        {% if s.TD10 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD10 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '11' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD11 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD11 == '' %}
+                                        {% if s.TD11 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD11 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '12' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD12 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD12 == '' %}
+                                        {% if s.TD12 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD12 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
 
                                     {% elif td_count == '13' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD13 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD13 == '' %}
+                                        {% if s.TD13 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD13 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
 
                                     {% elif td_count == '14' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD14 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD14 == '' %}
+                                        {% if s.TD14 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD14 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% elif td_count == '15' %}
                                     <td style="text-align: center;">
-                                        {% if s.TD15 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label>
-                                        {% elif s.TD15 == '' %}
+                                        {% if s.TD15 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled > Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD15 == '' %}
                                         <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}"> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label>
-                                         {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
                                     {% endif %}
@@ -311,11 +282,11 @@
                             <input type="hidden" value="{{td_count}}" name="td_count">
 
                         </table>
-               
-               
+
+
                         <button type="submit" class="btn btn-dark" id="save">Save</button>
-             
-                   
+
+
 
                     </form>
 
