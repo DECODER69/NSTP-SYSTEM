@@ -31,6 +31,7 @@
                     <!-- ############################### -->
 
 
+
                 </div>
 
 
@@ -55,7 +56,7 @@
 
                     <div class="row">
                         {% for s in section %}
-                        <form action="{% url 'activities:section_content'%}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:modify_grades'%}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">

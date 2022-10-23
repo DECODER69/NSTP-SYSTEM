@@ -1620,3 +1620,13 @@ def grades(request):
         'section':section
     }
     return render(request, 'activities/grades.html', context)
+
+def modify_grades(request):
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content3':content3,
+            'getSection':getSection,
+        }
+    return render(request, 'activities/modify.html', context)
