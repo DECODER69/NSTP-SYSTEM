@@ -14,7 +14,7 @@
 
     <section class="home-section">
         <div class="heads">
-            <a href="/sample_attendance">
+            <a href="/grades">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades</h1>
             </a>
 
@@ -24,11 +24,56 @@
                 <div class="left">
                     <div class="tss">
                         <div class="txt ">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#ffffff; font-weight:bold;" id="mega">Criteria Settings</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold; " id="mega"><i class='bx bxs-right-arrow'></i> Criteria Settings</h1>
                         </div>
                     </div>
                     <hr style="color: white !important;">
                     <!-- ############################### -->
+                    <div class="cri">
+
+
+                        <div class="left2">
+                            <h5 class="bold">Set Activities</h5>
+                            <hr>
+                            <form action="{% url 'activities:set_activities' %}" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Activity title</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="staticEmail" placeholder="Ex: AFP Basics" name="title" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Item Count</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="inputPassword" placeholder="Ex: 100" name="count" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Activity Number</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="inputPassword" placeholder="Ex: 2" name="numbers" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-info">Set Activity</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                        <div class="right2">
+                            <h5 class="bold">Activity List</h5>
+                            <hr>
+
+                        </div>
+                    </div>
+
 
 
 
@@ -44,7 +89,7 @@
 
 
                         <div class="txt ">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#ffffff; font-weight:bold;" id="mega">Modify grades</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega">Modify grades</h1>
 
                         </div>
 

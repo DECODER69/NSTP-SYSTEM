@@ -4,6 +4,7 @@ from distutils.command.build_scripts import first_line_re
 from genericpath import exists
 
 from pkgutil import extend_path
+from django.db.models import Sum
 import re
 from subprocess import IDLE_PRIORITY_CLASS
 from turtle import end_fill
@@ -28,7 +29,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import extenduser,school_year, sections, training_day,Announcement, certification
+from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity
 import os
 import csv  
 
@@ -1622,11 +1623,37 @@ def grades(request):
     return render(request, 'activities/grades.html', context)
 
 def modify_grades(request):
+    total = activity.objects.aggregate(TOTAL = Sum('act_numbers'))['TOTAL']
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         context = {
             'content3':content3,
             'getSection':getSection,
+            'total':total
         }
     return render(request, 'activities/modify.html', context)
+
+def set_activities(request):
+  
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        count = request.POST.get('count')
+        numbers = request.POST.get('numbers')
+        print(title, count, numbers)
+        if activity.objects.filter(act_count=numbers).exists():
+            messages.info("Activity number already exists")
+        else:
+            data = activity(act_title=title,act_count=numbers,  act_numbers=count)
+            data.save()
+    return redirect('/grades')
+
+
+def save_grade(request):
+    if request.method == 'POST':
+        att_credits = request.POST.getlist('att_credits')
+        act1 = request.POST.getlist('act1')
+        for a in act1:
+            print("act1 "+str(a))
+        
+    return redirect('/grades')

@@ -71,6 +71,22 @@ class extenduser(models.Model):
     TD15= models.CharField(max_length=100, default='')
     att_credits = models.CharField(max_length=100, default='')
     
+    
+    act1 = models.CharField(max_length=20, default='')
+    act2 = models.CharField(max_length=20, default='')
+    act3 = models.CharField(max_length=20, default='')
+    act4 = models.CharField(max_length=20, default='')
+    act5 = models.CharField(max_length=20, default='')
+    act6 = models.CharField(max_length=20, default='')
+    act_credits = models.CharField(max_length=20, default='')
+    
+    midterm = models.CharField(max_length=20, default='')
+    midterm_credits = models.CharField(max_length=20, default='')
+    finals = models.CharField(max_length=20, default='')
+    finals_credits = models.CharField(max_length=20, default='')
+    
+    final_grade = models.CharField(max_length=20, default='')
+    
     # date_enrolled = models.DateTimeField(max_length=40, default='WAITING')
     
     
@@ -126,6 +142,11 @@ class certification(models.Model):
         
     def __str__(self):
         return self.year
+    
+class activity(models.Model):
+    act_count = models.CharField(max_length=100, default='')
+    act_title = models.CharField(max_length=100, default='')
+    act_numbers = models.CharField(max_length=100, default='')
     
     
 

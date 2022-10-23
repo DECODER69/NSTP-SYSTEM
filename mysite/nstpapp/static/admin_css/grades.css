@@ -96,7 +96,6 @@ body {
     height: auto;
     font-size: 15px;
     padding: 10px;
-    background-color: #000000dd;
     /* background-color: white; */
 }
 
@@ -181,4 +180,41 @@ body {
 .rights {
     width: 65%;
     float: left;
+}
+
+.cri {
+    border-radius: 2px;
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    background-color: #ffffff00;
+    justify-content: space-between;
+}
+
+.tit {
+    color: rgb(127, 23, 23);
+    height: auto;
+}
+
+.left2 {
+    background-color: #ffffff;
+    width: 40%;
+    padding: 4px;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(94, 94, 94, 0.382);
+}
+
+.right2 {
+    width: 55%;
+    background-color: rgb(255, 255, 255);
+    padding: 4px;
+    border-radius: 3px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#mega {
+    text-decoration: underline;
 }
