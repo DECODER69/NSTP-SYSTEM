@@ -1614,3 +1614,9 @@ def update_att_credits(request):
             extenduser.objects.filter(id=i).update(att_credits=j)
         # extenduser.objects.filter
     return redirect('/sample_attendance')
+def grades(request):
+    section = sections.objects.all()
+    context = {
+        'section':section
+    }
+    return render(request, 'activities/grades.html', context)
