@@ -218,3 +218,8 @@ body {
 #mega {
     text-decoration: underline;
 }
+
+.nav {
+    padding: 10px !important;
+    font-weight: bold;
+}
