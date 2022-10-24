@@ -1632,6 +1632,7 @@ def modify_grades(request):
             'getSection':getSection,
             'total':total
         }
+        return render(request, 'activities/modify.html', context)
     return render(request, 'activities/modify.html', context)
 
 def set_activities(request):
@@ -1651,9 +1652,13 @@ def set_activities(request):
 
 def save_grade(request):
     if request.method == 'POST':
-        att_credits = request.POST.getlist('att_credits')
+        ids= request.POST.getlist('ids')
         act1 = request.POST.getlist('act1')
-        for a in act1:
-            print("act1 "+str(a))
-        
+        act2 = request.POST.getlist('act2')
+        act3 = request.POST.getlist('act3')
+        act4 = request.POST.getlist('act4')
+        act5 = request.POST.getlist('act5')
+        act6 = request.POST.getlist('act6')
+        for a, b, c, d , e, f, i in zip(act1, act2, act3, act4, act5, act6, ids):
+            extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
     return redirect('/grades')

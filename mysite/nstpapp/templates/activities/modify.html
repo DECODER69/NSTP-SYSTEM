@@ -31,7 +31,17 @@
 
         </div>
         <div class="bg">
+            <ul class="nav nav-tabs " id="navs">
+                <li class="nav-item">
+                    <a href="/modify_grades" class="nav-link active">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/dropped">Dropped </a>
+                </li>
+            </ul>
+
             <div class="inside">
+
 
                 <div class="table-responsive">
                     <div class="he">
@@ -73,8 +83,7 @@
                                 <tr>
                                     <th scope="col">ID NUMBER</th>
                                     <th scope="col">FULL NAME</th>
-                                    <th scope="col" class="result">ATTENDANCE 30%</th>
-                                    <th scope="col" class="result">MERITS 30%</th>
+
                                     <th scope="col">ACT 1</th>
                                     <th scope="col">ACT 2</th>
                                     <th scope="col">ACT 3</th>
@@ -82,13 +91,16 @@
                                     <th scope="col">ACT 5</th>
                                     <th scope="col">ACT 6</th>
                                     <th scope="col">TOTAL</th>
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+
                                     <!-- <th style="display: none;"></th> -->
                                     <th scope="col" class="result">ACTIVITY 30%</th>
-                                    <th scope="col">MIDTERM</th>
-                                    <th scope="col" class="result">MIDTERM 15%</th>
-                                    <th scope="col">FINALS</th>
-                                    <th scope="col" class="result">FINALS 15%</th>
-                                    <th scope="col">GRADE</th>
 
                                 </tr>
                             </thead>
@@ -97,17 +109,12 @@
                                 <tr>
                                     <td>{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                    <td class="result">
-                                        <input type="text" value="{{s.att_credits}}" readonly class="gr" name="att_credits">
-                                    </td>
-                                    <td class="result">
-                                        <input type="text" value="25.50" readonly class="gr" name="merits_credits">
-                                    </td>
 
 
                                     <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1}}</td>
                                     <td>
                                         <input type="text" name="act1" id="" value="{{s.act1}}">
+                                        <input type="hidden" value="{{s.id}}" name="ids">
                                     </td>
 
 
@@ -150,17 +157,6 @@
                                         <input type="text" name="" class="credits" value="" id="credits" readonly>
                                     </td>
 
-                                    <td class="midterm" contenteditable="true" name="midterm">{{s.midterm}}</td>
-                                    <td class="result">
-                                        <input type="text" name="" class="midterm" value="" id="midterm" readonly>
-                                    </td>
-                                    <td class="finals">{{s.finals}}</td>
-                                    <td class="result">
-                                        <input type="text" name="" class="finals" value="" id="finals" readonly>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="grades" class="grades" name="grades" value="">
-                                    </td>
 
 
 
@@ -168,7 +164,7 @@
 
                                 {% empty %} {% endfor %}
                             </tbody>
-                        </table>
+                        </table><br>
                         <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Save Grade</button>
                     </form>
                 </div>
