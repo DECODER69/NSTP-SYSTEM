@@ -113,6 +113,9 @@ urlpatterns = [
     path('modify_grades/', views.modify_grades, name='modify_grades'),
     path('set_activities/', views.set_activities, name='set_activities'),
     path('save_grade/', views.save_grade, name='save_grade'),
+    path('edit_activities/<str:id>', views.edit_activities, name='edit_activities'),
+    path('delete_activities/<str:id>', views.delete_activities, name='delete_activities'),
+    path('attendance_tab/', views.attendance_tab, name='attendance_tab'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

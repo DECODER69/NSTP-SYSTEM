@@ -1616,9 +1616,11 @@ def update_att_credits(request):
         # extenduser.objects.filter
     return redirect('/sample_attendance')
 def grades(request):
+    acts = activity.objects.all()
     section = sections.objects.all()
     context = {
-        'section':section
+        'section':section, 
+        'acts': acts
     }
     return render(request, 'activities/grades.html', context)
 
@@ -1662,3 +1664,28 @@ def save_grade(request):
         for a, b, c, d , e, f, i in zip(act1, act2, act3, act4, act5, act6, ids):
             extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
     return redirect('/grades')
+
+
+def edit_activities(request, id):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        title = request.POST.get('title')
+        act_numbers = request.POST.get('act_numbers')
+        print(ids, title, act_numbers)
+        
+        activity.objects.filter(id=ids).update(act_title=title, act_numbers=act_numbers)
+
+        return redirect('/grades')
+    return redirect('/grades')
+
+def delete_activities(request, id):
+    activity.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/grades')
+
+def attendance_tab(request):
+    section2 = sections.objects.all()
+    context = {
+        'section2':section2
+    }
+    return render(request, 'activities/attendance_tab.html', context)

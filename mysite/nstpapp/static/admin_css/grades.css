@@ -73,34 +73,32 @@ body {
     height: auto;
     justify-content: space-between;
     display: flex;
+    padding: 20px !important;
 }
 
 .overall {
-    padding: 10px;
-    width: 30%;
-    height: 100vh !important;
-    overflow-y: scroll;
-}
-
-.overall1 {
     padding: 10px;
     width: 70%;
     height: 100vh !important;
     overflow-y: scroll;
 }
 
-.left {
-    border-radius: 3px;
-    width: 100%;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(94, 94, 94, 0.382); */
-    height: auto;
-    font-size: 15px;
+.overall1 {
     padding: 10px;
-    /* background-color: white; */
+    width: 30%;
+    height: 100vh !important;
+    overflow-y: scroll;
+}
+
+.left {
+    width: 100%;
+    padding: 4px;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(94, 94, 94, 0.382);
 }
 
 .column {
-    width: 100%;
+    width: 20%;
     padding: 5px;
     padding-top: 20px;
 }
@@ -184,10 +182,8 @@ body {
 
 .cri {
     border-radius: 2px;
-    padding: 5px;
     display: flex;
     width: 100%;
-    background-color: #ffffff00;
     justify-content: space-between;
 }
 
@@ -197,29 +193,53 @@ body {
 }
 
 .left2 {
-    background-color: #ffffff;
-    width: 40%;
-    padding: 4px;
+    width: 100%;
+    padding: 10px;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(94, 94, 94, 0.382);
-}
-
-.right2 {
-    width: 55%;
-    background-color: rgb(255, 255, 255);
-    padding: 4px;
-    border-radius: 3px;
 }
 
 .bold {
     font-weight: bold;
 }
 
-#mega {
-    text-decoration: underline;
+#mega i {
+    font-weight: bolder;
+    font-size: 20px !important;
 }
 
 .nav {
     padding: 10px !important;
     font-weight: bold;
+}
+
+.sec {
+    display: flex;
+    justify-content: space-between;
+}
+
+#del_act i {
+    color: #F7F7F7;
+}
+
+.inputs {
+    width: auto;
+    border: none;
+    outline: none;
+}
+
+.inputs:focus {
+    border: none;
+    outline: none;
+}
+
+.inputs1 {
+    width: 50px !important;
+    border: none;
+    outline: none;
+}
+
+.inputs:focus1 {
+    border: none;
+    outline: none;
 }

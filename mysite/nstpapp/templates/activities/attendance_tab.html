@@ -63,7 +63,7 @@
     <section class="home-section">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Activities</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Attendance</h1>
             </a>
 
         </div>
@@ -75,13 +75,13 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="/grades">Activities</a>
+                <a class="nav-link" href="/grades">Activities</a>
             </li>
             <li class="nav-item dropdown">
 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/attendance_tab">Attendance</a>
+                <a class="nav-link active" href="attendance_tab">Attendance</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="#">Midterm</a>
@@ -106,7 +106,7 @@
 
 
                         <div class="txt ">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Record Activities</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Attendance Records</h1>
 
                         </div>
 
@@ -117,7 +117,7 @@
                     <hr>
 
                     <div class="row">
-                        {% for s in section %}
+                        {% for s in section2 %}
                         <form action="{% url 'activities:modify_grades'%}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
@@ -142,6 +142,7 @@
 
 
 
+
                 </div>
             </div>
 
@@ -155,10 +156,10 @@
                     <div class="left2">
                         <div class="sec">
                             <div class="txt ">
-                                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Activities</h1>
-    
+                                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i>Training Days</h1>
+
                             </div>
-    
+
 
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class='bx bx-plus' ></i>  Add Activity</button>
 
@@ -215,13 +216,13 @@
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: 'success',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>
+    </script> -->
 
     <script>
         $('.btn-danger').on('click', function(e) {
@@ -240,7 +241,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    
+
                     location.href = self.attr('href')
                 }
             })
