@@ -222,6 +222,11 @@ body {
     color: #F7F7F7;
 }
 
+#del_act {
+    width: 50%;
+    margin: auto !important;
+}
+
 .inputs {
     width: auto;
     border: none;
@@ -241,5 +246,14 @@ body {
 
 .inputs:focus1 {
     border: none;
+    outline: none;
+}
+
+.td {
+    outline: none;
+    border: none;
+}
+
+.td:focus {
     outline: none;
 }

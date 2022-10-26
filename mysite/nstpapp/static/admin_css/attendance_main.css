@@ -231,6 +231,17 @@ body {
     float: right !important;
 }
 
+#gg {
+    background-color: #006b86 !important;
+    border-color: transparent !important;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    font-size: 15px !important;
+}
+
 
 /* #calc {
     font-size: 15px !important;

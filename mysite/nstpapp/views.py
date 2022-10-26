@@ -1126,6 +1126,21 @@ def create_td(request):
             alls.save()
             return redirect('/sample_attendance')
     return redirect('/sample_attendance')
+def create_td2(request):
+    if request.method == 'POST':
+        td = request.POST.get('td')
+        td_count = request.POST.get('td_count')
+        if training_day.objects.filter(td=td).exists():
+            messages.error(request, 'Training Day already exists ' +str(td))
+            return redirect('/attendance_tab')
+        elif training_day.objects.filter(td_count =td_count).exists():
+            messages.error(request, 'Training Day count exists ' +str(td_count))
+            return redirect('/attendance_tab')
+        else:
+            alls = training_day(td=td, td_count=td_count)
+            alls.save()
+            return redirect('/attendance_tab')
+    return redirect('/attendance_tab')
 
 def open_date(request):
     section = sections.objects.all()
@@ -1645,7 +1660,7 @@ def set_activities(request):
         numbers = request.POST.get('numbers')
         print(title, count, numbers)
         if activity.objects.filter(act_count=numbers).exists():
-            messages.info("Activity number already exists")
+            messages.error(request, 'Training Day already exists ' )
         else:
             data = activity(act_title=title,act_count=numbers,  act_numbers=count)
             data.save()
@@ -1683,9 +1698,16 @@ def delete_activities(request, id):
     messages.success(request, 'Deleted')
     return redirect('/grades')
 
+def delete_td(request, id):
+    training_day.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/attendance_tab')
+
 def attendance_tab(request):
+    acts2 = training_day.objects.all()
     section2 = sections.objects.all()
     context = {
-        'section2':section2
+        'section2':section2,
+        'acts2': acts2,
     }
     return render(request, 'activities/attendance_tab.html', context)

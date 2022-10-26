@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../static/admin_css/grades.css">
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -165,7 +167,7 @@
                         </div>
                         <hr>
 
-                        <table class="table">
+                        <table class="table table-bordered table-hover " id="myTable">
                             <thead>
                                 <tr>
                                     <th scope="col">Act #</th>
@@ -175,9 +177,10 @@
 
                                 </tr>
                             </thead>
-                            {% for s in acts %}
+                           
 
                             <tbody>
+                                {% for s in acts %}
                                 <tr>
                                     <form action="{% url 'activities:edit_activities' s.id %}" method="POST">
                                         {% csrf_token %}
@@ -195,11 +198,11 @@
                                         </td>
                                     </form>
                                 </tr>
-
+                                {% endfor %}
 
                             </tbody>
 
-                            {% endfor %}
+                           
                         </table>
 
                     </div>
@@ -218,7 +221,7 @@
     <script>
         {% for msg in messages %}
         Swal.fire({
-            icon: 'success',
+            icon: 'info',
             text: '{{ msg }}'
         }) {% endfor %}
     </script>
@@ -245,6 +248,15 @@
                 }
             })
         })
+    </script>
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
     </script>
 
 </body>

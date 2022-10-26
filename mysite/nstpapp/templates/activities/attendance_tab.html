@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html lang="en">
 
 <head>
@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../static/admin_css/grades.css">
+
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -16,47 +20,31 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Activity</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header" style="background-color:#ffffff; color:white;">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Training Day</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
               <span aria-hidden="true">&times;</span>
             </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'activities:set_activities' %}" method="POST">
+                    <form action="{% url 'activities:create_td2' %}" method="POST">
                         {% csrf_token %}
-                        <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-4 col-form-label">Activity title</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="staticEmail" placeholder="Ex: AFP Basics" name="title" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Add date</label>
+                            <input type="date" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="td" required>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-4 col-form-label">Item Count</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="inputPassword" placeholder="Ex: 100" name="count" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-4 col-form-label">Activity Number</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="inputPassword" placeholder="Ex: 2" name="numbers" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Training day count</label>
+                            <input type="number" class="form-control" id="message-text" placeholder="Ex: 1" name="td_count" required>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                <button type="submit" class="btn btn-info">Set Activity</button>
-                            </div>
-                        </div>
-
-                    </form>
                 </div>
-                <!-- <div class="modal-footer">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
-                </div> -->
+
+                    <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -81,7 +69,7 @@
 
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="attendance_tab">Attendance</a>
+                <a class="nav-link active" href="/attendance_tab">Attendance</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="#">Midterm</a>
@@ -118,7 +106,7 @@
 
                     <div class="row">
                         {% for s in section2 %}
-                        <form action="{% url 'activities:modify_grades'%}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:show_students'%}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
@@ -161,48 +149,39 @@
                             </div>
 
 
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class='bx bx-plus' ></i>  Add Activity</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class='bx bx-plus' ></i>  Add Training Day</button>
 
                         </div>
                         <hr>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover " id="myTable">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">Training Day #</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col" style="text-align: center !important; width:120px !important;">Action</th>
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Act #</th>
-                                    <th scope="col">Act Name</th>
-                                    <th scope="col">Items</th>
-                                    <th scope="col" style="text-align: center !important; width:120px !important;">Action</th>
+                                    </tr>
+                                </thead>
 
-                                </tr>
-                            </thead>
-                            {% for s in acts %}
 
-                            <tbody>
-                                <tr>
-                                    <form action="{% url 'activities:edit_activities' s.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <th scope="row">{{s.act_count}}</th>
-                                        <td>
-                                            <input type="hidden" value="{{s.id}}" name="ids">
-                                            <input type="text" name="title" value="{{s.act_title}}" class="inputs">
-                                        </td>
-                                        <td>
-                                            <input type="number" name="act_numbers" value="{{s.act_numbers}}" class="inputs1">
-                                        </td>
+                                <tbody>
+                                    {% for s in acts2 %}
+                                    <tr>
+                                        <td>{{s.td_count}}</td>
+                                        <td>{{s.td}}</td>
                                         <td style="justify-content: space-between; display:flex;">
-                                            <a href="/delete_activities/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class='bx bx-trash'></i></a>
-                                            <button type="submit" class="btn btn-success" title="Update Activities"><i class='bx bx-check'></i></button>
+                                            <a href="/delete_td/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class='bx bx-trash'></i></a>
+                                            
                                         </td>
-                                    </form>
-                                </tr>
+                                    </tr>
+
+                                    {% endfor %}
+                                </tbody>
 
 
-                            </tbody>
-
-                            {% endfor %}
-                        </table>
-
+                            </table>
+                        </div>
                     </div>
 
                 </div>
@@ -214,15 +193,26 @@
 
         </div>
     </section>
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
+    <script>
         {% for msg in messages %}
         Swal.fire({
-            icon: 'success',
+            icon: '',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script> -->
+    </script>
 
     <script>
         $('.btn-danger').on('click', function(e) {
@@ -247,6 +237,8 @@
             })
         })
     </script>
+
+
 
 </body>
 
