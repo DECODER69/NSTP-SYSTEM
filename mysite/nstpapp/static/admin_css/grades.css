@@ -98,7 +98,7 @@ body {
 }
 
 .column {
-    width: 20%;
+    width: 30%;
     padding: 5px;
     padding-top: 20px;
 }
@@ -108,7 +108,8 @@ body {
 
 .row {
     margin: 0 -5px;
-    padding: 10px;
+    padding: 40px;
+    justify-content: space-between;
 }
 
 
@@ -146,6 +147,26 @@ body {
     padding: 5px;
 }
 
+.table-responsive {
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: red;
+    /* make scrollbar transparent */
+}
+
+.table-responsive tr th {
+    font-size: 13px !important;
+    color: #242424;
+}
+
+.table-responsive tr td input {
+    font-size: 13px !important;
+    color: #242424;
+}
+
 
 /* for modal only */
 
@@ -157,11 +178,66 @@ body {
 
 /* Responsive columns */
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 486px) {
+    .nav-item a {
+        font-size: 10px;
+    }
+    .bg {
+        display: block !important;
+    }
+    .overall {
+        width: 100%;
+    }
     .column {
         width: 100%;
-        display: block;
-        margin-bottom: 20px;
+    }
+    .table-responsive {
+        overflow-x: scroll;
+    }
+    .overall1 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+    .nav-item a {
+        font-size: 13px;
+    }
+    .bg {
+        display: block !important;
+    }
+    .overall {
+        width: 100%;
+    }
+    .column {
+        width: 100%;
+    }
+    .overall1 {
+        width: 100%;
+    }
+    .table {
+        overflow-x: scroll;
+    }
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1080px) {
+    .nav-item a {
+        font-size: 13px;
+    }
+    .bg {
+        display: block !important;
+    }
+    .overall {
+        width: 100%;
+    }
+    .column {
+        width: 30%;
+    }
+    .overall1 {
+        width: 100%;
+    }
+    .table {
+        overflow-x: scroll;
     }
 }
 
@@ -223,12 +299,15 @@ body {
 }
 
 #del_act {
-    width: 50%;
     margin: auto !important;
 }
 
+#hehes {
+    width: 20%;
+}
+
 .inputs {
-    width: auto;
+    width: 100%;
     border: none;
     outline: none;
 }
@@ -239,7 +318,7 @@ body {
 }
 
 .inputs1 {
-    width: 50px !important;
+    width: 40px !important;
     border: none;
     outline: none;
 }

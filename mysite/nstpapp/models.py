@@ -148,6 +148,12 @@ class activity(models.Model):
     act_title = models.CharField(max_length=100, default='')
     act_numbers = models.CharField(max_length=100, default='')
     
+class midterm(models.Model):
+    sem = models.CharField(max_length=20, default='')
+    date = models.CharField(max_length=45, default='')
+    items = models.CharField(max_length=100, default='')
+    
+    
     
 
     

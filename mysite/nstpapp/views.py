@@ -29,7 +29,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity
+from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm
 import os
 import csv  
 
@@ -1711,3 +1711,12 @@ def attendance_tab(request):
         'acts2': acts2,
     }
     return render(request, 'activities/attendance_tab.html', context)
+
+def midterms(request):
+    acts3 = midterm.objects.all()
+    section2 = sections.objects.all()
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/midterm.html', context)
