@@ -72,6 +72,22 @@ class extenduser(models.Model):
     att_credits = models.CharField(max_length=100, default='')
     
         # attendance 2nd semester
+    TD1_2= models.CharField(max_length=100, default='')
+    TD2_2= models.CharField(max_length=100, default='')
+    TD3_2= models.CharField(max_length=100, default='')
+    TD4_2= models.CharField(max_length=100, default='')
+    TD5_2= models.CharField(max_length=100, default='')
+    TD6_2= models.CharField(max_length=100, default='')
+    TD7_2= models.CharField(max_length=100, default='')
+    TD8_2= models.CharField(max_length=100, default='')
+    TD9_2= models.CharField(max_length=100, default='')
+    TD10_2= models.CharField(max_length=100, default='')
+    TD11_2= models.CharField(max_length=100, default='')
+    TD12_2= models.CharField(max_length=100, default='')
+    TD13_2= models.CharField(max_length=100, default='')
+    TD14_2= models.CharField(max_length=100, default='')
+    TD15_2= models.CharField(max_length=100, default='')
+    att_credits_2 = models.CharField(max_length=100, default='')
         
         
     

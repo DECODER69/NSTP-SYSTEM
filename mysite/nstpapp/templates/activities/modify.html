@@ -72,6 +72,7 @@
                         {% csrf_token %}
                         <table id="myTable" class="table table-bordered table-hover ">
                             <thead class="thead">
+
                                 <tr>
                                     <th scope="col">ID NUMBER</th>
                                     <th scope="col">FULL NAME</th>
@@ -82,7 +83,10 @@
                                     <th scope="col">ACT 4</th>
                                     <th scope="col">ACT 5</th>
                                     <th scope="col">ACT 6</th>
-                                    <th scope="col">TOTAL</th>
+
+                                    <th scope="col">TOTAL:
+                                        <h5 style="color: red; font-weight:bolder;">{{total}}</h5>
+                                    </th>
                                     <th style="display: none;"></th>
                                     <th style="display: none;"></th>
                                     <th style="display: none;"></th>
@@ -95,6 +99,7 @@
                                     <th scope="col" class="result">ACTIVITY 30%</th>
 
                                 </tr>
+
                             </thead>
                             <tbody>
                                 {% for s in content3 %} {% if s.first_sem != 'COMPLETED' %}
@@ -105,40 +110,40 @@
 
                                     <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1}}</td>
                                     <td>
-                                        <input type="text" name="act1" id="" value="{{s.act1}}">
-                                        <input type="hidden" value="{{s.id}}" name="ids">
+                                        <input type="number" name="act1" id="" value="{{s.act1}}">
+                                        <input type="hidden" value="{{s.id}}" name="ids" placeholder="1st Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act2" style="display: none;">{{s.act2}}</td>
                                     <td>
-                                        <input type="text" name="act2" value="{{s.act2}}">
+                                        <input type="number" name="act2" value="{{s.act2}}" placeholder="1st Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act3" style="display: none;">{{s.act3}}</td>
                                     <td>
-                                        <input type="text" name="act3" value="{{s.act3}}">
+                                        <input type="number" name="act3" value="{{s.act3}}" placeholder="1st Sem Activity">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act4" style="display: none;">{{s.act4}}</td>
                                     <td>
-                                        <input type="text" name="act4" value="{{s.act4}}">
+                                        <input type="number" name="act4" value="{{s.act4}}" placeholder="1st Sem Activity">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act5" style="display: none;">{{s.act5}}</td>
                                     <td>
-                                        <input type="text" name="act5" value="{{s.act5}}">
+                                        <input type="number" name="act5" value="{{s.act5}}" placeholder="1st Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act6" style="display: none;">{{s.act6}}</td>
                                     <td>
-                                        <input type="text" name="act6" value="{{s.act6}}">
+                                        <input type="number" name="act6" value="{{s.act6}}" placeholder="1st Sem Activity">
                                     </td>
 
 
@@ -161,40 +166,40 @@
 
                                     <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1_2}}</td>
                                     <td>
-                                        <input type="text" name="act1_2" id="" value="{{s.act1_2}}">
+                                        <input type="number" name="act1_2" id="" value="{{s.act1_2}}" placeholder="2nd Sem Activity">
                                         <input type="hidden" value="{{s.id}}" name="ids_2">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act2_2" style="display: none;">{{s.act2_2}}</td>
                                     <td>
-                                        <input type="text" name="act2_2" value="{{s.act2_2}}">
+                                        <input type="number" name="act2_2" value="{{s.act2_2}}" placeholder="2nd Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act3_2" style="display: none;">{{s.act3_2}}</td>
                                     <td>
-                                        <input type="text" name="act3_2" value="{{s.act3_2}}">
+                                        <input type="number" name="act3_2" value="{{s.act3_2}}" placeholder="2nd Sem Activity">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act4_2" style="display: none;">{{s.act4_2}}</td>
                                     <td>
-                                        <input type="text" name="act4_2" value="{{s.act4_2}}">
+                                        <input type="number" name="act4_2" value="{{s.act4_2}}" placeholder="2nd Sem Activity">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act5_2" style="display: none;">{{s.act5_2}}</td>
                                     <td>
-                                        <input type="text" name="act5_2" value="{{s.act5_2}}">
+                                        <input type="number" name="act5_2" value="{{s.act5_2}}" placeholder="2nd Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act6_2" style="display: none;">{{s.act6_2}}</td>
                                     <td>
-                                        <input type="text" name="act6_2" value="{{s.act6_2}}">
+                                        <input type="number" name="act6_2" value="{{s.act6_2}}" placeholder="2nd Sem Activity">
                                     </td>
 
 
@@ -212,7 +217,7 @@
                                 {% endif %} {% empty %} {% endfor %}
                             </tbody>
                         </table><br>
-                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Attendance</button>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Activities</button>
                     </form>
                 </div>
             </div>

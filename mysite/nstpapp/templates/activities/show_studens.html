@@ -109,7 +109,7 @@
                             </thead>
 
                             <tbody>
-                                {% for s in content3 %}
+                                {% for s in content3 %}{% if s.first_sem != 'COMPLETED' %}
                                 <tr>
 
                                     <td>{{s.idnumber}}</td>
@@ -146,7 +146,44 @@
 
 
                                 </tr>
-                                {% endfor %}
+                                {% else %}
+                                <tr>
+
+                                    <td>{{s.idnumber}}</td>
+
+                                    <td>
+                                        <input type="hidden" value="{{s.id}}" name="getId" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
+
+
+                                    </td>
+                                    <td class="tds">{{s.TD1_2}}</td>
+                                    <td class="tds">{{s.TD2_2}}</td>
+                                    <td class="tds">{{s.TD3_2}}</td>
+                                    <td class="tds">{{s.TD4_2}}</td>
+                                    <td class="tds">{{s.TD5_2}}</td>
+                                    <td class="tds">{{s.TD6_2}}</td>
+                                    <td class="tds">{{s.TD7_2}}</td>
+                                    <td class="tds">{{s.TD8_2}}</td>
+                                    <td class="tds">{{s.TD9_2}}</td>
+                                    <td class="tds">{{s.TD10_2}}</td>
+                                    <td class="tds">{{s.TD11_2}}</td>
+                                    <td class="tds">{{s.TD12_2}}</td>
+                                    <td class="tds">{{s.TD13_2}}</td>
+                                    <td class="tds">{{s.TD14_2}}</td>
+                                    <td class="tds">{{s.TD15_2}}</td>
+
+
+                                    <td>
+                                        <input name="credits" value="" id="input" readonly>
+                                    </td>
+                                    <td id="result" class="result" style="display: none;">
+
+                                    </td>
+
+
+
+                                </tr>
+                                {% endif %} {% endfor %}
 
 
 

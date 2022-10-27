@@ -1641,13 +1641,15 @@ def grades(request):
 
 def modify_grades(request):
     total = activity.objects.aggregate(TOTAL = Sum('act_numbers'))['TOTAL']
+    items = activity.objects.all()
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
         content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         context = {
             'content3':content3,
             'getSection':getSection,
-            'total':total
+            'total':total,
+            'items':items
         }
         return render(request, 'activities/modify.html', context)
     return render(request, 'activities/modify.html', context)
