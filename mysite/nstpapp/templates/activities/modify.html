@@ -97,7 +97,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in content3 %}
+                                {% for s in content3 %} {% if s.first_sem != 'COMPLETED' %}
                                 <tr>
                                     <td>{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
@@ -153,8 +153,63 @@
 
 
                                 </tr>
+                                {% else %}
+                                <tr>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
 
-                                {% empty %} {% endfor %}
+
+                                    <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1_2}}</td>
+                                    <td>
+                                        <input type="text" name="act1_2" id="" value="{{s.act1_2}}">
+                                        <input type="hidden" value="{{s.id}}" name="ids_2">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act2_2" style="display: none;">{{s.act2_2}}</td>
+                                    <td>
+                                        <input type="text" name="act2_2" value="{{s.act2_2}}">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act3_2" style="display: none;">{{s.act3_2}}</td>
+                                    <td>
+                                        <input type="text" name="act3_2" value="{{s.act3_2}}">
+                                    </td>
+
+
+
+                                    <td class="tds" contenteditable="true" name="act4_2" style="display: none;">{{s.act4_2}}</td>
+                                    <td>
+                                        <input type="text" name="act4_2" value="{{s.act4_2}}">
+                                    </td>
+
+
+
+                                    <td class="tds" contenteditable="true" name="act5_2" style="display: none;">{{s.act5_2}}</td>
+                                    <td>
+                                        <input type="text" name="act5_2" value="{{s.act5_2}}">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act6_2" style="display: none;">{{s.act6_2}}</td>
+                                    <td>
+                                        <input type="text" name="act6_2" value="{{s.act6_2}}">
+                                    </td>
+
+
+
+                                    <td class="total"></td>
+
+                                    <td class="result">
+                                        <input type="text" name="" class="credits" value="" id="credits" readonly>
+                                    </td>
+
+
+
+
+                                </tr>
+                                {% endif %} {% empty %} {% endfor %}
                             </tbody>
                         </table><br>
                         <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Attendance</button>

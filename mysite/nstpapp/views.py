@@ -1031,8 +1031,8 @@ def dropped(request):
     current_datetime = datetime.datetime.now() 
     userContent = User.objects.all()
     sectionxx = extenduser.objects.all()
-    counts = extenduser.objects.filter(status='DROPPED').count()
-    counts1 = extenduser.objects.filter(status='DROPPED')
+    counts = extenduser.objects.filter(status='DROP').count()
+    counts1 = extenduser.objects.filter(status='DROP')
     section = sections.objects.all()
     section1 = sections.objects.all().count()
     context = {
@@ -1670,15 +1670,44 @@ def set_activities(request):
 def save_grade(request):
     if request.method == 'POST':
         ids= request.POST.getlist('ids')
+   
         act1 = request.POST.getlist('act1')
         act2 = request.POST.getlist('act2')
         act3 = request.POST.getlist('act3')
         act4 = request.POST.getlist('act4')
         act5 = request.POST.getlist('act5')
         act6 = request.POST.getlist('act6')
-        for a, b, c, d , e, f, i in zip(act1, act2, act3, act4, act5, act6, ids):
+        
+        ids_2= request.POST.getlist('ids_2')
+        act1_2 = request.POST.getlist('act1_2')
+        act2_2 = request.POST.getlist('act2_2')
+        act3_2 = request.POST.getlist('act3_2')
+        act4_2 = request.POST.getlist('act4_2')
+        act5_2 = request.POST.getlist('act5_2')
+        act6_2 = request.POST.getlist('act6_2')
+        # for a2 in (act1_2):
+        for a, b, c, d , e, f , i in zip(act1, act2, act3, act4, act5, act6,  ids ):
             extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
+            print(a, b, c, d , e, f)
+            
+        for a2, b2, c2, d2 , e2, f2, i2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2):
+            extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2)
+            print(a2, b2, c2, d2 , e2, f2)
     return redirect('/grades')
+
+# def save_grade_2(request):
+#     if request.method == 'POST':
+#         ids= request.POST.getlist('ids')
+#         act1 = request.POST.getlist('act1')
+#         act2 = request.POST.getlist('act2')
+#         act3 = request.POST.getlist('act3')
+#         act4 = request.POST.getlist('act4')
+#         act5 = request.POST.getlist('act5')
+#         act6 = request.POST.getlist('act6')
+#         for a, b, c, d , e, f, i in zip(act1, act2, act3, act4, act5, act6, ids):
+#             extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
+#     return redirect('/grades')
+
 
 
 def edit_activities(request, id):
@@ -1720,3 +1749,27 @@ def midterms(request):
         'acts3': acts3,
     }
     return render(request, 'activities/midterm.html', context)
+
+
+def add_midterm(request):
+    semester = request.POST.get('sem')
+    date = request.POST.get('date')
+    items = request.POST.get('items')
+    print(semester, date, items)
+    datas = midterm(semester=semester, date=date, items=items)
+    datas.save()
+    return redirect('/midterms')
+
+
+def modify_midterm(request):
+    total = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content3':content3,
+            'getSection':getSection,
+            'total':total
+        }
+        return render(request, 'activities/modify_midterm.html', context)
+    return render(request, 'activities/modify_midterm.html', context)

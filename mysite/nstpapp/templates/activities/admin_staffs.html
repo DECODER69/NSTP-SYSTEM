@@ -56,6 +56,9 @@
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
                                 <th scope="col">EMAIL</th>
+                                <th scope="col">FIRST SEM</th>
+                                <th scope="col">SECOND SEM</th>
+
                                 <!-- <th scope="col">PROFILE PICTURE</th> -->
                                 <th scope="col">COURSE</th>
                                 <th scope="col">FIELD</th>
@@ -72,6 +75,8 @@
                                     <td>{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                     <td>{{s.email}}</td>
+                                    <td>{{s.first_sem}}</td>
+                                    <td>{{s.second_sem}}</td>
                                     <!-- <td id="profile"><img src="{{s.picture.url}}"></td> -->
                                     <td>{{s.section}}</td>
                                     {% if s.field == 'ROTC' %}
@@ -94,7 +99,6 @@
                                     </td>
                                 </form>
                             </tr>
-
                             {% empty %} {% endfor %}
                         </tbody>
                     </table>

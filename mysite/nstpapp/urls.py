@@ -119,6 +119,9 @@ urlpatterns = [
     path('create_td2/', views.create_td2, name='create_td2'),
     path('delete_td/<str:id>', views.delete_td, name='delete_td'),
     path('midterms/', views.midterms, name='midterms'),
+    path('add_midterm/', views.add_midterm, name='add_midterm'),
+    path('modify_midterm/', views.modify_midterm, name='modify_midterm'),
+    # path('save_grade_2/', views.save_grade_2, name='save_grade_2'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

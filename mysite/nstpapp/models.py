@@ -33,7 +33,7 @@ class extenduser(models.Model):
     
     
     
-    # additionals
+    # additionals parents
 
     civil = models.CharField(max_length=20, default='')
     nfather = models.CharField(max_length=20, default='')
@@ -71,7 +71,11 @@ class extenduser(models.Model):
     TD15= models.CharField(max_length=100, default='')
     att_credits = models.CharField(max_length=100, default='')
     
+        # attendance 2nd semester
+        
+        
     
+    # activities
     act1 = models.CharField(max_length=20, default='')
     act2 = models.CharField(max_length=20, default='')
     act3 = models.CharField(max_length=20, default='')
@@ -80,12 +84,38 @@ class extenduser(models.Model):
     act6 = models.CharField(max_length=20, default='')
     act_credits = models.CharField(max_length=20, default='')
     
-    midterm = models.CharField(max_length=20, default='')
-    midterm_credits = models.CharField(max_length=20, default='')
-    finals = models.CharField(max_length=20, default='')
-    finals_credits = models.CharField(max_length=20, default='')
+        # activities 2nd semester
+    act1_2 = models.CharField(max_length=20, default='')
+    act2_2 = models.CharField(max_length=20, default='')
+    act3_2 = models.CharField(max_length=20, default='')
+    act4_2 = models.CharField(max_length=20, default='')
+    act5_2 = models.CharField(max_length=20, default='')
+    act6_2 = models.CharField(max_length=20, default='')
+    act_credits_2 = models.CharField(max_length=20, default='')
+    
+    
+    
+    midterm1 = models.CharField(max_length=20, default='')
+    midterm1_credits = models.CharField(max_length=20, default='')
+    
+    
+    midterm2 = models.CharField(max_length=20, default='')
+    midterm2_credits = models.CharField(max_length=20, default='')
+    
+    finals1 = models.CharField(max_length=20, default='')
+    finals_credits1 = models.CharField(max_length=20, default='')
+    
+    finals2 = models.CharField(max_length=20, default='')
+    finals_credits2 = models.CharField(max_length=20, default='')
+    
+    first_sem = models.CharField(max_length=20, default='')
+    second_sem = models.CharField(max_length=20, default='')
+    
+    
+    
     
     final_grade = models.CharField(max_length=20, default='')
+    final_grade_2 = models.CharField(max_length=20, default='')
     
     # date_enrolled = models.DateTimeField(max_length=40, default='WAITING')
     
@@ -149,8 +179,8 @@ class activity(models.Model):
     act_numbers = models.CharField(max_length=100, default='')
     
 class midterm(models.Model):
-    sem = models.CharField(max_length=20, default='')
-    date = models.CharField(max_length=45, default='')
+    semester = models.CharField(max_length=20, default='')
+    date = models.DateField(blank= True,null=True)
     items = models.CharField(max_length=100, default='')
     
     

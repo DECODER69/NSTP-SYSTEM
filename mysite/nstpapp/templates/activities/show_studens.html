@@ -49,11 +49,10 @@
                         <div class="ada">
                             <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
                             <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{content33}} Student/s</p1><br>
+
                             <p id="count">
                                 {{counted}}
                             </p>
-
-
                         </div>
 
                         <div class="adda">
@@ -181,6 +180,7 @@
 
     <script>
         var td_count = $("#count").text();
+        console.log(td_count)
         $(document).ready(function() {
             $('tr').each(function() {
                 var results = 0;

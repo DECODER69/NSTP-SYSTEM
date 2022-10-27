@@ -21,13 +21,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:#ffffff; color:white;">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Training Day</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Midterm</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
               <span aria-hidden="true">&times;</span>
             </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'activities:create_td2' %}" method="POST">
+                    <form action="{% url 'activities:add_midterm' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Semester</label>
@@ -114,7 +114,7 @@
 
                     <div class="row">
                         {% for s in section2 %}
-                        <form action="{% url 'activities:show_students'%}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:modify_midterm'%}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
@@ -177,7 +177,7 @@
                                 <tbody>
                                     {% for s in acts3 %}
                                     <tr>
-                                        <td>{{s.sem}}</td>
+                                        <td>{{s.semester}}</td>
                                         <td>{{s.date}}</td>
                                         <td>{{s.items}}</td>
                                         <td style="justify-content: space-between; display:flex;">
