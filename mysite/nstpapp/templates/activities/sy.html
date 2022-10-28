@@ -27,7 +27,7 @@
         <div class="bg">
             <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
-                    <a href="/school_years" class="nav-link active">School Year</a>
+                    <a href="/school_years" class="nav-link active" id="active">School Year</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
@@ -53,7 +53,7 @@
                         {% csrf_token %}
                         <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar' style="vertical-align: midddle;"></i> Add School Year </label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="2022-2023" required name="year"><br>
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
+                        <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
                     </form>
 
 
@@ -99,7 +99,7 @@
 
                         <br>
 
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Status</button>
+                        <button type="submit" class="btn btn-info"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Status</button>
                     </form>
                 </div>
                 <br>
@@ -126,7 +126,7 @@
 
                         <br>
 
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Semester</button>
+                        <button type="submit" class="btn btn-info"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Semester</button>
                     </form>
 
 
