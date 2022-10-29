@@ -27,8 +27,8 @@
             <a href="/grades">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|</h1>
             </a>
-            <a href="/finals_">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Finals |</h1>
+            <a href="/final_grade">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Final Grade |</h1>
             </a>
 
 
@@ -139,21 +139,21 @@
                                     {% if s.final_grade_2 != '' %}
                                         {% if s.final_grade_2 <= '74' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="5" readonly style="color:red !important;"></td>
-                                        {% elif s.final_grade_2 >= '75' and s.final_grade_2 <= '77' %}
+                                        {% elif s.final_grade_2 >= '75' and s.final_grade_2 <= '77.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="3" readonly style="color:orange !important;"></td>
                                         {% elif s.final_grade_2 >= '78' and s.final_grade_2 <= '79.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.75" readonly></td>
-                                        {% elif s.final_grade_2 >= '80' and s.final_grade_2 <= '82' %}
+                                        {% elif s.final_grade_2 >= '80' and s.final_grade_2 <= '82.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.50" readonly></td>
-                                        {% elif s.final_grade_2 >= '83' and s.final_grade_2 <= '85' %}
+                                        {% elif s.final_grade_2 >= '83' and s.final_grade_2 <= '85.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.25" readonly></td>
-                                        {% elif s.final_grade_2 >= '86' and s.final_grade_2 <= '88' %}
+                                        {% elif s.final_grade_2 >= '86' and s.final_grade_2 <= '88.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.0" readonly></td>
-                                        {% elif s.final_grade_2 >= '89' and s.final_grade_2 <= '91' %}
+                                        {% elif s.final_grade_2 >= '89' and s.final_grade_2 <= '91.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="1.75" readonly></td>
-                                        {% elif s.final_grade_2 >= '92' and s.final_grade_2 <= '94' %}
+                                        {% elif s.final_grade_2 >= '92' and s.final_grade_2 <= '94.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="1.50" readonly></td>
-                                        {% elif s.final_grade_2 >= '95' and s.final_grade_2 <= '97' %}
+                                        {% elif s.final_grade_2 >= '95' and s.final_grade_2 <= '97.99' %}
                                         <td><input type="text" name="equivalent2" class="equivalent form-control" value="1.25" readonly></td>
                                         {% elif s.final_grade_2 >= '98' and s.final_grade_2 <= '100' %}
                                         <td><input type="text" name="equivalent2" class="equivalent2 form-control" value="1" readonly></td>
