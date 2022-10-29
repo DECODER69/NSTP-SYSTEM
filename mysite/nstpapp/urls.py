@@ -122,6 +122,7 @@ urlpatterns = [
     path('add_midterm/', views.add_midterm, name='add_midterm'),
     path('modify_midterm/', views.modify_midterm, name='modify_midterm'),
     # path('save_grade_2/', views.save_grade_2, name='save_grade_2'),
+    path('save_midterm/', views.save_midterm, name='save_midterm'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

@@ -49,7 +49,7 @@
             <div>
                 <div class="table-responsive">
                     {% for s in s_years %}
-                    <p1 style="font-size:14px;color:#000000;">Officially Enrolled Students. SY: {{s.years}}</p1><br>&nbsp; {% endfor %}
+                    <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> School Year List {{s.years}}</h1><br>&nbsp; {% endfor %}
                     <table id="myTable" class="table table-bordered table-hover ">
                         <thead class="thead">
                             <tr>
@@ -75,7 +75,7 @@
                                     <td>{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                                     <td>{{s.email}}</td>
-                                    <td>{{s.first_sem}}</td>
+                                    <td>{{s.first_sem}} <i class='bx bxs-badge-check' style="vertical-align: middle; color:green; font-size:14px;"></i></td>
                                     <td>{{s.second_sem}}</td>
                                     <!-- <td id="profile"><img src="{{s.picture.url}}"></td> -->
                                     <td>{{s.section}}</td>

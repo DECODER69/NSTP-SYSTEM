@@ -9,12 +9,13 @@
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/modify.css">
 
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
 
     <!-- pagination css -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"> -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -46,8 +47,9 @@
                             <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
                             <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{content33}} Student/s</p1><br>
                             <!-- gshshsfhfs -->
-
-                            <p id="total">{{total}}</p>
+                            {% for s in first %}
+                            <p id="total">{{s.items}}</p>
+                            {% endfor %}
                         </div>
 
                         <div class="adda">
@@ -72,60 +74,52 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:save_grade' %}" method="POST">
+                    <form action="{% url 'activities:save_midterm' %}" method="POST">
                         {% csrf_token %}
-                        <table id="myTable" class="table table-bordered table-hover ">
-                            <thead class="thead">
+                        <table id="tblProducts" class="table table-bordered ">
+                            <thead>
                                 <tr>
-                                    <th scope="col">ID NUMBER</th>
-                                    <th scope="col">FULL NAME</th>
-
-                                    <th scope="col">1st Semester</th>
-                                    <th scope="col">2nd Semester</th>
-
-
-                                    <th style="display: none;"></th>
-                                    <th scope="col" class="result">ACTIVITY 15%</th>
-
+                                    <th>ID Number</th>
+                                    <th>Full name</th>
+                                    <th>Midterm Scrore</th>
+                                    <th>Items</th>
+                                    <th class="result">Credits</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in content3 %}
+                                {% for s in content4 %}{% if s.first_sem != 'COMPLETED' %}
                                 <tr>
-                                    <td>{{s.idnumber}}</td>
-                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-
-
-                                    <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.midterm1}}</td>
-                                    <td>
-                                        <input type="text" name="midterm1" id="" value="{{s.midterm1}}">
-                                        <input type="hidden" value="{{s.midterm1}}" name="ids">
-                                    </td>
-
-
-                                    <td class="tds" contenteditable="true" name="act2" style="display: none;">{{s.midterm2}}</td>
-                                    <td>
-                                        <input type="text" name="midterm2" value="{{s.midterm2}}">
-                                    </td>
-
-
-
-
-
-
-                                    <td class="result">
-                                        <input type="text" name="" class="credits" value="" id="credits" readonly>
-                                    </td>
-
-
-
-
+                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
+                                    <td>{{s.lastname}} {{s.firstname}}</td>
+                                    <td><input type="text" class="qty form-control" value="{{s.midterm1}}" name="midterm1" /></td>
+                                    {% for s in first %}
+                                    <td><input type="text" class="price form-control" value="{{s.items}}" name="price" /></td>
+                                    {% endfor %}
+                                    <td class="result"><input type="text" class="subtot form-control" value="{{s.midterm1_credits}}" name="subtot" readonly/></td>
                                 </tr>
+                                {% else %}
+                                <tr>
+                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
+                                    <td>{{s.lastname}} {{s.firstname}}</td>
+                                    <td><input type="text" class="midterm2 form-control" value="{{s.midterm2}}" name="midterm2" /></td>
+                                    {% for s in first %}
+                                    <td><input type="text" class="price form-control" value="{{s.items}}" name="items" /></td>
+                                    {% endfor %}
+                                    <td class="result"><input type="text" class="credits2 form-control" value="{{s.midterm2_credits}}" name="credits2" readonly /></td>
+                                </tr>
+                                {% endif %} {% endfor %}
 
-                                {% empty %} {% endfor %}
                             </tbody>
+                            <tfoot style="display: none;">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><input type="text" class="grdtot" value="" name="" /></td>
+                                </tr>
+                            </tfoot>
                         </table><br>
-                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Attendance</button>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Midterm</button>
                     </form>
                 </div>
             </div>
@@ -138,17 +132,10 @@
 
 
     <!-- for editing tables -->
-    <script src="extensions/editable/bootstrap-table-editable.js"></script>
 
 
 
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#myTable').dataTable();
-        });
-    </script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <script>
 
@@ -160,30 +147,83 @@
     </script>   -->
 
 
-    <script>
-        var total = $("#total").text();
-        $(document).ready(function() {
-            $('tr').each(function() {
 
-                var finals = 0;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.pnm, .price, .subtot, .grdtot').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
 
-                $(this).find('.finals').each(function() {
-                    var marks = $(this).text();
-                    if (marks.length !== 0) {
-                        finals += parseFloat(marks / 75 * 100 * 0.15);
+            $tblrows.each(function(index) {
+                var $tblrow = $(this);
 
+                $tblrow.find('.qty').on('change', function() {
 
+                    var qty = $tblrow.find("[name=midterm1]").val();
+                    var price = $tblrow.find("[name=price]").val();
+                    var subTotal = parseInt(qty, 10) / parseFloat(price) * 100 * 0.15;
+
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.subtot').val(subTotal.toFixed(2));
+                        var grandTotal = 0;
+
+                        $(".subtot").each(function() {
+                            var stval = parseFloat($(this).val());
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.grdtot').val(grandTotal.toFixed(2));
                     }
                 });
-
-
-                $(this).find('#finals').val(finals.toFixed(2));
-
-
-
-            })
+            });
         });
     </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pnm, .price, .subtot, .grdtot').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function(index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.midterm2').on('change', function() {
+
+                    var midterm2 = $tblrow.find("[name=midterm2]").val();
+                    var items = $tblrow.find("[name=items]").val();
+                    var subTotal = parseInt(midterm2, 10) / parseFloat(items) * 100 * 0.15;
+
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.credits2').val(subTotal.toFixed(2));
+                        var grandTotal = 0;
+
+                        $(".credits2").each(function() {
+                            var stval = parseFloat($(this).val());
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.grdtot').val(grandTotal.toFixed(2));
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+
 
 </body>
 

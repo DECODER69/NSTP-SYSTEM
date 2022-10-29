@@ -32,7 +32,7 @@
                     <a class="nav-link" href="/admin_staff">Officially Enrolled <i class='bx bxs-badge-check' style="vertical-align: middle;"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" style="background-color:#FBC007;" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
+                    <a class="nav-link active" id="active" href="/admin_pending">Pending Enrollees <i class='bx bxs-time-five' style="vertical-align: middle;" ></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_rejected">Rejected <i class='bx bxs-user-minus' style="vertical-align: middle;"></i></a>
@@ -72,7 +72,7 @@
                             </td>
                             <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                             <td>{{s.email}}</td>
-                            <td>{{s.first_sem}}</td>
+                            <td>{{s.first_sem}} <i class='bx bxs-badge-check' style="vertical-align: middle; color:green; font-size:14px;"></i></td>
                             <td>{{s.second_sem}}</td>
 
                             <td>{{s.section}}</td>

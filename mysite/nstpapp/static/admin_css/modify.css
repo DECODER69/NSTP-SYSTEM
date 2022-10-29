@@ -96,7 +96,6 @@ body {
 
 .table {
     margin: auto;
-    background-color: #aaaaaa;
     width: auto;
 }
 
@@ -138,6 +137,12 @@ h1 {
     font-size: 15px;
 }
 
+.table td {
+    color: rgb(33, 48, 34);
+    font-size: 15px;
+    font-weight: bolder;
+}
+
 .hes {
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -175,16 +180,26 @@ h1 {
 /* EOF ANNOUNCEMENTS */
 
 .result {
-    background-color: #2f99ab !important;
-    color: rgb(255, 255, 255) !important;
+    background-color: #d3ab6c !important;
+    color: rgb(23, 3, 3) !important;
+}
+
+.subtot {
+    background-color: transparent !important;
 }
 
 .result input {
-    background-color: transparent;
+    background-color: #d3ab6c !important;
     border: none !important;
 }
 
 .result input:focus {
     background-color: transparent;
     border: none !important;
+}
+
+.form-control {
+    color: black !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
 }

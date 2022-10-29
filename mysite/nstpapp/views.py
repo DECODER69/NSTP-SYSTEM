@@ -199,7 +199,7 @@ def admin_view_profile(request, id):
 
 
 def school_years(request):
-   
+
     s_years = school_year.objects.all()
     ss_years = extenduser.objects.all()
     ewan = school_year.objects.all()
@@ -1689,12 +1689,12 @@ def save_grade(request):
         act6_2 = request.POST.getlist('act6_2')
         # for a2 in (act1_2):
         for a, b, c, d , e, f , i in zip(act1, act2, act3, act4, act5, act6,  ids ):
-            extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
-            print(a, b, c, d , e, f)
+            # extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
+            print("hahaha "+ a, b, c, d , e, f)
             
         for a2, b2, c2, d2 , e2, f2, i2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2):
             extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2)
-            print(a2, b2, c2, d2 , e2, f2)
+            print("2nd sem haha "+ a2, b2, c2, d2 , e2, f2)
     return redirect('/grades')
 
 # def save_grade_2(request):
@@ -1764,14 +1764,33 @@ def add_midterm(request):
 
 
 def modify_midterm(request):
-    total = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
+    #  first = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
+    first = midterm.objects.filter(semester='1st sem')
+    second = midterm.objects.filter(semester='2nd Sem')
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
-        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
         context = {
-            'content3':content3,
+            'content4':content4,
             'getSection':getSection,
-            'total':total
+            'first':first,
+            'second':second
         }
         return render(request, 'activities/modify_midterm.html', context)
     return render(request, 'activities/modify_midterm.html', context)
+
+def save_midterm(request):
+    if request.method == 'POST':
+        ids= request.POST.getlist('ids')
+        midterm1 = request.POST.getlist('midterm1')
+        midterm2 = request.POST.getlist('midterm2')
+        subtot = request.POST.getlist('subtot')
+        credits2 = request.POST.getlist('credits2')
+        
+        for a, b, c in zip(ids, midterm1, subtot):
+            extenduser.objects.filter(id=a).update(midterm1=b, midterm1_credits=c)
+            
+        for a, b, c in zip(ids, midterm2, credits2):
+            extenduser.objects.filter(id=a).update(midterm2=b, midterm2_credits=c)
+
+    return redirect('/midterms')

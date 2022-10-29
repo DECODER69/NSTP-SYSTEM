@@ -126,7 +126,7 @@
 
                         <br>
 
-                        <button type="submit" class="btn btn-info"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Semester</button>
+                        <button type="submit" class="btn semester"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Semester</button>
                     </form>
 
 
@@ -139,9 +139,16 @@
         </div>
         <div class="inside">
 
+
+            <div class="">
+
+
+            </div>
+
+
             <div class="table-responsive">
 
-                <p1 style=" color:#000000d4; font-size:14px;">School Year List and History:</p1><br>&nbsp;
+                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> School Year List</h1><br>&nbsp;
 
 
 
@@ -149,8 +156,7 @@
                     <thead class="thead">
                         <tr>
                             <th scope="col">SCHOOL YEARS</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">HISTORY</th>
+                            <th scope="col">REGISTRATION STATUS</th>
                             <th scope="col">ACTIONS</th>
 
                         </tr>
@@ -168,13 +174,7 @@
 
 
                             </td>
-                            <form action="{% url 'activities:allumni_content'  %}" method="POST">
-                                {% csrf_token %}
-                                <td style="text-align: center;">
-                                    <input type="hidden" value="{{s.years}}" name="getYear">
-                                    <button type="submit" class="btn btn-info" id="open"><i class='bx bx-history' ></i> Open History {{counted}}</button>
-                                </td>
-                            </form>
+
 
                             <td style="text-align: center;">
 
@@ -191,6 +191,7 @@
                     </tbody>
                 </table>
             </div>
+
 
 
         </div>
@@ -232,6 +233,34 @@
             })
         })
     </script>
+
+    <!-- <script>
+        $('.semester').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Changing Semester Will reflect to all Students\n",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, change it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Semester Changed',
+                        '',
+                        'success'
+                    )
+
+                }
+            })
+        })
+    </script> -->
 
     <script src="../../static/js/pag.js"></script>
     <script src="../../static/js/datbot.js"></script>

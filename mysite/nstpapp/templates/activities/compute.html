@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Performing Calculations in a Table</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.pnm, .price, .subtot, .grdtot').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function(index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.qty').on('change', function() {
+
+                    var qty = $tblrow.find("[name=qty]").val();
+                    var price = $tblrow.find("[name=price]").val();
+                    var subTotal = parseInt(qty, 10) * parseFloat(price);
+
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.subtot').val(subTotal.toFixed(2));
+                        var grandTotal = 0;
+
+                        $(".subtot").each(function() {
+                            var stval = parseFloat($(this).val());
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.grdtot').val(grandTotal.toFixed(2));
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h2>Performing Calculations in a Table</h2>
+    <p>Enter a number in the Quantity Column and hit tab
+    </p>
+    <table id="tblProducts">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Sub-Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="pnm" value="Product One" name="pnm" /></td>
+                <td><input type="text" class="qty" value="" name="qty" /></td>
+                <td><input type="text" class="price" value="220" name="price" /></td>
+                <td><input type="text" class="subtot" value="0" name="subtot" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" class="pnm" value="Product Two" name="pnm" /></td>
+                <td><input type="text" class="qty" value="" name="qty" /></td>
+                <td><input type="text" class="price" value="18.32" name="price" /></td>
+                <td><input type="text" class="subtot" value="0" name="subtot" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" class="pnm" value="Product Three" name="pnm" /></td>
+                <td><input type="text" class="qty" value="" name="qty" /></td>
+                <td><input type="text" class="price" value="29" name="price" /></td>
+                <td><input type="text" class="subtot" value="0" name="subtot" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" class="pnm" value="Product Four" name="pnm" /></td>
+                <td><input type="text" class="qty" value="" name="qty" /></td>
+                <td><input type="text" class="price" value="19.99" name="price" /></td>
+                <td><input type="text" class="subtot" value="0" name="subtot" /></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="text" class="grdtot" value="" name="" /></td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>

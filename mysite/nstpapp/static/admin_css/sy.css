@@ -129,7 +129,6 @@ body {
 .inners {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
 }
 
 .form-group {
@@ -139,6 +138,18 @@ body {
     padding: 5px;
     border-radius: 4px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.539), 0 6px 20px 0 rgba(29, 14, 14, 0.309);
+}
+
+.form-group label i {
+    color: rgb(101, 90, 84) !important;
+    font-size: 20px !important;
+}
+
+.form-group button {
+    background-color: #434d4e !important;
+    color: rgb(255, 241, 235);
+    outline: none !important;
+    border: none !important;
 }
 
 

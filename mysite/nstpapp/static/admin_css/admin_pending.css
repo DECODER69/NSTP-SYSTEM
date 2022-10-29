@@ -121,8 +121,13 @@ td {
 
 .nav-item .nav-link {
     font-size: 15px;
-    color: rgb(0, 0, 0);
     font-weight: bold;
+    color: #33475B !important;
+}
+
+#active {
+    background-color: #272727 !important;
+    color: rgb(255, 255, 255) !important;
 }
 
 .filters {
