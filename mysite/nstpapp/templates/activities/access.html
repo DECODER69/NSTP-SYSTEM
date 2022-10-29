@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>platoon content</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/modify.css">
+
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+
+    <!-- pagination css -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"> -->
+
+
+</head>
+
+<body>
+
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="home-section">
+        <div class="heads">
+            <a href="/grades">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|</h1>
+            </a>
+            <a href="/finals_">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Finals |</h1>
+            </a>
+
+
+            <h1 class="text"><i class='bx bx-intersect'></i>{{getSection}}
+            </h1>
+
+        </div>
+        <div class="bg">
+
+            <div class="inside">
+
+
+                <div class="table-responsive">
+                    <div class="he">
+
+                        <div class="ada">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Finals Grading</h1>
+                            <!-- gshshsfhfs -->
+                            {% for s in first %}
+                            <p id="total" style="display: none;">{{s.items}}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="adda">
+                            <form action="{% url 'activities:download' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+                            <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="platoon">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Export</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+
+
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <form action="{% url 'activities:save_finale_grades' %}" method="POST">
+                        {% csrf_token %}
+                        <table id="tblProducts" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID Number</th>
+                                    <th>Full name</th>
+                                    <th>Attendance 30%</th>
+                                    <th>Merits 30%</th>
+                                    <th>Activities 10%</th>
+                                    <th>Midterm Exam 15%</th>
+                                    <th>Final Exam 15%</th>
+                                    <th class="result" id="result">Final Grade</th>
+
+                                    <th class="result">Equivalent</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in content4 %}{% if s.first_sem != 'COMPLETED' %}
+                                <tr>
+                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
+                                    <td>{{s.lastname}} {{s.firstname}}</td>
+                                    <td class="data">{{s.att_credits}}</td>
+                                    <td class="data">20</td>
+                                    <td class="data">{{s.act_credits}}</td>
+                                    <td class="data">{{s.midterm1_credits}}</td>
+                                    <td class="data">{{s.finals_credits1}}</td>
+                                    <td><input type="number" name="final_grade" class="final_grade form-control" value="{{s.final_grade}}" readonly></td>
+                            
+                                    {% if s.final_grade <= '74' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="5" readonly style="color:red !important;"></td>
+                                    {% elif s.final_grade >= '75' and s.final_grade <= '77' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="3" readonly style="color:orange !important;"></td>
+                                    {% elif s.final_grade >= '78' and s.final_grade <= '79' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="2.75" readonly></td>
+                                    {% elif s.final_grade >= '80' and s.final_grade <= '82' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="2.50" readonly></td>
+                                    {% elif s.final_grade >= '83' and s.final_grade <= '85' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="2.25" readonly></td>
+                                    {% elif s.final_grade >= '86' and s.final_grade <= '88' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="2.0" readonly></td>
+                                    {% elif s.final_grade >= '89' and s.final_grade <= '91' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="1.75" readonly></td>
+                                    {% elif s.final_grade >= '92' and s.final_grade <= '94' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="1.50" readonly></td>
+                                    {% elif s.final_grade >= '95' and s.final_grade <= '97' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="1.25" readonly></td>
+                                    {% elif s.final_grade >= '98' and s.final_grade <= '100' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="1" readonly></td>
+                                    {% endif %}
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids_2"></td>
+                                    <td>{{s.lastname}} {{s.firstname}}</td>
+                                    <td class="data2">{{s.att_credits}}</td>
+                                    <td class="data2">20</td>
+                                    <td class="data2">{{s.act_credits_2}}</td>
+                                    <td class="data2">{{s.midterm2_credits}}</td>
+                                    <td class="data2">{{s.finals_credits2}}</td> 
+                                    <td><input type="text" name="final_grade2" class="final_grade_2 form-control" value="{{s.final_grade_2}}" readonly></td>
+                                    {% if s.final_grade_2 != '' %}
+                                        {% if s.final_grade_2 <= '74' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="5" readonly style="color:red !important;"></td>
+                                        {% elif s.final_grade_2 >= '75' and s.final_grade_2 <= '77' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="3" readonly style="color:orange !important;"></td>
+                                        {% elif s.final_grade_2 >= '78' and s.final_grade_2 <= '79' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.75" readonly></td>
+                                        {% elif s.final_grade_2 >= '80' and s.final_grade_2 <= '82' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.50" readonly></td>
+                                        {% elif s.final_grade_2 >= '83' and s.final_grade_2 <= '85' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.25" readonly></td>
+                                        {% elif s.final_grade_2 >= '86' and s.final_grade_2 <= '88' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="2.0" readonly></td>
+                                        {% elif s.final_grade_2 >= '89' and s.final_grade_2 <= '91' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="1.75" readonly></td>
+                                        {% elif s.final_grade_2 >= '92' and s.final_grade_2 <= '94' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="1.50" readonly></td>
+                                        {% elif s.final_grade_2 >= '95' and s.final_grade_2 <= '97' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent form-control" value="1.25" readonly></td>
+                                        {% elif s.final_grade_2 >= '98' and s.final_grade_2 <= '100' %}
+                                        <td><input type="text" name="equivalent2" class="equivalent2 form-control" value="1" readonly></td>
+                                        {% endif %}
+                                    {% else %}
+                                    <td><input type="text" name="equivalent" class="equivalent2 form-control" value="" readonly></td>
+                                    {% endif %}
+
+                                </tr>
+                                {% endif %} {% endfor %}
+
+                            </tbody>
+
+                        </table><br>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Midterm</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- for editing tables -->
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>   -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('tr').each(function() {
+                var results = 0;
+                var results2  = 0;
+                $(this).find('.data').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        results += parseFloat(marks);
+
+                    }
+                });
+                $(this).find('.data2').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        results2 += parseFloat(marks);
+
+                    }
+                });
+                console.log(results)
+                $(this).find('.result2').html(results.toFixed(2));
+                $(this).find('.final_grade').val(results.toFixed(2));
+                $(this).find('.final_grade_2').val(results2.toFixed(2));
+
+
+            })
+        });
+    </script>
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

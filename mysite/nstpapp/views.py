@@ -1854,3 +1854,41 @@ def save_finals(request):
         for d, e,f in zip(ids2, finals2, subtot2):
             extenduser.objects.filter(id=d).update(finals2=e, finals_credits2=f)
         return redirect('/finals_')
+def final_grade(request):
+    acts3 = finals.objects.all()
+    section2 = sections.objects.all()
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/final_grade.html', context)
+
+def access_final_grade(request):
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content4':content4,
+            'getSection':getSection
+          
+        }
+    return render(request, 'activities/access.html', context)
+
+def save_finale_grades(request):
+    if request.method == 'POST':
+        ids_2 = request.POST.getlist('ids_2')
+        second_grade = request.POST.getlist('final_grade2')
+        equivalent2 = request.POST.getlist('equivalent2')
+        ids = request.POST.getlist('ids')
+        first_sem_grade = request.POST.getlist('final_grade')
+        equivalent = request.POST.getlist('equivalent')
+        
+      
+        
+        for a, b, c in zip(ids, first_sem_grade, equivalent):
+            extenduser.objects.filter(id=a).update(final_grade=b, first_equivalents=c)
+            print(a, b, c)
+        for  d, e, f in zip(ids_2, second_grade, equivalent2):
+            print(d, e, f)
+            extenduser.objects.filter(id=d).update(final_grade_2=e, second_equivalents=f)
+        return redirect('/final_grade')

@@ -59,7 +59,7 @@
     <section class="home-section">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Finals</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Final Grade</h1>
             </a>
 
         </div>
@@ -83,10 +83,10 @@
                 <a class="nav-link " href="/midterms">Midterm</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/finals_">Finals</a>
+                <a class="nav-link" href="/finals_">Finals</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/final_grade">Final Grade</a>
+                <a class="nav-link active" href="/final_grade">Final Grade</a>
             </li>
         </ul>
 
@@ -96,13 +96,13 @@
         <div class="bg">
 
 
-            <div class="overall">
+            <div class="overall" style="width: 100% !important;">
                 <div class="left">
                     <div class="tss">
 
 
                         <div class="txt ">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Final Exam Records</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Overall Grade</h1>
 
                         </div>
 
@@ -114,7 +114,7 @@
 
                     <div class="row">
                         {% for s in section2 %}
-                        <form action="{% url 'activities:modify_finals'%}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:access_final_grade'%}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
@@ -142,7 +142,7 @@
                 </div>
             </div>
 
-
+            <!-- 
             <div class="overall1">
 
 
@@ -200,7 +200,7 @@
 
 
 
-            </div>
+            </div> -->
 
         </div>
     </section>

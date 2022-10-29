@@ -109,7 +109,8 @@ class extenduser(models.Model):
     act6_2 = models.CharField(max_length=20, default='')
     act_credits_2 = models.CharField(max_length=20, default='')
     
-    
+    first_merits = models.CharField(max_length=20, default='100')
+    second_merits = models.CharField(max_length=20, default='100')
     
     midterm1 = models.CharField(max_length=20, default='')
     midterm1_credits = models.CharField(max_length=20, default='')
@@ -132,6 +133,9 @@ class extenduser(models.Model):
     
     final_grade = models.CharField(max_length=20, default='')
     final_grade_2 = models.CharField(max_length=20, default='')
+    
+    first_equivalents = models.CharField(max_length=20, default='')
+    second_equivalents = models.CharField(max_length=20, default='')
     
     # date_enrolled = models.DateTimeField(max_length=40, default='WAITING')
     

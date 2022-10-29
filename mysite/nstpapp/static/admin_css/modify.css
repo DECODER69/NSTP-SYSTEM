@@ -134,12 +134,12 @@ h1 {
 
 .table th {
     color: rgb(0, 0, 0);
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .table td {
     color: rgb(33, 48, 34);
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bolder;
 }
 
@@ -182,6 +182,12 @@ h1 {
 .result {
     background-color: #d3ab6c !important;
     color: rgb(23, 3, 3) !important;
+}
+
+#result {
+    background-color: #d3ab6c !important;
+    color: rgb(23, 3, 3) !important;
+    width: 100px !important;
 }
 
 .subtot {

@@ -129,6 +129,9 @@ urlpatterns = [
     path('delete_midterm/<str:id>', views.delete_midterm, name='delete_midterm'),
     path('delete_finals/<str:id>', views.delete_finals, name='delete_finals'),
     path('save_finals/', views.save_finals, name='save_finals'),
+    path('final_grade/', views.final_grade, name='final_grade'),
+    path('access_final_grade/', views.access_final_grade, name='access_final_grade'),
+    path('save_finale_grades/', views.save_finale_grades, name='save_finale_grades'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
