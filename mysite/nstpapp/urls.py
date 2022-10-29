@@ -123,6 +123,12 @@ urlpatterns = [
     path('modify_midterm/', views.modify_midterm, name='modify_midterm'),
     # path('save_grade_2/', views.save_grade_2, name='save_grade_2'),
     path('save_midterm/', views.save_midterm, name='save_midterm'),
+    path('finals_/', views.finals_, name='finals_'),
+    path('modify_finals/', views.modify_finals, name='modify_finals'),
+    path('add_finals/', views.add_finals, name='add_finals'),
+    path('delete_midterm/<str:id>', views.delete_midterm, name='delete_midterm'),
+    path('delete_finals/<str:id>', views.delete_finals, name='delete_finals'),
+    path('save_finals/', views.save_finals, name='save_finals'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

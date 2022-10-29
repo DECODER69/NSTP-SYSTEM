@@ -200,6 +200,10 @@ class midterm(models.Model):
     items = models.CharField(max_length=100, default='')
     
     
+class finals(models.Model):
+    semester = models.CharField(max_length=20, default='')
+    date = models.DateField(blank= True,null=True)
+    items = models.CharField(max_length=100, default='')
     
 
     

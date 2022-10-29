@@ -29,7 +29,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm
+from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals
 import os
 import csv  
 
@@ -1733,6 +1733,15 @@ def delete_td(request, id):
     training_day.objects.filter(id=id).delete()
     messages.success(request, 'Deleted')
     return redirect('/attendance_tab')
+def delete_midterm(request, id):
+    midterm.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/midterms')
+
+def delete_finals(request, id):
+    finals.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/finals_')
 
 def attendance_tab(request):
     acts2 = training_day.objects.all()
@@ -1794,3 +1803,54 @@ def save_midterm(request):
             extenduser.objects.filter(id=a).update(midterm2=b, midterm2_credits=c)
 
     return redirect('/midterms')
+
+def finals_(request):
+    acts3 = finals.objects.all()
+    section2 = sections.objects.all()
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/finals.html', context)
+
+
+def modify_finals(request):
+    #  first = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
+    first = midterm.objects.filter(semester='1st sem')
+    second = midterm.objects.filter(semester='2nd Sem')
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content4':content4,
+            'getSection':getSection,
+            'first':first,
+            'second':second
+        }
+        return render(request, 'activities/modify_finals.html', context)
+    return render(request, 'activities/modify_finals.html', context)
+
+def add_finals(request):
+    semester = request.POST.get('sem')
+    date = request.POST.get('date')
+    items = request.POST.get('items')
+    print(semester, date, items)
+    datas = finals(semester=semester, date=date, items=items)
+    datas.save()
+    return redirect('/finals_')
+
+def save_finals(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('ids')
+        finals1 = request.POST.getlist('finals1')
+        subtot1 = request.POST.getlist('subtot1')
+        
+        ids2 = request.POST.getlist('ids2')
+        finals2 = request.POST.getlist('finals2')
+        subtot2 = request.POST.getlist('subtot2')
+        
+        for a, b, c in zip(ids, finals1, subtot1):
+            extenduser.objects.filter(id=a).update(finals1=b, finals_credits1=c)
+        for d, e,f in zip(ids2, finals2, subtot2):
+            extenduser.objects.filter(id=d).update(finals2=e, finals_credits2=f)
+        return redirect('/finals_')

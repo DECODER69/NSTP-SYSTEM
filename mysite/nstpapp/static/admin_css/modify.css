@@ -191,6 +191,7 @@ h1 {
 .result input {
     background-color: #d3ab6c !important;
     border: none !important;
+    color: rgb(0, 0, 0) !important;
 }
 
 .result input:focus {

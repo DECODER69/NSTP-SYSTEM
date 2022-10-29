@@ -75,7 +75,7 @@
                 <a class="nav-link " href="/midterms">Midterm</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">Finals</a>
+                <a class="nav-link " href="/finals_">Finals</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="#">Final Grade</a>
@@ -172,7 +172,7 @@
                                         <td>{{s.td}}</td>
                                         <td style="justify-content: space-between; display:flex;">
                                             <a href="/delete_td/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class='bx bx-trash'></i></a>
-                                            
+
                                         </td>
                                     </tr>
 
@@ -206,13 +206,16 @@
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        {% for msg in messages %}
+    <!-- <script>
+        { %
+            for msg in messages %
+        }
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
-        }) {% endfor %}
-    </script>
+        }) { % endfor %
+        }
+    </script> -->
 
     <script>
         $('.btn-danger').on('click', function(e) {
