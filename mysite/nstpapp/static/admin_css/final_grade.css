@@ -107,7 +107,7 @@ body {
 /* Remove extra left and right margins, due to padding */
 
 .row {
-    margin: 0 -5px;
+    margin: 0;
     padding: 40px;
     justify-content: space-between;
 }
@@ -117,7 +117,7 @@ body {
 
 .row:after {
     content: "";
-    display: table;
+    display: block;
     clear: both;
 }
 
@@ -231,28 +231,7 @@ body {
         width: 100%;
     }
     .column {
-        width: 50%;
-    }
-    .overall1 {
-        width: 100%;
-    }
-    .table {
-        overflow-x: scroll;
-    }
-}
-
-@media only screen and (min-width: 1081px) and (max-width: 1920px) {
-    .nav-item a {
-        font-size: 13px;
-    }
-    .bg {
-        display: flex !important;
-    }
-    .overall {
-        width: 100%;
-    }
-    .column {
-        width: 50%;
+        width: 30%;
     }
     .overall1 {
         width: 100%;
@@ -269,7 +248,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: center;
-    background-color: #F7F7F7 !important;
+    background-color: #a4d1ca !important;
 }
 
 .rights {

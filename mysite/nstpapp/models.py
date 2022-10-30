@@ -71,6 +71,25 @@ class extenduser(models.Model):
     TD15= models.CharField(max_length=100, default='')
     att_credits = models.CharField(max_length=100, default='')
     
+    
+        # merits
+    TD1_dem= models.CharField(max_length=100, default='')
+    TD2_dem= models.CharField(max_length=100, default='')
+    TD3_dem= models.CharField(max_length=100, default='')
+    TD4_dem= models.CharField(max_length=100, default='')
+    TD5_dem= models.CharField(max_length=100, default='')
+    TD6_dem= models.CharField(max_length=100, default='')
+    TD7_dem= models.CharField(max_length=100, default='')
+    TD8_dem= models.CharField(max_length=100, default='')
+    TD9_dem= models.CharField(max_length=100, default='')
+    TD10_dem= models.CharField(max_length=100, default='')
+    TD11_dem= models.CharField(max_length=100, default='')
+    TD12_dem= models.CharField(max_length=100, default='')
+    TD13_dem= models.CharField(max_length=100, default='')
+    TD14_dem= models.CharField(max_length=100, default='')
+    TD15_dem= models.CharField(max_length=100, default='')
+    first_merits = models.CharField(max_length=20, default='100')
+    
         # attendance 2nd semester
     TD1_2= models.CharField(max_length=100, default='')
     TD2_2= models.CharField(max_length=100, default='')
@@ -88,6 +107,26 @@ class extenduser(models.Model):
     TD14_2= models.CharField(max_length=100, default='')
     TD15_2= models.CharField(max_length=100, default='')
     att_credits_2 = models.CharField(max_length=100, default='')
+    
+    
+    
+    #demerits sencond sem
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD2_2_dem= models.CharField(max_length=100, default='')
+    TD3_2_dem= models.CharField(max_length=100, default='')
+    TD4_2_dem= models.CharField(max_length=100, default='')
+    TD5_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    TD1_2_dem= models.CharField(max_length=100, default='')
+    second_merits = models.CharField(max_length=20, default='100')
         
         
     
@@ -109,8 +148,8 @@ class extenduser(models.Model):
     act6_2 = models.CharField(max_length=20, default='')
     act_credits_2 = models.CharField(max_length=20, default='')
     
-    first_merits = models.CharField(max_length=20, default='100')
-    second_merits = models.CharField(max_length=20, default='100')
+
+    
     
     midterm1 = models.CharField(max_length=20, default='')
     midterm1_credits = models.CharField(max_length=20, default='')

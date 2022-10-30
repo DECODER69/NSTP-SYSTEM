@@ -336,3 +336,34 @@
         font-size: 15px;
     }
 }
+
+
+/* Style the sidenav links and the dropdown button */
+
+.sidebar li .submenu {
+    margin: 0;
+    padding: 0;
+    color: white !important;
+}
+
+#eme {
+    padding: 0 !important;
+}
+
+.submenu li a {
+    color: #afafaf;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.submenu li a:hover {
+    background-color: #5393ac;
+    padding: 5px !important;
+    color: white;
+}
+
+.sidebar.open .submenu {
+    opacity: 1;
+    pointer-events: auto;
+    padding-left: 50px !important;
+}

@@ -162,14 +162,14 @@ h1 {
 }
 
 #check {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin: auto;
 }
 
 #check1 {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin: auto;
     background-color: red;
     border: 2px red;
@@ -181,4 +181,94 @@ h1 {
     background-color: #114d4e !important;
     float: right !important;
     margin-right: 200px !important;
+}
+
+.mert {
+    justify-content: space-between;
+    width: 90%;
+    overflow-y: scroll;
+    display: flex;
+}
+
+#ggg {
+    width: 20%;
+}
+
+.mert label {
+    font-size: 18px !important;
+    font-weight: 300;
+}
+
+.input-group {
+    justify-content: space-between;
+    display: flex !important;
+}
+
+.input-group .quantity-field {
+    width: 10px !important;
+}
+
+.button-minus,
+.button-plus {
+    width: 40px !important;
+}
+
+@media only screen and (max-width: 486px) {
+    .he {
+        display: block;
+        justify-content: space-between;
+    }
+    .he .adda {
+        margin: auto;
+        display: block;
+        width: 100%;
+    }
+    .adda .button {
+        float: left !important;
+    }
+    .ada h1 {
+        font-size: 15px !important;
+    }
+    table th {
+        font-size: 10px !important;
+    }
+    table td {
+        font-size: 10px !important;
+    }
+    #idnumber {
+        display: none !important;
+    }
+    td input {
+        width: 16px !important;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+    .he {
+        display: block;
+        justify-content: space-between;
+    }
+    .he .adda {
+        margin: auto;
+        display: block;
+        width: 100%;
+    }
+    .adda .button {
+        float: left !important;
+    }
+    .ada h1 {
+        font-size: 15px !important;
+    }
+    table th {
+        font-size: 15px !important;
+    }
+    table td {
+        font-size: 13px !important;
+    }
+    #idnumber {
+        display: none !important;
+    }
+    td input {
+        width: 19px !important;
+    }
 }

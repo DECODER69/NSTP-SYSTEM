@@ -8,8 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../static/admin_css/open_sections.css">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/
+4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -36,14 +42,8 @@
 
                 <div class="table-responsive">
                     <div class="he">
-
                         <div class="ada">
-                            <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
-                            <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{counts}} Student/s</p1><br>
-                            <!-- <p>date 1 {{date1}}</p>
-                            <p>date 0 {{date0}}</p>
-                            <p>{{td_count}}</p>
-                            <p>{{student}}</p> -->
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Check Attendance</h1>
                         </div>
 
                         <div class="adda">
@@ -53,7 +53,6 @@
                                 <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
                                 <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                             </form>
-
                         </div>
 
 
@@ -64,30 +63,24 @@
                         <table id="myTable" class="table table-bordered table-hover ">
                             <thead class="thead">
                                 <tr>
-                                    <th scope="col">ID NUMBER</th>
+                                    <th>ID</th>
+                                    <th scope="col" id="idnumber">ID NUMBER</th>
                                     <th scope="col">FULL NAME</th>
-                                    <th scope="col">EMAIL</th>
 
-                                    <th scope="col">COURSE</th>
-                                    <th scope="col">FIELD</th>
+
+
                                     <th scope="col">SECTION</th>
                                     <th scope="col">CHECK</th>
+                                    <th scope="col" id="ggg">MERITS / DEMERITS</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 {% for s in student %}
                                 <tr>
-                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.id}}</td>
+                                    <td id="idnumber">{{s.idnumber}}</td>
                                     <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                    <td>{{s.email}}</td>
-
-                                    <td>{{s.section}}</td>
-                                    {% if s.field == 'ROTC' %}
-                                    <td style="color:red; font-weight:bolder;">{{s.field}}</td>
-                                    {% elif s.field == 'CWTS' %}
-                                    <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
-                                    {% endif %}
                                     <td>{{s.platoons}}</td>
                                     {% if td_count == '1' %}
                                     <td style="text-align: center;">
@@ -100,6 +93,8 @@
                                         <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
+
+
                                     {% elif td_count == '2' %}
                                     <td style="text-align: center;">
                                         {% if s.TD2 == '0' %}
@@ -257,20 +252,14 @@
 
                                     </td>
                                     {% endif %}
-                                    <!-- 
-                                    hfuysgfsgf -->
-                                    <!-- {% for s in td_count %} {% if s.td_count == 1 %}
-
-                                    <td style="text-align: center;">
-                                        {% if s.TD1 == 'ABSENT' %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" > Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked> Absent</label> {% else %}
-                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked> Present</label>
-                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" > Absent</label> {% endif %}
-
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
                                     </td>
-                                    {% endif %} {% endfor %} -->
-
 
                                 </tr>
                                 {% endfor %}
@@ -296,6 +285,42 @@
 
         </div>
     </section>
+
+    <script>
+        function incrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal)) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        function decrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal) && currentVal > 0) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        $('.input-group').on('click', '.button-plus', function(e) {
+            incrementValue(e);
+        });
+
+        $('.input-group').on('click', '.button-minus', function(e) {
+            decrementValue(e);
+        });
+    </script>
 
 
 

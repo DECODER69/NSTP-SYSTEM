@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>nav</title>
 </head>
@@ -59,45 +60,59 @@
                 <span class="tooltip">Attendance</span>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="/grades">
                     <i class='bx bx-list-check'></i>
                     <span class="links_name">Manage Grades</span>
+
                 </a>
                 <span class="tooltip">Manage Grades</span>
-            </li>
+            </li> -->
 
 
-            <!-- <li>
+            <li class="nav-item has-submenu">
+                <a class="nav-link" href="#" id="eme"><i class='bx bx-list-check'></i>
+                <span class="links_name">Manage Grades</span>
+                <ul class="submenu collapse">
+                    <li><a class="gs" href="/grades" style="text-decoration: none !important;">ROTC</a></li>
+            <li><a href="#" style="text-decoration: none !important;">CWTS</a></li>
+        </ul>
+        </a>
+        <span class="tooltip">Manage Grades</span>
+        </li>
+
+
+
+        <!-- <li>
                 <a href="/attendance_page">
                     <i class='bx bx-list-check'></i>
                     <span class="links_name">Attendance</span>
                 </a>
                 <span class="tooltip">Attendance</span>
             </li> -->
-            <li>
-                <a href="/alumni_page">
-                    <i class='bx bxs-graduation'></i>
-                    <span class="links_name">Alumni</span>
-                </a>
-                <span class="tooltip">ALumni</span>
-            </li>
-            <li>
-                <a href="/admin_files">
-                    <i class='bx bxs-folder'></i>
-                    <span class="links_name">FILES</span>
-                </a>
-                <span class="tooltip">FILES</span>
-            </li>
-            <li>
-                <a href="/cert_page">
-                    <i class='bx bxs-certification'></i>
-                    <span class="links_name">CERTIFICATION</span>
-                </a>
-                <span class="tooltip">CERTIFICATION</span>
-            </li>
+        <li>
+            <a href="/alumni_page">
+                <i class='bx bxs-graduation'></i>
+                <span class="links_name">Alumni</span>
+            </a>
+            <span class="tooltip">ALumni</span>
+        </li>
+        <li>
+            <a href="/admin_files">
+                <i class='bx bxs-folder'></i>
+                <span class="links_name">FILES</span>
+            </a>
+            <span class="tooltip">FILES</span>
+        </li>
+        <li>
+            <a href="/cert_page">
+                <i class='bx bxs-certification'></i>
+                <span class="links_name">CERTIFICATION</span>
+            </a>
+            <span class="tooltip">CERTIFICATION</span>
+        </li>
 
-            <!-- <li>
+        <!-- <li>
                 <a href="#">
                     <i class='bx bx-message'></i>
                     <span class="links_name">Generate List</span>
@@ -112,27 +127,27 @@
                 <span class="tooltip">Documents</span>
             </li>
             <br> -->
-            &nbsp;<br>
-            <!-- <li id="logout">
+        &nbsp;<br>
+        <!-- <li id="logout">
                 <a href="/logout_student">
                     <i class='bx bx-power-off'></i>
                     <span class="links_name">Logout</span>
                 </a>
                 <span class="tooltip">Logout</span>
             </li> -->
-            <li class="profile">
-                <div class="profile-details">
-                    <!--<img src="profile.jpg" alt="profileImg">-->
-                    <div class="name_job">
-                        <div class="name">Rapal Christian</div>
-                        <div class="job">Staff</div>
-                    </div>
+        <li class="profile">
+            <div class="profile-details">
+                <!--<img src="profile.jpg" alt="profileImg">-->
+                <div class="name_job">
+                    <div class="name">Rapal Christian</div>
+                    <div class="job">Staff</div>
                 </div>
-                <a href="#" id="lg">
-                    <i class='bx bx-log-out' id="log_out"></i>
-                </a>
+            </div>
+            <a href="#" id="lg">
+                <i class='bx bx-log-out' id="log_out"></i>
+            </a>
 
-            </li>
+        </li>
 
         </ul>
     </div>
@@ -161,6 +176,35 @@
         }
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.sidebar .nav-link').forEach(function(element) {
+
+                    element.addEventListener('click', function(e) {
+
+                        let nextEl = element.nextElementSibling;
+                        let parentEl = element.parentElement;
+
+                        if (nextEl) {
+                            e.preventDefault();
+                            let mycollapse = new bootstrap.Collapse(nextEl);
+
+                            if (nextEl.classList.contains('show')) {
+                                mycollapse.hide();
+                            } else {
+                                mycollapse.show();
+                                // find other submenus with class=show
+                                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                                // if it exists, then close all of them
+                                if (opened_submenu) {
+                                    new bootstrap.Collapse(opened_submenu);
+                                }
+                            }
+                        }
+                    }); // addEventListener
+                }) // forEach
+        });
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
