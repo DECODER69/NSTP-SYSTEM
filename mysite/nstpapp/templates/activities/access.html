@@ -20,7 +20,7 @@
 
 <body>
 
-    {% include 'activities/admin_nav.html' %}
+    {% include 'activities/admin_nav.html' %}{% include 'activities/loader.html' %}
 
     <section class="home-section">
         <div class="heads">
@@ -45,7 +45,7 @@
                     <div class="he">
 
                         <div class="ada">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Finals Grading</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Final Grade</h1>
                             <!-- gshshsfhfs -->
                             {% for s in first %}
                             <p id="total" style="display: none;">{{s.items}}</p>
@@ -106,21 +106,21 @@
                             
                                     {% if s.final_grade <= '74' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="5" readonly style="color:red !important;"></td>
-                                    {% elif s.final_grade >= '75' and s.final_grade <= '77' %}
-                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="3" readonly style="color:orange !important;"></td>
-                                    {% elif s.final_grade >= '78' and s.final_grade <= '79' %}
+                                    {% elif s.final_grade >= '75' and s.final_grade <= '77.99' %}
+                                    <td><input type="text" name="equivalent" class="equivalent form-control" value="3" readonly style="color:rgb(255, 60, 0) !important;"></td>
+                                    {% elif s.final_grade >= '78' and s.final_grade <= '79.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="2.75" readonly></td>
-                                    {% elif s.final_grade >= '80' and s.final_grade <= '82' %}
+                                    {% elif s.final_grade >= '80' and s.final_grade <= '82.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="2.50" readonly></td>
-                                    {% elif s.final_grade >= '83' and s.final_grade <= '85' %}
+                                    {% elif s.final_grade >= '83' and s.final_grade <= '85.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="2.25" readonly></td>
-                                    {% elif s.final_grade >= '86' and s.final_grade <= '88' %}
+                                    {% elif s.final_grade >= '86' and s.final_grade <= '88.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="2.0" readonly></td>
-                                    {% elif s.final_grade >= '89' and s.final_grade <= '91' %}
+                                    {% elif s.final_grade >= '89' and s.final_grade <= '91.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="1.75" readonly></td>
-                                    {% elif s.final_grade >= '92' and s.final_grade <= '94' %}
+                                    {% elif s.final_grade >= '92' and s.final_grade <= '94.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="1.50" readonly></td>
-                                    {% elif s.final_grade >= '95' and s.final_grade <= '97' %}
+                                    {% elif s.final_grade >= '95' and s.final_grade <= '97.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="1.25" readonly></td>
                                     {% elif s.final_grade >= '98' and s.final_grade <= '100' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="1" readonly></td>
@@ -168,7 +168,7 @@
                             </tbody>
 
                         </table><br>
-                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Midterm</button>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bx-refresh'></i> Update Grade</button>
                     </form>
                 </div>
             </div>

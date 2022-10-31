@@ -21,8 +21,12 @@
 <body>
 
     {% include 'activities/admin_nav.html' %}
+    {% include 'activities/loader.html' %}
+
 
     <section class="home-section">
+        
+     
         <div class="heads">
             <a href="/grades">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|</h1>
@@ -151,7 +155,8 @@
             </div>
             <br>
 
-        </div>
+       
+    </div>
     </section>
 
 
@@ -216,7 +221,21 @@
         });
     </script>
 
-
+    {% comment %} <script>
+        document.onreadystatechange = function() {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                  "body").style.visibility = "hidden";
+                document.querySelector(
+                  "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                  "#loader").style.display = "none";
+                document.querySelector(
+                  "body").style.visibility = "visible";
+            }
+        };
+    </script> {% endcomment %}
 
 </body>
 

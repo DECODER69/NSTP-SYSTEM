@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    {% include 'activities/admin_nav.html' %}
+    {% include 'activities/admin_nav.html' %} {% include 'activities/loader.html' %}
 
     <section class="home-section">
         <div class="heads">
@@ -108,40 +108,40 @@
 
                                     <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1}}</td>
                                     <td>
-                                        <input type="number" name="act1" id="" value="{{s.act1}}">
+                                        <input type="number" name="act1" id="" value="{{s.act1}}" class="form-control">
                                         <input type="hidden" value="{{s.id}}" name="ids" placeholder="1st Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act2" style="display: none;">{{s.act2}}</td>
                                     <td>
-                                        <input type="number" name="act2" value="{{s.act2}}" placeholder="1st Sem Activity">
+                                        <input type="number" name="act2" value="{{s.act2}}" placeholder="1st Sem Activity" class="form-control">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act3" style="display: none;">{{s.act3}}</td>
                                     <td>
-                                        <input type="number" name="act3" value="{{s.act3}}" placeholder="1st Sem Activity">
+                                        <input type="number" name="act3" value="{{s.act3}}" placeholder="1st Sem Activity" class="form-control">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act4" style="display: none;">{{s.act4}}</td>
                                     <td>
-                                        <input type="number" name="act4" value="{{s.act4}}" placeholder="1st Sem Activity">
+                                        <input type="number" name="act4" value="{{s.act4}}" placeholder="1st Sem Activity" class="form-control">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act5" style="display: none;">{{s.act5}}</td>
                                     <td>
-                                        <input type="number" name="act5" value="{{s.act5}}" placeholder="1st Sem Activity">
+                                        <input type="number" name="act5" value="{{s.act5}}" placeholder="1st Sem Activity" class="form-control">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act6" style="display: none;">{{s.act6}}</td>
                                     <td>
-                                        <input type="number" name="act6" value="{{s.act6}}" placeholder="1st Sem Activity">
+                                        <input type="number" name="act6" value="{{s.act6}}" placeholder="1st Sem Activity" class="form-control">
                                     </td>
 
 
@@ -149,7 +149,7 @@
                                     <td class="total"></td>
 
                                     <td class="result">
-                                        <input type="text" name="" class="credits" value="" id="credits" readonly>
+                                        <input type="text" name="" class="credits form-control" value="" id="credits" readonly>
                                     </td>
 
 
