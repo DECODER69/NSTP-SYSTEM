@@ -251,7 +251,7 @@
                                         <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
-                                    {% endif %}
+                                    {% endif %} {% if td_count == '1' %}
                                     <td class="mert">
                                         <div class="input-group">
                                             <input type="hidden" value="{{s.id}}" name="mer_id">
@@ -260,6 +260,133 @@
                                             <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
                                         </div>
                                     </td>
+                                    {% elif td_count == '2' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '3' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '4' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '5' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '6' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '7' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '8' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '9' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '10' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '11' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '12' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '13' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '14' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '15' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% endif %}
 
                                 </tr>
                                 {% endfor %}

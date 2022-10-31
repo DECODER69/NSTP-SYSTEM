@@ -132,6 +132,9 @@ urlpatterns = [
     path('final_grade/', views.final_grade, name='final_grade'),
     path('access_final_grade/', views.access_final_grade, name='access_final_grade'),
     path('save_finale_grades/', views.save_finale_grades, name='save_finale_grades'),
+    path('merits/', views.merits, name='merits'),
+    path('access_merits/', views.access_merits, name='access_merits'),
+    path('save_merits/', views.save_merits, name='save_merits'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

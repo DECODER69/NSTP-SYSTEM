@@ -68,7 +68,7 @@
                             <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega">Take Attendance</h1>
 
                         </div>
-                        <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD TRAINING DAY</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD TRAINING DAY</button>
 
 
                     </div>
@@ -80,7 +80,7 @@
                         <form action="{% url 'activities:open_date' %}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %}
                             <div class="card">
-                                <i class='bx bxs-calendar-check' id="ro_logo"></i>
+                                <!-- <i class='bx bxs-calendar-check' id="calendar"></i><br> -->
                                 <h5 class="title">{{s.td}}</h5>
                                 <input type="hidden" value="{{s.td}}" name="date">
                                 <p>Training day {{s.td_count}}</p>
@@ -102,7 +102,7 @@
 
                 </div>
                 <br>
-                <div class="left">
+                <!-- <div class="left">
                     <div class="tss">
 
 
@@ -124,8 +124,8 @@
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
-                                
-                        
+
+
                                 <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
                                 <button type="submit" class="btn btn-info">Open</button><br>
                                 <p class="card-text"><small class="text-muted">Created for ROTC Only</small></p>
@@ -145,18 +145,21 @@
 
 
 
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        {% for msg in messages %}
+    <!-- <script>
+        { %
+            for msg in messages %
+        }
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
-        }) {% endfor %}
-    </script> 
+        }) { % endfor %
+        }
+    </script> -->
 
     <script>
         $('.btn-dark').on('click', function(e) {

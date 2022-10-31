@@ -1228,19 +1228,63 @@ def rec_attendance(request):
         shoes = request.POST.getlist('shoes')
         mustache = request.POST.getlist('mustache')
         
-
-        for s, t in zip(mer_id, demerits):
-            extenduser.objects.filter(id=s).update(first_merits=t)
-
+        if td_count == str(1):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD1_dem=t, first_merits=t)
+        elif td_count == str(2):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD2_dem=t, first_merits=t)
+        elif td_count == str(3):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD3_dem=t, first_merits=t)
+        elif td_count == str(4):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD4_dem=t, first_merits=t)
+        elif td_count == str(5):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD5_dem=t, first_merits=t)
+        elif td_count == str(6):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD6_dem=t, first_merits=t)
+        elif td_count == str(7):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD7_dem=t, first_merits=t)
+        elif td_count == str(8):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD8_dem=t, first_merits=t)
+        elif td_count == str(9):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD9_dem=t, first_merits=t)
+        elif td_count == str(10):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD10_dem=t, first_merits=t)
+        elif td_count == str(11):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD11_dem=t, first_merits=t)
+        elif td_count == str(12):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD12_dem=t, first_merits=t)
+        elif td_count == str(13):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD13_dem=t, first_merits=t)  
+        elif td_count == str(14):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD14_dem=t, first_merits=t)
+        elif td_count == str(15):
+            for s, t in zip(mer_id, demerits):
+                extenduser.objects.filter(id=s).update(TD15_dem=t, first_merits=t)
+                
+                
+                
         if td_count == str(1):
             if ids:
-                for i, a in zip(ids, demerits):
+                for i in ids:
                     print("present date 0 "+str(i))
-                    extenduser.objects.filter(id=i).update(TD1='1', first_merits=a)
+                    extenduser.objects.filter(id=i).update(TD1='1')
             if id2:
-                for j, k in zip( id2, demerits):
+                for j  in  id2:
                     print("absent date 0 "+str(j))
-                    extenduser.objects.filter(id=j).update(TD1='0', first_merits=k)
+                    extenduser.objects.filter(id=j).update(TD1='0')
                 
         elif td_count == str(2):
             if ids:
@@ -1759,3 +1803,30 @@ def save_finale_grades(request):
             print(d, e, f)
             extenduser.objects.filter(id=d).update(final_grade_2=e, second_equivalents=f)
         return redirect('/final_grade')
+
+def merits(request):
+    acts3 = finals.objects.all()
+    section2 = sections.objects.all()
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/merits.html', context)
+
+def access_merits(request):
+    getSection = request.POST.get('getSection')
+    content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+    context = {
+        'content4':content4,
+        'getSection':getSection
+        
+    }
+    return render(request, 'activities/access_merits.html', context)
+
+def save_merits(request):
+    ids = request.POST.getlist('ids')
+    equivalent_merits = request.POST.getlist('equivalent_merits')
+    
+    for a, b in zip(ids,equivalent_merits):
+        extenduser.objects.filter(id=a).update(equivalent_merits=b)
+    return redirect('/merits')

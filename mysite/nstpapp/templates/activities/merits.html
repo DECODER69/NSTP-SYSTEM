@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finals</title>
-    <link rel="stylesheet" href="../../static/admin_css/final_grade.css">
+    <link rel="stylesheet" href="../../static/admin_css/merits.css">
 
     <link rel="stylesheet" href="../../static/admin_css/minmin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -20,7 +20,7 @@
     <section class="home-section">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Final Grade</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Merits</h1>
             </a>
 
         </div>
@@ -41,7 +41,7 @@
                 <a class="nav-link " href="/attendance_tab">Attendance</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/merits">Merits</a>
+                <a class="nav-link active" href="/merits">Merits</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/midterms">Midterm</a>
@@ -50,7 +50,7 @@
                 <a class="nav-link" href="/finals_">Finals</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/final_grade">Final Grade</a>
+                <a class="nav-link " href="/final_grade">Final Grade</a>
             </li>
         </ul>
 
@@ -66,7 +66,7 @@
 
 
                         <div class="txt ">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Overall Grade</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Merits / Demerits</h1>
 
                         </div>
 
@@ -78,7 +78,7 @@
 
                     <div class="row">
                         {% for s in section2 %}
-                        <form action="{% url 'activities:access_final_grade'%}" class="column" style="text-decoration: none;" method="POST">
+                        <form action="{% url 'activities:access_merits'%}" class="column" style="text-decoration: none;" method="POST">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
