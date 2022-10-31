@@ -6,6 +6,9 @@
     font-family: "Poppins", sans-serif;
 }
 
+
+/* add */
+
 body {
     background-attachment: fixed;
     background-image: url(../images/sd2.jpg);
@@ -13,25 +16,38 @@ body {
     background-size: cover;
     background-position: center;
     height: 100vh;
+    display: flex;
 }
 
-.home-section {
-    position: relative;
-    top: 0;
-    left: 78px;
-    width: calc(100% - 78px);
-    transition: all 0.5s ease;
-    z-index: 2;
+section {
+    display: inline-block;
+    width: 100%;
+    padding-left: 0px;
+}
+
+section>div {
+    padding: 20px 40px;
+}
+
+section {
+    overflow-x: hidden;
 }
 
 .heads {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 0.9444152661064426) 56%);
+    justify-content: space-between;
+    display: flex;
+    background: #4b4d52;
+    height: 60px !important;
 }
 
-.heads .text i {
-    color: #fb5800;
+.heads .text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
 }
+
+
+/* eof new */
 
 .count {
     color: rgb(185, 2, 2);
@@ -153,7 +169,6 @@ body {
 
 ::-webkit-scrollbar {
     width: 0px;
-    background: red;
     /* make scrollbar transparent */
 }
 
@@ -252,7 +267,7 @@ body {
         width: 100%;
     }
     .column {
-        width: 50%;
+        width: 25%;
     }
     .overall1 {
         width: 100%;
@@ -306,7 +321,7 @@ body {
 }
 
 .nav {
-    padding: 10px !important;
+    padding: 30px !important;
     font-weight: bold;
 }
 

@@ -61,10 +61,10 @@
 
 
     <!-- eof modal for puictures  -->
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Students</h1><br>
-        </div><br>
+            <h1 class="text"><i class='bx bx-time'></i> MANAGE STUDENTS</h1><br>
+        </div>
         <div class="bg">
             <ul class="nav nav-tabs " id="navs">
                 <li class="nav-item">
@@ -126,8 +126,8 @@
                                 {% for s in counts1 %}
                                 <tr>
                                     <th scope="row">
-
-                                        <a href="{% url 'activities:view_images' s.id %}" target="_self" title="Click to view picture">
+                                        <!-- {% url 'activities:view_images' s.id %} -->
+                                        <a href="#" target="_self" title="Click to view picture">
                                             <img src="{{s.picture.url}}" alt="profile pic" id="profile_pic">
 
                                         </a>
@@ -155,7 +155,7 @@
                                     {% endif %} {% endfor %}
 
                                     <td style="text-align:center;">
-                                        <a href="{% url 'activities:edit_manage' s.id %}" target="_self" title="Edit Profile" id="changes">
+                                        <a href="{% url 'activities:edit_manage' s.id %}" target="_self" title="Edit Profile" id="changes" class="btn btn-success btn-sm">
                                             <i class='bx bxs-edit'></i> View Profile
 
                                         </a>

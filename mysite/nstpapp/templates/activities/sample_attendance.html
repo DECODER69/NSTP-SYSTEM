@@ -52,7 +52,7 @@
 
     <!-- EOF MODAL -->
 
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
             <a href="/sample_attendance">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Attendance &nbsp;|</h1>
@@ -89,7 +89,7 @@
                                 <div class="multi">
                                     <input type="hidden" value="{{s.td_count}}" name="td_count">
                                     <button type="submit" class="btn btn-info" id="sub">Open</button>
-                                    <a href="/del_tday/{{s.id}}" class="btn btn-dark" id="del"><i class='bx bx-trash'></i> </a>
+                                    <a href="/del_tday/{{s.id}}" class="btn btn-dark" id="del"><i class="fa-solid fa-trash-can"></i></a>
                                 </div>
 
 
@@ -164,7 +164,7 @@
     </script> -->
 
     <script>
-        $('.btn-dark').on('click', function(e) {
+        $('#del').on('click', function(e) {
             e.preventDefault();
             var self = $(this);
             console.log(self.data('title'))

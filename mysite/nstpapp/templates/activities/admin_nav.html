@@ -19,7 +19,7 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-
+                    <i class="fa-solid fa-user"></i>
                     <a href="#">STAFF </a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
@@ -77,7 +77,10 @@
                             <a href="#">
                                 <i class="fa-sharp fa-solid fa-address-card"></i>
                                 <span>Enrollment</span>
-                                <span class="badge badge-pill badge-danger">3</span>
+                   
+                                <span class="badge badge-pill badge-danger">{{nav_pending_count}}+</span>
+                              
+                                
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -89,10 +92,10 @@
                                         <a href="/admin_staff">Enrolled</a>
                                     </li>
                                     <li>
-                                        <a href="/admin_pending">Pending</a>
+                                        <a href="/admin_pending">Pending <span class="badge badge-pill badge-danger">{{nav_pending_count}}</span></a>
                                     </li>
                                     <li>
-                                        <a href="/admin_rejected">Rejected</a>
+                                        <a href="/admin_rejected">Rejected <span class="badge badge-pill badge-danger">{{nav_rejected_count}}</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -124,30 +127,30 @@
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Charts</span>
+                                <i class="fa-solid fa-user"></i>
+                                <span>Manage Students</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">Pie chart</a>
+                                        <a href="/create_platoon_page">Enrolled</a>
                                     </li>
                                     <li>
-                                        <a href="#">Line chart</a>
+                                        <a href="/dropped">Dropped</a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="#">Bar chart</a>
                                     </li>
                                     <li>
                                         <a href="#">Histogram</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-globe"></i>
-                                <span>Maps</span>
+                        <li class="sidebar-dropdowns">
+                            <a href="/sample_attendance">
+                                <i class="fa-solid fa-clipboard"></i>
+                                <span>Attendance</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -163,12 +166,34 @@
                         <li class="header-menu">
                             <span>Extra</span>
                         </li>
-                        <li>
+                        <li class="sidebar-dropdown">
                             <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Documentation</span>
-                                <span class="badge badge-pill badge-primary">Beta</span>
+                                <i class="fa-solid fa-calculator"></i>
+                                <span>Manage Grades</span>
+                                <span class="badge badge-pill badge-success"></span>
                             </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="/grades">Attendance</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Activities</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Merits</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Midterm Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Final Exam</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Overall Grade</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li>
                             <a href="#">
@@ -192,7 +217,7 @@
                     <i class="fa fa-bell"></i>
                     <span class="badge badge-pill badge-warning notification">3</span>
                 </a>
-                <a href="#">
+                <a href="https://mail.google.com/" target="_blank">
                     <i class="fa fa-envelope"></i>
                     <span class="badge badge-pill badge-success notification">7</span>
                 </a>
@@ -200,7 +225,7 @@
                     <i class="fa fa-cog"></i>
                     <span class="badge-sonar"></span>
                 </a>
-                <a href="#">
+                <a href="/logout_student">
                     <i class="fa fa-power-off"></i>
                 </a>
             </div>

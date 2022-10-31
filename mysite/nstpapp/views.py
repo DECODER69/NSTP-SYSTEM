@@ -132,12 +132,14 @@ def logout_student(request):
 ####################
 #########################
 # ADMIN PAGE DISPLAYS
-
+@login_required(login_url='/login_page')
 def admin_dashboard(request):
     staff = extenduser.objects.filter(user=request.user)
     audience = sections.objects.all()
     ann = Announcement.objects.all()
     sy = school_year.objects.all()
+    nav_pending_count = extenduser.objects.filter(status='PENDING').count()
+    nav_rejected_count = extenduser.objects.filter(status='REJECTED').count()
     active = extenduser.objects.filter(status='ENROLLED').count()
     pending = extenduser.objects.filter(status='PENDING').count()
 
@@ -147,7 +149,9 @@ def admin_dashboard(request):
         'sy':[sy.last()],
         'audience':audience,
         'ann':ann,
-        'staff':staff
+        'staff':staff,
+        'nav_pending_count':nav_pending_count,
+        'nav_rejected_count':nav_rejected_count 
     
     }
     return render(request, 'activities/admin_dashboard.html', context)
@@ -1034,8 +1038,8 @@ def dropped(request):
     current_datetime = datetime.datetime.now() 
     userContent = User.objects.all()
     sectionxx = extenduser.objects.all()
-    counts = extenduser.objects.filter(status='DROP').count()
-    counts1 = extenduser.objects.filter(status='DROP')
+    counts = extenduser.objects.filter(status='DROPPED').count()
+    counts1 = extenduser.objects.filter(status='DROPPED')
     section = sections.objects.all()
     section1 = sections.objects.all().count()
     context = {

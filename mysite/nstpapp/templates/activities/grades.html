@@ -55,10 +55,10 @@
             </div>
         </div>
     </div>
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Activities</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i> ATTENDANCE</h1>
             </a>
 
         </div>
@@ -70,14 +70,13 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="/grades">Activities</a>
-            </li>
-            <li class="nav-item dropdown">
-
+                <a class="nav-link  active" href="/attendance_tab">Attendance</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/attendance_tab">Attendance</a>
+                <a class="nav-link" href="/grades">Activities</a>
             </li>
+
+
             <li class="nav-item">
                 <a class="nav-link " href="/merits">Merits</a>
             </li>
@@ -191,8 +190,8 @@
                                                 <input type="number" name="act_numbers" value="{{s.act_numbers}}" class="inputs1">
                                             </td>
                                             <td style="justify-content: space-between; display:flex;">
-                                                <a href="/delete_activities/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class='bx bx-trash'></i></a>
-                                                <button type="submit" class="btn btn-success" title="Update Activities"><i class='bx bx-check'></i></button>
+                                                <a href="/delete_activities/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                                                <button type="submit" class="btn btn-success" title="Update Activities"><i class="fa-solid fa-check"></i></button>
                                             </td>
                                         </form>
                                     </tr>
