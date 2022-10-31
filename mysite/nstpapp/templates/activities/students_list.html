@@ -8,6 +8,7 @@
     <title>students_list</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/pl_content.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
 
 
 
@@ -79,7 +80,7 @@
 
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
+
 
 
 
@@ -90,15 +91,18 @@
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        {% for msg in messages %}
+        { %
+            for msg in messages %
+        }
         Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: 'Your work has been saved',
             showConfirmButton: false,
             timer: 1500
-          }) {% endfor %}
-    </script>  
+        }) { % endfor %
+        }
+    </script>
 
 
     <script>

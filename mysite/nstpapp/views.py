@@ -134,6 +134,7 @@ def logout_student(request):
 # ADMIN PAGE DISPLAYS
 
 def admin_dashboard(request):
+    staff = extenduser.objects.filter(user=request.user)
     audience = sections.objects.all()
     ann = Announcement.objects.all()
     sy = school_year.objects.all()
@@ -146,6 +147,7 @@ def admin_dashboard(request):
         'sy':[sy.last()],
         'audience':audience,
         'ann':ann,
+        'staff':staff
     
     }
     return render(request, 'activities/admin_dashboard.html', context)

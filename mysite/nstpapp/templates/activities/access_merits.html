@@ -8,6 +8,7 @@
     <title>platoon content</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/modify.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
 
     <link rel="stylesheet" href="../../static/admin_css/minmin.css">
 
@@ -20,13 +21,11 @@
 
 <body>
 
-    {% include 'activities/admin_nav.html' %}
-   
-    {% include 'activities/loader.html' %}
+    {% include 'activities/admin_nav.html' %} {% include 'activities/loader.html' %}
 
     <section class="home-section">
-        
-     
+
+
         <div class="heads">
             <a href="/grades">
                 <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|</h1>
@@ -131,17 +130,18 @@
                                 </tr>
                                 {% else %}
                                 <tr>
-                                    {% comment %} <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids_2"></td>
+                                    {% comment %}
+                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids_2"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
                                     <td class="data2">{{s.att_credits2}}</td>
                                     <td class="data2">20</td>
                                     <td class="data2">{{s.act_credits_2}}</td>
                                     <td class="data2">{{s.midterm2_credits}}</td>
-                                    <td class="data2">{{s.finals_credits2}}</td> 
+                                    <td class="data2">{{s.finals_credits2}}</td>
                                     <td><input type="text" name="final_grade2" class="final_grade_2 form-control" value="{{s.final_grade_2}}" readonly></td>
-                                    
+
                                     <td><input type="text" name="equivalent" class="equivalent2 form-control" value="" readonly></td> {% endcomment %}
-                             
+
 
                                 </tr>
                                 {% endif %} {% endfor %}
@@ -155,8 +155,8 @@
             </div>
             <br>
 
-       
-    </div>
+
+        </div>
     </section>
 
 
@@ -185,7 +185,7 @@
         $(document).ready(function() {
             $('tr').each(function() {
                 var results = 0;
-                var results2  = 0;
+                var results2 = 0;
                 $(this).find('.data').each(function() {
                     var marks = $(this).text();
                     if (marks.length !== 0) {
@@ -221,18 +221,19 @@
         });
     </script>
 
-    {% comment %} <script>
+    {% comment %}
+    <script>
         document.onreadystatechange = function() {
             if (document.readyState !== "complete") {
                 document.querySelector(
-                  "body").style.visibility = "hidden";
+                    "body").style.visibility = "hidden";
                 document.querySelector(
-                  "#loader").style.visibility = "visible";
+                    "#loader").style.visibility = "visible";
             } else {
                 document.querySelector(
-                  "#loader").style.display = "none";
+                    "#loader").style.display = "none";
                 document.querySelector(
-                  "body").style.visibility = "visible";
+                    "body").style.visibility = "visible";
             }
         };
     </script> {% endcomment %}
