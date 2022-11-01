@@ -91,7 +91,7 @@
     <section class="page-content">
         <div class="heads">
             <h1 class="text"><i class='bx bx-home'></i> NSTP SYSTEM DASHBOARD</h1><br>
-            <h1 class="text">{% now "jS F Y H:i" %}</h1>
+            <h1 class="text" id="time"></h1>
 
         </div><br>
         <div class="bg">
@@ -341,7 +341,7 @@
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
         { %
             for msg in messages %
         }
@@ -350,7 +350,7 @@
             text: '{{ msg }}'
         }) { % endfor %
         }
-    </script>
+    </script> -->
 
     <script>
         $('.btn-danger').on('click', function(e) {
@@ -378,6 +378,20 @@
                 }
             })
         })
+    </script>
+    <script>
+        var timeDisplay = document.getElementById("time");
+
+
+        function refreshTime() {
+            var dateString = new Date().toLocaleString("en-US", {
+                timeZone: "UTC + 8"
+            });
+            var formattedString = dateString.replace(", ", " - ");
+            timeDisplay.innerHTML = formattedString;
+        }
+
+        setInterval(refreshTime, 1000);
     </script>
     <!-- <script>
         const modal = document.querySelector(".modal");

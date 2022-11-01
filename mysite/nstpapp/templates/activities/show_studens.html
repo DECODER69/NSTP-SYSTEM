@@ -27,16 +27,13 @@
 
 
 
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
-            <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|</h1>
-            </a>
-
-
             <a href="/attendance_tab">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Attendance &nbsp;|</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i> ATTENDANCE RECORD&nbsp;>&nbsp;</h1>
             </a>
+
+
 
             <h1 class="text"><i class='bx bx-star'></i> {{getSection}}</h1>
         </div>
@@ -49,9 +46,9 @@
 
                         <div class="ada">
                             <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
-                            <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{content33}} Student/s</p1><br>
+                            <!-- <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{content33}} Student/s</p1><br> -->
 
-                            <p id="count">
+                            <p id="count" style="display: none;">
                                 {{counted}}
                             </p>
                         </div>
@@ -194,7 +191,7 @@
 
 
                         </table><br>
-                        <button class="btn btn-success" type="submit" style="width: 100%;" id="gg"><i class='bx bxs-save' ></i> Update Record</button>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="gg"><i class="fa-solid fa-arrows-rotate"></i> Update Record</button>
                     </form>
 
 

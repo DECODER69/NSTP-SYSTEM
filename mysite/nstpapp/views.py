@@ -1546,7 +1546,7 @@ def update_att_credits(request):
             print("id" + str(i), "creds"+ str(j))
             extenduser.objects.filter(id=i).update(att_credits=j)
         # extenduser.objects.filter
-    return redirect('/sample_attendance')
+    return redirect('/attendance_tab')
 def grades(request):
     acts = activity.objects.all()
     section = sections.objects.filter(fiel= 'ROTC')
@@ -1733,8 +1733,8 @@ def finals_(request):
 
 def modify_finals(request):
     #  first = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
-    first = midterm.objects.filter(semester='1st sem')
-    second = midterm.objects.filter(semester='2nd Sem')
+    first = finals.objects.filter(semester='1st sem')
+    second = finals.objects.filter(semester='2nd Sem')
     if request.method == 'POST':
         getSection = request.POST.get('getSection')
         content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')

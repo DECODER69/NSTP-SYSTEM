@@ -24,11 +24,9 @@
 
     <section class="home-section">
         <div class="heads">
-            <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|</h1>
-            </a>
+
             <a href="/finals_">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Finals |</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i>FINAL EXAM &nbsp;>&nbsp;</h1>
             </a>
 
 
@@ -102,7 +100,7 @@
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids2"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
                                     <td><input type="text" class="finals2 form-control" value="{{s.finals2}}" name="finals2" /></td>
-                                    {% for s in first %}
+                                    {% for s in second %}
                                     <td><input type="text" class="items2 form-control" value="{{s.items}}" name="items2" readonly/></td>
                                     {% endfor %}
                                     <td class="result"><input type="text" class="subtot2 form-control" value="{{s.finals_credits2}}" name="subtot2" readonly /></td>

@@ -34,7 +34,6 @@ section {
 }
 
 .heads {
-    justify-content: space-between;
     display: flex;
     background: #4b4d52;
     height: 60px !important;
@@ -97,6 +96,7 @@ section {
     width: 70%;
     height: 100vh !important;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .overall1 {
@@ -264,13 +264,36 @@ section {
         display: flex !important;
     }
     .overall {
-        width: 100%;
+        width: 65%;
+        overflow-x: hidden;
     }
     .column {
-        width: 25%;
+        width: 50%;
     }
     .overall1 {
-        width: 100%;
+        width: 35%;
+    }
+    .table {
+        overflow-x: scroll;
+    }
+}
+
+@media only screen and (min-width: 1921px) {
+    .nav-item a {
+        font-size: 13px;
+    }
+    .bg {
+        display: flex !important;
+    }
+    .overall {
+        width: 65%;
+        overflow-x: hidden;
+    }
+    .column {
+        width: 30%;
+    }
+    .overall1 {
+        width: 35%;
     }
     .table {
         overflow-x: scroll;

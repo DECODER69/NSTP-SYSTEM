@@ -21,10 +21,10 @@
 
 <body>
     {% include 'activities/admin_nav.html' %} {% include 'activities/loader.html' %}
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|<i class='bx bxs-dashboard'></i> Activities &nbsp;|</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i> ATTENDANCE&nbsp;>&nbsp;</h1>
             </a>
 
             <h1 class="text"><i class='bx bx-intersect'></i>{{getSection}}
@@ -67,7 +67,7 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:save_grade' %}" method="POST">
+                    <form action="{% url 'activities:show_students' %}" method="POST">
                         {% csrf_token %}
                         <table id="myTable" class="table table-bordered table-hover ">
                             <thead class="thead">

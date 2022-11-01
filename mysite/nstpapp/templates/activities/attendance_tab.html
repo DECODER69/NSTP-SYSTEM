@@ -50,10 +50,10 @@
             </div>
         </div>
     </div>
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Grades &nbsp;|&nbsp;<i class='bx bxs-dashboard'></i> Attendance</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i>ATTENDANCE RECORD</h1>
             </a>
 
         </div>
@@ -65,14 +65,15 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="/grades">Activities</a>
-            </li>
-            <li class="nav-item dropdown">
-
-            </li>
-            <li class="nav-item">
                 <a class="nav-link active" href="/attendance_tab">Attendance</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/grades">Activities</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+
+            </li> -->
+
             <li class="nav-item">
                 <a class="nav-link" href="/merits">Merits</a>
             </li>
@@ -176,7 +177,7 @@
                                         <td>{{s.td_count}}</td>
                                         <td>{{s.td}}</td>
                                         <td style="justify-content: space-between; display:flex;">
-                                            <a href="/delete_td/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class='bx bx-trash'></i></a>
+                                            <a href="/delete_td/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
 
                                         </td>
                                     </tr>
