@@ -34,7 +34,6 @@ section {
 }
 
 .heads {
-    justify-content: space-between;
     display: flex;
     background: #4b4d52;
     height: 60px !important;
@@ -48,6 +47,34 @@ section {
 
 
 /* eof new */
+
+.count {
+    color: rgb(185, 2, 2);
+    font-size: 30px;
+    float: right;
+}
+
+#count {
+    display: none !important;
+}
+
+.heads .text i {
+    vertical-align: middle;
+}
+
+.sidebar.open~.home-section {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+.home-section .text {
+    /* background: #c51c39; */
+    display: inline-block;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 18px
+}
 
 .bg {
     width: auto;
@@ -69,6 +96,7 @@ section {
     width: 70%;
     height: 100vh !important;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .overall1 {
@@ -95,7 +123,7 @@ section {
 /* Remove extra left and right margins, due to padding */
 
 .row {
-    margin: 0;
+    margin: 0 -5px;
     padding: 40px;
     justify-content: space-between;
 }
@@ -105,7 +133,7 @@ section {
 
 .row:after {
     content: "";
-    display: block;
+    display: table;
     clear: both;
 }
 
@@ -141,7 +169,6 @@ section {
 
 ::-webkit-scrollbar {
     width: 0px;
-    background: red;
     /* make scrollbar transparent */
 }
 
@@ -208,6 +235,27 @@ section {
     }
 }
 
+@media only screen and (min-width: 721px) and (max-width: 1080px) {
+    .nav-item a {
+        font-size: 13px;
+    }
+    .bg {
+        display: block !important;
+    }
+    .overall {
+        width: 100%;
+    }
+    .column {
+        width: 50%;
+    }
+    .overall1 {
+        width: 100%;
+    }
+    .table {
+        overflow-x: scroll;
+    }
+}
+
 @media only screen and (min-width: 1081px) and (max-width: 1920px) {
     .nav-item a {
         font-size: 13px;
@@ -216,13 +264,36 @@ section {
         display: flex !important;
     }
     .overall {
-        width: 100%;
+        width: 65%;
+        overflow-x: hidden;
+    }
+    .column {
+        width: 50%;
+    }
+    .overall1 {
+        width: 35%;
+    }
+    .table {
+        overflow-x: scroll;
+    }
+}
+
+@media only screen and (min-width: 1921px) {
+    .nav-item a {
+        font-size: 13px;
+    }
+    .bg {
+        display: flex !important;
+    }
+    .overall {
+        width: 65%;
+        overflow-x: hidden;
     }
     .column {
         width: 30%;
     }
     .overall1 {
-        width: 100%;
+        width: 35%;
     }
     .table {
         overflow-x: scroll;
@@ -236,7 +307,7 @@ section {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: center;
-    background-color: #faf1f1c7 !important;
+    background-color: #F7F7F7 !important;
 }
 
 .rights {
@@ -273,7 +344,7 @@ section {
 }
 
 .nav {
-    padding: 10px !important;
+    padding: 30px !important;
     font-weight: bold;
 }
 
