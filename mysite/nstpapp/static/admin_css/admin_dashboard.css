@@ -340,7 +340,7 @@ td textarea:hover {
     }
 }
 
-@media screen and (min-width:1081px) and (max-width:1920px) {
+@media screen and (min-width:1081px) and (max-width:1928px) {
     .stats {
         height: auto;
         padding: 10px;

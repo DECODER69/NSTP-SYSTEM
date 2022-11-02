@@ -1226,13 +1226,16 @@ def rec_attendance(request):
         demerits = request.POST.getlist('quantity')
         mer_id = request.POST.getlist('mer_id')
         td_count = request.POST.get('td_count')
+        
         ids = request.POST.getlist('id4')
         id2 = request.POST.getlist('id2')
         
-        hair = request.POST.getlist('hair')
-        nails = request.POST.getlist('nails')
-        shoes = request.POST.getlist('shoes')
-        mustache = request.POST.getlist('mustache')
+        
+        ids_2 = request.POST.getlist('ids_2')
+        id4_2 = request.POST.getlist('id4_2')
+        
+        mer2_id = request.POST.getlist('mer2_id')
+        demerits2 = request.POST.getlist('demerits2')
         
         if td_count == str(1):
             for s, t in zip(mer_id, demerits):
@@ -1280,12 +1283,13 @@ def rec_attendance(request):
             for s, t in zip(mer_id, demerits):
                 extenduser.objects.filter(id=s).update(TD15_dem=t, first_merits=t)
                 
-                
+
+
                 
         if td_count == str(1):
             if ids:
                 for i in ids:
-                    print("present date 0 "+str(i))
+                    print("present date 0 ff "+str(i))
                     extenduser.objects.filter(id=i).update(TD1='1')
             if id2:
                 for j  in  id2:
@@ -1419,7 +1423,127 @@ def rec_attendance(request):
                     print("absent date 0 "+str(j))
                     extenduser.objects.filter(id=j).update(TD15='0')
                     
+                    
+# FOR 2ND SEM merits
 
+        if td_count == str(1):
+            if ids_2:
+                for i in ids_2:
+                    print("present 2nd sem" + str(i))
+                    extenduser.objects.filter(id=i).update(TD1_2='1')
+            if id4_2:
+                for i in id4_2:
+                    print("absent 2nd sem" + str(i))
+                    extenduser.objects.filter(id=i).update(TD1_2='0')
+            
+        if td_count == str(2):
+            if ids_2:
+                for i in ids_2:
+                    print("present 2nd sem" + str(i))
+                    extenduser.objects.filter(id=i).update(TD2_2='1')
+            if id4_2:
+                for i in id4_2:
+                    print("absent 2nd sem" + str(i))
+                    extenduser.objects.filter(id=i).update(TD2_2='0')
+                    
+        if td_count == str(3):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD3_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD3_2='0')
+        if td_count == str(4):
+            if ids_2:
+                for i in ids_2:
+                    print("present td 4")
+                    extenduser.objects.filter(id=i).update(TD4_2='1')
+            if id4_2:
+                for i in id4_2:
+                    print("absent td4" +str(i))
+                    extenduser.objects.filter(id=i).update(TD4_2='0')
+        if td_count == str(5):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD5_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD5_2='0')
+        if td_count == str(6):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD6_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD6_2='0')
+        if td_count == str(7):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD7_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD7_2='0')
+        if td_count == str(8):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD8_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD8_2='0')
+        if td_count == str(9):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD9_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD9_2='0')
+        if td_count == str(10):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD10_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD10_2='0')                    
+        if td_count == str(11):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD11_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD11_2='0')                   
+        if td_count == str(12):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD12_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD12_2='0')                    
+        if td_count == str(13):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD13_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD13_2='0')
+        if td_count == str(14):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD14_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD14_2='0')
+                    
+        if td_count == str(15):
+            if ids_2:
+                for i in ids_2:
+                    extenduser.objects.filter(id=i).update(TD15_2='1')
+            if id4_2:
+                for i in id4_2:
+                    extenduser.objects.filter(id=i).update(TD15_2='0')
+            
+            # for 2nd sem merits
+            
+            
     return redirect('/sample_attendance', context)
 
 

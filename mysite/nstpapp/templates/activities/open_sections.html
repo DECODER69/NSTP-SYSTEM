@@ -21,8 +21,7 @@
 
 <body>
 
-
-    {% include 'activities/admin_nav.html' %}
+    {% include 'activities/loader.html' %} {% include 'activities/admin_nav.html' %}
 
     <section class="page-content">
         <div class="heads">
@@ -74,7 +73,9 @@
                             </thead>
 
                             <tbody>
-                                {% for s in student %}
+
+                                <!-- FOR FIRST SEM ONLY -->
+                                {% for s in student %} {% if s.first_sem != 'COMPLETED' %}
                                 <tr>
                                     <td>{{s.id}}</td>
                                     <td id="idnumber">{{s.idnumber}}</td>
@@ -249,7 +250,10 @@
                                         <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
 
                                     </td>
-                                    {% endif %} {% if td_count == '1' %}
+                                    {% endif %}
+                                    <!--                                     
+                                    for merits -->
+                                    {% if td_count == '1' %}
                                     <td class="mert">
                                         <div class="input-group">
                                             <input type="hidden" value="{{s.id}}" name="mer_id">
@@ -387,7 +391,323 @@
                                     {% endif %}
 
                                 </tr>
-                                {% endfor %}
+                                <!-- ################################################## for second semester -->
+                                {% else %}
+                                <tr>
+                                    <td>{{s.id}}</td>
+                                    <td id="idnumber">{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                    <td>{{s.platoons}}</td>
+                                    {% if td_count == '1' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD1_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD1_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+
+
+                                    {% elif td_count == '2' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD2_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD2_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '3' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD3_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD3_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '4' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD4_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD4_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absents</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}"  disabled> Absent</label> {% endif %}
+                                    </td>
+                                    {% elif td_count == '5' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD5_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD5_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled>  Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '6' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD6 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD6_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '7' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD7_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD7_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+
+                                    {% elif td_count == '8' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD8_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD8_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '9' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD9_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD9_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '10' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD10_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD10_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '11' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD11_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD11_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '12' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD12_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD12_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+
+                                    {% elif td_count == '13' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD13_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD13_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+
+                                    {% elif td_count == '14' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD14_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD14_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% elif td_count == '15' %}
+                                    <td style="text-align: center;">
+                                        {% if s.TD15_2 == '0' %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" disabled > Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" checked disabled> Absent</label> {% elif s.TD15_2 == '' %}
+                                        <label for="check"><input type="checkbox" name="ids_2" id="check" value="{{s.id}}"> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id4_2" id="check1" value="{{s.id}}" > Absent</label> {% else %}
+                                        <label for="check"><input type="checkbox" name="id4" id="check" value="{{s.id}}" checked disabled> Present</label>
+                                        <label for="check1"><input type="checkbox" name="id2" id="check1" value="{{s.id}}" disabled> Absent</label> {% endif %}
+
+                                    </td>
+                                    {% endif %}
+                                    <!-- ################################################## FOR 2ND SEM MERITS -->
+                                    {% if td_count == '1' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '2' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '3' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '4' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '5' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '6' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '7' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '8' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '9' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '10' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '11' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '12' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '13' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '14' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% elif td_count == '15' %}
+                                    <td class="mert">
+                                        <div class="input-group">
+                                            <input type="hidden" value="{{s.id}}" name="mer_id">
+                                            <input type="button" value="-" class="button-minus btn-danger" data-field="quantity"><br>&nbsp;
+                                            <input type="number" step="1" max="100" value="{{s.first_merits}}" name="quantity" class="quantity-field form-control" id="ehehe"><br>&nbsp;
+                                            <input type="button" value="+" class="button-plus btn-success" data-field="quantity">
+                                        </div>
+                                    </td>
+                                    {% endif %}
+
+                                </tr>
+                                {% endif %} {% endfor %}
                             </tbody>
                             {% for s in td_count %}
                             <input type="hidden" name="td_counts" value="{{s.td_count}}"> {% endfor %}

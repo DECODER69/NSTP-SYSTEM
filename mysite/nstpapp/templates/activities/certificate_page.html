@@ -11,17 +11,15 @@
     <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
 
     <!-- pagination css -->
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 </head>
 
 <body>
-    {% include 'activities/admin_nav.html' %}
 
-    <!-- modals -->
+    {% include 'activities/loader.html' %} {% include 'activities/admin_nav.html' %}
 
-
-    <section class="home-section">
+    <section class="page-content">
         <div class="heads">
             <h1 class="text"><i class='bx bxs-certification'></i> CERTIFICATION</h1><br>
         </div>
@@ -75,7 +73,7 @@
 
 
                             </div>
-                            <button type="submit" class="btn btn-info btn-lg btn-block">SAVE</button>
+                            <button type="submit" class="btn btn-info btn-lg btn-block"><i class="fa-solid fa-floppy-disk"></i> SAVE</button>
                         </form>
 
                     </div>
