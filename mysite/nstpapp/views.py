@@ -132,7 +132,7 @@ def logout_student(request):
 ####################
 #########################
 # ADMIN PAGE DISPLAYS
-@login_required(login_url='/login_page')
+# @login_required(login_url='/login_page')
 def admin_dashboard(request):
     staff = extenduser.objects.filter(user=request.user)
     audience = sections.objects.all()
@@ -195,11 +195,13 @@ def admin_rejected(request):
     return render(request, 'activities/admin_rejected.html', context)
 
 def admin_view_profile(request, id):
+    sy = school_year.objects.all()
     profiles = extenduser.objects.filter(id=id)
     pending = extenduser.objects.filter(status='PENDING').count()
     context = {
         'profiles':profiles,
-        'pending':pending
+        'pending':pending,
+        'sy':[sy.last()]
     }
     return render(request, 'activities/profile_view.html', context)
  
@@ -1960,3 +1962,46 @@ def save_merits(request):
     for a, b in zip(ids,equivalent_merits):
         extenduser.objects.filter(id=a).update(equivalent_merits=b)
     return redirect('/merits')
+
+
+
+def approve2(request, id):
+    stat2 = request.POST.get('getID')
+    platoons = request.POST.get('platoons')
+    
+
+
+
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    sub = request.POST.get('emailtext')
+    msg = request.POST.get('message')
+    emaila = request.POST.get('rname')
+    send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+    return redirect('/admin_pending')
+
+
+def decline2(request, id):
+       
+    stat2 = request.POST.get('getID2')
+   
+    print(stat2)
+    extenduser.objects.filter(idnumber=stat2).update(status='REJECTED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
+    return redirect('/admin_pending')
+
+
+def custom36(request):
+    if request.method == 'POST':
+        try:
+            sub = request.POST.get('emailtext')
+            msg = request.POST.get('message')
+            emaila = request.POST.get('rname')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+            print(sub)
+            return redirect(request.META['HTTP_REFERER'])
+            # return redirect('/admin_view_profile')
+ 
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+    return redirect('/admin_view_profile')

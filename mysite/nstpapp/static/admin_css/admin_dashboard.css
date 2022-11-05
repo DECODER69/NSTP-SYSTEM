@@ -340,7 +340,7 @@ td textarea:hover {
     }
 }
 
-@media screen and (min-width:1081px) and (max-width:1928px) {
+@media screen and (min-width:1081px) and (max-width:1920px) {
     .stats {
         height: auto;
         padding: 10px;
@@ -372,7 +372,7 @@ td textarea:hover {
     }
 }
 
-@media screen and (min-width:1366px) and (max-width:1920px) {
+@media screen and (min-width:1921px) {
     .container-fluid {
         height: auto;
         width: 100%;
@@ -381,11 +381,14 @@ td textarea:hover {
     .cards {
         border-radius: 8px;
         /* background-color: #16a1b4; */
-        height: 20%;
+        height: 20% !important;
         width: 22%;
         gap: 10px;
     }
     .right img {
         width: 50%;
+    }
+    .cards .inside1 .left h1 {
+        font-size: 23px !important;
     }
 }
