@@ -451,7 +451,7 @@ def approve(request, idnumber):
     platoons = request.POST.get('platoons')
     
 
-    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons=platoons)
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', first_sem='ENROLLED')
     messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     return redirect('/admin_pending')
 
@@ -1972,7 +1972,7 @@ def approve2(request, id):
 
 
 
-    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED')
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', first_sem='ENROLLED' )
     messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     sub = request.POST.get('emailtext')
     msg = request.POST.get('message')
