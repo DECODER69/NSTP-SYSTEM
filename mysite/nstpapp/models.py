@@ -139,6 +139,7 @@ class extenduser(models.Model):
     act4 = models.CharField(max_length=20, default='')
     act5 = models.CharField(max_length=20, default='')
     act6 = models.CharField(max_length=20, default='')
+    all_act_score = models.CharField(max_length=20, default='')
     act_credits = models.CharField(max_length=20, default='')
     
         # activities 2nd semester
@@ -148,6 +149,7 @@ class extenduser(models.Model):
     act4_2 = models.CharField(max_length=20, default='')
     act5_2 = models.CharField(max_length=20, default='')
     act6_2 = models.CharField(max_length=20, default='')
+    all_act_score2 = models.CharField(max_length=20, default='')
     act_credits_2 = models.CharField(max_length=20, default='')
     
 

@@ -92,7 +92,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in content4 %}{% if s.first_sem != 'COMPLETED' %}
+                                {% for s in content4 %}{% if s.first_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
@@ -125,7 +125,7 @@
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="1" readonly></td>
                                     {% endif %}
                                 </tr>
-                                {% else %}
+                                {% elif s.second_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids_2"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>

@@ -144,7 +144,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'tupc.nstp@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'mlvbynxtxrsraiwc'
+EMAIL_HOST_PASSWORD = 'xzxturvwozncbfqa'
 
 EMAIL_PORT = 587
 

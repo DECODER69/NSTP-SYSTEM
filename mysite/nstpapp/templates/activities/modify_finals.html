@@ -85,17 +85,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in content4 %}{% if s.first_sem != 'COMPLETED' %}
+                                {% for s in content4 %}{% if s.first_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
-                                    <td><input type="text" class="finals1 form-control" value="{{s.finals1}}" name="finals1" /></td>
+                                    <td><input type="text" class="finals1 form-control" value="{{s.finals1}}" name="finals1" placeholder="First Sem Final Result" /></td>
                                     {% for s in first %}
                                     <td><input type="text" class="items form-control" value="{{s.items}}" name="items" readonly/></td>
                                     {% endfor %}
                                     <td class="result"><input type="text" class="subtot1 form-control" value="{{s.finals_credits1}}" name="subtot1" readonly/></td>
                                 </tr>
-                                {% else %}
+                                {% elif s.second_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids2"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
@@ -108,14 +108,7 @@
                                 {% endif %} {% endfor %}
 
                             </tbody>
-                            <tfoot style="display: none;">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><input type="text" class="grdtot" value="" name="" /></td>
-                                </tr>
-                            </tfoot>
+
                         </table><br>
                         <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Midterm</button>
                     </form>

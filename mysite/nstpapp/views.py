@@ -134,7 +134,7 @@ def logout_student(request):
 # ADMIN PAGE DISPLAYS
 # @login_required(login_url='/login_page')
 def admin_dashboard(request):
-    staff = extenduser.objects.filter(user=request.user)
+    # staff = extenduser.objects.filter(user=request.user)
     audience = sections.objects.all()
     ann = Announcement.objects.all()
     sy = school_year.objects.all()
@@ -149,7 +149,7 @@ def admin_dashboard(request):
         'sy':[sy.last()],
         'audience':audience,
         'ann':ann,
-        'staff':staff,
+        # 'staff':staff,
         'nav_pending_count':nav_pending_count,
         'nav_rejected_count':nav_rejected_count 
     
@@ -898,7 +898,7 @@ def pl_content(request):
 def add_students(request):
     if request.method == 'POST':
         platoon = request.POST.get('platoon')
-        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='')
+        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING')
     else:
         return redirect('/manage_section')
     context = {
@@ -1715,7 +1715,7 @@ def set_activities(request):
 def save_grade(request):
     if request.method == 'POST':
         ids= request.POST.getlist('ids')
-   
+        print(ids)
         act1 = request.POST.getlist('act1')
         act2 = request.POST.getlist('act2')
         act3 = request.POST.getlist('act3')
@@ -1732,12 +1732,13 @@ def save_grade(request):
         act6_2 = request.POST.getlist('act6_2')
         # for a2 in (act1_2):
         for a, b, c, d , e, f , i in zip(act1, act2, act3, act4, act5, act6,  ids ):
-            # extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
+            extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
             print("hahaha "+ a, b, c, d , e, f)
             
         for a2, b2, c2, d2 , e2, f2, i2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2):
             extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2)
             print("2nd sem haha "+ a2, b2, c2, d2 , e2, f2)
+    
     return redirect('/grades')
 
 # def save_grade_2(request):
@@ -1968,10 +1969,6 @@ def save_merits(request):
 def approve2(request, id):
     stat2 = request.POST.get('getID')
     platoons = request.POST.get('platoons')
-    
-
-
-
     extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', first_sem='ENROLLED' )
     messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     sub = request.POST.get('emailtext')
@@ -2005,3 +2002,5 @@ def custom36(request):
         except ImportError:
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return redirect('/admin_view_profile')
+
+
