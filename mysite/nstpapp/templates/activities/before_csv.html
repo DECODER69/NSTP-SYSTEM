@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../../static/images/tup.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/admin_css/open_sections.css">
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/
+4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+</head>
+
+<body>
+
+    {% include 'activities/loader.html' %} {% include 'activities/admin_nav.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/sample_attendance">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> MANAGE ATTENDANCE &nbsp;>&nbsp;</h1>
+            </a>
+
+
+            <h1 class="text">{{getSection}}</h1>
+
+            <!-- <h1 style="color: white;">{{td_count}}</h1> -->
+
+
+        </div>
+        <div class="bg">
+
+            <div class="inside">
+                <div class="adda">
+                    <h5>Upload CSV File Here...</h5>
+                    <form action="{% url 'activities:open_csv' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" name="filename" accept=".csv" class="form-control" id="file" required><br>
+                        <input type="hidden" value="{{td_count}}" name="td_count">
+                        <input type="hidden" name="getSection" value="{{getSection}}">
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl">Open CSV File</button>
+                        <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                    </form>
+                </div>
+
+                <br>
+                <div class="table-responsive">
+                    <div class="he">
+                        <div class="ada">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Check Attendance</h1>
+                        </div>
+
+
+
+
+                    </div>
+                    <br> {% csrf_token %}
+                    <table id="myTable" class="table table-bordered table-hover ">
+                        <thead class="thead">
+                            <tr>
+
+                                <th>ID Number</th>
+                                <th>Date and Time</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+
+                            {% for s in student %}{% if s.first_sem == 'ENROLLED' %}
+                            <tr>
+                                {% if td_count == '1' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD1}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '2' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '3' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD3}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '4' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD4}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '5' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD5}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '6' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD6}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '7' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD7}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '8' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD8}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '9' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD9}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '10' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD10}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '11' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD11}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '12' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD12}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '13' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD13}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '14' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD14}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '15' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD15}}" readonly class="form-control" name="dates"></td>
+
+                                {% endif %}
+
+                            </tr>
+                            {% elif s.second_sem == 'ENROLLED' %}
+                            <tr>
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD1_2}}" readonly class="form-control" name="dates"></td>
+
+                            </tr>
+                            {% endif %} {% endfor %}
+
+                        </tbody>
+                        {% for s in td_count %}
+                        <input type="hidden" name="td_count" value="{{s.td_count}}"> {% endfor %}
+                        <input type="hidden" value="{{date1}}" name="check1">
+                        <input type="hidden" value="{{date0}}" name="check0">
+                        <input type="hidden" value="{{td_count}}" name="td_count">
+
+                    </table>
+
+
+                    <button class="btn btn-success" type="submit" style="width: 100%;" id="dl" disabled><i class='bx bxs-save' ></i> Save </button>
+
+
+
+
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </section>
+
+    <script>
+        function incrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal)) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        function decrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal) && currentVal > 0) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        $('.input-group').on('click', '.button-plus', function(e) {
+            incrementValue(e);
+        });
+
+        $('.input-group').on('click', '.button-minus', function(e) {
+            decrementValue(e);
+        });
+    </script>
+
+
+
+
+    <!-- for editing tables -->
+    <script src="extensions/editable/bootstrap-table-editable.js"></script>
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        $('.btn-dark').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able edit this after saving\nPlease double check it\nThank you",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: 'maroon',
+
+                confirmButtonText: 'Save it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Done',
+                        'Saved.',
+                        'success'
+                    )
+                    location.href = self.attr('href="/all_sections"')
+                }
+            })
+        })
+    </script> -->
+
+</body>
+
+</html>

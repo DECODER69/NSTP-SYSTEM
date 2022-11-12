@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../../static/images/tup.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/admin_css/open_sections.css">
+
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/
+4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+</head>
+
+<body>
+
+    {% include 'activities/loader.html' %} {% include 'activities/admin_nav.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/sample_attendance">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> MANAGE ATTENDANCE &nbsp;>&nbsp;</h1>
+            </a>
+
+
+            <h1 class="text">{{getSection}}</h1>
+
+
+        </div>
+        <div class="bg">
+            <div class="inside">
+
+                <div class="table-responsive">
+                    <div class="he">
+                        <div class="ada">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Save Atendance</h1>
+                        </div>
+
+
+
+                    </div>
+                    <br>
+                    <form action="{% url 'activities:read_attendance' %}" method="POST">
+                        {% csrf_token %}
+                        <table id="myTable" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    {% for s in columns %}
+                                    <th>{{ s }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <!-- FOR FIRST SEM ONLY -->
+                                {% for s in rows %}
+                                <tr>
+                                    <td><input type="text" value="{{s.Time_Stamp.0}}{{s.Time_Stamp.1}}{{s.Time_Stamp.2}}{{s.Time_Stamp.3}}{{s.Time_Stamp.4}}{{s.Time_Stamp.5}}{{s.Time_Stamp.6}}{{s.Time_Stamp.7}}{{s.Time_Stamp.8}}{{s.Time_Stamp.9}}{{s.Time_Stamp.10}}{{s.Time_Stamp.11}}"
+                                            readonly class="form-control" name="ids"></td>
+                                    <td><input type="text" value="{{s.Scanned_Data}}" readonly class="form-control" name="dates"></td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            {% for s in td_count %}
+                            <input type="hidden" name="td_count" value="{{s.td_count}}"> {% endfor %}
+                            <input type="hidden" value="{{date1}}" name="check1">
+                            <input type="hidden" value="{{date0}}" name="check0">
+                            <input type="hidden" value="{{td_count}}" name="td_count">
+
+                        </table>
+
+
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save </button>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </section>
+
+    <script>
+        function incrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal)) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        function decrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal) && currentVal > 0) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        $('.input-group').on('click', '.button-plus', function(e) {
+            incrementValue(e);
+        });
+
+        $('.input-group').on('click', '.button-minus', function(e) {
+            decrementValue(e);
+        });
+    </script>
+
+
+
+
+    <!-- for editing tables -->
+    <script src="extensions/editable/bootstrap-table-editable.js"></script>
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+        $('.btn-dark').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able edit this after saving\nPlease double check it\nThank you",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: 'maroon',
+
+                confirmButtonText: 'Save it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Done',
+                        'Saved.',
+                        'success'
+                    )
+                    location.href = self.attr('href="/all_sections"')
+                }
+            })
+        })
+    </script> -->
+
+</body>
+
+</html>

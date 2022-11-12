@@ -33,6 +33,8 @@ import datetime
 from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals
 import os
 import csv  
+from django_tables2.tables import Table
+
 
 from django.http import HttpResponse, Http404
 
@@ -781,7 +783,6 @@ def create_day(request):
     if request.method == 'POST':
    
         title = request.POST.get('title')
-  
         if training_day.objects .filter(title=title).exists():
             messages.info(request, (title) + ' Already exist !')
             return redirect('/attendance_page')
@@ -2002,5 +2003,106 @@ def custom36(request):
         except ImportError:
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return redirect('/admin_view_profile')
+
+def open_wala(request):
+    return render(request, 'activities/wala.html')
+
+
+# def open_csv(request,):
+
+#     if request.method == 'POST':
+        
+#         file = request.FILES['filename'] 
+#         decoded_file = file.read().decode('utf-8').splitlines()
+#         reader = csv.DictReader(decoded_file)
+#         print(reader)
+#         for row in reader:
+#             header = list(row.keys())
+#             break
+#         data = {}
+#         for row in reader:
+#             print("ahahaha"+str(row))
+#             for i in header:
+                
+#                 values = []
+#                 values.append(row.get(i))
+#                 if i not in data:
+#                     data[i] = values
+#                 data[i].extend(values)
+        
+#         context = {
+#             'header': header,
+#             'data': data,
+            
+#         }
+#         print("header ito"+str(header))
+#         print("data itos" +str(data))
+        
+#         return render(request, 'activities/open_csv.html', context)
+#     return render(request, 'activities/open_csv.html', context)
+def before_csv(request):
+    
+    if request.method == 'POST':
+        
+        td_count = request.POST.get('td_count')
+        date0 = request.POST.get('date')
+        date1 = request.POST.get('date1')
+        getSection = request.POST.get('getSection')
+        student = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+         
+            'getSection':getSection,
+      
+            'td_count':td_count,
+            'student':student
+          
+        }
+    return render(request, 'activities/before_csv.html', context)
+
+def open_csv(request):
+    section = sections.objects.all()
+    if request.method == 'POST':
+        td_count = request.POST.get('td_count')
+        getSection = request.POST.get('getSection')
+        csvfile = request.FILES['filename']
+        df = pd.read_csv(csvfile)
+        context = {    
+            'columns': df.columns,
+            'rows': df.to_dict('records'),
+            'td_count':td_count,
+            'getSection':getSection
+        }
+        return render(request, 'activities/open_csv.html', context)
+    
+def read_attendance(request):
+    # for first sem
+    if request.method == 'POST':
+        ids = request.POST.getlist('ids')
+        dates = request.POST.get('dates')
+        td_count = request.POST.get('td_count')
+        
+        if td_count == str(1):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD1='1')
+        if td_count == str(2):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD2='1')
+        if td_count == str(3):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD3='1')
+        if td_count == str(4):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD4='1')
+        if td_count == str(5):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD5='1')
+        if td_count == str(6):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD6='1')
+        if td_count == str(7):
+            for a, b in zip(ids, dates):
+                extenduser.objects.filter(idnumber=a).update(TD7='1')
+    return redirect('/sample_attendance')
+
 
 

@@ -252,5 +252,6 @@ class finals(models.Model):
     date = models.DateField(blank= True,null=True)
     items = models.CharField(max_length=100, default='')
     
-
+class csv_attendance(models.Model):
+    csvfile = models.FileField(upload_to='all_files/', default='')
     

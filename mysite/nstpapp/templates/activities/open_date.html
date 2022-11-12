@@ -43,7 +43,7 @@
 
                     <div class="row">
                         {% for s in section %}
-                        <form action="{% url 'activities:open_sections'%}" class="column" style="text-decoration: none;" method="POST" target="_top">
+                        <form action="{% url 'activities:before_csv'%}" class="column" style="text-decoration: none;" method="POST" target="_top">
                             {% csrf_token %} {% if s.fiel == 'ROTC' %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">

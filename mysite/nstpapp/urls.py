@@ -138,6 +138,10 @@ urlpatterns = [
     path('approve2/<str:id>', views.approve2, name='approve2'),
     path('decline2/<str:id>', views.decline2,name='decline2'),
     path('custom36/', views.custom36, name='custom36'),
+    path('open_csv/', views.open_csv, name='open_csv'),
+    path('open_wala/', views.open_wala, name='open_wala'),
+    path('read_attendance/', views.read_attendance, name='read_attendance'),
+    path('before_csv/', views.before_csv, name='before_csv'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
