@@ -107,7 +107,7 @@
                             </thead>
 
                             <tbody>
-                                {% for s in content3 %}{% if s.first_sem != 'COMPLETED' %}
+                                {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
                                 <tr>
 
                                     <td>{{s.idnumber}}</td>
@@ -144,13 +144,13 @@
 
 
                                 </tr>
-                                {% else %}
+                                {% elif s.second_sem == 'ENROLLED' %}
                                 <tr>
 
                                     <td>{{s.idnumber}}</td>
 
                                     <td>
-                                        <input type="hidden" value="{{s.id}}" name="getId" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
+                                        <input type="hidden" value="{{s.id}}" name="ids2" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
 
 
                                     </td>
@@ -172,7 +172,7 @@
 
 
                                     <td>
-                                        <input name="credits" value="" id="input" readonly>
+                                        <input name="credits2" value="" id="input" readonly>
                                     </td>
                                     <td id="result" class="result" style="display: none;">
 

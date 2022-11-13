@@ -104,7 +104,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in content4 %}{% if s.first_sem != 'COMPLETED' %}
+                                {% for s in content4 %}{% if s.first_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>

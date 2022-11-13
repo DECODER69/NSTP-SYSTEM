@@ -47,6 +47,8 @@
                             <!-- gshshsfhfs -->
                             {% for s in first %}
                             <p id="total" style="display: none;">{{s.items}}</p>
+                            {% endfor %} {% for s in second %}
+                            <p id="total" style="display: none;">{{s.items}}</p>
                             {% endfor %}
                         </div>
 
@@ -182,8 +184,8 @@
                 $tblrow.find('.finals2').on('change', function() {
 
                     var finals2 = $tblrow.find("[name=finals2]").val();
-                    var items = $tblrow.find("[name=items2]").val();
-                    var subTotal = parseInt(finals2, 10) / parseFloat(items) * 100 * 0.15;
+                    var items2 = $tblrow.find("[name=items2]").val();
+                    var subTotal = parseInt(finals2, 10) / parseFloat(items2) * 100 * 0.15;
 
                     if (!isNaN(subTotal)) {
 

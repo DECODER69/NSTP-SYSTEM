@@ -46,7 +46,7 @@
                         <input type="file" name="filename" accept=".csv" class="form-control" id="file" required><br>
                         <input type="hidden" value="{{td_count}}" name="td_count">
                         <input type="hidden" name="getSection" value="{{getSection}}">
-                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl">Open CSV File</button>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class="fa-solid fa-spinner"></i> Load CSV File</button>
                         <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                     </form>
                 </div>
@@ -129,8 +129,53 @@
                             </tr>
                             {% elif s.second_sem == 'ENROLLED' %}
                             <tr>
+                                {% if td_count == '1' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD1_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '2' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD2_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '3' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD3_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '4' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD4_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '5' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD5_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '6' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD6_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '7' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD7_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '8' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD8_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '9' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD9_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '10' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD10_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '11' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD11_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '12' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD12_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '13' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD13_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '14' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD14_2}}" readonly class="form-control" name="dates"></td>
+                                {% elif td_count == '15' %}
+                                <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
+                                <td><input type="text" value="{{s.TD15_2}}" readonly class="form-control" name="dates"></td>
+
+                                {% endif %}
 
                             </tr>
                             {% endif %} {% endfor %}

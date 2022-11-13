@@ -1666,13 +1666,18 @@ def update_att_credits(request):
     if request.method == 'POST':
         ids = request.POST.getlist('getId')
         credits = request.POST.getlist('credits')
-        print("creds "+ str(credits))
-        print("ids"+ str(ids))
+        ids2 = request.POST.getlist('ids2')
+        credits2 = request.POST.getlist('credits2')
+        print("creds "+ str(credits2))
+        print("ids"+ str(ids2))
         
         for i, j in zip(ids, credits):
             print("id" + str(i), "creds"+ str(j))
             extenduser.objects.filter(id=i).update(att_credits=j)
         # extenduser.objects.filter
+        
+        for k, l in zip(ids2, credits2):
+            extenduser.objects.filter(id=k).update(att_credits_2=l)
     return redirect('/attendance_tab')
 def grades(request):
     acts = activity.objects.all()
@@ -1716,6 +1721,9 @@ def set_activities(request):
 def save_grade(request):
     if request.method == 'POST':
         ids= request.POST.getlist('ids')
+        
+        credits1 = request.POST.getlist('credits1')
+        credits2 = request.POST.getlist('credits2')
         print(ids)
         act1 = request.POST.getlist('act1')
         act2 = request.POST.getlist('act2')
@@ -1732,12 +1740,12 @@ def save_grade(request):
         act5_2 = request.POST.getlist('act5_2')
         act6_2 = request.POST.getlist('act6_2')
         # for a2 in (act1_2):
-        for a, b, c, d , e, f , i in zip(act1, act2, act3, act4, act5, act6,  ids ):
-            extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f)
+        for a, b, c, d , e, f , i, j in zip(act1, act2, act3, act4, act5, act6,  ids, credits1 ):
+            extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f, act_credits=j )
             print("hahaha "+ a, b, c, d , e, f)
             
-        for a2, b2, c2, d2 , e2, f2, i2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2):
-            extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2)
+        for a2, b2, c2, d2 , e2, f2, i2, j2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2, credits2):
+            extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2, act_credits_2=j2)
             print("2nd sem haha "+ a2, b2, c2, d2 , e2, f2)
     
     return redirect('/grades')
@@ -2060,7 +2068,7 @@ def before_csv(request):
     return render(request, 'activities/before_csv.html', context)
 
 def open_csv(request):
-    section = sections.objects.all()
+    semester = school_year.objects.all()
     if request.method == 'POST':
         td_count = request.POST.get('td_count')
         getSection = request.POST.get('getSection')
@@ -2070,38 +2078,116 @@ def open_csv(request):
             'columns': df.columns,
             'rows': df.to_dict('records'),
             'td_count':td_count,
-            'getSection':getSection
+            'getSection':getSection,
+            'semester':semester
         }
         return render(request, 'activities/open_csv.html', context)
     
 def read_attendance(request):
-    # for first sem
+
     if request.method == 'POST':
         ids = request.POST.getlist('ids')
         dates = request.POST.get('dates')
+        
+        ids2 = request.POST.getlist('ids2')
+        dates2 = request.POST.get('dates2')
         td_count = request.POST.get('td_count')
         
+         # for first sem ##################################
         if td_count == str(1):
-            for a, b in zip(ids, dates):
+            for a in (ids):
                 extenduser.objects.filter(idnumber=a).update(TD1='1')
         if td_count == str(2):
-            for a, b in zip(ids, dates):
-                extenduser.objects.filter(idnumber=a).update(TD2='1')
+            for a in (ids):
+                extenduser.ojects.filter(idnumber=a).update(TD2='1')
         if td_count == str(3):
-            for a, b in zip(ids, dates):
-                extenduser.objects.filter(idnumber=a).update(TD3='1')
+            for a  in (ids):
+                extenduser.ojects.filter(idnumber=a).update(TD3='1')
         if td_count == str(4):
-            for a, b in zip(ids, dates):
+            for a  in (ids):
                 extenduser.objects.filter(idnumber=a).update(TD4='1')
         if td_count == str(5):
-            for a, b in zip(ids, dates):
+            for a in (ids):
                 extenduser.objects.filter(idnumber=a).update(TD5='1')
         if td_count == str(6):
-            for a, b in zip(ids, dates):
+            for a in (ids):
                 extenduser.objects.filter(idnumber=a).update(TD6='1')
         if td_count == str(7):
-            for a, b in zip(ids, dates):
+            for a in (ids):
                 extenduser.objects.filter(idnumber=a).update(TD7='1')
+        if td_count == str(8):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD8='1')
+        if td_count == str(9):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD9='1')
+        if td_count == str(10):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD10='1')
+        if td_count == str(11):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD11='1')
+        if td_count == str(12): 
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD12='1')
+        if td_count == str(13):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD13='1')
+        if td_count == str(14):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD14='1')
+        if td_count == str(15):
+            for a in (ids):
+                extenduser.objects.filter(idnumber=a).update(TD15='1')
+                
+                
+                
+                #for second semester attendance
+        if td_count == str(1):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+        if td_count == str(2):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD2_2='1')
+        if td_count == str(3):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD3_2='1')
+        if td_count == str(4):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD4_2='1')
+        if td_count == str(5):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD5_2='1')
+        if td_count == str(6):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD6_2='1')
+        if td_count == str(7):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD7_2='1')
+        if td_count == str(8):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD8_2='1')
+        if td_count == str(9):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD9_2='1')
+        if td_count == str(10):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD10_2='1')
+        if td_count == str(11):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD11_2='1')
+        if td_count == str(12):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD12_2='1')
+        if td_count == str(13):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD13_2='1')
+        if td_count == str(14):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD14_2='1')
+        if td_count == str(15):
+            for c in(ids2): 
+                extenduser.objects.filter(idnumber=c).update(TD15_2='1')
     return redirect('/sample_attendance')
 
 

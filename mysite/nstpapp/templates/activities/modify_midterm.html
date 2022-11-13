@@ -101,7 +101,7 @@
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
                                     <td><input type="text" class="midterm2 form-control" value="{{s.midterm2}}" name="midterm2" /></td>
-                                    {% for s in first %}
+                                    {% for s in second %}
                                     <td><input type="text" class="price form-control" value="{{s.items}}" name="items" /></td>
                                     {% endfor %}
                                     <td class="result"><input type="text" class="credits2 form-control" value="{{s.midterm2_credits}}" name="credits2" readonly /></td>

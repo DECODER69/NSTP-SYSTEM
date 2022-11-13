@@ -61,14 +61,21 @@
                             <tbody>
 
                                 <!-- FOR FIRST SEM ONLY -->
-                                {% for s in rows %}
+                                {% for s in rows %}{% for k in semester %}{% if k.sem == 'First Term' %}
                                 <tr>
                                     <td><input type="text" value="{{s.Time_Stamp.0}}{{s.Time_Stamp.1}}{{s.Time_Stamp.2}}{{s.Time_Stamp.3}}{{s.Time_Stamp.4}}{{s.Time_Stamp.5}}{{s.Time_Stamp.6}}{{s.Time_Stamp.7}}{{s.Time_Stamp.8}}{{s.Time_Stamp.9}}{{s.Time_Stamp.10}}{{s.Time_Stamp.11}}"
                                             readonly class="form-control" name="ids"></td>
                                     <td><input type="text" value="{{s.Scanned_Data}}" readonly class="form-control" name="dates"></td>
 
                                 </tr>
-                                {% endfor %}
+                                {% elif k.sem == 'Second Term' %}
+                                <tr>
+                                    <td><input type="text" value="{{s.Time_Stamp.0}}{{s.Time_Stamp.1}}{{s.Time_Stamp.2}}{{s.Time_Stamp.3}}{{s.Time_Stamp.4}}{{s.Time_Stamp.5}}{{s.Time_Stamp.6}}{{s.Time_Stamp.7}}{{s.Time_Stamp.8}}{{s.Time_Stamp.9}}{{s.Time_Stamp.10}}{{s.Time_Stamp.11}}"
+                                            readonly class="form-control" name="ids2"></td>
+                                    <td><input type="text" value="{{s.Scanned_Data}}" readonly class="form-control" name="dates2"></td>
+
+                                </tr>
+                                {% endif %} {% endfor %} {% endfor %}
                             </tbody>
                             {% for s in td_count %}
                             <input type="hidden" name="td_count" value="{{s.td_count}}"> {% endfor %}
