@@ -2,87 +2,287 @@
 <html lang="en">
 
 <head>
-    <title>Landing Page</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP LANDING PAGE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../../static/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 </head>
 
 <body>
-    <div class="banner">
-        <div class="navbar">
-            <img src="" class="logo" alt="ROTC LOGO" />
-            <ul>
-                <!--  <li><a href="#">Home</a></li> -->
-                <li><a href="#">About</a></li>
-                <li><a href="#">ROTC</a></li>
-                <li><a href="#">CWTS</a></li>
-            </ul>
-        </div>
+
+    <header>
+
+        <a href="#" class="logo">
+            <!-- <img src="images/tupclogo.png" alt="home"> --><span>NS</span>TP</a>
+
+        <input type="checkbox" id="menu-bar">
+        <label for="menu-bar" class="fas fa-bars"></label>
+
+        <nav class="navbar">
+            <a href="#home">Search</a>
+            <a href="#features">CWTS</a>
+            <a href="#about">ROTC</a>
+            <a href="signin.html">SignIn</a>
+            <a href="signup.html">Signup</a>
+            <a href="#contact">EmailUs</a>
+        </nav>
+
+    </header>
+
+    <section class="home" id="home">
 
         <div class="content">
-            <h1>WELCOME TO NSTP</h1>
-            <p>
-                be part of ROTC officer/cadets or an CWTS and pass the trial together with your classmates <br />What are youy waiting for, Join Now!
-            </p>
-            <div>
-                <!-- <button type="button"><span></span>Signin</button>
-          <button type="button"><span></span>Signup</button> -->
-                <a href="/login_page">
-                    <button type="button" class="btn btn-info">Sign-in</button>
-                </a>
-                <a href="/signup_page">
+            <h3>be part of us <span></span></h3>
+            <p>Train for future service in the ROTC or contribute to the general welfare of your community in the CWTS</p>
+            <!--  <a href="#" class="btn">Email Us</a> -->
+        </div>
+
+        <div class="image">
+            <img src="../../static/images/home-img.png" alt="home">
+        </div>
+
+    </section>
+
+    <section class="features" id="features">
+
+        <h1 class="heading"> NSTP COMPONENTS</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="../../static/images/rocomponent.jpg" alt="">
+                <h3>ROTC</h3>
+                <p>Reserve Officers Training Corps (ROTC) is a program created to give military training to college students in order to inspire, prepare, organize, and mobilize them for national defense readiness.</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+
+            <div class="box">
+                <img src="../../static/images/cwts1.jpg" alt="">
+                <h3>CWTS</h3>
+                <p>Civic Welfare Training Service (CWTS) is a term used to describe activities that contribute to the general welfare of the community, the betterment of community life, or the enhancement of community facilities, particularly those aimed
+                    at enhancing the public's health, education, environment, entrepreneurship, safety, recreation, and morale, as well as other social welfare services.</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+
+            <!--   <div class="box">
+            <img src="images/f-icon3.png" alt="">
+            <h3>CWTS</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam minus recusandae autem, repellendus fugit quaerat provident voluptatum non officiis ratione.</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+ -->
 
 
-                    <button type="button" class="btn btn-info">Signup</button></a>
+        </div>
+
+    </section>
+
+    <section class="about" id="about">
+
+        <h1 class="heading"> About ROTC </h1>
+
+        <div class="column">
+
+            <div class="image">
+
+                <h2>
+                    <!-- Automatic Slideshow -->
+                </h2>
+                <p>
+                    <!-- Change image every 2 seconds: -->
+                </p>
+
+                <div class="slideshow-container">
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 3</div>
+                        <img src="../../static/images/RO1.jpg" style="width:100%">
+                        <div class="text">
+                            <!-- Caption Text -->
+                        </div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 3</div>
+                        <img src="../../static/images/RO2.jpg" style="width:100%">
+                        <div class="text">
+                            <!-- Caption Two -->
+                        </div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">3 / 3</div>
+                        <img src="../../static/images/RO3.jpg" style="width:100%">
+                        <div class="text">
+                            <!-- Caption Three -->
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+
+                <div style="text-align:center">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+
+
+
+            </div>
+
+            <div class="content">
+                <div class="col">
+                    <h3>About ROTC 1</h3>
+                    <p>A program institutionalized under Sections 38 and 39 of Republic Act No. 7077 designed to provide military training to tertiary level students in order to motivate, train, organize and mobilize them for national defense preparedness.</p>
+                    <br> <br>
+                </div> <br> <br> <br> <br> <br> <br>
+
+                <div class="col">
+                    <h3>About ROTC 2</h3>
+                    <p>A program institutionalized under Sections 38 and 39 of Republic Act No. 7077 designed to provide military training to tertiary level students in order to motivate, train, organize and mobilize them for national defense preparedness.</p>
+                    <br> <br>
+                </div>
+
+                <!--   <div class="col">
+                <h3>Benefits</h3>
+                <ul class="bullet">
+                  <li>Privilege to Wear Military Uniforms</li>
+                  <li>Advanced Military Trainings</li>
+                  <li>Leadership Trainings and Certificates</li>
+                  <li>Future Leaders of the AFP</li>
+                  <li>Job Credentials</li>
+
+                </ul>
+
+            </div> -->
+
+
+                <div class="buttons">
+
+                </div>
             </div>
 
         </div>
+
+    </section>
+
+    <section class="contact" id="contact">
+
+        <div class="map">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d483.1773803357485!2d120.96615755375772!3d14.345144190590167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d43fdf3bf3d3%3A0x756d61b3739581bc!2sTechnological%20University%20of%20the%20Philippines%20%E2%80%93%20Cavite!5e0!3m2!1sen!2sph!4v1666459450511!5m2!1sen!2sph"
+                width="630" height="483" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+        </div>
+
+        <form action="">
+
+            <h1 class="heading">contact us</h1>
+
+            <div class="inputBox">
+                <input type="text" required>
+                <label>Name</label>
+            </div>
+
+            <div class="inputBox">
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+
+            <div class="inputBox">
+                <input type="text" required>
+                <label>Subject</label>
+            </div>
+
+            <div class="inputBox">
+                <textarea required name="" id="" cols="30" rows="10"></textarea>
+                <label>Message</label>
+            </div>
+
+            <input type="submit" class="btn" value="send message">
+
+        </form>
+        <br> <br> <br> <br><br> <br>
+
+    </section>
+
+    <div class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>about</h3>
+                <a href="https://web.facebook.com/236th.nrotcu.tupc">236th nrotc unit, tup-cavite</a>
+                <a href="https://web.facebook.com/uitctupc">TUPC UITC</a>
+                <a href="https://web.facebook.com/tupc.osa">TUPC OSA</a>
+            </div>
+
+            <!--  <div class="box">
+            <h3>Contacts
+            <a href="#">features</a>
+            <a href="#">about</a>
+            <a href="#">contact</a>
+        </div> -->
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="https://web.facebook.com/236th.nrotcu.tupc">facebook</a>
+                <a href="#">instagram</a>
+                <a href="#">twitter</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <div class="info">
+                    <i class="fas fa-phone"></i>
+                    <p> (046) 416 4920 <br> </p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-envelope"></i>
+                    <p>236throtcu.tupcavite@gmail.com <br></p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p> 8XW8+2CH, Carlos Trinidad Ave, Salawag, Dasmarinas, Cavite</p> <br>
+                    <p></p>
+                </div>
+            </div>
+
+        </div>
+
+        <h1 class="credit"> © Copyright 2022. All Rights Reserved. | Technological University of the Phillipines Cavite </h1>
+
     </div>
 
-    <!-- <div class="container-fluid seconddiv" id="second">
-      <div class="jumbotron">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </div>
-  </div> -->
-
-
+    <!-- SLIDESSHOW -->
     <script>
-        window.smoothScroll = function(target) {
-            var scrollContainer = target;
-            do { //find scroll container
-                scrollContainer = scrollContainer.parentNode;
-                if (!scrollContainer) return;
-                scrollContainer.scrollTop += 1;
-            } while (scrollContainer.scrollTop == 0);
+        let slideIndex = 0;
+        showSlides();
 
-            var targetY = 0;
-            do { //find the top of target relatively to the container
-                if (target == scrollContainer) break;
-                targetY += target.offsetTop;
-            } while (target = target.offsetParent);
-
-            scroll = function(c, a, b, i) {
-                    i++;
-                    if (i > 30) return;
-                    c.scrollTop = a + (b - a) / 30 * i;
-                    setTimeout(function() {
-                        scroll(c, a, b, i);
-                    }, 20);
-                }
-                // start scrolling
-            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 4000); // Change image every 2 seconds
         }
     </script>
-
 
 </body>
 
