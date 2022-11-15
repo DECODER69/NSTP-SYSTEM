@@ -67,8 +67,9 @@
                         <thead class="thead">
                             <tr>
 
-                                <th>ID Number</th>
-                                <th>Date and Time</th>
+                                <th>ID_Number</th>
+                                <th>Scanned_Data</th>
+                                <th>Demerits</th>
 
                             </tr>
                         </thead>
@@ -81,6 +82,7 @@
                                 {% if td_count == '1' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD1}}" readonly class="form-control" name="dates"></td>
+                                <td><input type="text" value="{{s.TD1_dem}}" readonly class="form-control" name="dates"></td>
                                 {% elif td_count == '2' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD2}}" readonly class="form-control" name="dates"></td>
@@ -132,12 +134,15 @@
                                 {% if td_count == '1' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD1_2}}" readonly class="form-control" name="dates"></td>
+                                <td><input type="text" value="{{s.TD1_2_dem}}" readonly class="form-control" name="demerits"></td>
                                 {% elif td_count == '2' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD2_2}}" readonly class="form-control" name="dates"></td>
+                                <td><input type="text" value="{{s.TD2_2_dem}}" readonly class="form-control" name="demerits"></td>
                                 {% elif td_count == '3' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD3_2}}" readonly class="form-control" name="dates"></td>
+                                <td><input type="text" value="{{s.TD3_2_dem}}" readonly class="form-control" name="demerits"></td>
                                 {% elif td_count == '4' %}
                                 <td><input type="text" value="{{s.idnumber}}" readonly class="form-control" name="ids"></td>
                                 <td><input type="text" value="{{s.TD4_2}}" readonly class="form-control" name="dates"></td>

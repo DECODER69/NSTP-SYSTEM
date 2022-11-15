@@ -140,7 +140,7 @@ section {
 
 ::-webkit-scrollbar {
     width: 0px;
-    background: red;
+    background: rgb(255, 255, 255);
     /* make scrollbar transparent */
 }
 

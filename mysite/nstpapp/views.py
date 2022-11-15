@@ -1967,10 +1967,14 @@ def access_merits(request):
 
 def save_merits(request):
     ids = request.POST.getlist('ids')
+    ids2 = request.POST.getlist('ids2')
     equivalent_merits = request.POST.getlist('equivalent_merits')
+    equivalent_merits2 = request.POST.getlist('equivalent_merits2')
     
     for a, b in zip(ids,equivalent_merits):
         extenduser.objects.filter(id=a).update(equivalent_merits=b)
+    for c, d in zip(ids2,equivalent_merits2):
+        extenduser.objects.filter(id=c).update(equivalent_merits2=d)
     return redirect('/merits')
 
 
@@ -2088,106 +2092,109 @@ def read_attendance(request):
     if request.method == 'POST':
         ids = request.POST.getlist('ids')
         dates = request.POST.get('dates')
+        demerits = request.POST.getlist('demerits')
         
         ids2 = request.POST.getlist('ids2')
         dates2 = request.POST.get('dates2')
+        demerits2 = request.POST.getlist('demerits2')
         td_count = request.POST.get('td_count')
         
          # for first sem ##################################
         if td_count == str(1):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD1='1')
+            print("td1")
+            for a,b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD1='1', TD1_dem=b)
         if td_count == str(2):
-            for a in (ids):
-                extenduser.ojects.filter(idnumber=a).update(TD2='1')
+            for a, b in zip(ids, demerits):
+                extenduser.ojects.filter(idnumber=a).update(TD2='1', TD2_dem = b)
         if td_count == str(3):
-            for a  in (ids):
-                extenduser.ojects.filter(idnumber=a).update(TD3='1')
+            for a, b in zip(ids, demerits):
+                extenduser.ojects.filter(idnumber=a).update(TD3='1', TD3_dem = b)
         if td_count == str(4):
-            for a  in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD4='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD4='1', TD4_dem = b)
         if td_count == str(5):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD5='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD5='1', TD5_dem = b)
         if td_count == str(6):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD6='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD6='1', TD6_dem = b)
         if td_count == str(7):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD7='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD7='1', TD7_dem = b)
         if td_count == str(8):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD8='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD8='1', TD8_dem = b)
         if td_count == str(9):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD9='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD9='1', TD9_dem = b)
         if td_count == str(10):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD10='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD10='1', TD10_dem = b)
         if td_count == str(11):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD11='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD11='1', TD11_dem = b)
         if td_count == str(12): 
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD12='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD12='1', TD12_dem = b)
         if td_count == str(13):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD13='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD13='1', TD13_dem = b)
         if td_count == str(14):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD14='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD14='1', TD14_dem = b)
         if td_count == str(15):
-            for a in (ids):
-                extenduser.objects.filter(idnumber=a).update(TD15='1')
+            for a, b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD15='1', TD15_dem = b)
                 
                 
                 
                 #for second semester attendance
         if td_count == str(1):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD1_2_dem = d)
         if td_count == str(2):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD2_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD2_2_dem = d)
         if td_count == str(3):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD3_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD3_2_dem = d)
         if td_count == str(4):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD4_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD4_2_dem = d)
         if td_count == str(5):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD5_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD5_2_dem = d)
         if td_count == str(6):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD6_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD6_2_dem = d)
         if td_count == str(7):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD7_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD7_2_dem = d)
         if td_count == str(8):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD8_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD8_2_dem = d)
         if td_count == str(9):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD9_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD9_2_dem = d)
         if td_count == str(10):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD10_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD10_2_dem = d)
         if td_count == str(11):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD11_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD11_2_dem = d)
         if td_count == str(12):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD12_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD12_2_dem = d)
         if td_count == str(13):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD13_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD13_2_dem = d)
         if td_count == str(14):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD14_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD14_2_dem = d)
         if td_count == str(15):
-            for c in(ids2): 
-                extenduser.objects.filter(idnumber=c).update(TD15_2='1')
+            for c, d in zip(ids2, demerits2): 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD15_2_dem = d)
     return redirect('/sample_attendance')
 
 

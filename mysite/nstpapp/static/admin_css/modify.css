@@ -178,6 +178,11 @@ h1 {
     color: rgb(23, 3, 3) !important;
 }
 
+.result2 {
+    background-color: #b5260d !important;
+    color: rgb(255, 255, 255) !important;
+}
+
 #result {
     background-color: #d3ab6c !important;
     color: rgb(23, 3, 3) !important;
