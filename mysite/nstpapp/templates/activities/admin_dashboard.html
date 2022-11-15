@@ -341,16 +341,17 @@
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
-        { %
-            for msg in messages %
-        }
+    <script>
+
+        {% for msg1 in messages %}
         Swal.fire({
-            icon: '',
-            text: '{{ msg }}'
-        }) { % endfor %
-        }
-    </script> -->
+            position: 'top-end',
+            icon: 'success',
+            title: '{{msg1}}',
+            showConfirmButton: false,
+            timer: 2500
+          }) {% endfor %}
+    </script>  
 
     <script>
         $('.btn-danger').on('click', function(e) {

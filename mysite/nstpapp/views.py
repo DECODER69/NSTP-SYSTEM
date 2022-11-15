@@ -2106,48 +2106,63 @@ def read_attendance(request):
         if td_count == str(1):
             for a,b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD1='1', TD1_dem=b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(2):
             for a,b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD2='1', TD2_dem=b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(3):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD3='1', TD3_dem=b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(4):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD4='1', TD4_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(5):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD5='1', TD5_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(6):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD6='1', TD6_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(7):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD7='1', TD7_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(8):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD8='1', TD8_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(9):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD9='1', TD9_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(10):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD10='1', TD10_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(11):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD11='1', TD11_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(12): 
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD12='1', TD12_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(13):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD13='1', TD13_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(14):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD14='1', TD14_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(15):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD15='1', TD15_dem = b)
+                messages.success(request, 'Attendance and Demerits updated')
                 
                 
                 
@@ -2155,48 +2170,63 @@ def read_attendance(request):
         if td_count == str(1):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD1_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(2):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD2_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(3):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD3_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(4):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD4_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(5):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD5_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(6):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD6_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(7):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD7_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(8):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD8_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(9):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD9_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(10):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD10_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(11):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD11_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(12):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD12_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(13):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD13_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(14):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD14_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(15):
             for c, d in zip(ids2, demerits2): 
                 extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD15_2_dem = d)
+                messages.success(request, 'Attendance and Demerits updated')
     return redirect('/sample_attendance')
 
 
