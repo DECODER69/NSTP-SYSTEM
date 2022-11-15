@@ -1940,10 +1940,11 @@ def save_finale_grades(request):
         
         for a, b, c in zip(ids, first_sem_grade, equivalent):
             extenduser.objects.filter(id=a).update(final_grade=b, first_equivalents=c)
-            print(a, b, c)
+            messages.success(request, 'Final Grade Updated successfully')
         for  d, e, f in zip(ids_2, second_grade, equivalent2):
-            print(d, e, f)
+            
             extenduser.objects.filter(id=d).update(final_grade_2=e, second_equivalents=f)
+            messages.success(request, 'Final Grade Updated successfully')
         return redirect('/final_grade')
 
 def merits(request):
@@ -1973,8 +1974,10 @@ def save_merits(request):
     
     for a, b in zip(ids,equivalent_merits):
         extenduser.objects.filter(id=a).update(equivalent_merits=b)
+        messages.success(request, 'Merits Updated successfully')
     for c, d in zip(ids2,equivalent_merits2):
         extenduser.objects.filter(id=c).update(equivalent_merits2=d)
+        messages.success(request, 'Merits Updated successfully')
     return redirect('/merits')
 
 
@@ -2101,15 +2104,14 @@ def read_attendance(request):
         
          # for first sem ##################################
         if td_count == str(1):
-            print("td1")
             for a,b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD1='1', TD1_dem=b)
         if td_count == str(2):
-            for a, b in zip(ids, demerits):
-                extenduser.ojects.filter(idnumber=a).update(TD2='1', TD2_dem = b)
+            for a,b in zip(ids, demerits):
+                extenduser.objects.filter(idnumber=a).update(TD2='1', TD2_dem=b)
         if td_count == str(3):
             for a, b in zip(ids, demerits):
-                extenduser.ojects.filter(idnumber=a).update(TD3='1', TD3_dem = b)
+                extenduser.objects.filter(idnumber=a).update(TD3='1', TD3_dem=b)
         if td_count == str(4):
             for a, b in zip(ids, demerits):
                 extenduser.objects.filter(idnumber=a).update(TD4='1', TD4_dem = b)

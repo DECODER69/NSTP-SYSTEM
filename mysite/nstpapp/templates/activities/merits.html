@@ -183,13 +183,17 @@
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
+    <script>
+
         {% for msg in messages %}
         Swal.fire({
-            icon: '',
-            text: '{{ msg }}'
-        }) {% endfor %}
-    </script> -->
+            position: 'top-end',
+            icon: 'success',
+            title: '{{msg}}',
+            showConfirmButton: false,
+            timer: 2500
+          }) {% endfor %}
+    </script>  
 
     <script>
         $('.btn-danger').on('click', function(e) {
