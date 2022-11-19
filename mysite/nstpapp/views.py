@@ -1153,7 +1153,7 @@ def create_td2(request):
     return redirect('/attendance_tab')
 
 def open_date(request):
-    section = sections.objects.all()
+    section = sections.objects.filter(fiel = 'ROTC')
     if request.method == 'POST':
         td_count = request.POST.get('td_count')
         date = request.POST.get('date')
@@ -2078,6 +2078,7 @@ def open_csv(request):
     semester = school_year.objects.all()
     if request.method == 'POST':
         td_count = request.POST.get('td_count')
+        print(td_count)
         getSection = request.POST.get('getSection')
         csvfile = request.FILES['filename']
         df = pd.read_csv(csvfile)
@@ -2231,3 +2232,9 @@ def read_attendance(request):
 
 
 
+def update_section(request):
+    checked = request.POST.getlist('cb_1')
+    options = request.POST.getlist('options')
+    for a in checked:
+        extenduser.objects.filter(id=a).update(status=options[0], first_sem=options[0])
+    return redirect ('/manage_section')

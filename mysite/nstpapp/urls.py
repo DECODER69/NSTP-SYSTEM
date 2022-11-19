@@ -142,6 +142,7 @@ urlpatterns = [
     path('open_wala/', views.open_wala, name='open_wala'),
     path('read_attendance/', views.read_attendance, name='read_attendance'),
     path('before_csv/', views.before_csv, name='before_csv'),
+    path('update_section/', views.update_section, name='update_section'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

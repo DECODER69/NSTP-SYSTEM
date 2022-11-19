@@ -79,6 +79,7 @@ section {
 
 .overall {
     padding: 10px;
+    background-color: white;
 }
 
 .left {
@@ -154,6 +155,34 @@ section {
     height: 50px;
     padding: 5px;
     border-radius: 2px;
+}
+
+.adda {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid rgba(128, 128, 128, 0.562);
+    border-radius: 5px;
+}
+
+.adda form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.adda form .btn {
+    width: 200px !important;
+}
+
+.adda form #file {
+    width: 500px !important;
+}
+
+#dl {
+    background-color: #006b86;
+    background-color: #006b86 !important;
+    border-color: transparent !important;
 }
 
 

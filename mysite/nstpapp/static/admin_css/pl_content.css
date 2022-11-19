@@ -99,7 +99,7 @@ section {
     width: 50px;
 }
 
-.table-responsive {
+.table-responsives {
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.815), 0 6px 20px 0 rgba(0, 0, 0, 0.774);
     height: auto;
@@ -108,26 +108,32 @@ section {
     background-color: white;
 }
 
-.table {
+.table-responsive {
     margin: auto;
-    background-color: #aaaaaa;
-    width: auto;
+    width: 100%;
+}
+
+.thead {
+    width: 100%;
 }
 
 .he {
+    padding: 10px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
 .adda {
-    width: 20%;
+    width: 40%;
     float: right !important;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
 }
 
 #dl {
+    width: 150px !important;
     background-color: #006b86 !important;
     border-color: transparent !important;
 }
@@ -159,6 +165,25 @@ h1 {
     font-size: 15px;
     padding: 10px;
     background-color: white;
+}
+
+.secttion_c {
+    margin: auto;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+#sel {
+    width: 200px;
+    border: 1px solid black;
+    background-color: aliceblue;
+}
+
+#dl2 {
+    width: 200px !important;
+    background-color: #00851d !important;
+    border-color: transparent !important;
 }
 
 

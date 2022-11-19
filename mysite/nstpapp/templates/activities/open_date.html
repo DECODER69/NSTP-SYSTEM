@@ -24,7 +24,18 @@
 
         </div><br>
         <div class="bg">
-
+            <div class="adda">
+                <h5>Attendance Record CSV File ...</h5>
+                <form action="{% url 'activities:open_csv' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="filename" accept=".csv" class="form-control" id="file" required><br>
+                    <input type="hidden" value="{{td_count}}" name="td_count">
+                    <input type="hidden" name="getSection" value="{{getSection}}">
+                    <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class="fa-solid fa-spinner"></i> Load CSV File</button>
+                    <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                </form>
+            </div>
+            <br>
             <div class="overall">
                 <div class="left">
                     <div class="tss">
@@ -44,7 +55,7 @@
                     <div class="row">
                         {% for s in section %}
                         <form action="{% url 'activities:before_csv'%}" class="column" style="text-decoration: none;" method="POST" target="_top">
-                            {% csrf_token %} {% if s.fiel == 'ROTC' %}
+                            {% csrf_token %}
                             <div class="card">
                                 <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
@@ -54,17 +65,7 @@
                                 <button type="submit" class="btn btn-dark">Open</button><br>
                                 <p class="card-text"><small class="text-muted">Created for ROTC Only</small></p>
                             </div>
-                            {% elif s.fiel == 'CWTS' %}
-                            <div class="card">
-                                <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
-                                <h5 class="title ">{{s.section_created}}</h5>
-                                <input type="hidden" name="date" id="" value="{{date}}">
-                                <input type="hidden" value="{{td_count}}" name="td_count">
-                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
-                                <button type="submit" class="btn btn-dark">Open</button><br>
-                                <p class="card-text"><small class="text-muted">Created for CWTS Only</small></p>
-                            </div>
-                            {% endif %}
+
                         </form>
                         {% endfor %}
                     </div>

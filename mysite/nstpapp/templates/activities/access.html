@@ -103,7 +103,7 @@
                                     <td class="data">{{s.finals_credits1}}</td>
                                     <td><input type="number" name="final_grade" class="final_grade form-control" value="{{s.final_grade}}" readonly></td>
                             
-                                    {% if s.final_grade <= '74' %}
+                                    {% if s.final_grade <= '74.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="5" readonly style="color:red !important;"></td>
                                     {% elif s.final_grade >= '75' and s.final_grade <= '77.99' %}
                                     <td><input type="text" name="equivalent" class="equivalent form-control" value="3" readonly style="color:rgb(255, 60, 0) !important;"></td>

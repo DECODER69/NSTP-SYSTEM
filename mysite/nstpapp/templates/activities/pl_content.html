@@ -32,7 +32,7 @@
         <div class="bg">
             <div class="inside">
 
-                <div class="table-responsive">
+                <div class="table-responsives">
                     <div class="he">
 
                         <div class="ada">
@@ -47,53 +47,94 @@
                                 <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
                                 <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                             </form>
+                            <br>&nbsp;<br>
                             <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{getSection}}" name="platoon">
                                 <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Add Student</button>
                                 <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                             </form>
-
-
-
-
                         </div>
 
 
                     </div>
                     <br>
-                    <table id="myTable" class="table table-bordered table-hover ">
-                        <thead class="thead">
-                            <tr>
-                                <th scope="col">ID NUMBER</th>
-                                <th scope="col">FULL NAME</th>
-                                <th scope="col">EMAIL</th>
+                    <form action="{% url 'activities:update_section' %}" method="post">
+                        {% csrf_token %}
+                        <div class="table-responsive">
+                            <table id="myTable" class="table table-bordered table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col"><input type="checkbox" class="form-control" id="allcb" name="allcb"></th>
+                                        <th scope="col">ID NUMBER</th>
+                                        <th scope="col">FULL NAME</th>
+                                        <th scope="col">EMAIL</th>
 
-                                <th scope="col">COURSE</th>
-                                <th scope="col">FIELD</th>
-                                <th scope="col">SECTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for s in content3 %}
-                            <tr>
-                                <td>{{s.idnumber}}</td>
-                                <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                <td>{{s.email}}</td>
+                                        <th scope="col">COURSE</th>
+                                        <th scope="col">FIELD</th>
+                                        <th scope="col">SECTION</th>
+                                        <th scope="col">First Term Grade</th>
+                                        <th scope="col">Second Term Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
 
-                                <td>{{s.section}}</td>
-                                {% if s.field == 'ROTC' %}
-                                <td style="color:red; font-weight:bolder;">{{s.field}}</td>
-                                {% elif s.field == 'CWTS' %}
-                                <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
-                                {% endif %}
-                                <td>{{s.platoons}}</td>
+                                    <tr>
+                                        <td><input type="checkbox" class="form-control" id="cb" name="cb_1" value="{{s.id}}"></td>
+                                        <th scope="row">{{s.idnumber}}</th>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                        <td>{{s.email}}</td>
 
-                            </tr>
+                                        <td>{{s.section}}</td>
+                                        {% if s.field == 'ROTC' %}
+                                        <td style="color:red; font-weight:bolder;">{{s.field}}</td>
+                                        {% elif s.field == 'CWTS' %}
+                                        <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
+                                        {% endif %}
+                                        <td>{{s.platoons}}</td>
+                                        <td>{{s.final_grade}}</td>
+                                        <td>{{s.final_grade2}}</td>
 
-                            {% empty %} {% endfor %}
-                        </tbody>
-                    </table>
+                                    </tr>
+                                    {% elif s.second_sem == 'ENROLLED' %}
+
+                                    <tr>
+                                        <td><input type="checkbox" class="form-control" id="cb" name="cb_2"></td>
+                                        <td>{{s.idnumber}}</td>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                        <td>{{s.email}}</td>
+
+                                        <td>{{s.section}}</td>
+                                        {% if s.field == 'ROTC' %}
+                                        <td style="color:red; font-weight:bolder;">{{s.field}}</td>
+                                        {% elif s.field == 'CWTS' %}
+                                        <td style="color:#4EC3D0;font-weight:bolder;">{{s.field}}</td>
+                                        {% endif %}
+                                        <td>{{s.platoons}}</td>
+                                        <td>{{s.final_grade}}</td>
+                                        <td>{{s.final_grade2}}</td>
+
+                                    </tr>
+
+                                    {% endif %} {% empty %} {% endfor %}
+                                </tbody>
+
+                            </table>
+                            <br>
+                            <hr>
+                            <div class="secttion_c">
+                                <select name="options" id="sel" class="form-control" title="Options">
+                                <option value="DROPPED">DROP</option>
+                                <option value="GRADUATE">GRADUATE</option>
+                                <option value="PENDING">UN-ENROLL</option>
+                            </select>
+                                <br>&nbsp;<br>
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl2"><i class='bx bxs-save' ></i> Save </button>
+                            </div>
+                            <br>
+                        </div>
+                    </form>
                 </div>
             </div>
             <br>
@@ -125,7 +166,14 @@
             text: '{{ msg }}'
         }) {% endfor %}
     </script>   -->
-
+    <script>
+        $(function() {
+            $("#allcb").click(function() {
+                var chkBoxes = $("input[id^=cb]");
+                chkBoxes.prop("checked", !chkBoxes.prop("checked"));
+            });
+        });
+    </script>
 </body>
 
 </html>
