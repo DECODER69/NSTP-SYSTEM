@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../../static/images/tup.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/admin_css/sample_attendance.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+    <title>Document</title>
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <section class="page-content">
+        <div class="heads">
+            <a href="/cwts_attendance">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> CWTS ATTENDANCE &nbsp;|</h1>
+            </a>
+
+            <!-- <h1 class="text"><i class='bx bx-intersect'></i> SECTIONS
+            </h1> -->
+
+        </div><br>
+        <div class="bg">
+            <div class="adda">
+                <h5>Attendance Record CSV File ...</h5>
+                <form action="{% url 'activities:open_cwts_csv' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" name="filename" accept=".csv" class="form-control" id="file" required><br>
+                    <input type="hidden" value="{{td_count}}" name="td_count">
+                    <input type="hidden" name="getSection" value="{{getSection}}">
+                    <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class="fa-solid fa-spinner"></i> Load CSV File</button>
+                    <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                </form>
+            </div>
+            <br>
+            <div class="overall">
+                <div class="left">
+                    <div class="tss">
+
+
+                        <div class="txt ">
+                            <h1 style="margin-left: 10px; font-size:25px; color:#000000; font-weight:bold;" id="mega">All Sections</h1>
+
+                        </div>
+                        <!-- <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD NEW SECTION</button> -->
+
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        {% for s in section %}
+                        <form action="{% url 'activities:display_csv'%}" class="column" style="text-decoration: none;" method="POST" target="_top">
+                            {% csrf_token %}
+                            <div class="card">
+                                <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo"><br>
+                                <h5 class="title ">{{s.section_created}}</h5>
+                                <input type="hidden" name="cwts_td" id="" value="{{cwts_td}}">
+                                <input type="hidden" value="{{td_count}}" name="td_count">
+                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
+                                <button type="submit" class="btn btn-dark">Open</button><br>
+
+                            </div>
+
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function myFunction() {
+            window.open("/{% url 'activities:open_sections'%}", "_blank",
+                "toolbar,scrollbars,resizable,top=100,left=100,width=1000,height=400");
+        }
+    </script>
+
+</body>
+
+</html>

@@ -213,6 +213,12 @@ class training_day(models.Model):
     def __str__(self):
         return self.td
     
+class cwts_training(models.Model):
+    class_td = models.DateField(blank= True,null=True)
+    td_count = models.CharField(max_length=254, default='')
+    def __str__(self):
+        return self.class_td
+    
 class Announcement(models.Model):
     assign = models.CharField(max_length=20, default='')
     subject = models.CharField(max_length=20, default='')

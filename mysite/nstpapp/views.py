@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals
+from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training
 import os
 import csv  
 from django_tables2.tables import Table
@@ -2238,3 +2238,225 @@ def update_section(request):
     for a in checked:
         extenduser.objects.filter(id=a).update(status=options[0], first_sem=options[0])
     return redirect ('/manage_section')
+
+def cwts_attendance(request):
+    section = sections.objects.all()
+    date = cwts_training.objects.all()
+
+    context = {
+        'date':date, 
+        'section':section,
+    }
+
+    return render(request, 'activities/cwts_attendance.html', context)
+
+def cwts_td(request):
+    if request.method == 'POST':
+        class_td = request.POST.get('class_td')
+        td_count = request.POST.get('td_count')
+        if cwts_training.objects.filter(class_td=class_td).exists():
+            messages.error(request, 'Training Day already exists ' +str(class_td))
+            return redirect('/cwts_attendance')
+        elif cwts_training.objects.filter(td_count =td_count).exists():
+            messages.error(request, 'Training Day count exists ' +str(td_count))
+            return redirect('/cwts_attendance')
+        else:
+            alls = cwts_training(class_td=class_td, td_count=td_count)
+            alls.save()
+            return redirect('/cwts_attendance')
+    return redirect('/cwts_attendance')
+
+def open_cwts_date(request):
+    section = sections.objects.filter(fiel = 'CWTS')
+    if request.method == 'POST':
+        td_count = request.POST.get('td_count')
+        cwts_td = request.POST.get('cwts_td')
+        context = {
+            'cwts_td':cwts_td,
+            'section':section,
+            'td_count':td_count
+        }
+        return render(request, 'activities/cwts_date.html', context)
+    return render(request, 'activities/cwts_date.html')
+
+
+def display_csv(request):
+    
+    if request.method == 'POST':
+        
+        td_count = request.POST.get('td_count')
+        # date0 = request.POST.get('date')
+        # date1 = request.POST.get('date1')
+        getSection = request.POST.get('getSection')
+        student = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+         
+            'getSection':getSection,
+      
+            'td_count':td_count,
+            'student':student
+          
+        }
+    return render(request, 'activities/display_csv.html', context)
+
+
+def open_cwts_csv(request):
+    semester = school_year.objects.all()
+    if request.method == 'POST':
+        td_count = request.POST.get('td_count')
+        getSection = request.POST.get('getSection')
+        csvfile = request.FILES['filename']
+        df = pd.read_csv(csvfile)
+        context = {    
+            'columns': df.columns,
+            'rows': df.to_dict('records'),
+            'td_count':td_count,
+            'getSection':getSection,
+            'semester':semester
+        }
+        return render(request, 'activities/read_csv.html', context)
+    
+    
+    
+def save_cwts_attendance(request):
+    
+    if request.method == 'POST':
+        ids = request.POST.getlist('ids')
+  
+        # demerits = request.POST.getlist('demerits')
+        
+        ids2 = request.POST.getlist('ids2')
+        
+        # demerits2 = request.POST.getlist('demerits2')
+        td_count = request.POST.get('td_count')
+        
+         # for first sem ##################################
+        if td_count == str(1):
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD1='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(2):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(3):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD3='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(4):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD4='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(5):
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD5='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(6):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD6='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(7):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD7='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(8):
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD8='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(9):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD9='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(10):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD10='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(11):
+            for a in ids :
+                extenduser.objects.filter(idnumber=a).update(TD11='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(12): 
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD12='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(13):
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD13='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(14):
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD14='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(15):
+            for a in ids:
+                extenduser.objects.filter(idnumber=a).update(TD15='1')
+                messages.success(request, 'Attendance   updated')
+                
+                
+                
+                #for second semester attendance
+        if td_count == str(1):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(2):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(3):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(4):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(5):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(6):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(7):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(8):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(9):
+            for c in ids2 : 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(10):
+            for c in ids2 : 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(11):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(12):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(13):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(14):
+            for c in ids2 : 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+        if td_count == str(15):
+            for c in ids2: 
+                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                messages.success(request, 'Attendance   updated')
+    return redirect('/cwts_attendance')
+def del_cwts_tday(request, id):
+    
+    cwts_training.objects.filter(id=id).delete()
+    return redirect('/cwts_attendance')

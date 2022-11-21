@@ -143,6 +143,13 @@ urlpatterns = [
     path('read_attendance/', views.read_attendance, name='read_attendance'),
     path('before_csv/', views.before_csv, name='before_csv'),
     path('update_section/', views.update_section, name='update_section'),
+    path('cwts_attendance/', views.cwts_attendance, name='cwts_attendance'),
+    path('cwts_td/', views.cwts_td, name='cwts_td'),
+    path('open_cwts_date/', views.open_cwts_date, name='open_cwts_date'),
+    path('display_csv/', views.display_csv, name='display_csv'),
+    path('open_cwts_csv/', views.open_cwts_csv, name='open_cwts_csv'),
+    path('save_cwts_attendance/', views.save_cwts_attendance, name='save_cwts_attendance'),
+    path('del_cwts_tday/<str:id>', views.del_cwts_tday, name='del_cwts_tday'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
