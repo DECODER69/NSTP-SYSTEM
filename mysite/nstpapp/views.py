@@ -30,10 +30,10 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training
+from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises
 import os
 import csv  
-from django_tables2.tables import Table
+
 
 
 from django.http import HttpResponse, Http404
@@ -1798,7 +1798,7 @@ def delete_finals(request, id):
 
 def attendance_tab(request):
     acts2 = training_day.objects.all()
-    section2 = sections.objects.all()
+    section2 = sections.objects.filter(fiel='ROTC')
     context = {
         'section2':section2,
         'acts2': acts2,
@@ -2330,11 +2330,14 @@ def save_cwts_attendance(request):
         # demerits2 = request.POST.getlist('demerits2')
         td_count = request.POST.get('td_count')
         
+        print("id ito" +str(td_count) )
+        
          # for first sem ##################################
         if td_count == str(1):
             for a in ids:
                 extenduser.objects.filter(idnumber=a).update(TD1='1')
-                messages.success(request, 'Attendance   updated')
+                messages.success(request, 'Attendance   x')
+                print(a)
         if td_count == str(2):
             for a in ids :
                 extenduser.objects.filter(idnumber=a).update(TD2='1')
@@ -2460,3 +2463,264 @@ def del_cwts_tday(request, id):
     
     cwts_training.objects.filter(id=id).delete()
     return redirect('/cwts_attendance')
+
+
+
+# CWTS GRADING SYSTEM
+
+
+def cwts_attendance_tab(request):
+    acts2 = cwts_training.objects.all()
+    section2 = sections.objects.filter(fiel='CWTS')
+    context = {
+        'section2':section2,
+        'acts2': acts2,
+    }
+    return render(request, 'activities/cwts_attendance_tab.html', context)
+
+
+def cwts_show_students(request):
+    counted = cwts_training.objects.values_list('td_count', flat=True).count()
+    getSection = request.POST.get('getSection')
+    content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+    content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+    attendance_percentage = cwts_grading.objects.all()
+    context = {
+        'content3':content3,
+        'getSection':getSection,
+        'counted':counted,
+        'content33':content33,
+        'attendance_percentage':[attendance_percentage.last()]
+    }
+    return render(request, 'activities/cwts_show_students.html', context)
+
+
+# not yet done
+def update_cwts_att_credits(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('getId')
+        credits = request.POST.getlist('credits')
+        ids2 = request.POST.getlist('ids2')
+        credits2 = request.POST.getlist('credits2')
+        print("creds "+ str(credits2))
+        print("ids"+ str(ids2))
+        
+        for i, j in zip(ids, credits):
+            print("id" + str(i), "creds"+ str(j))
+            extenduser.objects.filter(id=i).update(att_credits=j)
+        # extenduser.objects.filter
+        
+        for k, l in zip(ids2, credits2):
+            extenduser.objects.filter(id=k).update(att_credits_2=l)
+    return redirect('/attendance_tab')
+
+def cwts_course_evaluation(request):
+    evaluation = cwts_grading.objects.all()
+    context = {
+            'evaluation':[evaluation.last()],
+    }
+    return render(request, 'activities/cwts_grading.html', context)
+
+
+def save_evaluation(request):
+    if request.method == 'POST':
+        attendance = request.POST.get('attendance')
+        quiz = request.POST.get('quiz')
+        exercise = request.POST.get('exercise')
+        participation = request.POST.get('participation')
+        midterm = request.POST.get('midterm')
+        final = request.POST.get('final')
+        total = request.POST.get('total')
+        data = cwts_grading(attendance=attendance,quiz=quiz,exercises=exercise, participation=participation, midterm_exam=midterm, final_exam=final, total=total)
+        data.save()
+        messages.success(request, 'Grading Evaluation Updated Successfully')
+    return redirect('/cwts_course_evaluation')
+
+
+def update_att_credits_cwts(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('getId')
+        credits = request.POST.getlist('credits')
+        ids2 = request.POST.getlist('ids2')
+        credits2 = request.POST.getlist('credits2')
+        print("creds "+ str(credits2))
+        print("ids"+ str(ids2))
+        
+        for i, j in zip(ids, credits):
+            print("id" + str(i), "creds"+ str(j))
+            extenduser.objects.filter(id=i).update(att_credits=j)
+      
+        
+        for k, l in zip(ids2, credits2):
+            extenduser.objects.filter(id=k).update(att_credits_2=l)
+    return redirect('/cwts_attendance_tab')
+
+
+def quiz(request):
+    acts = cwts_activity.objects.all()
+    section = sections.objects.filter(fiel= 'CWTS')
+    context = {
+        'section':section, 
+        'acts': acts
+    }
+    return render(request, 'activities/quiz.html', context)
+
+def add_quiz(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        count = request.POST.get('count')
+        numbers = request.POST.get('numbers')
+        print(title, count, numbers)
+        if cwts_activity.objects.filter(act_count=numbers).exists():
+            messages.error(request, 'Activity number ' +str(numbers)+ ' already exists'  )
+        else:
+            data = cwts_activity(act_title=title,act_count=numbers,  act_numbers=count)
+            data.save()
+    return redirect('/quiz')
+
+
+def cwts_edit_activities(request, id):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        title = request.POST.get('title')
+        act_numbers = request.POST.get('act_numbers')
+        print(ids, title, act_numbers)
+        
+        cwts_activity.objects.filter(id=ids).update(act_title=title, act_numbers=act_numbers)
+
+        return redirect('/quiz')
+    return redirect('/quiz')
+
+
+def cwts_delete_activities(request, id):
+    cwts_activity.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/quiz')
+
+
+
+def cwts_modify_grades(request):
+    total = cwts_activity.objects.aggregate(TOTAL = Sum('act_numbers'))['TOTAL']
+    items = cwts_activity.objects.all()
+    quiz_percentage = cwts_grading.objects.all()
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content3':content3,
+            'getSection':getSection,
+            'total':total,
+            'items':items,
+            'quiz_percentage':[quiz_percentage.last()]
+        }
+        return render(request, 'activities/cwts_modify.html', context)
+    return render(request, 'activities/cwts_modify.html', context)
+
+def cwts_save_grade(request):
+    if request.method == 'POST':
+        ids= request.POST.getlist('ids')
+        
+        credits1 = request.POST.getlist('credits1')
+        credits2 = request.POST.getlist('credits2')
+        print(ids)
+        act1 = request.POST.getlist('act1')
+        act2 = request.POST.getlist('act2')
+        act3 = request.POST.getlist('act3')
+        act4 = request.POST.getlist('act4')
+        act5 = request.POST.getlist('act5')
+        act6 = request.POST.getlist('act6')
+        
+        ids_2= request.POST.getlist('ids_2')
+        act1_2 = request.POST.getlist('act1_2')
+        act2_2 = request.POST.getlist('act2_2')
+        act3_2 = request.POST.getlist('act3_2')
+        act4_2 = request.POST.getlist('act4_2')
+        act5_2 = request.POST.getlist('act5_2')
+        act6_2 = request.POST.getlist('act6_2')
+        # for a2 in (act1_2):
+        for a, b, c, d , e, f , i, j in zip(act1, act2, act3, act4, act5, act6,  ids, credits1 ):
+            extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f, act_credits=j )
+            messages.success(request, 'Updated successfully')
+            
+        for a2, b2, c2, d2 , e2, f2, i2, j2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2, credits2):
+            extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2, act_credits_2=j2)
+            messages.success(request, 'Updated successfully')
+    
+    return redirect('/quiz')
+
+
+
+def exercises(request):
+    acts = cwts_exercises.objects.all()
+    section = sections.objects.filter(fiel= 'CWTS')
+    context = {
+        'section':section, 
+        'acts': acts
+    }
+    return render(request, 'activities/exercises.html', context)
+
+
+
+def cwts_access_exercises(request):
+    total = cwts_exercises.objects.aggregate(TOTAL = Sum('act_numbers'))['TOTAL']
+    items = cwts_exercises.objects.all()
+    exercise_percentage = cwts_grading.objects.all()
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content3':content3,
+            'getSection':getSection,
+            'total':total,
+            'items':items,
+            'exercise_percentage':[exercise_percentage.last()]
+        }
+        return render(request, 'activities/cwts_exercise.html', context)
+    return render(request, 'activities/cwts_exercise.html', context)
+
+
+
+def add_exercises(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        count = request.POST.get('count')
+        numbers = request.POST.get('numbers')
+        print(title, count, numbers)
+        if cwts_exercises.objects.filter(act_count=numbers).exists():
+            messages.error(request, 'Exercises number ' +str(numbers)+ ' already exists'  )
+        else:
+            data = cwts_exercises(act_title=title,act_count=numbers,  act_numbers=count)
+            data.save()
+    return redirect('/exercises')
+
+
+def cwts_save_exercises(request):
+    if request.method == 'POST':
+        ids= request.POST.getlist('ids')
+        
+        credits1 = request.POST.getlist('credits1')
+        credits2 = request.POST.getlist('credits2')
+        act1 = request.POST.getlist('act1')
+        act2 = request.POST.getlist('act2')
+        act3 = request.POST.getlist('act3')
+        act4 = request.POST.getlist('act4')
+        act5 = request.POST.getlist('act5')
+        act6 = request.POST.getlist('act6')
+        
+        ids_2= request.POST.getlist('ids_2')
+        act1_2 = request.POST.getlist('act1_2')
+        act2_2 = request.POST.getlist('act2_2')
+        act3_2 = request.POST.getlist('act3_2')
+        act4_2 = request.POST.getlist('act4_2')
+        act5_2 = request.POST.getlist('act5_2')
+        act6_2 = request.POST.getlist('act6_2')
+        # for a2 in (act1_2):
+        for a, b, c, d , e, f , i, j in zip(act1, act2, act3, act4, act5, act6,  ids, credits1 ):
+            extenduser.objects.filter(id=i).update(exe1=a, exe2=b, exe3=c,exe4=d, exe5=e, exe6=f, exe_credits=j )
+            messages.success(request, 'Updated successfully')
+            
+        for a2, b2, c2, d2 , e2, f2, i2, j2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2, credits2):
+            extenduser.objects.filter(id=i2).update(exe1_2=a2, exe2_2=b2, exe3_2=c2, exe4_2=d2, exe5_2=e2, exe6_2=f2, exe_credits2=j2)
+            messages.success(request, 'Updated successfully')
+    
+    return redirect('/exercises')

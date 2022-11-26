@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>platoon content</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/modify.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+
+
+    <!-- pagination css -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+    {% include 'activities/admin_nav.html' %} {% include 'activities/loader.html' %}
+    <section class="page-content">
+        <div class="heads">
+            <a href="/cwts_course_evaluation">
+                <h1 class="text">CWTS COURSE EVALUATION&nbsp;>&nbsp;</h1>
+            </a>
+            <a href="/quiz">
+                <h1 class="text">
+                    QUIZZES & ACTIVITIES&nbsp;&nbsp;>&nbsp;</h1>
+            </a>
+
+            <a href="/cwts_modify_grades">
+                <h1 class="text" style="color: rgb(0, 248, 0);">
+                    {{getSection}}</h1>
+            </a>
+        </div>
+        <div class="bg">
+
+            <div class="inside">
+
+
+                <div class="table-responsive">
+                    <div class="he">
+
+                        <div class="ada">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class="fa-solid fa-bars-staggered"></i>Quiz Record</h1>
+
+                            <p id="total" style="display:none;">{{total}}</p>
+                            {% for s in quiz_percentage %}
+                            <p style="display:none;" id="quiz">{{s.quiz}}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="adda">
+                            <form action="{% url 'activities:download' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+                            <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="platoon">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Export</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+
+
+
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <form action="{% url 'activities:cwts_save_grade' %}" method="POST">
+                        {% csrf_token %}
+                        <table id="myTable" class="table table-bordered table-hover ">
+                            <thead class="thead">
+
+                                <tr>
+                                    <th scope="col">ID NUMBER</th>
+                                    <th scope="col">FULL NAME</th>
+
+                                    <th scope="col">QUIZ 1</th>
+                                    <th scope="col">QUIZ 2</th>
+                                    <th scope="col">QUIZ 3</th>
+                                    <th scope="col">QUIZ 4</th>
+                                    <th scope="col">QUIZ 5</th>
+                                    <th scope="col">QUIZ 6</th>
+
+                                    <th scope="col">TOTAL:
+                                        <!-- <h5 style="color: red; font-weight:bolder;">{{total}}</h5> -->
+                                    </th>
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+
+                                    <th style="display: none;"></th>
+                                    <th style="display: none;"></th>
+
+                                    <!-- <th style="display: none;"></th> -->
+                                    <th scope="col" class="result">QUIZ Percentage</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {% for s in content3 %} {% if s.first_sem == 'ENROLLED' %}
+                                <tr>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+
+
+                                    <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1}}</td>
+                                    <td>
+                                        <input type="number" name="act1" id="" value="{{s.act1}}" class="quiz_sem1 form-control">
+                                        <input type="hidden" value="{{s.id}}" name="ids" placeholder="1st Sem Activity">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act2" style="display: none;">{{s.act2}}</td>
+                                    <td>
+                                        <input type="number" name="act2" value="{{s.act2}}" placeholder="" class="quiz_sem1 form-control">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act3" style="display: none;">{{s.act3}}</td>
+                                    <td>
+                                        <input type="number" name="act3" value="{{s.act3}}" class="quiz_sem1 form-control">
+                                    </td>
+
+
+
+                                    <td class="tds" contenteditable="true" name="act4" style="display: none;">{{s.act4}}</td>
+                                    <td>
+                                        <input type="number" name="act4" value="{{s.act4}}" class="quiz_sem1 form-control">
+                                    </td>
+
+
+
+                                    <td class="tds" contenteditable="true" name="act5" style="display: none;">{{s.act5}}</td>
+                                    <td>
+                                        <input type="number" name="act5" value="{{s.act5}}" class="quiz_sem1 form-control">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act6" style="display: none;">{{s.act6}}</td>
+                                    <td>
+                                        <input type="number" name="act6" value="{{s.act6}}" class="quiz_sem1 form-control">
+                                    </td>
+
+
+
+                                    <td class="total"></td>
+
+                                    <td class="result">
+                                        <input type="text" name="credits1" class="credits form-control" value="{{s.act_credits}}" id="credits" readonly>
+                                    </td>
+
+
+
+
+                                </tr>
+                                {% elif s.second_sem == 'ENROLLED' %}
+                                <tr>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+
+
+                                    <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1_2}}</td>
+                                    <td>
+                                        <input type="number" name="act1_2" id="" value="{{s.act1_2}}" class="quiz_sem2 form-control">
+                                        <input type="hidden" value="{{s.id}}" name="ids_2">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act2_2" style="display: none;">{{s.act2_2}}</td>
+                                    <td>
+                                        <input type="number" name="act2_2" value="{{s.act2_2}}" class="quiz_sem2 form-control">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act3_2" style="display: none;">{{s.act3_2}}</td>
+                                    <td>
+                                        <input type="number" name="act3_2" value="{{s.act3_2}}" class="quiz_sem2 form-control">
+                                    </td>
+
+
+
+                                    <td class="tds" contenteditable="true" name="act4_2" style="display: none;">{{s.act4_2}}</td>
+                                    <td>
+                                        <input type="number" name="act4_2" value="{{s.act4_2}}" class="quiz_sem2 form-control">
+                                    </td>
+
+
+
+                                    <td class="tds" contenteditable="true" name="act5_2" style="display: none;">{{s.act5_2}}</td>
+                                    <td>
+                                        <input type="number" name="act5_2" value="{{s.act5_2}}" class="quiz_sem2 form-control">
+                                    </td>
+
+
+                                    <td class="tds" contenteditable="true" name="act6_2" style="display: none;">{{s.act6_2}}</td>
+                                    <td>
+                                        <input type="number" name="act6_2" value="{{s.act6_2}}" class="quiz_sem2 form-control">
+                                    </td>
+
+
+
+                                    <td class="total"></td>
+
+                                    <td class="result">
+                                        <input type="text" name="credits2" class="credits" value="" id="credits2" readonly class="form-control">
+                                    </td>
+
+
+
+
+                                </tr>
+                                {% endif %} {% empty %} {% endfor %}
+                            </tbody>
+                        </table><br>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Activities</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- for editing tables -->
+    <script src="extensions/editable/bootstrap-table-editable.js"></script>
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>   -->
+
+
+    <!-- <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+            $('tr').each(function() {
+                var results = 0;
+                var tots = 0;
+                var midterm = 0;
+                var finals = 0;
+                var grades = 0;
+                $(this).find('.tds').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        results += parseFloat(marks / total * 100 * quiz);
+                        tots += parseFloat(marks);
+
+                    }
+                });
+
+                $(this).find('.midterm').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        midterm += parseFloat(marks / 75 * 100 * 0.15);
+
+
+                    }
+                });
+                $(this).find('.finals').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        finals += parseFloat(marks / 75 * 100 * 0.15);
+
+
+                    }
+                });
+                $(this).find('.gr').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        grades += parseFloat(marks);
+
+
+
+                    }
+                });
+                $(this).find('#grades').val(grades.toFixed(2));
+                $(this).find('#finals').val(finals.toFixed(2));
+                $(this).find('#midterm').val(midterm.toFixed(2));
+                $(this).find('#credits').val(results.toFixed(2));
+                $(this).find('.total').html(tots.toFixed(2));
+
+
+            })
+        });
+    </script> -->
+
+
+    <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+
+            $("#myTable").on('input', '.quiz_sem1', function() {
+                var calculated_total_sum = 0;
+
+                $("#myTable .quiz_sem1").each(function() {
+                    var get_textbox_value = $(this).val();
+                    if ($.isNumeric(get_textbox_value)) {
+                        calculated_total_sum += parseFloat(get_textbox_value / total * 100 * quiz);
+                    }
+                });
+                $("#credits").val(calculated_total_sum.toFixed(2));
+            });
+        });
+    </script>
+    <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+
+            $("#myTable").on('input', '.quiz_sem2', function() {
+                var calculated_total_sum = 0;
+
+                $("#myTable .quiz_sem2").each(function() {
+                    var get_textbox_value = $(this).val();
+                    if ($.isNumeric(get_textbox_value)) {
+                        calculated_total_sum += parseFloat(get_textbox_value / total * 100 * quiz);
+                    }
+                });
+                $("#credits2").val(calculated_total_sum.toFixed(2));
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* add */
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+}
+
+section {
+    display: inline-block;
+    width: 100%;
+    padding-left: 0px;
+}
+
+section>div {
+    padding: 20px 40px;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+.heads {
+    display: flex;
+    background: #4b4d52;
+    height: 60px !important;
+}
+
+.heads .text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* eof new */
+
+.outerBox {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    padding: 50px;
+    justify-content: space-between;
+    padding-top: 10px !important;
+}
+
+.inner_box {
+    width: 100%;
+}
+
+.table-responsive {
+    padding: 10px;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.582), 0 6px 20px 0 rgba(94, 94, 94, 0.837);
+}
+
+.table-responsive h1 {
+    color: #474747;
+    font-size: 25px;
+}
+
+.table {
+    border-radius: 10px;
+}
+
+.table thead tr th {
+    font-size: 20px;
+    color: #000000;
+}
+
+.table tbody tr th {
+    color: #646464;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.table tbody tr td input {
+    outline: none !important;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #252525bf;
+}
+
+.table tbody tr td input:focus {
+    outline: none !important;
+    border: none;
+    border-bottom: 1px solid #252525bf;
+    background: transparent;
+}
+
+#total {
+    text-align: right;
+    width: 60%;
+}
+
+#percentage {
+    color: #db3300;
+    font-weight: bolder;
+    background-color: transparent;
+}
+
+.total {
+    border: none !important;
+    font-size: 25px;
+}
+
+.proceed {
+    width: 100%;
+}
+
+#open {
+    width: 20%;
+    height: 80px;
+    font-size: 20px;
+    align-items: center;
+    padding: 20px;
+    background-color: #880000 !important;
+    outline: none !important;
+    border: none !important;
+}
+
+#save {
+    float: right !important;
+    width: 20%;
+    font-size: 20px;
+    border: none !important;
+    background-color: #026807;
+    height: 50px;
+}

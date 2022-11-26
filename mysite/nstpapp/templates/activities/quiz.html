@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ / ACTIVITIES</title>
+    <link rel="stylesheet" href="../../static/admin_css/grades.css">
+
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+</head>
+
+
+<body>
+    {% include 'activities/admin_nav.html' %} {% include 'activities/loader.html' %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Quiz / Activity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'activities:add_quiz' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Activity Title</label>
+                            <input type="text" class="form-control" id="staticEmail" placeholder="Ex: Environment Conservation" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Activity Number</label>
+                            <input type="number" class="form-control" id="inputPassword" placeholder="Ex: 1" name="numbers" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Item Count</label>
+                            <input type="number" class="form-control" id="inputPassword" placeholder="Ex: 100" name="count" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
+                        </div>
+
+
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <section class="page-content">
+        <div class="heads">
+            <a href="/cwts_course_evaluation">
+                <h1 class="text">CWTS COURSE EVALUATION&nbsp;>&nbsp;</h1>
+            </a>
+            <a href="/quiz">
+                <h1 class="text" style="color: rgb(0, 248, 0);">QUIZZES & ACTIVITIES</h1>
+            </a>
+
+        </div>
+
+        <br>
+
+
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link " href="/cwts_attendance_tab">Attendance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/quiz">Quizzes / Activities</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/exercises">Exercises</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/finals_">Midterm Exam</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/final_grade">Final Exam</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/final_grade">Final Grade</a>
+            </li>
+        </ul>
+
+
+
+        <div class="bg">
+
+
+            <div class="overall">
+                <div class="left">
+                    <div class="tss">
+
+
+                        <div class="txt ">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Activities Records</h1>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        {% for s in section %}
+                        <form action="{% url 'activities:cwts_modify_grades'%}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %} 
+                            <div class="card">
+                                <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
+                                <h5 class="title ">{{s.section_created}}</h5>
+                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
+                                <button type="submit" class="btn btn-dark">Open</button><br>
+                                <p class="card-text"><small class="text-muted">Created for CWTS Only</small></p>
+                            </div>
+                            
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <div class="overall1">
+
+
+                <div class="cri">
+
+
+                    <div class="left2">
+                        <div class="sec">
+                            <div class="txt ">
+                                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Activities</h1>
+
+                            </div>
+
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class='bx bx-plus' ></i>  Add Activity</button>
+
+                        </div>
+                        <hr>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover " id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Act #</th>
+                                        <th scope="col">Act Name</th>
+                                        <th scope="col">Items</th>
+                                        <th scope="col" style="text-align: center !important; ">Action</th>
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    {% for s in acts %}
+                                    <tr>
+                                        <form action="{% url 'activities:cwts_edit_activities' s.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <th scope="row">{{s.act_count}}</th>
+                                            <td id="hehes">
+
+                                                <input type="text" name="title" value="{{s.act_title}}" class="inputs">
+                                            </td>
+                                            <td>
+                                                <input type="hidden" value="{{s.id}}" name="ids">
+                                                <input type="number" name="act_numbers" value="{{s.act_numbers}}" class="inputs1">
+                                            </td>
+                                            <td style="justify-content: space-between; display:flex;">
+                                                <a href="/cwts_delete_activities/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                                                <button type="submit" class="btn btn-success" title="Update Activities"><i class="fa-solid fa-check"></i></button>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: 'info',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> 
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
+
+
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+</body>
+
+</html>

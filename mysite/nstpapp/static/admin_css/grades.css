@@ -39,6 +39,13 @@ section {
     height: 60px !important;
 }
 
+.heads .text:hover {
+    display: flex;
+    color: #aaaaac;
+    height: 60px !important;
+    text-decoration: none !important;
+}
+
 .heads .text {
     color: #ffffff;
     font-size: 20px;

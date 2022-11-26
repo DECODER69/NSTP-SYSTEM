@@ -6,7 +6,7 @@
     <link rel="icon" href="../../static/images/tup.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CWTS CSV</title>
     <link rel="stylesheet" href="../../static/admin_css/open_sections.css">
 
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
@@ -79,11 +79,8 @@
                                 </tr>
                                 {% endif %} {% endfor %} {% endfor %}
                             </tbody>
-                            {% for s in td_count %}
-                            <input type="hidden" name="td_count" value="{{s.td_count}}"> {% endfor %}
-                            <input type="hidden" value="{{date1}}" name="check1">
-                            <input type="hidden" value="{{date0}}" name="check0">
-                            <input type="hidden" value="{{td_count}}" name="td_count">
+
+                            <input type="text" value="{{td_count}}" name="td_count">
 
                         </table>
 

@@ -152,6 +152,37 @@ class extenduser(models.Model):
     all_act_score2 = models.CharField(max_length=20, default='')
     act_credits_2 = models.CharField(max_length=20, default='')
     
+    
+    # exercises
+    
+    # 1st sem
+    exe1 = models.CharField(max_length=20, default='')
+    exe2 = models.CharField(max_length=20, default='')
+    exe3 = models.CharField(max_length=20, default='')
+    exe4 = models.CharField(max_length=20, default='')
+    exe5 = models.CharField(max_length=20, default='')
+    exe6 = models.CharField(max_length=20, default='')
+    exe7 = models.CharField(max_length=20, default='')
+    exe8 = models.CharField(max_length=20, default='')
+    exe9 = models.CharField(max_length=20, default='')
+    exe10 = models.CharField(max_length=20, default='')
+    exe_credits = models.CharField(max_length=20, default='')
+    
+    
+    # 2nd sem
+    
+    exe1_2 = models.CharField(max_length=20, default='')
+    exe2_2 = models.CharField(max_length=20, default='')
+    exe3_2 = models.CharField(max_length=20, default='')
+    exe4_2 = models.CharField(max_length=20, default='')
+    exe5_2 = models.CharField(max_length=20, default='')
+    exe6_2 = models.CharField(max_length=20, default='')
+    exe7_2 = models.CharField(max_length=20, default='')
+    exe8_2 = models.CharField(max_length=20, default='')
+    exe9_2 = models.CharField(max_length=20, default='')
+    exe10_2 = models.CharField(max_length=20, default='')
+    exe_credits2 = models.CharField(max_length=20, default='')
+    
 
     
     
@@ -261,3 +292,27 @@ class finals(models.Model):
 class csv_attendance(models.Model):
     csvfile = models.FileField(upload_to='all_files/', default='')
     
+# cwts grades
+
+class cwts_grading(models.Model):
+    attendance =  models.CharField(max_length=100, default='')
+    quiz = models.CharField(max_length=100, default='')
+    exercises = models.CharField(max_length=100, default='')
+    midterm_exam = models.CharField(max_length=100, default='')
+    final_exam =  models.CharField(max_length=100, default='')
+
+    participation = models.CharField(max_length=100, default='')
+    
+    total = models.CharField(max_length=100, default='')
+    
+    
+class cwts_activity(models.Model):
+    act_count = models.CharField(max_length=100, default='')
+    act_title = models.CharField(max_length=100, default='')
+    act_numbers = models.CharField(max_length=100, default='')
+    
+    
+class cwts_exercises(models.Model):
+    act_count = models.CharField(max_length=100, default='')
+    act_title = models.CharField(max_length=100, default='')
+    act_numbers = models.CharField(max_length=100, default='')

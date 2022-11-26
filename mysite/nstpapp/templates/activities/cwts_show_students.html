@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP </title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/attendance_main.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+    <!-- pagination css -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="../../static/js/calculate.js"></script> -->
+
+
+
+
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+
+
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/cwts_attendance_tab">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> ATTENDANCE RECORD&nbsp;>&nbsp;</h1>
+            </a>
+
+            <h1 class="text"><i class='bx bx-star'></i> {{getSection}}</h1>
+        </div>
+        <div class="bg">
+            <div class="inside">
+
+                <div class="table-responsive">
+
+                    <div class="he">
+
+                        <div class="ada">
+                            <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">Officially Enrolled Students</p1><br>
+                            <!-- <p1 style="margin-left: 10px; font-size:15px; color:#ff0000; font-weight:bold;">{{content33}} Student/s</p1><br> -->
+
+                            <p id="count" style="display: none;">
+                                {{counted}}
+                            </p>
+                            {% for s in attendance_percentage %}
+                            <p id="attendance_p" style="display: none;">
+                                {{s.attendance}}
+                            </p>
+                            {% endfor %}
+
+
+                        </div>
+
+                        <div class="adda">
+                            <form action="{% url 'activities:download4' %}" method="POST" id="dd">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+
+
+
+
+                            <!-- <button type="button" onclick="calculate()" class="btn btn-success" id="calc"><i class='bx bx-calculator' ></i> Calculate</button> -->
+
+                        </div>
+
+
+                    </div>
+                    <div class="reports">
+
+                    </div>
+                    <br>
+                    <!-- <form action="{% url 'activities:update_attendance' %}" method="POST"> -->
+
+                    <form action="{% url 'activities:update_att_credits_cwts'  %}" method="post" id="myForm">
+                        {% csrf_token %}
+                        <table id="myTable" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">ID NUMBER</th>
+                                    <th scope="col">FULL NAME</th>
+
+                                    <th scope="col">TD1</th>
+
+                                    <th scope="col">TD2</th>
+                                    <th scope="col">TD3</th>
+                                    <th scope="col">TD4</th>
+                                    <th scope="col">TD5</th>
+                                    <th scope="col">TD6</th>
+                                    <th scope="col">TD7</th>
+                                    <th scope="col">TD8</th>
+                                    <th scope="col">TD9</th>
+                                    <th scope="col">TD10</th>
+                                    <th scope="col">TD11</th>
+                                    <th scope="col">TD12</th>
+                                    <th scope="col">TD13</th>
+                                    <th scope="col">TD14</th>
+                                    <th scope="col">TD15</th>
+                                    <th style="display: none;"></th>
+
+                                    <th scope="col">CREDITS</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
+                                <tr>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>
+                                        <input type="hidden" value="{{s.id}}" name="getId" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
+                                    </td>
+                                    <td class="tds">{{s.TD1}}</td>
+                                    <td class="tds">{{s.TD2}}</td>
+                                    <td class="tds">{{s.TD3}}</td>
+                                    <td class="tds">{{s.TD4}}</td>
+                                    <td class="tds">{{s.TD5}}</td>
+                                    <td class="tds">{{s.TD6}}</td>
+                                    <td class="tds">{{s.TD7}}</td>
+                                    <td class="tds">{{s.TD8}}</td>
+                                    <td class="tds">{{s.TD9}}</td>
+                                    <td class="tds">{{s.TD10}}</td>
+                                    <td class="tds">{{s.TD11}}</td>
+                                    <td class="tds">{{s.TD12}}</td>
+                                    <td class="tds">{{s.TD13}}</td>
+                                    <td class="tds">{{s.TD14}}</td>
+                                    <td class="tds">{{s.TD15}}</td>
+
+
+                                    <td>
+                                        <input name="credits" value="" id="input" readonly>
+                                    </td>
+                                    <td id="result" class="result" style="display: none;">
+
+                                    </td>
+                                </tr>
+                                {% elif s.second_sem == 'ENROLLED' %}
+                                <tr>
+                                    <td>{{s.idnumber}}</td>
+                                    <td>
+                                        <input type="hidden" value="{{s.id}}" name="ids2" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
+                                    </td>
+                                    <td class="tds">{{s.TD1_2}}</td>
+                                    <td class="tds">{{s.TD2_2}}</td>
+                                    <td class="tds">{{s.TD3_2}}</td>
+                                    <td class="tds">{{s.TD4_2}}</td>
+                                    <td class="tds">{{s.TD5_2}}</td>
+                                    <td class="tds">{{s.TD6_2}}</td>
+                                    <td class="tds">{{s.TD7_2}}</td>
+                                    <td class="tds">{{s.TD8_2}}</td>
+                                    <td class="tds">{{s.TD9_2}}</td>
+                                    <td class="tds">{{s.TD10_2}}</td>
+                                    <td class="tds">{{s.TD11_2}}</td>
+                                    <td class="tds">{{s.TD12_2}}</td>
+                                    <td class="tds">{{s.TD13_2}}</td>
+                                    <td class="tds">{{s.TD14_2}}</td>
+                                    <td class="tds">{{s.TD15_2}}</td>
+
+
+                                    <td>
+                                        <input name="credits2" value="" id="input" readonly>
+                                    </td>
+                                    <td id="result" class="result" style="display: none;">
+
+                                    </td>
+
+
+
+                                </tr>
+                                {% endif %} {% endfor %}
+
+
+
+
+                            </tbody>
+
+
+
+                        </table><br>
+                        <button class="btn btn-success" type="submit" style="width: 100%;" id="gg"><i class="fa-solid fa-arrows-rotate"></i> Update Record</button>
+                    </form>
+
+
+                    <!-- <input type="hidden" value="PRESENT" name="vals">
+                    <button type="submit" class="btn btn-success" style="width:100%; height:40px; font-size:15px;">Save</button> -->
+                    <!-- </form> -->
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+
+    <script>
+        var td_count = $("#count").text();
+        var attendance_p = $("#attendance_p").text();
+        console.log(attendance_p)
+        $(document).ready(function() {
+            $('tr').each(function() {
+                var results = 0;
+                $(this).find('.tds').each(function() {
+                    var marks = $(this).text();
+                    if (marks.length !== 0) {
+                        results += parseFloat(marks / td_count * 100 * attendance_p);
+                    }
+                });
+                $(this).find('.result').html(results.toFixed(2));
+                $(this).find('#input').val(results.toFixed(2));
+
+            })
+        });
+    </script>
+
+
+
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> -->
+
+
+
+
+
+
+
+
+</body>
+
+</html>
