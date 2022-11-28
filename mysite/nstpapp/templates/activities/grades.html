@@ -224,6 +224,19 @@
     </script> -->
 
     <script>
+
+        {% for msg in messages %}
+        Swal.fire({
+            position: 'top-end',
+            icon: '',
+            title: '{{msg}}',
+            showConfirmButton: false,
+            timer: 2500
+          }) {% endfor %}
+    </script>  
+
+
+    <script>
         $('.btn-danger').on('click', function(e) {
             e.preventDefault();
             var self = $(this);

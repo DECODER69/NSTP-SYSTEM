@@ -26,13 +26,15 @@
     <section class="home-section">
         <div class="heads">
 
-            <a href="/final_grade">
-                <h1 class="text"><i class='bx bxs-dashboard'></i>FINAL GRADE&nbsp;>&nbsp;</h1>
+            <a href="/cwts_course_evaluation">
+                <h1 class="text">CWTS COURSE EVALUATION&nbsp;>&nbsp;</h1>
             </a>
-
-
-            <h1 class="text"  style="color: rgb(0, 248, 0);"><i class='bx bx-intersect'></i>{{getSection}}
-            </h1>
+            <a href="/cwts_finals">
+                <h1 class="text">FINAL GRADE&nbsp;>&nbsp;</h1>
+            </a>
+            <a href="#">
+                <h1 class="text" style="color: rgb(0, 248, 0);">{{getSection}}</h1>
+            </a>
 
         </div>
         <div class="bg">
@@ -73,18 +75,18 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:save_finale_grades' %}" method="POST">
+                    <form action="{% url 'activities:save_cwts_finale_grades' %}" method="POST">
                         {% csrf_token %}
                         <table id="tblProducts" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID Number</th>
                                     <th>Full name</th>
-                                    <th>Attendance 30%</th>
-                                    <th>Merits 30%</th>
-                                    <th>Activities 10%</th>
-                                    <th>Midterm Exam 15%</th>
-                                    <th>Final Exam 15%</th>
+                                    <th>Attendance</th>
+                                    <th>Quizzes / Activities</th>
+                                    <th>Exercises</th>
+                                    <th>Midterm Exam</th>
+                                    <th>Final Exam</th>
                                     <th class="result" id="result">Final Grade</th>
 
                                     <th class="result">Equivalent</th>
@@ -97,8 +99,8 @@
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
                                     <td class="data">{{s.att_credits}}</td>
-                                    <td class="data">{{s.equivalent_merits}}</td>
                                     <td class="data">{{s.act_credits}}</td>
+                                    <td class="data">{{s.exe_credits}}</td>
                                     <td class="data">{{s.midterm1_credits}}</td>
                                     <td class="data">{{s.finals_credits1}}</td>
                                     <td><input type="number" name="final_grade" class="final_grade form-control" value="{{s.final_grade}}" readonly></td>
@@ -185,7 +187,7 @@
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
 
         {% for msg in messages %}
         Swal.fire({
@@ -195,7 +197,7 @@
             showConfirmButton: false,
             timer: 2500
           }) {% endfor %}
-    </script>  
+    </script>   -->
 
 
 

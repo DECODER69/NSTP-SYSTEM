@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises
+from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final
 import os
 import csv  
 
@@ -1743,6 +1743,7 @@ def save_grade(request):
         for a, b, c, d , e, f , i, j in zip(act1, act2, act3, act4, act5, act6,  ids, credits1 ):
             extenduser.objects.filter(id=i).update(act1=a, act2=b, act3=c,act4=d, act5=e, act6=f, act_credits=j )
             print("hahaha "+ a, b, c, d , e, f)
+            messages.success(request,'Updated')
             
         for a2, b2, c2, d2 , e2, f2, i2, j2 in zip( act1_2, act2_2, act3_2, act4_2, act5_2, act6_2,  ids_2, credits2):
             extenduser.objects.filter(id=i2).update(act1_2=a2, act2_2=b2, act3_2=c2, act4_2=d2, act5_2=e2, act6_2=f2, act_credits_2=j2)
@@ -1807,7 +1808,7 @@ def attendance_tab(request):
 
 def midterms(request):
     acts3 = midterm.objects.all()
-    section2 = sections.objects.all()
+    section2 = sections.objects.filter(fiel='ROTC')
     context = {
         'section2':section2,
         'acts3': acts3,
@@ -1859,7 +1860,7 @@ def save_midterm(request):
 
 def finals_(request):
     acts3 = finals.objects.all()
-    section2 = sections.objects.all()
+    section2 = sections.objects.filter(fiel='ROTC')
     context = {
         'section2':section2,
         'acts3': acts3,
@@ -1909,7 +1910,7 @@ def save_finals(request):
         return redirect('/finals_')
 def final_grade(request):
     acts3 = finals.objects.all()
-    section2 = sections.objects.all()
+    section2 = sections.objects.filter(fiel='ROTC')
     context = {
         'section2':section2,
         'acts3': acts3,
@@ -2724,3 +2725,181 @@ def cwts_save_exercises(request):
             messages.success(request, 'Updated successfully')
     
     return redirect('/exercises')
+
+
+
+def cwts_midterms(request):
+    acts3 = cwts_midterm.objects.all()
+    section2 = sections.objects.filter(fiel='CWTS')
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/cwts_midterm.html', context)
+
+
+def cwts_add_midterm(request):
+    semester = request.POST.get('sem')
+    date = request.POST.get('date')
+    items = request.POST.get('items')
+    if cwts_midterm.objects.filter(semester=semester).exists():
+        messages.success(request, 'Semester already exists')
+        return redirect('/cwts_midterms')
+    print(semester, date, items)
+    datas = cwts_midterm(semester=semester, date=date, items=items)
+    datas.save()
+    return redirect('/cwts_midterms')
+
+
+def delete_cwts_midterm(request, id):
+    cwts_midterm.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/cwts_midterms')
+
+
+
+def modify_cwts_midterm(request):
+    #  first = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
+    first = cwts_midterm.objects.filter(semester='1st sem')
+    second = cwts_midterm.objects.filter(semester='2nd Sem')
+    
+    midterm_percentage = cwts_grading.objects.all()
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content4':content4,
+            'getSection':getSection,
+            'first':first,
+            'second':second, 
+            'midterm_percentage':[midterm_percentage.last()]
+        }
+        return render(request, 'activities/modify_cwts_midterm.html', context)
+    return render(request, 'activities/modify_cwts_midterm.html', context)
+
+
+
+
+def save_cwts_midterm(request):
+    if request.method == 'POST':
+        ids= request.POST.getlist('ids')
+        midterm1 = request.POST.getlist('midterm1')
+        midterm2 = request.POST.getlist('midterm2')
+        subtot = request.POST.getlist('subtot')
+        credits2 = request.POST.getlist('credits2')
+        
+        for a, b, c in zip(ids, midterm1, subtot):
+            extenduser.objects.filter(id=a).update(midterm1=b, midterm1_credits=c)
+            
+        for a, b, c in zip(ids, midterm2, credits2):
+            extenduser.objects.filter(id=a).update(midterm2=b, midterm2_credits=c)
+
+    return redirect('/cwts_midterms')
+
+
+def cwts_finals(request):
+    acts3 = cwts_final.objects.all()
+    section2 = sections.objects.filter(fiel= 'CWTS')
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/cwts_finals.html', context)
+
+
+def modify_cwts_finals(request):
+    #  first = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
+    first = cwts_final.objects.filter(semester='1st sem')
+    second = cwts_final.objects.filter(semester='2nd Sem')
+    finals_percentage = cwts_grading.objects.all()
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content4':content4,
+            'getSection':getSection,
+            'first':first,
+            'second':second, 
+            'finals_percentage':[finals_percentage.last()]
+        }
+        return render(request, 'activities/modify_cwts_finals.html', context)
+    return render(request, 'activities/modify_cwts_finals.html', context)
+
+
+def add_cwts_finals(request):
+    semester = request.POST.get('sem')
+    date = request.POST.get('date')
+    items = request.POST.get('items')
+    if cwts_final.objects.filter(semester=semester).exists():
+        messages.success(request, 'Semester already exists')
+        return redirect('/cwts_finals')
+    print(semester, date, items)
+    datas = cwts_final(semester=semester, date=date, items=items)
+    datas.save()
+    return redirect('/cwts_finals')
+
+
+
+def save_cwts_finals(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('ids')
+        finals1 = request.POST.getlist('finals1')
+        subtot1 = request.POST.getlist('subtot1')
+        
+        ids2 = request.POST.getlist('ids2')
+        finals2 = request.POST.getlist('finals2')
+        subtot2 = request.POST.getlist('subtot2')
+        
+        for a, b, c in zip(ids, finals1, subtot1):
+            extenduser.objects.filter(id=a).update(finals1=b, finals_credits1=c)
+        for d, e,f in zip(ids2, finals2, subtot2):
+            extenduser.objects.filter(id=d).update(finals2=e, finals_credits2=f)
+        return redirect('/cwts_finals')
+    
+def delete_cwts_finals(request, id):
+    cwts_final.objects.filter(id=id).delete()
+    messages.success(request, 'Deleted')
+    return redirect('/cwts_finals')
+
+def cwts_final_grade(request):
+    acts3 = cwts_final.objects.all()
+    section2 = sections.objects.filter(fiel= 'CWTS')
+    context = {
+        'section2':section2,
+        'acts3': acts3,
+    }
+    return render(request, 'activities/cwts_final_grade.html', context)
+
+def access_cwts_final_grade(request):
+    if request.method == 'POST':
+        getSection = request.POST.get('getSection')
+        content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        context = {
+            'content4':content4,
+            'getSection':getSection
+          
+        }
+    return render(request, 'activities/cwts_access.html', context)
+
+
+
+
+def save_cwts_finale_grades(request):
+    if request.method == 'POST':
+        ids_2 = request.POST.getlist('ids_2')
+        second_grade = request.POST.getlist('final_grade2')
+        equivalent2 = request.POST.getlist('equivalent2')
+        ids = request.POST.getlist('ids')
+        first_sem_grade = request.POST.getlist('final_grade')
+        equivalent = request.POST.getlist('equivalent')
+        
+      
+        
+        for a, b, c in zip(ids, first_sem_grade, equivalent):
+            extenduser.objects.filter(id=a).update(final_grade=b, first_equivalents=c)
+            messages.success(request, 'Final Grade Updated successfully')
+        for  d, e, f in zip(ids_2, second_grade, equivalent2):
+            
+            extenduser.objects.filter(id=d).update(final_grade_2=e, second_equivalents=f)
+            messages.success(request, 'Final Grade Updated successfully')
+        return redirect('/cwts_final_grade')

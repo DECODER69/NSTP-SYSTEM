@@ -27,7 +27,7 @@
                 <h1 class="text"><i class='bx bxs-dashboard'></i> ACTIVITIES&nbsp;>&nbsp;</h1>
             </a>
 
-            <h1 class="text"><i class='bx bx-intersect'></i>{{getSection}}
+            <h1 class="text" style="color: rgb(0, 248, 0);"><i class='bx bx-intersect'></i>{{getSection}}
             </h1>
 
         </div>
@@ -42,7 +42,7 @@
                         <div class="ada">
                             <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Activity data</h1>
 
-                            <p id="total" style="display:none;">{{total}}</p>
+                            <p id="total">{{total}}</p>
                         </div>
 
                         <div class="adda">
@@ -83,9 +83,7 @@
                                     <th scope="col">ACT 5</th>
                                     <th scope="col">ACT 6</th>
 
-                                    <th scope="col">TOTAL:
-                                        <h5 style="color: red; font-weight:bolder;">{{total}}</h5>
-                                    </th>
+
                                     <th style="display: none;"></th>
                                     <th style="display: none;"></th>
                                     <th style="display: none;"></th>
@@ -109,48 +107,48 @@
 
                                     <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1}}</td>
                                     <td>
-                                        <input type="number" name="act1" id="" value="{{s.act1}}" class="form-control">
+                                        <input type="number" name="act1" id="" value="{{s.act1}}" class="act1 form-control" placeholder="1st Sem Activity">
                                         <input type="hidden" value="{{s.id}}" name="ids" placeholder="1st Sem Activity">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act2" style="display: none;">{{s.act2}}</td>
                                     <td>
-                                        <input type="number" name="act2" value="{{s.act2}}" placeholder="1st Sem Activity" class="form-control">
+                                        <input type="number" name="act2" value="{{s.act2}}" placeholder="1st Sem Activity" class="act1 form-control">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act3" style="display: none;">{{s.act3}}</td>
                                     <td>
-                                        <input type="number" name="act3" value="{{s.act3}}" placeholder="1st Sem Activity" class="form-control">
+                                        <input type="number" name="act3" value="{{s.act3}}" placeholder="1st Sem Activity" class="act1 form-control">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act4" style="display: none;">{{s.act4}}</td>
                                     <td>
-                                        <input type="number" name="act4" value="{{s.act4}}" placeholder="1st Sem Activity" class="form-control">
+                                        <input type="number" name="act4" value="{{s.act4}}" placeholder="1st Sem Activity" class="act1 form-control">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act5" style="display: none;">{{s.act5}}</td>
                                     <td>
-                                        <input type="number" name="act5" value="{{s.act5}}" placeholder="1st Sem Activity" class="form-control">
+                                        <input type="number" name="act5" value="{{s.act5}}" placeholder="1st Sem Activity" class="act1 form-control">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act6" style="display: none;">{{s.act6}}</td>
                                     <td>
-                                        <input type="number" name="act6" value="{{s.act6}}" placeholder="1st Sem Activity" class="form-control">
+                                        <input type="number" name="act6" value="{{s.act6}}" placeholder="1st Sem Activity" class="act1 form-control">
                                     </td>
 
 
 
-                                    <td class="total"></td>
+
 
                                     <td class="result">
-                                        <input type="text" name="credits1" class="credits form-control" value="" id="credits" readonly>
+                                        <input type="text" name="credits1" class="credits form-control" value="{{s.act_credits}}" id="credits" readonly>
                                     </td>
 
 
@@ -165,48 +163,47 @@
 
                                     <td class="tds" contenteditable="true" name="act1" style="display: none;">{{s.act1_2}}</td>
                                     <td>
-                                        <input type="number" name="act1_2" id="" value="{{s.act1_2}}" placeholder="2nd Sem Activity" class="form-control">
+                                        <input type="number" name="act1_2" id="" value="{{s.act1_2}}" placeholder="2nd Sem Activity" class="act2 form-control">
                                         <input type="hidden" value="{{s.id}}" name="ids_2">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act2_2" style="display: none;">{{s.act2_2}}</td>
                                     <td>
-                                        <input type="number" name="act2_2" value="{{s.act2_2}}" placeholder="2nd Sem Activity" class="form-control">
+                                        <input type="number" name="act2_2" value="{{s.act2_2}}" placeholder="2nd Sem Activity" class="act2 form-control">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act3_2" style="display: none;">{{s.act3_2}}</td>
                                     <td>
-                                        <input type="number" name="act3_2" value="{{s.act3_2}}" placeholder="2nd Sem Activity" class="form-control">
+                                        <input type="number" name="act3_2" value="{{s.act3_2}}" placeholder="2nd Sem Activity" class="act2 form-control">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act4_2" style="display: none;">{{s.act4_2}}</td>
                                     <td>
-                                        <input type="number" name="act4_2" value="{{s.act4_2}}" placeholder="2nd Sem Activity" class="form-control">
+                                        <input type="number" name="act4_2" value="{{s.act4_2}}" placeholder="2nd Sem Activity" class="act2 form-control">
                                     </td>
 
 
 
                                     <td class="tds" contenteditable="true" name="act5_2" style="display: none;">{{s.act5_2}}</td>
                                     <td>
-                                        <input type="number" name="act5_2" value="{{s.act5_2}}" placeholder="2nd Sem Activity" class="form-control">
+                                        <input type="number" name="act5_2" value="{{s.act5_2}}" placeholder="2nd Sem Activity" class="act2 form-control">
                                     </td>
 
 
                                     <td class="tds" contenteditable="true" name="act6_2" style="display: none;">{{s.act6_2}}</td>
                                     <td>
-                                        <input type="number" name="act6_2" value="{{s.act6_2}}" placeholder="2nd Sem Activity" class="form-control">
+                                        <input type="number" name="act6_2" value="{{s.act6_2}}" placeholder="2nd Sem Activity" class="act2 form-control">
                                     </td>
 
 
 
-                                    <td class="total"></td>
 
                                     <td class="result">
-                                        <input type="text" name="credits2" class="credits" value="" id="credits" readonly class="form-control">
+                                        <input type="text" name="credits2" class="credits" value="" id="credits2" readonly class="form-control">
                                     </td>
 
 
@@ -224,6 +221,45 @@
 
         </div>
     </section>
+
+
+    <script>
+        var total = $("#total").text();
+
+        $(document).ready(function() {
+
+            $("#myTable").on('input', '.act1', function() {
+                var calculated_total_sum = 0;
+
+                $("#myTable .act1").each(function() {
+                    var get_textbox_value = $(this).val();
+                    if ($.isNumeric(get_textbox_value)) {
+                        calculated_total_sum += parseFloat(get_textbox_value / total * 100 * 0.10);
+                    }
+                });
+                $("#credits").val(calculated_total_sum.toFixed(2));
+            });
+        });
+    </script>
+    <script>
+        var total = $("#total").text();
+
+        $(document).ready(function() {
+
+            $("#myTable").on('input', '.act2', function() {
+                var calculated_total_sum = 0;
+
+                $("#myTable .act2").each(function() {
+                    var get_textbox_value = $(this).val();
+                    if ($.isNumeric(get_textbox_value)) {
+                        calculated_total_sum += parseFloat(get_textbox_value / total * 100 * 0.10);
+                    }
+                });
+                $("#credits2").val(calculated_total_sum.toFixed(2));
+            });
+        });
+    </script>
+
 
 
 
@@ -251,7 +287,7 @@
     </script>   -->
 
 
-    <script>
+    <!-- <script>
         var total = $("#total").text();
         $(document).ready(function() {
             $('tr').each(function() {
@@ -303,7 +339,7 @@
 
             })
         });
-    </script>
+    </script> -->
 
 </body>
 

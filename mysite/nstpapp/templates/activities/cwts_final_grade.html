@@ -1,0 +1,163 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cwts final grade</title>
+    <link rel="stylesheet" href="../../static/admin_css/final_grade.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+{% include 'activities/loader.html' %}
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/cwts_course_evaluation">
+                <h1 class="text">CWTS COURSE EVALUATION&nbsp;>&nbsp;</h1>
+            </a>
+            <a href="/exercises">
+                <h1 class="text" style="color: rgb(0, 248, 0);">
+                    FINAL GRADE</h1>
+            </a>
+
+
+        </div>
+
+        <br>
+
+
+
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link " href="/cwts_attendance_tab">Attendance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/quiz">Quizzes / Activities</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="/exercises">Exercises</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/cwts_midterms">Midterm Exam</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/cwts_finals">Final Exam</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="/cwts_final_grade">Final Grade</a>
+            </li>
+        </ul>
+
+
+
+
+        <div class="bg">
+
+
+            <div class="overall" style="width: 100% !important;">
+                <div class="left">
+                    <div class="tss">
+
+
+                        <div class="txt ">
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i>FINAL GRADE</h1>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        {% for s in section2 %}
+                        <form action="{% url 'activities:access_cwts_final_grade'%}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                                <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
+                                <h5 class="title ">{{s.section_created}}</h5>
+                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
+                                <button type="submit" class="btn btn-dark">Open</button><br>
+
+                            </div>
+
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable2').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+
+        {% for msg in messages %}
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '{{msg}}',
+            showConfirmButton: false,
+            timer: 2500
+          }) {% endfor %}
+    </script>   -->
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
+
+
+
+</body>
+
+</html>

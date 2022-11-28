@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>platoon content</title>
+    <title>CWTS MIDTERM</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/modify.css">
     <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
@@ -22,16 +22,21 @@
 <body>
     {% include 'activities/admin_nav.html' %}
 
-    <section class="home-section">
+
+    <section class="page-content">
         <div class="heads">
 
-            <a href="/finals_">
-                <h1 class="text"><i class='bx bxs-dashboard'></i>FINAL EXAM &nbsp;>&nbsp;</h1>
+            <a href="/cwts_course_evaluation">
+                <h1 class="text">CWTS COURSE EVALUATION&nbsp;>&nbsp;</h1>
+            </a>
+            <a href="/cwts_midterms">
+                <h1 class="text">MIDTERM&nbsp;>&nbsp;</h1>
+            </a>
+            <a href="#">
+                <h1 class="text" style="color: rgb(0, 248, 0);">{{getSection}}</h1>
             </a>
 
 
-            <h1 class="text" style="color: rgb(0, 248, 0);"><i class='bx bx-intersect'></i>{{getSection}}
-            </h1>
 
         </div>
         <div class="bg">
@@ -43,12 +48,12 @@
                     <div class="he">
 
                         <div class="ada">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Finals Grading</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Midterm Grading</h1>
                             <!-- gshshsfhfs -->
                             {% for s in first %}
                             <p id="total" style="display: none;">{{s.items}}</p>
-                            {% endfor %} {% for s in second %}
-                            <p id="total" style="display: none;">{{s.items}}</p>
+                            {% endfor %} {% for s in midterm_percentage %}
+                            <p id="cwts_midterm_percentage" style="display: none;">{{s.midterm_exam}}</p>
                             {% endfor %}
                         </div>
 
@@ -74,16 +79,16 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:save_finals' %}" method="POST">
+                    <form action="{% url 'activities:save_cwts_midterm' %}" method="POST">
                         {% csrf_token %}
                         <table id="tblProducts" class="table table-bordered ">
                             <thead>
                                 <tr>
                                     <th>ID Number</th>
                                     <th>Full name</th>
-                                    <th>Final Exam Result</th>
-                                    <th>Items</th>
-                                    <th class="result">Credits 15%</th>
+                                    <th>Midterm Exam Result</th>
+                                    <th>Total Items</th>
+                                    <th class="result">Credits</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,26 +96,37 @@
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
-                                    <td><input type="text" class="finals1 form-control" value="{{s.finals1}}" name="finals1" placeholder="First Sem Final Result" /></td>
+                                    <td><input type="text" class="midterm1 form-control" value="{{s.midterm1}}" name="midterm1" /></td>
                                     {% for s in first %}
-                                    <td><input type="text" class="items form-control" value="{{s.items}}" name="items" readonly/></td>
+                                    <td><input type="text" class="price form-control" value="{{s.items}}" name="price" readonly/></td>
+                                    {% empty %}
+                                    <td><input type="text" class="items form-control" value="No Exam posted" name="items" readonly/></td>
                                     {% endfor %}
-                                    <td class="result"><input type="text" class="subtot1 form-control" value="{{s.finals_credits1}}" name="subtot1" readonly/></td>
+                                    <td class="result"><input type="text" class="subtot form-control" value="{{s.midterm1_credits}}" name="subtot" readonly/></td>
                                 </tr>
                                 {% elif s.second_sem == 'ENROLLED' %}
                                 <tr>
-                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids2"></td>
+                                    <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
-                                    <td><input type="text" class="finals2 form-control" value="{{s.finals2}}" name="finals2" /></td>
+                                    <td><input type="text" class="midterm2 form-control" value="{{s.midterm2}}" name="midterm2" /></td>
                                     {% for s in second %}
-                                    <td><input type="text" class="items2 form-control" value="{{s.items}}" name="items2" readonly/></td>
+                                    <td><input type="text" class="price form-control" value="{{s.items}}" name="items" readonly/></td>
+                                    {% empty %}
+                                    <td><input type="text" class="items form-control" value="No Exam posted" name="items" readonly/></td>
                                     {% endfor %}
-                                    <td class="result"><input type="text" class="subtot2 form-control" value="{{s.finals_credits2}}" name="subtot2" readonly /></td>
+                                    <td class="result"><input type="text" class="credits2 form-control" value="{{s.midterm2_credits}}" name="credits2" readonly /></td>
                                 </tr>
                                 {% endif %} {% endfor %}
 
                             </tbody>
-
+                            <tfoot style="display: none;">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><input type="text" class="grdtot" value="" name="" /></td>
+                                </tr>
+                            </tfoot>
                         </table><br>
                         <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-save' ></i> Save Midterm</button>
                     </form>
@@ -125,7 +141,45 @@
 
 
     <!-- for editing tables -->
+    <script>
+        var total = $("#total").text();
+        var midterm = $("#cwts_midterm_percentage").text();
+        $(document).ready(function() {
 
+            $("#tblProducts").on('input', '.midterm1', function() {
+                var calculated_total_sum = 0;
+
+                $("#tblProducts .midterm1").each(function() {
+                    var get_textbox_value = $(this).val();
+                    if ($.isNumeric(get_textbox_value)) {
+                        calculated_total_sum += parseFloat(get_textbox_value / total * 100 * midterm);
+                    }
+                });
+                $(".subtot").val(calculated_total_sum.toFixed(2));
+            });
+        });
+    </script>
+    <script>
+        var total = $("#total").text();
+        var midterm = $("#cwts_midterm_percentage").text();
+        $(document).ready(function() {
+
+            $("#tblProducts").on('input', '.midterm2', function() {
+                var calculated_total_sum = 0;
+
+                $("#tblProducts .midterm2").each(function() {
+                    var get_textbox_value = $(this).val();
+                    if ($.isNumeric(get_textbox_value)) {
+                        calculated_total_sum += parseFloat(get_textbox_value / total * 100 * midterm);
+                    }
+                });
+                $(".credits2").val(calculated_total_sum.toFixed(2));
+            });
+        });
+    </script>
+
+
+    <!-- ################## -->
 
 
 
@@ -141,27 +195,58 @@
 
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(function() {
-
+            $('.pnm, .price, .subtot, .grdtot').prop('readonly', true);
             var $tblrows = $("#tblProducts tbody tr");
 
             $tblrows.each(function(index) {
                 var $tblrow = $(this);
 
-                $tblrow.find('.finals1').on('change', function() {
+                $tblrow.find('.qty').on('change', function() {
 
-                    var finals1 = $tblrow.find("[name=finals1]").val();
+                    var qty = $tblrow.find("[name=midterm1]").val();
+                    var price = $tblrow.find("[name=price]").val();
+                    var subTotal = parseInt(qty, 10) / parseFloat(price) * 100 * 0.15;
+
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.subtot').val(subTotal.toFixed(2));
+                        var grandTotal = 0;
+
+                        $(".subtot").each(function() {
+                            var stval = parseFloat($(this).val());
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.grdtot').val(grandTotal.toFixed(2));
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('.pnm, .price, .subtot, .grdtot').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function(index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.midterm2').on('change', function() {
+
+                    var midterm2 = $tblrow.find("[name=midterm2]").val();
                     var items = $tblrow.find("[name=items]").val();
-                    var subTotal = parseInt(finals1, 10) / parseFloat(items) * 100 * 0.15;
+                    var subTotal = parseInt(midterm2, 10) / parseFloat(items) * 100 * 0.15;
 
                     if (!isNaN(subTotal)) {
 
-                        $tblrow.find('.subtot1').val(subTotal.toFixed(2));
+                        $tblrow.find('.credits2').val(subTotal.toFixed(2));
                         var grandTotal = 0;
 
-                        $(".subtot1").each(function() {
+                        $(".credits2").each(function() {
                             var stval = parseFloat($(this).val());
                             grandTotal += isNaN(stval) ? 0 : stval;
                         });
@@ -171,38 +256,11 @@
                 });
             });
         });
-    </script>
+    </script> -->
 
-    <script type="text/javascript">
-        $(function() {
 
-            var $tblrows = $("#tblProducts tbody tr");
 
-            $tblrows.each(function(index) {
-                var $tblrow = $(this);
 
-                $tblrow.find('.finals2').on('change', function() {
-
-                    var finals2 = $tblrow.find("[name=finals2]").val();
-                    var items2 = $tblrow.find("[name=items2]").val();
-                    var subTotal = parseInt(finals2, 10) / parseFloat(items2) * 100 * 0.15;
-
-                    if (!isNaN(subTotal)) {
-
-                        $tblrow.find('.subtot2').val(subTotal.toFixed(2));
-                        var grandTotal = 0;
-
-                        $(".subtot2").each(function() {
-                            var stval = parseFloat($(this).val());
-                            grandTotal += isNaN(stval) ? 0 : stval;
-                        });
-
-                        $('.grdtot').val(grandTotal.toFixed(2));
-                    }
-                });
-            });
-        });
-    </script>
 
 
     <script src="../../static/js/pag.js"></script>

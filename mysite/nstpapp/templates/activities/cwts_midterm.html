@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Midterm</title>
     <link rel="stylesheet" href="../../static/admin_css/grades.css">
     <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
 
@@ -23,21 +23,29 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:#ffffff; color:white;">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Training Day</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Midterm</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
               <span aria-hidden="true">&times;</span>
             </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'activities:create_td2' %}" method="POST">
+                    <form action="{% url 'activities:cwts_add_midterm' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Add date</label>
-                            <input type="date" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="td" required>
+                            <label for="message-text" class="col-form-label">Semester</label>
+
+                            <select name="sem" id="" class="form-control">
+                                <option value="1st sem">1st Sem</option>
+                                <option value="2nd Sem">2nd Sem</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Training day count</label>
-                            <input type="number" class="form-control" id="message-text" placeholder="Ex: 1" name="td_count" required>
+                            <label for="message-text" class="col-form-label">Date</label>
+                            <input type="date" class="form-control" id="message-text" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Items</label>
+                            <input type="number" class="form-control" id="message-text" placeholder="Ex: 100" name="items" required>
                         </div>
 
                 </div>
@@ -50,13 +58,14 @@
             </div>
         </div>
     </div>
+
     <section class="page-content">
         <div class="heads">
             <a href="/cwts_course_evaluation">
                 <h1 class="text">CWTS COURSE EVALUATION&nbsp;>&nbsp;</h1>
             </a>
-            <a href="/cwts_attendance_tab">
-                <h1 class="text" style="color: rgb(0, 248, 0);">ATTENDANCE</h1>
+            <a href="/cwts_midterms">
+                <h1 class="text" style="color: rgb(0, 248, 0);">MIDTERM</h1>
             </a>
 
         </div>
@@ -68,17 +77,17 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" href="/cwts_attendance_tab">Attendance</a>
+                <a class="nav-link " href="/cwts_attendance_tab">Attendance</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/quiz">Quizzes / Activities</a>
+                <a class="nav-link " href="/quiz">Quizzes / Activities</a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link " href="/exercises">Exercises</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/cwts_midterms">Midterm Exam</a>
+                <a class="nav-link active" href="/cwts_midterms">Midterm Exam</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="/cwts_finals">Final Exam</a>
@@ -101,7 +110,7 @@
 
 
                         <div class="txt ">
-                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Attendance Records</h1>
+                            <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> Midterm Exam Records</h1>
 
                         </div>
 
@@ -113,16 +122,8 @@
 
                     <div class="row">
                         {% for s in section2 %}
-                        <form action="{% url 'activities:cwts_show_students'%}" class="column" style="text-decoration: none;" method="POST">
-                            {% csrf_token %} {% if s.fiel == 'ROTC' %}
-                            <div class="card">
-                                <img src="../../static/images/236.png" alt="ROTC LOGO" id="ro_logo">
-                                <h5 class="title ">{{s.section_created}}</h5>
-                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
-                                <button type="submit" class="btn btn-dark">Open</button><br>
-                                <p class="card-text"><small class="text-muted">Created for ROTC Only</small></p>
-                            </div>
-                            {% elif s.fiel == 'CWTS' %}
+                        <form action="{% url 'activities:modify_cwts_midterm'%}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %}
                             <div class="card">
                                 <img src="../../static/images/tup.png" alt="ROTC LOGO" id="ro_logo">
                                 <h5 class="title ">{{s.section_created}}</h5>
@@ -130,7 +131,7 @@
                                 <button type="submit" class="btn btn-dark">Open</button><br>
                                 <p class="card-text"><small class="text-muted">Created for CWTS Only</small></p>
                             </div>
-                            {% endif %}
+
                         </form>
                         {% endfor %}
                     </div>
@@ -151,21 +152,22 @@
                     <div class="left2">
                         <div class="sec">
                             <div class="txt ">
-                                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i>Training Days</h1>
+                                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i>Midterm</h1>
 
                             </div>
 
 
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">  Add Training Day</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class='bx bx-plus' ></i>  Add Midterm</button>
 
                         </div>
                         <hr>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover " id="myTable">
+                            <table class="table table-bordered table-hover " id="myTable2">
                                 <thead class="thead">
                                     <tr>
-                                        <th scope="col">Training Day #</th>
+                                        <th scope="col">Semester</th>
                                         <th scope="col">Date</th>
+                                        <th scope="col">Items</th>
                                         <th scope="col" style="text-align: center !important; width:120px !important;">Action</th>
 
                                     </tr>
@@ -173,14 +175,16 @@
 
 
                                 <tbody>
-                                    {% for s in acts2 %}
+                                    {% for s in acts3 %}
                                     <tr>
-                                        <td>{{s.td_count}}</td>
-                                        <td>{{s.class_td}}</td>
+                                        <td>{{s.semester}}</td>
+                                        <td>{{s.date}}</td>
+                                        <td>{{s.items}}</td>
                                         <td style="justify-content: space-between; display:flex;">
-                                            <a href="/delete_td/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            <a href="/delete_cwts_midterm/{{s.id}}" id="del_act" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash-can"></i></a>
 
                                         </td>
+
                                     </tr>
 
                                     {% endfor %}
@@ -205,7 +209,7 @@
     <script src="../../static/js/dat.js"></script>
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable({
+            $('#myTable2').DataTable({
                 pagingType: 'full_numbers',
             });
         });
@@ -214,14 +218,11 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <script>
-        { %
-            for msg in messages %
-        }
+        {% for msg in messages %}
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
-        }) { % endfor %
-        }
+        }) {% endfor %}
     </script> -->
 
     <script>

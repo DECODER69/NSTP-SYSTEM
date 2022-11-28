@@ -316,3 +316,14 @@ class cwts_exercises(models.Model):
     act_count = models.CharField(max_length=100, default='')
     act_title = models.CharField(max_length=100, default='')
     act_numbers = models.CharField(max_length=100, default='')
+    
+class cwts_midterm(models.Model):
+    semester = models.CharField(max_length=20, default='')
+    date = models.DateField(blank= True,null=True)
+    items = models.CharField(max_length=100, default='')
+    
+    
+class cwts_final(models.Model):
+    semester = models.CharField(max_length=20, default='')
+    date = models.DateField(blank= True,null=True)
+    items = models.CharField(max_length=100, default='')
