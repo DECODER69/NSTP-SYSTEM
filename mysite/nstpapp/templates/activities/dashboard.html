@@ -1,156 +1,169 @@
-<!DOCTYPE html>{% load static %}
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>StudentSection</title>
+    <link rel="stylesheet" href="../../static/css/dashboard.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-    <link rel="icon" href="../../static/images/tup.png">
-
-
-
-
-    <title>Dashboard</title>
 </head>
 
 <body>
-    {% include 'activities/navbar.html' %}
-
-    <!-- MODAL -->
+    {% include 'activities/navbar.html' %} {% for s in name %}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Complete Profile !</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">USER: {{s.idnumber}}</h5>
+                    <div class="custom-shape-divider-top-1669719491">
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                        </svg>
+                    </div>
+
+
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <span aria-hidden="true">&times;</span>
+        </button>
                 </div>
                 <div class="modal-body">
-                    Please fill up all related Field to complete the registration process. Disregard this message if you already done it. Thank you !
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="First Sem Grade" readonly value="{{s.final_grade}}">
+                                <label for="">&nbsp;&nbsp;First Sem</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Second Sem Grade" readonly value="{{s.final_grade_2}}">
+                                <label for="">&nbsp;&nbsp;Second Sem</label>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="/editprofile"><button type="button" class="btn btn-primary">Proceed</button></a>
+                    <small>@sentinels 2022</small>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- end of modal -->
-
-    <section class="home-section">
+    {% endfor %}
+    <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bxs-dashboard'></i> Dashboard</h1><br>
-        </div>
+            <h1 class="text"><i class='bx bx-home'></i>DASHBOARD</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
         <div class="bg">
-            <div class="card-holder">
-                {% for n in name %}
-                <div class="card mb-3" id="deta">
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="cage">
-                            <img src="{{n.picture.url}}" alt="..." id="profile">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{n.firstname}} {{n.lastname}}</h5>
-                                <p class="card-text">Student Name</p>
+            <div class="home-content">
+                {% for s in name %}
+                <div class="overview-boxes">
+                    <div class="box">
+                        <div class="right-side">
 
-                            </div>
+                            <div class="box-topic">{{s.firstname}} {{s.lastname}}</div>
+                            <div class="caption">Student</div>
+
                         </div>
+                        <i class='bx bx-user-circle color'></i>
                     </div>
-                </div>
-
-                <div class="card mb-3" id="deta">
-                    <div class="row no-gutters">
-                        <div class="col-md-4" id="cage">
-                            <img src="../../static/images/approved.jpg" alt="..." id="play">
-                            <img src="../../static/images/pending.jpg" alt="..." id="pause">
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">{{s.status}}</div>
+                            <div class="caption">Status</div>
                         </div>
+                        {% if s.status == 'PENDING' %}
+                        <i class='bx bxs-time color XXX'></i> {% else %}
+                        <i class='bx bxs-check-circle color two'></i> {% endif %}
 
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <input type="text" class="card-title" id="status" value="{{n.status}}" readonly>
-                                <p class="card-text">Enrollment Status</p>
-                            </div>
-                        </div>
+
                     </div>
-                </div>
+                    <div class="box">
 
-                <div class="card mb-3" id="deta">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="../../static/images/course.jpg" alt="..." id="profile">
+                        <div class="right-side">
+                            <div class="box-topic">{{s.field}}</div>
+                            <div class="caption">Components</div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{n.field}} {{e.section}}</h5>
-                                <p class="card-text">Field</p><br>
-                                <p class="card-text" id="course"><a href="/fields">View Fields</a></p>
 
-                            </div>
+                        <i class='bx bx-group color three'></i>
+                    </div>
+                    <div class="box">
+                        {% if s.field == 'ROTC' %}
+                        <div class="right-side">
+                            <div class="box-topic">{{s.platoons}}</div>
+                            <div class="caption">Platoon</div>
                         </div>
+                        {% else %}
+                        <div class="right-side">
+                            <div class="box-topic">{{s.platoons}}</div>
+                            <div class="caption">Section</div>
+                        </div>
+                        {% endif %}
+                        <i class='bx bx-star color four'></i>
+                    </div>
+                    <div class="box" id="box">
+                        <div class="eye">
+                            <i class="fa-solid fa-eye-slash" data-toggle="modal" data-target="#exampleModal" title="View Grade"></i>
+                        </div>
+
+                        <div class="caption">Grade</div>
+
                     </div>
                 </div>
                 {% endfor %}
 
 
+                <!-- lower part -->
 
+                <div class="announce-boxes">
+                    <div class="recent-announce box">
+                        <div class="title"><i class="fa-solid fa-scroll"></i>Announcements</div>
+                        <hr>
+                        <div class="announce-details">
+                            {% for manji in announcement %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
+                            <div class="outer">
+                                <div class="up">
+                                    <div class="logs">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                    </div>
+                                    <div class="sub">
+                                        <h1 id="subject">NSTP Staff</h1>
+                                        <h1 id="date">{{manji.date_posted}}</h1>
+                                    </div>
 
-            </div>
-            <div class="announcements">
-                <h1 class="ans"><i class='bx bxs-megaphone'></i> Announcements</h1>
+                                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" id="card">
-                            <div class="co">
-                                <img src="../../static/images/tup.png" class="img" alt="admin logo" id="admin-logo">
-                                <div class="dt">
-                                    <h1 class="author">Admin</h1>
-                                    <p class="date">July 11, 2022, 4:20 a.m.</p>
+                                <br>
+                                <div class="down">
+                                    <h1 id="subject2">{{manji.subject}}</h1><br>
+                                    <h5>{{manji.content}}</h5>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="card-body" id="card-body">
-                                <h5 class="card-title">Examination day</h5>
-                                <p class="card-text" id="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <br> {% endif %}{% endfor %}{% endfor %}
 
-                            </div>
                         </div>
+
+
                     </div>
+                    <div class="recent-files box">
 
+                    </div>
                 </div>
-                <br>
-
-
             </div>
-
-
-
-
         </div>
 
+
+
     </section>
-
-
-    <script>
-        var txt = document.getElementById('status').value;
-
-        if (txt == 'ENROLLED') {
-            document.getElementById('play').style.display = "initial"
-        } else {
-            document.getElementById('pause').style.display = "initial"
-        }
-    </script>
-
-    <script type="text/javascript">
-        $(window).on('load', function() {
-            $('#exampleModal').modal('show');
-        });
-    </script>
-
+    <!-- <div class="custom-shape-divider-bottom-1669703185">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+        </svg>
+    </div> -->
 </body>
 
 </html>

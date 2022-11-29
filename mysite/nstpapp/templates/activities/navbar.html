@@ -1,134 +1,188 @@
-<!DOCTYPE html>{% load static%}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <title>nav</title>
+    <title>staff navbar</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+    <script src="https://kit.fontawesome.com/3e1139830b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
-            <!-- <i class='bx bxl-c-plus-plus icon'></i> -->
-            <i class='bx bx-shield icon'></i>
-            <!-- <img src="../../static/images/tup.png" class="icon" id="tup">&nbsp; -->
-            <div class="logo_name">NSTP</div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav-list">
+    <!-- partial:index.partial.html -->
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
 
-            <li>
-                <a href="/dashboard_page">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="/fields">
-                    <i class='bx bx-file'></i>
-                    <span class="links_name">Fields</span>
-                </a>
-                <span class="tooltip">Fields</span>
-            </li>
-            <li>
-                <a href="/profile_page">
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">User Profile</span>
-                </a>
-                <span class="tooltip">User Profile</span>
-            </li>
-            <li>
-                <a href="/file_manager">
-                    <i class='bx bx-folder'></i>
-                    <span class="links_name">File Manager</span>
-                </a>
-                <span class="tooltip">Files</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-flag-alt'></i>
-                    <span class="links_name">ROTC</span>
-                </a>
-                <span class="tooltip">ROTC</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-street-view'></i>
-                    <span class="links_name">CWTS</span>
-                </a>
-                <span class="tooltip">CWTS</span>
-            </li>
+                    <a href="#" style="justify-content:space-between;">
+                        <i class="fa-solid fa-user"></i> {% for s in name %}
+                        <span>&nbsp;{{s.firstname}} {{s.lastname}}</span> {% endfor %}
+                    </a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                        <!-- {% for s in staff %}<a href="#">{{s.firstname}} {{s.lastname}}</a> {% endfor %} -->
+                    </div>
+                </div>
+                <div class="sidebar-header">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="../../static/images/tup.png" alt="User picture">
+                    </div>
 
-            <li>
-                <a href="#">
-                    <i class='bx bx-message'></i>
-                    <span class="links_name">Message</span>
-                </a>
-                <span class="tooltip">Message</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-file'></i>
-                    <span class="links_name">Documents</span>
-                </a>
-                <span class="tooltip">Documents</span>
-            </li>
-            <br>
-            <!-- <li>
-                <a href="#">
-                    <i class='bx bx-cog'></i>
-                    <span class="links_name">Setting</span>
-                </a>
-                <span class="tooltip">Setting</span>
-            </li> -->
+                </div>
+                <!-- sidebar-header -->
+                <!-- <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+<i class="fa fa-search" aria-hidden="true"></i>
+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- sidebar-search -->
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdowns">
+                            <a href="/admin_dashboard">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                                <!-- <span class="badge badge-pill badge-warning">New</span> -->
+                            </a>
+                            <!-- <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">Dashboard 1
+                                            <span class="badge badge-pill badge-success">Pro</span>
+                                            </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Dashboard 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Dashboard 3</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </li>
+                        <!-- <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa-sharp fa-solid fa-address-card"></i>
+                                <span>Enrollment</span>
 
-            <li>
+                                <span class="badge badge-pill badge-danger">{{nav_pending_count}}+</span>
+
+
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="/school_years">School Year
+</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin_staff">Enrolled</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin_pending">Pending <span class="badge badge-pill badge-danger">{{nav_pending_count}}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin_rejected">Rejected <span class="badge badge-pill badge-danger">{{nav_rejected_count}}</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> -->
+                        <li class="sidebar-dropdowns">
+                            <a href="#">
+                                <i class="fa-solid fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-folder"></i>
+                                <span>Files</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar-menu -->
+            </div>
+            <!-- sidebar-content -->
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-pill badge-warning notification">3</span>
+                </a>
+                <a href="https://mail.google.com/" target="_blank">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-pill badge-success notification">7</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span class="badge-sonar"></span>
+                </a>
                 <a href="/logout_student">
-                    <i class='bx bx-power-off'></i>
-                    <span class="links_name">Logout</span>
+                    <i class="fa fa-power-off"></i>
                 </a>
-                <span class="tooltip">Logout</span>
-            </li>
+            </div>
+        </nav>
+        <!-- sidebar-wrapper -->
 
-        </ul>
+        <section>
+
+
+        </section>
     </div>
-    <!-- <section class="home-section">
-        <div class="text">Dashboard</div>
-    </section> -->
+    <!-- page-content" -->
+
+    <!-- page-wrapper -->
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js'></script>
     <script>
-        let sidebar = document.querySelector(".sidebar");
-        let closeBtn = document.querySelector("#btn");
-        let searchBtn = document.querySelector(".bx-search");
-
-        closeBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
-
-        searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
-            sidebar.classList.toggle("open");
-            menuBtnChange(); //calling the function(optional)
-        });
-
-        // following are the code to change sidebar button(optional)
-        function menuBtnChange() {
-            if (sidebar.classList.contains("open")) {
-                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+        $(".sidebar-dropdown > a").click(function() {
+            $(".sidebar-submenu").slideUp(200);
+            if (
+                $(this)
+                .parent()
+                .hasClass("active")
+            ) {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .parent()
+                    .removeClass("active");
             } else {
-                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu"); //replacing the iocns class
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .next(".sidebar-submenu")
+                    .slideDown(200);
+                $(this)
+                    .parent()
+                    .addClass("active");
             }
-        }
+        });
+        $("#close-sidebar").click(function() {
+            $(".page-wrapper").removeClass("toggled");
+        });
+        $("#show-sidebar").click(function() {
+            $(".page-wrapper").addClass("toggled");
+        });
     </script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
 
 </html>

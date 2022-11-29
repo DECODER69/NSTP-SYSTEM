@@ -219,7 +219,7 @@ class extenduser(models.Model):
     
 class school_year(models.Model):
     years = models.CharField(blank=True, null=True, max_length=20)
-    sem = models.CharField(max_length=20, default='1st Sem')
+    sem = models.CharField(max_length=20, default='First Term')
     acts = models.CharField(max_length=20, default='PENDING')
     date_generated = models.DateTimeField(null=True)
     
