@@ -15,7 +15,7 @@
     <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
 </head>
 
 
@@ -158,7 +158,7 @@
                                     <td class="total"></td>
 
                                     <td class="result">
-                                        <input type="text" name="credits1" class="credits form-control" value="{{s.act_credits}}" id="credits" readonly>
+                                        <input type="text" name="credits1" class="credits1 form-control" value="{{s.act_credits}}" id="credits" readonly>
                                     </td>
 
 
@@ -315,21 +315,92 @@
     </script> -->
 
 
+    <!-- new calculation script -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         var total = $("#total").text();
         var quiz = $("#quiz").text();
         $(document).ready(function() {
+            $(".quiz_sem1").change(function() {
+                //get closest tr
+                var selector = $(this).closest("tr");
+                //use .find to get requred inputs
+                var q1 = selector.find(".q1").val();
+                var q2 = selector.find(".q2").val();
+                var q3 = selector.find(".q3").val();
 
-            $("#myTable").on('input', '.quiz_sem1', function() {
+                data += parseFloat(q1 / total * 100 * quiz);
+                console.log(data);
+
+                $(".credits").val(data.toFixed(2));
+            });
+
+        });
+    </script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+            $(".quiz_sem1").on('keyup change', calculateSum);
+        });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".quiz_sem1").each(function() {
+                sum += parseFloat(this.value / total * 100 * quiz);
+            });
+            console.log(sum);
+            $row.find(".credits1").val(sum.toFixed(2));
+        }
+    </script>
+
+
+    <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+            $(".quiz_sem2").on('keyup change', calculateSum2);
+        });
+
+        function calculateSum2() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".quiz_sem2").each(function() {
+                sum += parseFloat(this.value / total * 100 * quiz);
+            });
+            console.log(sum);
+            $row.find(".credits2").val(sum.toFixed(2));
+        }
+    </script>
+
+
+    <!-- ofnew -->
+
+
+    <!-- <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+
+            $(".table").on('input', '.quiz_sem1', function() {
                 var calculated_total_sum = 0;
 
-                $("#myTable .quiz_sem1").each(function() {
+                $(".table .quiz_sem1 ").each(function() {
                     var get_textbox_value = $(this).val();
                     if ($.isNumeric(get_textbox_value)) {
                         calculated_total_sum += parseFloat(get_textbox_value / total * 100 * quiz);
+
+
                     }
                 });
-                $("#credits").val(calculated_total_sum.toFixed(2));
+                console.log(calculated_total_sum)
+                $(".total").html(calculated_total_sum.toFixed(2));
             });
         });
     </script>
@@ -350,7 +421,7 @@
                 $("#credits2").val(calculated_total_sum.toFixed(2));
             });
         });
-    </script>
+    </script> -->
 
 </body>
 

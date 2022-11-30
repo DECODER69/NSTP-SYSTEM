@@ -141,7 +141,7 @@
 
 
     <!-- for editing tables -->
-    <script>
+    <!-- <script>
         var total = $("#total").text();
         var midterm = $("#cwts_midterm_percentage").text();
         $(document).ready(function() {
@@ -176,6 +176,49 @@
                 $(".credits2").val(calculated_total_sum.toFixed(2));
             });
         });
+    </script> -->
+
+
+
+    <script>
+        var total = $("#total").text();
+        var midterm = $("#cwts_midterm_percentage").text();
+        $(document).ready(function() {
+            $(".midterm1").on('keyup change', calculateSum);
+        });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".midterm1").each(function() {
+                sum += parseFloat(this.value / total * 100 * midterm);
+            });
+            console.log(sum);
+            $row.find(".subtot").val(sum.toFixed(2));
+        }
+    </script>
+
+
+    <script>
+        var total = $("#total").text();
+        var midterm = $("#cwts_midterm_percentage").text();
+        $(document).ready(function() {
+            $(".midterm2").on('keyup change', calculateSum2);
+        });
+
+        function calculateSum2() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".midterm2").each(function() {
+                sum += parseFloat(this.value / total * 100 * midterm);
+            });
+            console.log(sum);
+            $row.find(".credits2").val(sum.toFixed(2));
+        }
     </script>
 
 

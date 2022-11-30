@@ -148,7 +148,7 @@
 
 
                                     <td class="result">
-                                        <input type="text" name="credits1" class="credits form-control" value="{{s.act_credits}}" id="credits" readonly>
+                                        <input type="text" name="credits1" class="credits1 form-control" value="{{s.act_credits}}" id="credits" readonly>
                                     </td>
 
 
@@ -203,7 +203,7 @@
 
 
                                     <td class="result">
-                                        <input type="text" name="credits2" class="credits" value="" id="credits2" readonly class="form-control">
+                                        <input type="text" name="credits2" value="" id="credits2" readonly class="credits2 form-control">
                                     </td>
 
 
@@ -221,9 +221,50 @@
 
         </div>
     </section>
+    <script>
+        var total = $("#total").text();
+
+        $(document).ready(function() {
+            $(".act1").on('keyup change', calculateSum);
+        });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".act1").each(function() {
+                sum += parseFloat(this.value / total * 100 * 0.10);
+            });
+            console.log(sum);
+            $row.find(".credits1").val(sum.toFixed(2));
+        }
+    </script>
 
 
     <script>
+        var total = $("#total").text();
+
+        $(document).ready(function() {
+            $(".act2").on('keyup change', calculateSum);
+        });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".act2").each(function() {
+                sum += parseFloat(this.value / total * 100 * 0.10);
+            });
+            console.log(sum);
+            $row.find(".credits2").val(sum.toFixed(2));
+        }
+    </script>
+
+
+
+    <!-- <script>
         var total = $("#total").text();
 
         $(document).ready(function() {
@@ -258,7 +299,7 @@
                 $("#credits2").val(calculated_total_sum.toFixed(2));
             });
         });
-    </script>
+    </script> -->
 
 
 

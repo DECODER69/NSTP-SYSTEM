@@ -14,8 +14,8 @@
     <!-- pagination css -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
 </head>
 
 
@@ -156,7 +156,7 @@
 
 
                                     <td class="result">
-                                        <input type="text" name="credits1" class="credits form-control" value="{{s.exe_credits}}" id="credits" readonly>
+                                        <input type="text" name="credits1" class="credits1 form-control" value="{{s.exe_credits}}" id="credits" readonly>
                                     </td>
 
 
@@ -212,7 +212,7 @@
 
 
                                     <td class="result">
-                                        <input type="text" name="credits2" class="credits" value="" id="credits2" readonly class="form-control">
+                                        <input type="text" name="credits2" value="" id="credits2" readonly class="credits2 form-control">
                                     </td>
 
 
@@ -311,9 +311,54 @@
             })
         });
     </script> -->
+    <!-- 
+    new calculation scri[ogp['ewhg']] -->
+
+    <script>
+        var total = $("#total").text();
+        var quiz = $("#quiz").text();
+        $(document).ready(function() {
+            $(".quiz_sem1").on('keyup change', calculateSum);
+        });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".quiz_sem1").each(function() {
+                sum += parseFloat(this.value / total * 100 * quiz);
+            });
+            console.log(sum);
+            $row.find(".credits1").val(sum.toFixed(2));
+        }
+    </script>
 
 
     <script>
+        var total = $("#total").text();
+        var quiz = $("#exercises").text();
+        $(document).ready(function() {
+            $(".quiz_sem2").on('keyup change', calculateSum2);
+        });
+
+        function calculateSum2() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".quiz_sem2").each(function() {
+                sum += parseFloat(this.value / total * 100 * quiz);
+            });
+            console.log(sum);
+            $row.find(".credits2").val(sum.toFixed(2));
+        }
+    </script>
+
+
+
+
+    <!-- <script>
         var total = $("#total").text();
         var quiz = $("#exercises").text();
         $(document).ready(function() {
@@ -348,7 +393,7 @@
                 $("#credits2").val(calculated_total_sum.toFixed(2));
             });
         });
-    </script>
+    </script> -->
 
 </body>
 

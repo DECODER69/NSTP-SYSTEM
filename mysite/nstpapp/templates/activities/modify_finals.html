@@ -48,7 +48,7 @@
                             {% for s in first %}
                             <p id="total" style="display: none;">{{s.items}}</p>
                             {% endfor %} {% for s in second %}
-                            <p id="total" style="display: none;">{{s.items}}</p>
+                            <p id="total2" style="display: none;">{{s.items}}</p>
                             {% endfor %}
                         </div>
 
@@ -141,67 +141,45 @@
 
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(function() {
+    <script>
+        var total = $("#total").text();
 
-            var $tblrows = $("#tblProducts tbody tr");
-
-            $tblrows.each(function(index) {
-                var $tblrow = $(this);
-
-                $tblrow.find('.finals1').on('change', function() {
-
-                    var finals1 = $tblrow.find("[name=finals1]").val();
-                    var items = $tblrow.find("[name=items]").val();
-                    var subTotal = parseInt(finals1, 10) / parseFloat(items) * 100 * 0.15;
-
-                    if (!isNaN(subTotal)) {
-
-                        $tblrow.find('.subtot1').val(subTotal.toFixed(2));
-                        var grandTotal = 0;
-
-                        $(".subtot1").each(function() {
-                            var stval = parseFloat($(this).val());
-                            grandTotal += isNaN(stval) ? 0 : stval;
-                        });
-
-                        $('.grdtot').val(grandTotal.toFixed(2));
-                    }
-                });
-            });
+        $(document).ready(function() {
+            $(".finals1").on('keyup change', calculateSum);
         });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".finals1").each(function() {
+                sum += parseFloat(this.value / total * 100 * 0.15);
+            });
+            console.log(sum);
+            $row.find(".subtot1").val(sum.toFixed(2));
+        }
     </script>
 
-    <script type="text/javascript">
-        $(function() {
 
-            var $tblrows = $("#tblProducts tbody tr");
+    <script>
+        var total2 = $("#total").text();
 
-            $tblrows.each(function(index) {
-                var $tblrow = $(this);
-
-                $tblrow.find('.finals2').on('change', function() {
-
-                    var finals2 = $tblrow.find("[name=finals2]").val();
-                    var items2 = $tblrow.find("[name=items2]").val();
-                    var subTotal = parseInt(finals2, 10) / parseFloat(items2) * 100 * 0.15;
-
-                    if (!isNaN(subTotal)) {
-
-                        $tblrow.find('.subtot2').val(subTotal.toFixed(2));
-                        var grandTotal = 0;
-
-                        $(".subtot2").each(function() {
-                            var stval = parseFloat($(this).val());
-                            grandTotal += isNaN(stval) ? 0 : stval;
-                        });
-
-                        $('.grdtot').val(grandTotal.toFixed(2));
-                    }
-                });
-            });
+        $(document).ready(function() {
+            $(".finals2").on('keyup change', calculateSum2);
         });
+
+        function calculateSum2() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".finals2").each(function() {
+                sum += parseFloat(this.value / total2 * 100 * 0.10);
+            });
+            console.log(sum);
+            $row.find(".subtot2").val(sum.toFixed(2));
+        }
     </script>
 
 

@@ -48,6 +48,8 @@
                             <!-- gshshsfhfs -->
                             {% for s in first %}
                             <p id="total" style="display: none;">{{s.items}}</p>
+                            {% endfor %} {% for s in second %}
+                            <p id="total2" style="display: none;">{{s.items}}</p>
                             {% endfor %}
                         </div>
 
@@ -86,21 +88,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for s in content4 %}{% if s.first_sem != 'COMPLETED' %}
+                                {% for s in content4 %}{% if s.first_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
-                                    <td><input type="text" class="qty form-control" value="{{s.midterm1}}" name="midterm1" /></td>
+                                    <td><input type="text" class="midterm1 form-control" value="{{s.midterm1}}" name="midterm1" placeholder="First Sem Midterm" /></td>
                                     {% for s in first %}
                                     <td><input type="text" class="price form-control" value="{{s.items}}" name="price" /></td>
                                     {% endfor %}
-                                    <td class="result"><input type="text" class="subtot form-control" value="{{s.midterm1_credits}}" name="subtot" readonly/></td>
+                                    <td class="result"><input type="text" class="credits1 form-control" value="{{s.midterm1_credits}}" name="subtot" readonly/></td>
                                 </tr>
-                                {% else %}
+                                {% elif s.second_sem == 'ENROLLED' %}
                                 <tr>
                                     <td>{{s.idnumber}} <input type="hidden" value="{{s.id}}" name="ids"></td>
                                     <td>{{s.lastname}} {{s.firstname}}</td>
-                                    <td><input type="text" class="midterm2 form-control" value="{{s.midterm2}}" name="midterm2" /></td>
+                                    <td><input type="text" class="midterm2 form-control" value="{{s.midterm2}}" name="midterm2" placeholder="Second Sem Midterm" /></td>
                                     {% for s in second %}
                                     <td><input type="text" class="price form-control" value="{{s.items}}" name="items" /></td>
                                     {% endfor %}
@@ -131,6 +133,46 @@
 
 
     <!-- for editing tables -->
+    <script>
+        var total = $("#total").text();
+
+        $(document).ready(function() {
+            $(".midterm1").on('keyup change', calculateSum);
+        });
+
+        function calculateSum() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".midterm1").each(function() {
+                sum += parseFloat(this.value / total * 100 * 0.15);
+            });
+            console.log(sum);
+            $row.find(".credits1").val(sum.toFixed(2));
+        }
+    </script>
+
+
+    <script>
+        var total2 = $("#total").text();
+
+        $(document).ready(function() {
+            $(".midterm2").on('keyup change', calculateSum2);
+        });
+
+        function calculateSum2() {
+            var $input = $(this);
+            var $row = $input.closest('tr');
+            var sum = 0;
+
+            $row.find(".midterm2").each(function() {
+                sum += parseFloat(this.value / total2 * 100 * 0.10);
+            });
+            console.log(sum);
+            $row.find(".credits2").val(sum.toFixed(2));
+        }
+    </script>
 
 
 
@@ -146,9 +188,9 @@
     </script>   -->
 
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript">
         $(function() {
             $('.pnm, .price, .subtot, .grdtot').prop('readonly', true);
             var $tblrows = $("#tblProducts tbody tr");
@@ -208,7 +250,7 @@
                 });
             });
         });
-    </script>
+    </script> -->
 
 
     <script src="../../static/js/pag.js"></script>

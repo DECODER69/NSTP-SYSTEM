@@ -216,6 +216,7 @@ def school_years(request):
     s_years = school_year.objects.all()
     ss_years = extenduser.objects.all()
     ewan = school_year.objects.all()
+
    
     context = {
         'ewan':ewan,
