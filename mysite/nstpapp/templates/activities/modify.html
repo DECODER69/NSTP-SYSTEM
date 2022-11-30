@@ -246,10 +246,10 @@
         var total = $("#total").text();
 
         $(document).ready(function() {
-            $(".act2").on('keyup change', calculateSum);
+            $(".act2").on('keyup change', calculateSum2);
         });
 
-        function calculateSum() {
+        function calculateSum2() {
             var $input = $(this);
             var $row = $input.closest('tr');
             var sum = 0;

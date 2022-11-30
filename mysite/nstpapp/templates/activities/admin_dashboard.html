@@ -136,9 +136,11 @@
                     <div class="cards" id="yellow">
                         <div class="inside1">
                             <div class="left">
-                                {% for s in sy %}
+                                {% for s in sy %} {% if s.years %}
                                 <h1>{{s.years}}</h1>
-                                {% endfor %}
+                                {% else %}
+                                <h1>Not Available</h1>
+                                {% endif %} {% endfor %}
                                 <p>School Year</p>
                             </div>
                             <div class="right">
@@ -341,7 +343,7 @@
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
 
         {% for msg1 in messages %}
         Swal.fire({
@@ -351,7 +353,7 @@
             showConfirmButton: false,
             timer: 2500
           }) {% endfor %}
-    </script>  
+    </script>   -->
 
     <script>
         $('.btn-danger').on('click', function(e) {

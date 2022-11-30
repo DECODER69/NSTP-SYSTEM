@@ -178,6 +178,7 @@ urlpatterns = [
     path('cwts_final_grade/', views.cwts_final_grade, name='cwts_final_grade'),
     path('access_cwts_final_grade/', views.access_cwts_final_grade, name='access_cwts_final_grade'),
     path('save_cwts_finale_grades/', views.save_cwts_finale_grades, name='save_cwts_finale_grades'),
+    path('file_upload_index/', views.file_upload_index, name='file_upload_index'),
   
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),

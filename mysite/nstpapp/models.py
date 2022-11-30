@@ -71,6 +71,9 @@ class extenduser(models.Model):
     TD15= models.CharField(max_length=100, default='')
     att_credits = models.CharField(max_length=100, default='')
     
+    # present = models.TextField(max_length=100, default='')
+    # absent = models.TextField(max_length=100, default='')
+    
     
         # merits
     TD1_dem= models.CharField(max_length=100, default='')
@@ -109,7 +112,8 @@ class extenduser(models.Model):
     TD15_2= models.CharField(max_length=100, default='')
     att_credits_2 = models.CharField(max_length=100, default='')
     
-    
+    # present_2 = models.TextField(max_length=100, default='')
+    # absent_2 = models.TextField(max_length=100, default='')
     
     #demerits sencond sem
     TD1_2_dem= models.CharField(max_length=100, default='')
@@ -130,7 +134,7 @@ class extenduser(models.Model):
     second_merits = models.CharField(max_length=20, default='100')
     equivalent_merits2 = models.CharField(max_length=20, default='')
         
-        
+    
     
     # activities
     act1 = models.CharField(max_length=20, default='')
@@ -162,10 +166,7 @@ class extenduser(models.Model):
     exe4 = models.CharField(max_length=20, default='')
     exe5 = models.CharField(max_length=20, default='')
     exe6 = models.CharField(max_length=20, default='')
-    exe7 = models.CharField(max_length=20, default='')
-    exe8 = models.CharField(max_length=20, default='')
-    exe9 = models.CharField(max_length=20, default='')
-    exe10 = models.CharField(max_length=20, default='')
+
     exe_credits = models.CharField(max_length=20, default='')
     
     
@@ -177,10 +178,7 @@ class extenduser(models.Model):
     exe4_2 = models.CharField(max_length=20, default='')
     exe5_2 = models.CharField(max_length=20, default='')
     exe6_2 = models.CharField(max_length=20, default='')
-    exe7_2 = models.CharField(max_length=20, default='')
-    exe8_2 = models.CharField(max_length=20, default='')
-    exe9_2 = models.CharField(max_length=20, default='')
-    exe10_2 = models.CharField(max_length=20, default='')
+
     exe_credits2 = models.CharField(max_length=20, default='')
     
 

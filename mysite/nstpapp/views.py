@@ -65,12 +65,18 @@ def login_page(request):
 
 @login_required(login_url='/login_page')
 def dashboard_page(request):
-    name = extenduser.objects.filter(user = request.user)
     announcement = Announcement.objects.all().order_by('date_posted').reverse()
-    context = {
-        'name': name,
-        'announcement': announcement,
-    }
+    present = []
+    absent = []
+    name = extenduser.objects.filter(user = request.user)
+    for s in name:
+        present.append(s.TD1)
+    
+        context = {
+            'name': name,
+            'announcement': announcement,
+            'present': present
+        }
     return render(request, 'activities/dashboard.html', context)
 @login_required(login_url='/login_page')
 def profile_page(request):
@@ -2906,3 +2912,12 @@ def save_cwts_finale_grades(request):
             extenduser.objects.filter(id=d).update(final_grade_2=e, second_equivalents=f)
             messages.success(request, 'Final Grade Updated successfully')
         return redirect('/cwts_final_grade')
+    
+    
+    
+    
+    
+    # file upload
+    
+def file_upload_index(request):
+    return render(request, 'activities/file_upload_preface.html')

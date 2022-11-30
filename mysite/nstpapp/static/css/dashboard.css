@@ -232,7 +232,7 @@ section {
     font-size: 40px;
     height: 60px;
     width: 60px;
-    background: #afafaf;
+    background: #ececec;
     text-align: center;
     color: #940000;
     border-radius: 12px;
@@ -313,7 +313,7 @@ section {
 
 .home-content .announce-boxes .recent-files {
     width: 30%;
-    background: rgb(138, 40, 40);
+    background: rgb(255, 255, 255);
 }
 
 .announce-boxes .recent-files li {

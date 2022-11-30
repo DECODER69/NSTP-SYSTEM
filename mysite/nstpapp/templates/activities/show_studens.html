@@ -219,10 +219,16 @@
         $(document).ready(function() {
             $('tr').each(function() {
                 var results = 0;
+                var present = 0;
+                var absent = 0;
+
                 $(this).find('.tds').each(function() {
                     var marks = $(this).text();
                     if (marks.length !== 0) {
                         results += parseFloat(marks / td_count * 100 * 0.30);
+                        present += parseFloat(marks);
+                        absent += parseFloat(td_count - marks);
+                        console.log(absent)
                     }
                 });
                 $(this).find('.result').html(results.toFixed(2));
