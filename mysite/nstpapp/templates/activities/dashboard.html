@@ -151,13 +151,15 @@
 
                     </div>
                     <div class="recent-files box">
-                        <div class="title"><i class="fa-solid fa-scroll"></i> Attendance</div>
+                        <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record</div>
                         <hr>
                         <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart"></canvas>
                         </div><br>
                         {% for s in name %}
-                        <h1>{{s.percentage1|floatformat:2 }} %</h1>
+                        <h1>{{s.percentage1 }} %</h1>
+                        <h5>Current Score</h5>
+
                         {% endfor %}
 
                     </div>
@@ -182,12 +184,12 @@
     <script>
 
     var config = {
-      type: 'pie',
+      type: 'doughnut',
       data: {
         datasets: [{
           data: [ {{absent|safe}} , {{present |safe}}],
           backgroundColor: [
-             '#db0505','#00a100'
+             '#D0021B','#7ED321'
           ],
           label: {{labels | safe}}
         }],
@@ -197,13 +199,17 @@
         responsive: true
       }
     };
+    
 
     window.onload = function() {
       var ctx = document.getElementById('pie-chart').getContext('2d');
+   
       window.myPie = new Chart(ctx, config);
     };
 
      </script>
+
+     
 </body>
 
 </html>
