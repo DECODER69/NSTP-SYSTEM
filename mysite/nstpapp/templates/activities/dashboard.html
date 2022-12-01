@@ -151,14 +151,15 @@
 
                     </div>
                     <div class="recent-files box">
-                        <div class="title"><i class="fa-solid fa-scroll"></i> Course Materials</div>
+                        <div class="title"><i class="fa-solid fa-scroll"></i> Attendance</div>
                         <hr>
-                        <div id="container" style="width: 75%; ">
+                        <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart"></canvas>
-                        </div>
-{% for s in present %}
-<h1>{{s.TD1}}</h1>
-{% endfor %}
+                        </div><br>
+                        {% for s in name %}
+                        <h1>{{s.percentage1|floatformat:2 }} %</h1>
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>
@@ -184,13 +185,13 @@
       type: 'pie',
       data: {
         datasets: [{
-          data: {{ present|safe }},
+          data: [ {{absent|safe}} , {{present |safe}}],
           backgroundColor: [
-            '#696969'
+             '#db0505','#00a100'
           ],
-          label: 'Population'
+          label: {{labels | safe}}
         }],
-        
+        labels: {{labels | safe}}
       },
       options: {
         responsive: true

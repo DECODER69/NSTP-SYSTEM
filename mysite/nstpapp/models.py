@@ -47,9 +47,9 @@ class extenduser(models.Model):
     gcontact = models.CharField(max_length=20, default='')
     
     idpic = models.ImageField(upload_to="images/", default='' )
-    disease  = models.CharField(max_length=100, default='')
-    specific = models.CharField(max_length=100, default='')
-    proof = models.FileField(upload_to='proofs/', default='')
+    # disease  = models.CharField(max_length=100, default='')
+    # specific = models.CharField(max_length=100, default='')
+    # proof = models.FileField(upload_to='proofs/', default='')
     s_year = models.CharField(max_length=100, default='0000')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
@@ -70,6 +70,9 @@ class extenduser(models.Model):
     TD14= models.CharField(max_length=100, default='')
     TD15= models.CharField(max_length=100, default='')
     att_credits = models.CharField(max_length=100, default='')
+    pres1 = models.CharField(max_length=20, default='')
+    abs1 = models.CharField(max_length=20, default='')
+    percentage1 = models.CharField(max_length=20, default='')
     
     # present = models.TextField(max_length=100, default='')
     # absent = models.TextField(max_length=100, default='')
@@ -111,6 +114,9 @@ class extenduser(models.Model):
     TD14_2= models.CharField(max_length=100, default='')
     TD15_2= models.CharField(max_length=100, default='')
     att_credits_2 = models.CharField(max_length=100, default='')
+    pres2 = models.CharField(max_length=20, default='')
+    abs2 = models.CharField(max_length=20, default='')
+    percentage2 = models.CharField(max_length=20, default='')
     
     # present_2 = models.TextField(max_length=100, default='')
     # absent_2 = models.TextField(max_length=100, default='')
@@ -180,10 +186,6 @@ class extenduser(models.Model):
     exe6_2 = models.CharField(max_length=20, default='')
 
     exe_credits2 = models.CharField(max_length=20, default='')
-    
-
-    
-    
     midterm1 = models.CharField(max_length=20, default='')
     midterm1_credits = models.CharField(max_length=20, default='')
     

@@ -13,7 +13,7 @@ from webbrowser import get
 from django.http import HttpResponseRedirect
 from django.http.request import QueryDict
 
-
+from django.db.models import Count
 from http.client import HTTPResponse
 from django.urls import reverse
 from multiprocessing import context
@@ -66,17 +66,29 @@ def login_page(request):
 @login_required(login_url='/login_page')
 def dashboard_page(request):
     announcement = Announcement.objects.all().order_by('date_posted').reverse()
+    labels = [ 'ABSENT','PRESENT']
     present = []
     absent = []
     name = extenduser.objects.filter(user = request.user)
-    for s in name:
-        present.append(s.TD1)
+    pres1 = extenduser.objects.all()
+    abs1 = extenduser.objects.all()
     
-        context = {
-            'name': name,
-            'announcement': announcement,
-            'present': present
-        }
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+
+    context = {
+        'name': name,
+        'announcement': announcement,
+        'present': present,
+        'absent': absent,
+        'labels': labels,
+        
+      
+    }
+    print(labels)
     return render(request, 'activities/dashboard.html', context)
 @login_required(login_url='/login_page')
 def profile_page(request):
@@ -1673,6 +1685,11 @@ def update_attendance(request):
 
 def update_att_credits(request):
     if request.method == 'POST':
+        pres1 = request.POST.getlist('pres1')
+        abs1 = request.POST.getlist('abs1')
+        percentages = request.POST.getlist('percentage')
+      
+
         ids = request.POST.getlist('getId')
         credits = request.POST.getlist('credits')
         ids2 = request.POST.getlist('ids2')
@@ -1680,10 +1697,10 @@ def update_att_credits(request):
         print("creds "+ str(credits2))
         print("ids"+ str(ids2))
         
-        for i, j in zip(ids, credits):
-            print("id" + str(i), "creds"+ str(j))
-            extenduser.objects.filter(id=i).update(att_credits=j)
+        for i, j, k, l, m in zip(ids, credits, pres1, abs1, percentages):
+            extenduser.objects.filter(id=i).update(att_credits=j, pres1=k, abs1=l, percentage1=m)
         # extenduser.objects.filter
+ 
         
         for k, l in zip(ids2, credits2):
             extenduser.objects.filter(id=k).update(att_credits_2=l)

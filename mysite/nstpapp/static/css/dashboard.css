@@ -36,7 +36,7 @@ section {
     width: 100%;
     justify-content: space-between;
     display: flex;
-    background: #4b4d52;
+    background: #524b4b;
     height: 60px !important;
 }
 
@@ -316,11 +316,9 @@ section {
     background: rgb(255, 255, 255);
 }
 
-.announce-boxes .recent-files li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
+.announce-boxes .recent-files h1 {
+    text-align: center;
+    font-weight: bold;
 }
 
 .announce-boxes .recent-files li a img {
