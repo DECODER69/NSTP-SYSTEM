@@ -1,151 +1,282 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="../../static/css/profile.css">
+    <link rel="icon" href="../../static/images/tup.png">
     <title>profile</title>
 </head>
 
 <body>
     {% include 'activities/navbar.html' %}
 
+    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Profile Picture</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    {% for s in details %}
+                    <img src="{{s.picture.url}}" alt=""> {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-    <section class="home-section">
-        <a href="#">
-            <h1 class="text"><i class='bx bx-user'></i>User Profile</h1><br></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class="fa-solid fa-user"></i> USER PROFILE</h1><br>
+        </div>
+
+        <br>
         <!-- whole body -->
         <div class="bg">
-            <div class="profile">
-                {% for e in details %}
-                <div class="first">
-                    <div class="left"><br>&nbsp;<br>&nbsp;<br>
-                        <img src="{{e.picture.url}}" id="picture"><br>
-                        <h1 class="name" id="name">{{e.firstname}} {{e.lastname}}</h1>
-                        <p class="name">{{e.idnumber}}</p>
+            {% for s in details %}
+            <form action="{% url 'activities:edit' s.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="alls">
+                    <h3>NSTP Profile Completion</h3>
+                    <p><i class="fa-solid fa-location-crosshairs"></i> &nbsp;CQT Avenue Brgy. Salawag Dasmariñas City, Cavite, Dasmariñas, Philippines</p>
+
+                </div>
+
+                <div class="upper">
+                    <h3><span id="bar">|</span><span id="student">STUDENT</span> <span>INFORMATION</span></h3>
+
+                    <div class="buttons">
+                        <div class="ehe">
+                            <div>
+                                <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Save</button>
+
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="right">
-                        <div class="cool" id="part1">
 
-                            <div class="blocks">
-                                <h1 class="ti">Personal Information</h1>
-                                <a href="/editprofile" style="text-decoration: none;"><i class='bx bx-edit' id="edit"></i> Edit Profile</a>
-                            </div>
+                </div>
+                <hr>
+                <!-- ghugaugdagg -->
 
-                            <hr>
-                            <div class="block">
-                                <label>Gender: </label>
-                                <p class="tag">{{e.gender}}</p>
-                            </div>
+                <div class="personal">
+                    <div class="per_2">
+                        <div class="profile">
+                            <img src="{{s.picture.url}}" alt="Profile picture" data-toggle="modal" data-target="#profile" class="btn btn-dark">
 
-                            <div class="block">
-                                <label>Course/Section: </label>
-                                <p class="tag">{{e.section}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Email: </label>
-                                <p class="tag">{{e.email}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Age: </label>
-                                <p class="tag">{{e.age}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Civil Status: </label>
-                                <p class="tag">{{e.civil}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Phone Number: </label>
-                                <p class="tag">{{e.cpnumber}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Address: </label>
-                                <p class="tag">{{e.address}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Birthday: </label>
-                                <p class="tag">{{e.birthday}}</p>
-                            </div>&nbsp;<br>&nbsp;<br>
+                        </div>
 
+                        <div class="details">
 
-                            <!-- FAMILYYYYYYYYYYYYYY -->
-                            <div class="blocks">
-                                <h1 class="ti">Family Background</h1>
-
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleFormControlInput1">ID Number</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="TUPC-18-XXX" value="{{s.idnumber}}" disabled>
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Full name</label>
+                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.lastname}}, {{s.firstname}} {{s.middlename}}" disabled>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleFormControlInput1">Course&nbsp;<i class="fa-solid fa-asterisk"></i></label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Course" value="{{s.section}}" name="section">
+                                </div>
                             </div>
-                            <hr>
-
-                            <div class="block">
-                                <label>Father's Name: </label>
-                                <p class="tag">{{e.nfather}}</p>
-                            </div>
-
-                            <div class="block">
-                                <label>Father's Occupation: </label>
-                                <p class="tag">{{e.foccupation}}</p>
-                            </div>
-
-                            <div class="block">
-                                <label>Mother's Name: </label>
-                                <p class="tag">{{e.nmother}}</p>
-                            </div>
-
-                            <div class="block">
-                                <label>Mother's Occupation: </label>
-                                <p class="tag">{{e.moccupation}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Parent's Contact: </label>
-                                <p class="tag">{{e.pcontact}}</p>
-                            </div>&nbsp;<br>
-
-                            <div class="block">
-                                <label>Guardian's Name: </label>
-                                <p class="tag">{{e.nguardian}}</p>
-                            </div>
-
-                            <div class="block">
-                                <label>Guardian's Occupation: </label>
-                                <p class="tag">{{e.goccupation}}</p>
-                            </div>
-                            <div class="block">
-                                <label>Guardian's Contact: </label>
-                                <p class="tag">{{e.gcontact}}</p>
-                            </div>
-                            <hr>
-
-                            <!-- OTHERSSSSSSSSSSSSSS -->
-
 
 
                         </div>
 
 
+                    </div>
+                    <div class="details2">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="exampleFormControlInput1">Email</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.email}}" name="email">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="exampleFormControlInput1">Phone Number</label>
+                                <input type="text" class="form-control" id="validationDefault02" value="{{s.cpnumber}}" name="cpnumber">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="exampleFormControlInput1">Birthday&nbsp;<i class="fa-solid fa-asterisk"></i></label>
+                                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Birthday" value="{{s.birthday}}" name="birthday">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="details2">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="exampleFormControlInput1">Complete Address&nbsp;<i class="fa-solid fa-asterisk"></i></label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Address" value="{{s.address}}" name="address">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="exampleFormControlInput1">Civil Status&nbsp;<i class="fa-solid fa-asterisk"></i></label>
+                                <!-- <input type="text" class="form-control" id="validationDefault02" value="{{s.civil}}" name="civil"> -->
+                                <select name="civil" id="sel" class="form-control">
+                                    <option value="{{s.civil}}" selected>{{s.civil}}</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+
+                            </select>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="exampleFormControlInput1">Age&nbsp;<i class="fa-solid fa-asterisk"></i></label>
+                                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.age}}" name="age">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="exampleFormControlInput1">Gender&nbsp;<i class="fa-solid fa-asterisk"></i></label>
+                                <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.gender}}" name="gender"> -->
+                                <select name="gender" id="sel" class="form-control">
+                                <option value="{{s.gender}}" selected>{{s.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+
+                        </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <h3><span id="bar">|</span><span id="student">FAMILY</span> <span>INFORMATION</span></h3>
+                <div class="personal">
+                    <div class="per_3">
+
+
+                        <div class="details2">
+
+                            <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Father's Name</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.nfather}}" name="nfather">
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Father's Profession</label>
+                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.foccupation}}" name="foccupation">
+                                </div>
+                                <!-- <div class="col-md-3 mb-3">
+                                <label for="exampleFormControlInput1">Contact</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.pcontact}}" disabled>
+                            </div> -->
+                            </div>
+
+
+                        </div>
+
+                        <div class="details2">
+
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="exampleFormControlInput1">Mother's Name</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.nmother}}" name="nmother">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="exampleFormControlInput1">Mother's Profession</label>
+                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.moccupation}}" name="moccupation">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleFormControlInput1">Parents Contact</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.pcontact}}" name="pcontact">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="details2">
+
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="exampleFormControlInput1">Guardian's Name</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.nguardian}}" name="nguardian">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="exampleFormControlInput1">Guardian's Profession</label>
+                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.goccupation}}" name="goccupation">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="exampleFormControlInput1">Contact</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.gcontact}}" name="gcontact">
+                                </div>
+                            </div>
+
+
+                        </div>
 
 
                     </div>
-
                 </div>
-                {% endfor %}
-
-            </div>
-
-
-
+                <br>
+                <h3><span id="bar">|</span><span id="student">HEALTH</span> <span>INFORMATION</span></h3>
+                <div class="personal">
+                    <div class="per_3">
 
 
+                        <div class="details2">
+
+                            <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Sickness</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.sources_income}}" name="sources_income">
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Monthly Income</label>
+                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.monthly_income}}" name="monthly_income">
+                                </div>
+                                <!-- <div class="col-md-3 mb-3">
+                                <label for="exampleFormControlInput1">Contact</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.pcontact}}" disabled>
+                            </div> -->
+                            </div>
 
 
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h3><span id="bar">|</span><span id="student">GRADES</span> <span>SCREENSHOT</span></h3>
+                <div class="personal">
+                    <div class="per_3">
+                        <div class="details2">
+                            <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Submit here the picture/screenshot of your recent GWA*</label>
+                                    <input type="file" class="form-control" id="exampleFormControlInput1" placeholder="gsgs" name="grade_ss" id="grade_ss" required>
+                                    <input type="hidden" name="ids" value="{{s.id}}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {% if s.grade_ss != '' %}
+                                    <a href="{{s.grade_ss.url}}" target="_blank">
+                                        <img src="{{s.grade_ss.url}}" alt="Grade " id="grade"></a> {% else %}
+                                    <img src="" alt="No grade Submitted " id="grade"> {% endif %}
+                                </div>
 
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
 
+            </form>
+            {% endfor %}
         </div>
-
     </section>
 
 </body>

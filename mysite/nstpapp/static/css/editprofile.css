@@ -6,29 +6,49 @@
     font-family: "Poppins", sans-serif;
 }
 
-.home-section {
-    background: #c51c39;
-    position: relative;
-    min-height: 100vh;
-    top: 0;
-    left: 78px;
-    width: calc(100% - 78px);
-    transition: all 0.5s ease;
-    z-index: 2;
+
+/* add */
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
 }
 
-.sidebar.open~.home-section {
-    left: 250px;
-    width: calc(100% - 250px);
-}
-
-.home-section .text {
+section {
     display: inline-block;
+    width: 100%;
+    padding-left: 0px;
+}
+
+section>div {
+    padding: 20px 40px;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+.heads {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    background: #524b4b;
+    height: 60px !important;
+}
+
+.heads .text {
     color: #ffffff;
     font-size: 20px;
-    font-weight: 500;
-    margin: 18px
+    font-weight: bold;
 }
+
+
+/* eof new */
 
 #spacer {
     display: inline-block;

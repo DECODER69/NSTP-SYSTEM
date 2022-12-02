@@ -36,7 +36,7 @@ section {
     width: 100%;
     justify-content: space-between;
     display: flex;
-    background: #524b4b;
+    background: #4b4d52;
     height: 60px !important;
 }
 
@@ -566,4 +566,19 @@ h5 {
     margin: auto;
     align-items: center !important;
     background-color: #008822;
+}
+
+.st {
+    display: block;
+    text-align: center;
+}
+
+.st #spresent i {
+    color: #7ED321;
+    font-size: 15px;
+}
+
+.st #sabsent i {
+    color: #D0021B;
+    font-size: 15px;
 }

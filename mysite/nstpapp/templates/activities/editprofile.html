@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>edit profile</title>
+    <title>Student Profile</title>
     <link rel="stylesheet" href="../../static/css/editprofile.css">
 
     <!-- forr changing profileshit -->
@@ -17,16 +17,12 @@
 <body>
     {% include 'activities/navbar.html' %}
 
-    <section class="home-section">
-        <div class="lines">
-            <a href="/profile_page">
-                <h1 class="text"><i class='bx bx-user'></i>User Profile</h1>
-            </a>
-            <a href="/editprofile">
-                <h1 class="text">/</h1>
-                <!-- <i class='bx bxs-chevron-right' id="spacer"></i> -->
-                <h1 class="text"><i class='bx bx-edit' id="edit"></i>Edit Profile</h1><br></a>
-        </div>
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class="fa-solid fa-user"></i> USER PROFILE</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
 
         <div class="bg">
             {% for e in ediwow %}

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>StudentSection</title>
+    <title>Student Dashboard</title>
     <link rel="stylesheet" href="../../static/css/dashboard.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,11 +157,25 @@
                         <br>
                         <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart"></canvas>
-                        </div><br> {% for s in name %}
+                        </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' %}
                         <h1>{{s.percentage1 }} %</h1>
                         <h5>Current Score</h5>
+                        <br>
+                        <div class="st">
+                            <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres1|floatformat:0}} Present Days</span><br>
+                            <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
+                        </div>
 
-                        {% endfor %}
+                        {% elif s.second_sem == 'ENROLLED' %}
+                        <h1>{{s.percentage2 }} %</h1>
+                        <h5>Current Score</h5>
+                        <br>
+                        <div class="st">
+                            <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
+                            <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
+                        </div>
+
+                        {% endif %} {% endfor %}
 
                     </div>
                 </div>
@@ -171,7 +185,7 @@
         {% comment %} <small id="smalls">@sentinels 2022</small> {% endcomment %}
 
     </section>
- 
+
 
 
     <!-- <div class="custom-shape-divider-bottom-1669703185">
