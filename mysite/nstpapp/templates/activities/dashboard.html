@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- for chart js -->
 
- 
+
 </head>
 
 <body>
@@ -126,25 +126,26 @@
                         <hr>
                         <div class="announce-details">
                             {% for manji in announcement %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
-                            <div class="outer">
+                            <button class="accordion">
+                                
                                 <div class="up">
-                                    <div class="logs">
-                                        <i class="fa-solid fa-user-shield"></i>
+                                    <div class="headss">
+                                        <i class="fa-solid fa-user-shield"></i><br>&nbsp;
+                                        <div class="dts">
+                                            <h2>NSTP Staff</h2>
+                                            <h4>{{manji.date_posted}}</h4>
+
+                                        </div>
+                                    
                                     </div>
-                                    <div class="sub">
-                                        <h1 id="subject">NSTP Staff</h1>
-                                        <h1 id="date">{{manji.date_posted}}</h1>
-                                    </div>
+                                    <h5>{{manji.subject}}</h5>
 
                                 </div>
-
-                                <br>
-                                <div class="down">
-                                    <h1 id="subject2">{{manji.subject}}</h1><br>
-                                    <h5>{{manji.content}}</h5>
-                                </div>
+                            </button>
+                            <div class="panel"><br>
+                                <p>{{manji.content}}</p>
                             </div>
-                            <br> {% endif %}{% endfor %}{% endfor %}
+                            &nbsp; {% endif %}{% endfor %}{% endfor %}
 
                         </div>
 
@@ -153,10 +154,10 @@
                     <div class="recent-files box">
                         <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record</div>
                         <hr>
+                        <br>
                         <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart"></canvas>
-                        </div><br>
-                        {% for s in name %}
+                        </div><br> {% for s in name %}
                         <h1>{{s.percentage1 }} %</h1>
                         <h5>Current Score</h5>
 
@@ -167,9 +168,10 @@
             </div>
         </div>
 
-
+        {% comment %} <small id="smalls">@sentinels 2022</small> {% endcomment %}
 
     </section>
+ 
 
 
     <!-- <div class="custom-shape-divider-bottom-1669703185">
@@ -179,6 +181,22 @@
             <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
         </svg>
     </div> -->
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
@@ -209,7 +227,7 @@
 
      </script>
 
-     
+
 </body>
 
 </html>

@@ -204,27 +204,29 @@ section {
 
 .home-content .announce-boxes .recent-announce {
     width: 65%;
-    height: 85vh;
-    border: solid 2px rgba(197, 197, 197, 0.644);
+    height: auto;
+    border: solid 2px rgba(197, 197, 197, 0.74);
     padding: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 6px;
     margin-bottom: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(94, 94, 94, 0.295);
 }
 
 .outer {
     background-color: #ffffff;
     width: 100%;
     height: auto;
+    max-height: 85vh;
     display: block;
-    padding: 10px;
+    padding: 3px;
     border-radius: 12px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.219), 0 6px 20px 0 rgba(94, 94, 94, 0.837);
 }
 
 .up {
     width: 100%;
-    height: 80px;
+    height: auto;
     display: flex;
 }
 
@@ -255,6 +257,10 @@ section {
     font-size: 18px;
 }
 
+.down {
+    background-color: #008822;
+}
+
 .down #subject2 {
     font-weight: bold;
     font-size: 22px;
@@ -268,11 +274,13 @@ section {
 
 .down h5 {
     margin-left: 20px;
+    float: left;
 }
 
 .home-content .announce-boxes .announce-details {
     width: 100%;
-    height: 90%;
+    height: auto;
+    max-height: 70vh;
     padding: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 6px;
@@ -467,7 +475,7 @@ h5 {
 /* modal */
 
 .custom-shape-divider-top-1669719491 {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -493,3 +501,69 @@ h5 {
 
 
 /* accordion */
+
+.accordion {
+    background-color: rgb(214, 214, 214);
+    border-radius: 5px;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+.active,
+.accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion .up .headss {
+    display: flex;
+}
+
+.up h5 {
+    font-weight: bold;
+    color: rgb(31, 31, 31);
+}
+
+.accordion .up .headss i {
+    font-size: 30px;
+    font-weight: bolder;
+    color: #0b2935;
+}
+
+.accordion .up .headss .dts {
+    display: block;
+}
+
+.dts h2 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 8pt;
+}
+
+.dts h4 {
+    font-size: 14px;
+    font-weight: 100;
+}
+
+#smalls {
+    text-align: center;
+    margin: auto;
+    align-items: center !important;
+    background-color: #008822;
+}
