@@ -1,83 +1,111 @@
-<!DOCTYPE html>{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>others</title>
-    <link rel="stylesheet" href="../../static/css/others.css">
+    <link rel="stylesheet" href="../../static/css/profile.css">
+    <link rel="icon" href="../../static/images/tup.png">
+    <title>profile</title>
 </head>
 
 <body>
     {% include 'activities/navbar.html' %}
 
-    <section class="home-section">
-        <div class="lines">
+    <div class="modal fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Profile Picture</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    {% for s in details %}
+                    <img src="{{s.picture.url}}" alt=""> {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="page-content">
+        <div class="heads">
+
             <a href="/profile_page">
-                <h1 class="text"><i class='bx bx-user'></i>User Profile</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i>USER PROFILE &nbsp;>&nbsp;</h1>
             </a>
-            <a href="/editprofile">
-                <h1 class="text">/</h1>
-                <!-- <i class='bx bxs-chevron-right' id="spacer"></i> -->
-                <h1 class="text"><i class='bx bx-edit' id="edit"></i>Edit Profile</h1><br>
-            </a>
-            <a href="/others">
-                <h1 class="text">/</h1>
-                <!-- <i class='bx bxs-chevron-right' id="spacer"></i> -->
-                <h1 class="text"><i class='bx bx-edit' id="edit"></i> Other Requirements</h1><br>
-            </a>
+
+
+            <h1 class="text" style="color: rgb(0, 248, 0);"><i class='bx bx-intersect'></i>HEALTH
+            </h1>
+
         </div>
 
+        <br>
+        <!-- whole body -->
         <div class="bg">
-            <div class="profile">
-                <div class="first">
-                    <div class="right">
-                        <div class="blocks">
-                            <h1 class="ti">Other Requirements &nbsp;*Required*</h1>
-                        </div>
-
-                        <hr> {% for e in uwu %}
-                        <form action="{% url 'activities:edit_others' e.id %}" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="block">
-                                <label>Submit here the photo of your Student's ID.</label>
-                                {% if e.idpic %}
-                                <img src="{{e.idpic.url}}" class="ids" alt="id picture">
-                                {% else %}
-                                <input type="file" name="studentid" >
-                                {% endif %}
-
-                            </div>
-                            <div class="block">
-                                {% if e.idpic %}
-                                <a href="{{e.idpic.url}}" target="_blank">
-                                    <img src="{{e.idpic.url}}" class="ids" alt="id picture">
-                                </a>
-                                {% else %}
-                                <p></p>
-                                {% endif %}
-
-
-                            </div>
-
-                            &nbsp;<br>&nbsp;<br>
-
-                            <hr>
-
-                            <hr>
-                            <div class="buttons">
-                                <button type="submit" class="btn btn-success"><i class='bx bx-save'> Next</i> </button>
-
-                            </div>
-                        </form>
-                        {% endfor %}
-                    </div>
-
+            {% for s in details %}
+            <form action="{% url 'activities:edit_health' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="alls">
+                    <h3>NSTP Profile Completion</h3>
+                    <p><i class="fa-solid fa-location-crosshairs"></i> &nbsp;CQT Avenue Brgy. Salawag Dasmariñas City, Cavite, Dasmariñas, Philippines</p>
 
                 </div>
 
-            </div>
+
+                <!-- ghugaugdagg -->
+
+                <h3><span id="bar">|</span><span id="student">HEALTH</span> <span>STATUS</span></h3>
+                <div class="personal">
+                    <div class="per_3">
+
+
+                        <div class="details2">
+
+                            <div class="form-row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Sickness</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.sickness}}" name="sickness">
+                                </div>
+                                <div class="col-md-5 mb-3">
+                                    <label for="exampleFormControlInput1">Proof of your sickness</label>
+                                    <input type="file" class="form-control" id="validationDefault02" value="" name="proof">
+                                    <input type="hidden" name="ids" value="{{s.user_id}}">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    {% if s.proof.url != '' %}
+                                    <a href="{{s.proof.url}}" target="_blank">Proof Submitted</a> {% else %}
+                                    <a href="#" title="No submitted proof">Proof Submitted</a> {% endif %}
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="buttons">
+                    <div class="ehe">
+                        <div>
+                            <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Save</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </form>
+            {% endfor %}
         </div>
     </section>
 

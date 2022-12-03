@@ -30,8 +30,8 @@ urlpatterns = [
     path('edit/<str:id>', views.edit, name='edit'),
     path('others/', views.others, name='others'),
     path('edit_others/<str:id>', views.edit_others, name='edit_others'),
-    path('health/', views.health, name='health'),
-    path('edit_health/<str:id>', views.edit_health, name='edit_health'),
+    # path('health/', views.health, name='health'),
+    path('edit_health/', views.edit_health, name='edit_health'),
     path('file_manager/', views.file_manager, name='file_manager'),
     path('files_rotc/', views.files_rotc, name='files_rotc'),
     path('rotc_files/', views.rotc_files, name='rotc_files'),
@@ -179,7 +179,7 @@ urlpatterns = [
     path('access_cwts_final_grade/', views.access_cwts_final_grade, name='access_cwts_final_grade'),
     path('save_cwts_finale_grades/', views.save_cwts_finale_grades, name='save_cwts_finale_grades'),
     path('file_upload_index/', views.file_upload_index, name='file_upload_index'),
-  
+    path('health/', views.health, name='health'),
 
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

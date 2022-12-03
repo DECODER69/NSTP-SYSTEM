@@ -47,9 +47,9 @@ class extenduser(models.Model):
     gcontact = models.CharField(max_length=20, default='')
     
     idpic = models.ImageField(upload_to="images/", default='' )
-    # disease  = models.CharField(max_length=100, default='')
-    # specific = models.CharField(max_length=100, default='')
-    # proof = models.FileField(upload_to='proofs/', default='')
+    sickness  = models.CharField(max_length=100, default='')
+
+    proof = models.FileField(upload_to="proof/", default='')
     s_year = models.CharField(max_length=100, default='0000')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     

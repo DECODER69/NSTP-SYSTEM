@@ -55,15 +55,7 @@
                 <div class="upper">
                     <h3><span id="bar">|</span><span id="student">STUDENT</span> <span>INFORMATION</span></h3>
 
-                    <div class="buttons">
-                        <div class="ehe">
-                            <div>
-                                <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Save</button>
 
-                            </div>
-                        </div>
-
-                    </div>
 
                 </div>
                 <hr>
@@ -126,7 +118,7 @@
                                 <label for="exampleFormControlInput1">Civil Status&nbsp;<i class="fa-solid fa-asterisk"></i></label>
                                 <!-- <input type="text" class="form-control" id="validationDefault02" value="{{s.civil}}" name="civil"> -->
                                 <select name="civil" id="sel" class="form-control">
-                                    <option value="{{s.civil}}" selected>{{s.civil}}</option>
+                                    <option value="{{s.civil}}"  disabled>{{s.civil}}</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
 
@@ -140,7 +132,7 @@
                                 <label for="exampleFormControlInput1">Gender&nbsp;<i class="fa-solid fa-asterisk"></i></label>
                                 <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.gender}}" name="gender"> -->
                                 <select name="gender" id="sel" class="form-control">
-                                <option value="{{s.gender}}" selected>{{s.gender}}</option>
+                                <option value="{{s.gender}}" disabled>{{s.gender}}</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
 
@@ -153,7 +145,7 @@
                 <br>
                 <br>
 
-                <h3><span id="bar">|</span><span id="student">FAMILY</span> <span>INFORMATION</span></h3>
+                <h3><span id="bar">|</span><span id="student">FAMILY</span> <span>INFORMATION</span>(At least one )</h3>
                 <div class="personal">
                     <div class="per_3">
 
@@ -222,7 +214,7 @@
                     </div>
                 </div>
                 <br>
-                <h3><span id="bar">|</span><span id="student">HEALTH</span> <span>INFORMATION</span></h3>
+                <!-- <h3><span id="bar">|</span><span id="student">HEALTH</span> <span>STATUS</span></h3>
                 <div class="personal">
                     <div class="per_3">
 
@@ -232,46 +224,32 @@
                             <div class="form-row">
                                 <div class="col-md-5 mb-3">
                                     <label for="exampleFormControlInput1">Sickness</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.sources_income}}" name="sources_income">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="" name="sickness">
                                 </div>
                                 <div class="col-md-5 mb-3">
-                                    <label for="exampleFormControlInput1">Monthly Income</label>
-                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.monthly_income}}" name="monthly_income">
+                                    <label for="exampleFormControlInput1">Proof of your sickness</label>
+                                    <input type="file" class="form-control" id="validationDefault02" value="" name="proof">
                                 </div>
-                                <!-- <div class="col-md-3 mb-3">
-                                <label for="exampleFormControlInput1">Contact</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.pcontact}}" disabled>
-                            </div> -->
+                                <div class="col-md-3 mb-3">
+                                    <a href="{{s.proof.url}}">Proof Submitted</a>
+                                </div>
                             </div>
 
 
                         </div>
                     </div>
                 </div>
-                <br>
-                <h3><span id="bar">|</span><span id="student">GRADES</span> <span>SCREENSHOT</span></h3>
-                <div class="personal">
-                    <div class="per_3">
-                        <div class="details2">
-                            <div class="form-row">
-                                <div class="col-md-5 mb-3">
-                                    <label for="exampleFormControlInput1">Submit here the picture/screenshot of your recent GWA*</label>
-                                    <input type="file" class="form-control" id="exampleFormControlInput1" placeholder="gsgs" name="grade_ss" id="grade_ss" required>
-                                    <input type="hidden" name="ids" value="{{s.id}}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    {% if s.grade_ss != '' %}
-                                    <a href="{{s.grade_ss.url}}" target="_blank">
-                                        <img src="{{s.grade_ss.url}}" alt="Grade " id="grade"></a> {% else %}
-                                    <img src="" alt="No grade Submitted " id="grade"> {% endif %}
-                                </div>
+                <br> -->
 
+                <div class="buttons">
+                    <div class="ehe">
+                        <div>
+                            <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Save</button>
 
-                            </div>
                         </div>
                     </div>
+
                 </div>
-                <br>
 
 
             </form>

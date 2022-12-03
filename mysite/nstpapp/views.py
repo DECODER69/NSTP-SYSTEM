@@ -70,8 +70,8 @@ def dashboard_page(request):
     present = []
     absent = []
     name = extenduser.objects.filter(user = request.user)
-    pres1 = extenduser.objects.all()
-    abs1 = extenduser.objects.all()
+    pres1 = extenduser.objects.filter(user = request.user)
+    abs1 = extenduser.objects.filter(user = request.user)
     
     for s in pres1:
         present.append(s.pres1)
@@ -92,9 +92,11 @@ def dashboard_page(request):
     return render(request, 'activities/dashboard.html', context)
 @login_required(login_url='/login_page')
 def profile_page(request):
+    name = extenduser.objects.filter(user = request.user)
     details = extenduser.objects.filter(user=request.user)
     context={
         'details':details,
+        'name': name,
     }
     return render(request, 'activities/profile.html', context)
 @login_required(login_url='/login_page')
@@ -111,13 +113,13 @@ def others(request):
         'uwu':uwu,
     }
     return render(request, 'activities/others.html', context)
-@login_required(login_url='/login_page')
-def health(request):
-    uwus = extenduser.objects.filter(user=request.user)
-    context = {
-        'uwus':uwus,
-    }
-    return render(request, 'activities/health.html', context)
+# @login_required(login_url='/login_page')
+# def health(request):
+#     uwus = extenduser.objects.filter(user=request.user)
+#     context = {
+#         'uwus':uwus,
+#     }
+#     return render(request, 'activities/health.html', context)
 
 def file_manager(request):
     return render(request, 'activities/file_manager.html')
@@ -379,7 +381,7 @@ def signin(request):
         return redirect('/login_page')
 
 @login_required(login_url='/login_page')
-def edit(request):
+def edit(request, id):
 
     if request.method == 'POST':
         gender = request.POST.get('gender')
@@ -398,12 +400,22 @@ def edit(request):
         nguardian  = request.POST.get('nguardian')
         goccupation = request.POST.get('goccupation')
         gcontact = request.POST.get('gcontact')
+        
         extenduser.objects.filter(user=request.user).update(gender=gender, section=section, email=email, age=age, 
                                                             civil=civil, cpnumber=cpnumber, address=address, birthday=birthday,
                                                             nfather=nfather, foccupation=foccupation, nmother=nmother, moccupation=moccupation,
                                                             pcontact=pcontact, nguardian=nguardian, goccupation=goccupation, gcontact=gcontact,
                                             )
-        return redirect('/others')
+        
+        # proof = extenduser.objects.get(id=id)
+   
+        # proof.proof = request.FILES['proof']
+        # image_path = proof.proof.path
+        # if os.path.exists(image_path):
+        #     os.remove(image_path)
+        # proof.save()
+        # return render(request, 'activities/others.html')
+        return redirect('/health')
     else:
         return redirect('/editprofile')
 @login_required(login_url='/login_page')
@@ -418,30 +430,7 @@ def edit_others(request, id):
         return redirect('/health')
     return redirect('/others')
 
-@login_required(login_url='/login_page')
-def edit_health(request, id):
-    hehes = extenduser.objects.get(id=id)
-    if request.method == 'POST':
-        proof = request.FILES['prof']
-        if proof is not None:
-            proof_path = proof.path
-            if os.path.exists(proof_path):
-                os.remove(proof_path)
-                disease = request.POST.getlist('check')
-                specific = request.POST.get('spec')
-                hehes=extenduser(disease=disease, specific=specific)
-                hehes.save()
-                return redirect('/health')
-            else:
-                disease = request.POST.getlist('check')
-                specific = request.POST.get('spec')
-                hehes=extenduser(disease=disease, specific=specific)
-                hehes.save()
-                return redirect('/health')
-    else:
-        print("DONE")
-        return redirect('/health')
-    return redirect('/others')
+
 
 def rotc_files(request):
     users = extenduser.objects.filter(user=request.user).filter(field='ROTC')
@@ -2930,11 +2919,48 @@ def save_cwts_finale_grades(request):
             messages.success(request, 'Final Grade Updated successfully')
         return redirect('/cwts_final_grade')
     
+# helsth
+
+def health(request):
+    name = extenduser.objects.filter(user = request.user)
+    details = extenduser.objects.filter(user=request.user)
+    context = {
+        'name':name,
+        'details':details
+    }
+    return render(request, 'activities/others.html', context)
     
+# @login_required(login_url='/login_page')
+def edit_health(request):
     
-    
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        # proof = request.FILES['proof']
+        proof = extenduser.objects.get(id=ids)
+
+        proof.proof = request.FILES['proof']
+        image_path = proof.proof.path
+        if os.path.exists(image_path):
+            os.remove(image_path)
+        proof.save()
+        
+        sickness = request.POST.get('sickness')
+        extenduser.objects.filter(user_id=ids).update(sickness=sickness)
+        return redirect('/profile_page')
+
+    return redirect('/profile_page')
+
+    # proof = extenduser.objects.get(id=id)
+
+    # proof.proof = request.FILES['proof']
+    # image_path = proof.proof.path
+    # if os.path.exists(image_path):
+    #     os.remove(image_path)
+    # proof.save()
     
     # file upload
     
 def file_upload_index(request):
     return render(request, 'activities/file_upload_preface.html')
+
+
