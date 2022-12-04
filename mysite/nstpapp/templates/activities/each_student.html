@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT INFO</title>
+    <link rel="stylesheet" href="../../static/admin_css/each_student.css">
+</head>
+
+<body>
+
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/manage_section">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Section &nbsp;>&nbsp; </h1>
+            </a>
+
+
+            {% for s in details %}
+            <h1 class="text"><i class='bx bx-intersect'></i>{{s.idnumber}}
+            </h1>
+            {% endfor %}
+
+        </div>
+        <div class="bg">
+        </div>
+    </section>
+
+</body>
+
+</html>

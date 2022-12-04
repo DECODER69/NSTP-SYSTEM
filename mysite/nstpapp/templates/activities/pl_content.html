@@ -59,7 +59,7 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:update_section' %}" method="post">
+                    <form action="{% url 'activities:each_student' %}" method="post">
                         {% csrf_token %}
                         <div class="table-responsive">
                             <table id="myTable" class="table table-bordered table-hover">
@@ -70,30 +70,39 @@
                                         <th scope="col">FULL NAME</th>
                                         <th scope="col">COURSE</th>
                                         <th scope="col">MEDICAL CONDITIONS</th>
-                                        <th scope="col">SECTION</th>
-                                        <th scope="col">First Term Grade</th>
-                                        <th scope="col">Second Term Grade</th>
+                                        <th scope="col">MEDICAL PROOF</th>
+
+                                        <th scope="col">NOTES</th>
+
+                                        <th scope="col">ACTIONS</th>
+
+
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
 
                                     <tr>
-                                        <td><input type="checkbox" class="form-control" id="cb" name="cb_1" value="{{s.id}}"></td>
-                                        <th scope="row">{{s.idnumber}}</th>
+                                        <td><input type="checkbox" class="form-control" id="cb" name="cbs" value="{{s.id}}"></td>
+                                        <td scope="row">{{s.idnumber}}</td>
                                         <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-
-
-                                        <td>{{s.section}}</td>
+                                        <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
                                         {% if s.sickness != '' %}
                                         <td style="color:rgb(202, 0, 0); font-weight:bolder;">{{s.sickness}}</td>
+                                        <td>
+                                            <a href="{{s.proof.url}}" target="_blank">Medical Proof</a>
+                                        </td>
                                         {% else %}
                                         <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
-                                        {% endif %}
 
-                                        <td>{{s.platoons}}</td>
-                                        <td>{{s.final_grade}}</td>
-                                        <td>{{s.final_grade2}}</td>
+                                        <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
+                                        {% endif %}
+                                        <td><textarea class="form-control" name="note" id="" cols="30" rows="1" placeholder="Notes" readonly></textarea></td>
+
+                                        <td><input type="hidden" value="{{s.id}}" name="ids"><button class="btn btn-success" type="submit" target="_blank"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
+
+
 
                                     </tr>
                                     {% elif s.second_sem == 'ENROLLED' %}
@@ -108,9 +117,8 @@
 
                                         <td style="color:rgb(66, 66, 66); font-weight:bolder;">{{s.field}}</td>
 
-                                        <td>{{s.platoons}}</td>
-                                        <td>{{s.final_grade}}</td>
-                                        <td>{{s.final_grade2}}</td>
+
+
 
                                     </tr>
 
@@ -120,7 +128,7 @@
                             </table>
                             <br>
                             <hr>
-                            <div class="secttion_c">
+                            <!-- <div class="secttion_c">
                                 <select name="options" id="sel" class="form-control" title="Options">
                                 <option value="DROPPED">DROP</option>
                                 <option value="GRADUATE">GRADUATE</option>
@@ -128,7 +136,7 @@
                             </select>
                                 <br>&nbsp;<br>
                                 <button class="btn btn-success" type="submit" style="width: 100%;" id="dl2"><i class='bx bxs-save' ></i> Save </button>
-                            </div>
+                            </div> -->
                             <br>
                         </div>
                     </form>

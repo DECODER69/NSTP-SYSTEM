@@ -737,6 +737,7 @@ def edit_student(request, id):
 def section_content(request):
     userContent = User.objects.all()
     schools = school_year.objects.all()
+    rotc_section = sections.objects.filter(fiel='ROTC')
     if request.method == 'POST':
      
         getSection = request.POST.get('getSection')
@@ -752,6 +753,7 @@ def section_content(request):
         'content33':content33,
         'getSection':getSection,
         'schools':[schools.last()],
+        'section':rotc_section
          
     }
     print(content33)
@@ -2959,6 +2961,21 @@ def edit_health(request):
     # proof.save()
     
     # file upload
+def each_student(request):
+ 
+    ids= request.POST.get('ids')
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=ids).filter(status='ENROLLED')
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details
+    }
+    
+
+    
+        
+    return render(request, 'activities/each_student.html', context)
     
 def file_upload_index(request):
     return render(request, 'activities/file_upload_preface.html')

@@ -111,6 +111,17 @@ section {
 .table-responsive {
     margin: auto;
     width: 100%;
+    overflow-x: hidden;
+}
+
+.table tbody tr td,
+input,
+textarea,
+select,
+button {
+    font-size: 13px !important;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2b2b2b;
 }
 
 .thead {
