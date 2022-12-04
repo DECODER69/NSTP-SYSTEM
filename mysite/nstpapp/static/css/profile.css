@@ -134,6 +134,15 @@ p {
 .buttons {
     display: flex;
     justify-content: space-between;
+    padding: 20px;
+}
+
+.ehe {
+    margin: auto;
+}
+
+.ehe .btn {
+    width: 100%;
 }
 
 .per_2 {
@@ -246,4 +255,9 @@ p {
 
 .fa-asterisk {
     color: red;
+}
+
+.proof a {
+    text-align: right;
+    float: right;
 }

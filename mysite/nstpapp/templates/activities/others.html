@@ -77,15 +77,25 @@
                                 </div>
                                 <div class="col-md-5 mb-3">
                                     <label for="exampleFormControlInput1">Proof of your sickness</label>
-                                    <input type="file" class="form-control" id="validationDefault02" value="" name="proof">
+                                    <input type="file" class="form-control" id="validationDefault02" value="" name="proof" required>
                                     <input type="hidden" name="ids" value="{{s.user_id}}">
                                 </div>
-                                <div class="col-md-3 mb-3">
+                                <!-- <div class="col-md-3 mb-3">
                                     {% if s.proof.url != '' %}
                                     <a href="{{s.proof.url}}" target="_blank">Proof Submitted</a> {% else %}
                                     <a href="#" title="No submitted proof">Proof Submitted</a> {% endif %}
-                                </div>
+                                </div> -->
                             </div>
+
+
+                        </div>
+                        <div class="details2">
+                            <div class="proof">
+                                {% if s.proof.url != '' %}
+                                <a href="{{s.proof.url}}" target="_blank" title="Proof">View Proof Submitted</a> {% else %}
+                                <a href="#" title="No submitted proof" title="Proof">View Proof Submitted</a> {% endif %}
+                            </div>
+
 
 
                         </div>
@@ -96,7 +106,7 @@
                 <div class="buttons">
                     <div class="ehe">
                         <div>
-                            <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Save</button>
+                            <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Update</button>
 
                         </div>
                     </div>
