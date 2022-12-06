@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage sections</title>
+    <link rel="stylesheet" href="../../static/admin_css/manage_section.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+    <link rel="icon" href="../../static/images/tup.png">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <!-- modal for sections -->
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#ffffff; color:white;">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Section!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'activities:create_section' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Select Component</label>
+                            <select name="field" id="" class="form-control">
+                                <option value="ROTC">ROTC</option>
+                                <option value="CWTS">CWTS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Add here</label>
+                            <input type="text" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="secs" required>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success"><i class='bx bx-plus' style="vertical-align: middle;" ></i> Create</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EOF MODAL -->
+
+    <!-- MODAL FOR PICTURES -->
+
+
+
+    <!-- eof modal for puictures  -->
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-time'></i> Manage Section</h1><br>
+        </div>
+        <div class="bg">
+
+
+            <div class="overall">
+                <div class="left">
+                    <div class="tss">
+
+
+                        <div class="txt ">
+                            <h1 style="margin-left: 10px; font-size:25px; color:#000000; font-weight:bold;" id="mega">All Sections</h1>
+
+                        </div>
+                        <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class='bx bx-plus'></i>  ADD NEW SECTION</button>
+
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        {% for s in section %}
+                        <form action="{% url 'activities:cwts_section_content'%}" class="column" style="text-decoration: none;" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                                <img src="../../static/images/tup.png" alt="cwts LOGO" id="ro_logo">
+                                <h5 class="title ">{{s.section_created}}</h5>
+                                <input type="hidden" value="{{s.section_created}}" name="getSection"><br>
+                                <button type="submit" class="btn btn-dark">Open</button><br>
+                                <p class="card-text"><small class="text-muted">Created for CWTS Only</small></p>
+                            </div>
+
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </section>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11 "></script>
+
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>  -->
+
+</body>
+
+</html>

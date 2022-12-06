@@ -293,7 +293,7 @@ def manage_section(request):
     sectionxx = extenduser.objects.all()
     counts = extenduser.objects.filter(status='ENROLLED').count()
     counts1 = extenduser.objects.filter(status='ENROLLED')
-    section = sections.objects.all()
+    section = sections.objects.filter(fiel='ROTC')
     section1 = sections.objects.all().count()
     secCount = request.POST.get('secCount')
     # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
@@ -3060,3 +3060,100 @@ def custom999(request):
         except ImportError:
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return redirect('/manage_section')
+
+
+
+def manage_cwts_section(request):
+    current_datetime = datetime.datetime.now() 
+    userContent = User.objects.all()
+    sectionxx = extenduser.objects.all()
+    counts = extenduser.objects.filter(status='ENROLLED').count()
+    counts1 = extenduser.objects.filter(status='ENROLLED')
+    section = sections.objects.filter(fiel='CWTS')
+    section1 = sections.objects.all().count()
+    secCount = request.POST.get('secCount')
+    # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
+    context = {
+        
+    'counts':counts,
+    'counts1':counts1,
+    'section':section,
+    'section1':section1,
+    'sectionxx':sectionxx,
+    'userContent':userContent,
+    'current_datetime':current_datetime,
+    # 'counts3':counts3
+    }
+ 
+    print(secCount)
+    return render(request, 'activities/manage_cwts_section.html', context)
+
+
+    
+def cwts_section_content(request):
+    userContent = User.objects.all()
+    schools = school_year.objects.all()
+    rotc_section = sections.objects.filter(fiel='CWTS')
+    if request.method == 'POST':
+     
+        getSection = request.POST.get('getSection')
+        print(getSection)
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+    else:
+       
+        return render(request, 'activities/cwts_pl_content.html')
+    context = {
+        'content3':content3,
+        'userContent':userContent,
+        'content33':content33,
+        'getSection':getSection,
+        'schools':[schools.last()],
+        'section':rotc_section
+         
+    }
+    print(content33)
+    print(getSection)
+    return render(request, 'activities/cwts_pl_content.html', context)
+
+
+
+def cwts_each_student(request, id):
+       
+   
+    section = sections.objects.all()
+    ids= request.POST.get('ids')
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section
+    }
+    
+
+    
+        
+    return render(request, 'activities/cwts_each.html', context)
+
+def cwts_each_student_2(request, id):
+       
+   
+    section = sections.objects.all()
+    ids= request.POST.get('ids')
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section
+    }
+    
+
+    
+        
+    return render(request, 'activities/cwts_each.html', context)

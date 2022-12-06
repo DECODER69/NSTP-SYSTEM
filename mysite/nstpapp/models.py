@@ -32,7 +32,7 @@ class extenduser(models.Model):
     platoons = models.CharField(max_length=20, default='PROCESSING')
     
     nationality = models.CharField(max_length=20, default='')
-    note = models.CharField(max_length=20, default='')
+    note = models.CharField(max_length=200, default='')
     
     
     
