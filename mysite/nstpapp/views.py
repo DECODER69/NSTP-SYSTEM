@@ -3030,6 +3030,7 @@ def update_each_student(request):
         field = request.POST.get('field')
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
+        status = request.POST.get('status')
         print("note eto"+str(note))
         extenduser.objects.filter(id=ids).update(firstname = firstname,
             middlename = middlename,
@@ -3054,7 +3055,8 @@ def update_each_student(request):
             sickness = sickness,
             field = field,
             platoons = platoons,
-            note = note
+            note = note,
+            status = status
         )
         messages.success(request, 'Profile updated successfully')
         

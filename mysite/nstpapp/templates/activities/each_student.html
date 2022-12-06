@@ -455,6 +455,20 @@
                                     </div>
                                     <br>
                                     <div class="card">
+                                
+
+                                        <div class="card-body">
+                                            <h6 class="card-title font-weight-bold">Status</h6>
+                                            <select name="status" id="" class="form-control">
+                                                <option value="{{s.status}}" selected >{{s.status}}</option>
+                                                <option value="DROPPED" >DROP</option>
+                                                <option value="PENDING"  >UN- ENROLL</option>
+                                                <option value="GRADUATE"  >GRADUATE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="card">
                                         <div class="card-body">
                                             <h6 class="card-title font-weight-bold">Note</h6>
                                             <textarea name="note" id="" rows="5" placeholder="Note" class="form-control">{{s.note}}</textarea>
