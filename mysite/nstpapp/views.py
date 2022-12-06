@@ -3004,6 +3004,7 @@ def file_upload_index(request):
 def update_each_student(request):
     if request.method == 'POST':
         ids = request.POST.get('ids')
+        
         print("sheesh" + str(ids))
         
         firstname = request.POST.get('firstname')
@@ -3031,8 +3032,9 @@ def update_each_student(request):
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
         status = request.POST.get('status')
-        print("note eto"+str(note))
-        extenduser.objects.filter(id=ids).update(firstname = firstname,
+        if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
             middlename = middlename,
             lastname=lastname,
             email = email,
@@ -3057,12 +3059,43 @@ def update_each_student(request):
             platoons = platoons,
             note = note,
             status = status
-        )
-        messages.success(request, 'Profile updated successfully')
+            
+            )
+            
+            return redirect('/manage_section')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
         
     
     # return redirect('/manage_section')
-    return redirect(request.META['HTTP_REFERER'])
+        return redirect(request.META['HTTP_REFERER'])
 
 def custom999(request):
     if request.method == 'POST':

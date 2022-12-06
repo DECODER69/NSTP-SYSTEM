@@ -87,7 +87,8 @@
                             </div> -->
 
                            <div class="card p-3">
-                                <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record</div>
+                      
+                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Atendance Record</b></div>
                                 <hr>
                                 <br>
                                 <div id="container" style="width: 100%; ">
@@ -112,6 +113,36 @@
                                 {% else %}
                                 <h5>No Record yet</h5>
                                 {% endif %} {% endfor %}
+
+                            </div>
+                            <br>
+                            <div class="card p-3">
+                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Grade</b></div>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>First Sem Grade</label>
+                                            <input type="text"  class="form-control" value="{{s.final_grade}}" placeholder="1st Sem grade" readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Second Sem Grade</label>
+                                            <input type="text"  class="form-control" value="{{s.final_grade_2}}" placeholder="2nd Sem grade" readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                
 
                             </div>
                         </div>
