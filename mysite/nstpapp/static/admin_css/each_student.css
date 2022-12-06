@@ -61,3 +61,29 @@ section {
 .checkbox-xl .form-check-label {
     padding-top: 19px;
 }
+
+.st {
+    display: block;
+    text-align: center;
+}
+
+.st #spresent i {
+    color: #7ED321;
+    font-size: 15px;
+    text-align: center;
+}
+
+.st #sabsent i {
+    color: #D0021B;
+    font-size: 15px;
+    text-align: center;
+}
+
+#perci {
+    text-align: center;
+}
+
+#curr {
+    text-align: center;
+    font-size: 12px;
+}

@@ -2962,18 +2962,34 @@ def edit_health(request):
     
     # file upload
 def each_student(request, id):
-   
-   
-    section = sections.objects.all()
     ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(user = request.user)
+    abs1 = extenduser.objects.filter(user = request.user)
+    section = sections.objects.all()
+    
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
     context = {
         'ids': ids,
         'getSection': getSection,
         'details': details,
-        'section': section
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
     }
     
 

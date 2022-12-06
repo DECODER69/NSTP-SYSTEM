@@ -115,7 +115,7 @@
                                 {% elif s.second_sem == 'ENROLLED' %}
 
                                 <tr>
-                                    <form action="" method="POST">
+                                    <form action="{% url 'activities:cwts_each_student_2' s.id %}" method="POST">
                                         {% csrf_token %}
                                         <td><input type="checkbox" class="form-control" id="cb_2" name="cbs" value="{{s.id}}"></td>
                                         <td scope="row">{{s.idnumber}}</td>
