@@ -401,9 +401,9 @@
                                                                             <textarea class="form-control" rows="3" placeholder="Health Conditions" name="sickness">{{s.sickness}}</textarea>
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            {% if s.proof != '' %}
-                                                                            <a href="{{s.rpoof.url}}" class="form-conrol">Submitted Proof</a> {% else %}
-                                                                            <a href="#" class="form-conrol">Submitted Proof</a> {% endif %}
+                                                                            {% if s.proof == '' %}
+                                                                            <a href="#" class="form-conrol" target="__blank">Submitted Proof</a> {% else %}
+                                                                            <a href="{{s.proof.url}}" class="form-conrol">Submitted Proof</a> {% endif %}
                                                                         </div>
 
                                                                     </div>

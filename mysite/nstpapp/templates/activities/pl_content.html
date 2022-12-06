@@ -88,7 +88,7 @@
                                         {% csrf_token %}
                                         <td><input type="checkbox" class="form-control" id="cb" name="cbs" value="{{s.id}}"></td>
                                         <td scope="row">{{s.idnumber}}</td>
-                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.idnumber}}" name="ids"></td>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
                                         {% if s.sickness != '' %}
                                         <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>
@@ -119,7 +119,7 @@
                                         {% csrf_token %}
                                         <td><input type="checkbox" class="form-control" id="cb_2" name="cbs" value="{{s.id}}"></td>
                                         <td scope="row">{{s.idnumber}}</td>
-                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.idnumber}}" name="ids"></td>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
                                         {% if s.sickness != '' %}
                                         <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>

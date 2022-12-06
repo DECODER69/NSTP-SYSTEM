@@ -120,6 +120,7 @@
                                 <tr>
                                     <td>{{s.idnumber}}</td>
                                     <td>
+                                        <input type="hidden" name="percentage" id="percentage" class="percentage">
                                         <input type="hidden" value="{{s.id}}" name="getId" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
                                     </td>
                                     <td class="tds">{{s.TD1}}</td>
@@ -141,6 +142,8 @@
 
                                     <td>
                                         <input name="credits" value="" id="input" readonly>
+                                        <input type="hidden" name="pres1" id="pres1">
+                                        <input type="hidden" name="abs1" id="abs1">
                                     </td>
                                     <td id="result" class="result" style="display: none;">
 
@@ -218,14 +221,25 @@
         $(document).ready(function() {
             $('tr').each(function() {
                 var results = 0;
+                var present = 0;
+                var absent = 0;
+                var percentage = 0;
                 $(this).find('.tds').each(function() {
                     var marks = $(this).text();
                     if (marks.length !== 0) {
                         results += parseFloat(marks / td_count * 100 * attendance_p);
+                        percentage += parseFloat(marks / td_count * 100);
+                        present += parseFloat(marks);
+                        absent = parseFloat(td_count - present);
                     }
                 });
                 $(this).find('.result').html(results.toFixed(2));
                 $(this).find('#input').val(results.toFixed(2));
+                $(this).find('#pres1').val(present.toFixed(2));
+                $(this).find('#abs1').val(absent.toFixed(2));
+                $(this).find('#percentage').val(percentage.toFixed(2));
+                console.log("percentage " + percentage)
+
 
             })
         });

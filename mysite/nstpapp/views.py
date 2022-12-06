@@ -2557,6 +2557,11 @@ def save_evaluation(request):
 
 def update_att_credits_cwts(request):
     if request.method == 'POST':
+        pres1 = request.POST.getlist('pres1')
+        abs1 = request.POST.getlist('abs1')
+        percentages = request.POST.getlist('percentage')
+      
+
         ids = request.POST.getlist('getId')
         credits = request.POST.getlist('credits')
         ids2 = request.POST.getlist('ids2')
@@ -2564,10 +2569,10 @@ def update_att_credits_cwts(request):
         print("creds "+ str(credits2))
         print("ids"+ str(ids2))
         
-        for i, j in zip(ids, credits):
-            print("id" + str(i), "creds"+ str(j))
-            extenduser.objects.filter(id=i).update(att_credits=j)
-      
+        for i, j, k, l, m in zip(ids, credits, pres1, abs1, percentages):
+            extenduser.objects.filter(id=i).update(att_credits=j, pres1=k, abs1=l, percentage1=m)
+        # extenduser.objects.filter
+ 
         
         for k, l in zip(ids2, credits2):
             extenduser.objects.filter(id=k).update(att_credits_2=l)
@@ -2947,7 +2952,7 @@ def edit_health(request):
         proof.save()
         
         sickness = request.POST.get('sickness')
-        extenduser.objects.filter(user_id=ids).update(sickness=sickness)
+        extenduser.objects.filter(id=ids).update(sickness=sickness)
         return redirect('/profile_page')
 
     return redirect('/profile_page')
@@ -2967,8 +2972,8 @@ def each_student(request, id):
     present = []
     absent = []
     name = extenduser.objects.filter(id=id)
-    pres1 = extenduser.objects.filter(user = request.user)
-    abs1 = extenduser.objects.filter(user = request.user)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
     section = sections.objects.all()
     
     print(ids)
@@ -3172,20 +3177,35 @@ def cwts_section_content(request):
 def cwts_each_student(request, id):
        
    
-    section = sections.objects.all()
     ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id = id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
     context = {
         'ids': ids,
         'getSection': getSection,
         'details': details,
-        'section': section
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
     }
-    
-
-    
         
     return render(request, 'activities/cwts_each.html', context)
 
