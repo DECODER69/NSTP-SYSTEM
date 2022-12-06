@@ -352,7 +352,7 @@ def signup(request):
        
         else:
             user = User.objects.create_user(username=idnumber, password=password, email=email)
-            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber, password=password,picture=picture,user=user)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber,picture=picture,user=user)
             datas.save()
             auth.login(request, user)
             messages.info(request, 'Account created successfully\nPlease Login and complete profile for verification')
@@ -2961,15 +2961,19 @@ def edit_health(request):
     # proof.save()
     
     # file upload
-def each_student(request):
- 
+def each_student(request, id):
+   
+   
+    section = sections.objects.all()
     ids= request.POST.get('ids')
+    print(ids)
     getSection = request.POST.get('getSection')
-    details = extenduser.objects.filter(id=ids).filter(status='ENROLLED')
+    details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
     context = {
         'ids': ids,
         'getSection': getSection,
-        'details': details
+        'details': details,
+        'section': section
     }
     
 
@@ -2981,3 +2985,78 @@ def file_upload_index(request):
     return render(request, 'activities/file_upload_preface.html')
 
 
+def update_each_student(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        print("note eto"+str(note))
+        extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note
+        )
+        messages.success(request, 'Profile updated successfully')
+        
+    
+    # return redirect('/manage_section')
+    return redirect(request.META['HTTP_REFERER'])
+
+def custom999(request):
+    if request.method == 'POST':
+        try:
+            sub = request.POST.get('subject')
+            msg = request.POST.get('message')
+            emaila = request.POST.get('rname')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+            print(sub)
+            return redirect(request.META['HTTP_REFERER'])
+            # return redirect('/admin_view_profile')
+ 
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+    return redirect('/manage_section')

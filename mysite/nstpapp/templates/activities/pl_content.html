@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>platoon content</title>
+    <title>NSTP</title>
     <link rel="icon" href="../../static/images/tup.png">
     <link rel="stylesheet" href="../../static/admin_css/pl_content.css">
     <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
@@ -59,37 +59,70 @@
 
                     </div>
                     <br>
-                    <form action="{% url 'activities:each_student' %}" method="post">
-                        {% csrf_token %}
-                        <div class="table-responsive">
-                            <table id="myTable" class="table table-bordered table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th scope="col"><input type="checkbox" class="form-control" id="allcb" name="allcb"></th>
-                                        <th scope="col">ID NUMBER</th>
-                                        <th scope="col">FULL NAME</th>
-                                        <th scope="col">COURSE</th>
-                                        <th scope="col">MEDICAL CONDITIONS</th>
-                                        <th scope="col">MEDICAL PROOF</th>
 
-                                        <th scope="col">NOTES</th>
+                    <div class="table-responsive">
 
-                                        <th scope="col">ACTIONS</th>
+                        <table id="myTable" class="table table-bordered table-hover">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col"><input type="checkbox" class="form-control" id="allcb" name="allcb"></th>
+                                    <th scope="col">ID NUMBER</th>
+                                    <th scope="col">FULL NAME</th>
+                                    <th scope="col">COURSE</th>
+                                    <th scope="col">MEDICAL CONDITIONS</th>
+                                    <th scope="col">MEDICAL PROOF</th>
+
+                                    <th scope="col">NOTES</th>
+
+                                    <th scope="col">ACTIONS</th>
 
 
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
 
-                                    <tr>
+                                <tr>
+                                    <form action="{% url 'activities:each_student' s.id %}" method="POST">
+                                        {% csrf_token %}
                                         <td><input type="checkbox" class="form-control" id="cb" name="cbs" value="{{s.id}}"></td>
                                         <td scope="row">{{s.idnumber}}</td>
-                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.idnumber}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
                                         {% if s.sickness != '' %}
-                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;">{{s.sickness}}</td>
+                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>
+                                        {% if s.proof != '' %}
+                                        <td>
+                                            <a href="{{s.proof.url}}" target="_blank">Medical Proof</a>
+                                        </td>
+                                        {% else %}
+                                        <td>
+                                            <a href="#">No proof submitted</a>
+                                        </td>
+                                        {% endif %} {% else %}
+                                        <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
+
+                                        <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
+                                        {% endif %}
+                                        <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.note}}</textarea></td>
+
+                                        <td><button class="btn btn-success" type="submit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
+
+                                    </form>
+
+                                </tr>
+                                {% elif s.second_sem == 'ENROLLED' %}
+
+                                <tr>
+                                    <form action="#" method="POST">
+                                        {% csrf_token %}
+                                        <td><input type="checkbox" class="form-control" id="cb_2" name="cbs" value="{{s.id}}"></td>
+                                        <td scope="row">{{s.idnumber}}</td>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.idnumber}}" name="ids"></td>
+                                        <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
+                                        {% if s.sickness != '' %}
+                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>
                                         <td>
                                             <a href="{{s.proof.url}}" target="_blank">Medical Proof</a>
                                         </td>
@@ -98,37 +131,22 @@
 
                                         <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
                                         {% endif %}
-                                        <td><textarea class="form-control" name="note" id="" cols="30" rows="1" placeholder="Notes" readonly></textarea></td>
+                                        <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly></textarea></td>
 
-                                        <td><input type="hidden" value="{{s.id}}" name="ids"><button class="btn btn-success" type="submit" target="_blank"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
+                                        <td><button class="btn btn-success" type="submit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
 
+                                    </form>
 
+                                </tr>
 
-                                    </tr>
-                                    {% elif s.second_sem == 'ENROLLED' %}
+                                {% endif %} {% empty %} {% endfor %}
+                            </tbody>
 
-                                    <tr>
-                                        <td><input type="checkbox" class="form-control" id="cb" name="cb_2"></td>
-                                        <td>{{s.idnumber}}</td>
-                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                        </table>
 
-
-                                        <td>{{s.section}}</td>
-
-                                        <td style="color:rgb(66, 66, 66); font-weight:bolder;">{{s.field}}</td>
-
-
-
-
-                                    </tr>
-
-                                    {% endif %} {% empty %} {% endfor %}
-                                </tbody>
-
-                            </table>
-                            <br>
-                            <hr>
-                            <!-- <div class="secttion_c">
+                        <br>
+                        <hr>
+                        <!-- <div class="secttion_c">
                                 <select name="options" id="sel" class="form-control" title="Options">
                                 <option value="DROPPED">DROP</option>
                                 <option value="GRADUATE">GRADUATE</option>
@@ -137,9 +155,9 @@
                                 <br>&nbsp;<br>
                                 <button class="btn btn-success" type="submit" style="width: 100%;" id="dl2"><i class='bx bxs-save' ></i> Save </button>
                             </div> -->
-                            <br>
-                        </div>
-                    </form>
+                        <br>
+                    </div>
+
                 </div>
             </div>
             <br>

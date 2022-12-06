@@ -19,7 +19,7 @@ class extenduser(models.Model):
     middlename = models.CharField(max_length=30, default='')
     email = models.EmailField(max_length=254, null=True, unique=True)
     idnumber = models.CharField(max_length=30, default='')
-    password = models.CharField(max_length=20)
+    # password = models.CharField(max_length=20)
     address = models.CharField(max_length=100, default='')
     cpnumber = models.CharField(max_length=100, default='')
     gender = models.CharField(max_length=6, default='')
@@ -30,6 +30,9 @@ class extenduser(models.Model):
     picture = models.ImageField(upload_to='images/', null=False)
     status = models.CharField(max_length=10, default='PENDING')
     platoons = models.CharField(max_length=20, default='PROCESSING')
+    
+    nationality = models.CharField(max_length=20, default='')
+    note = models.CharField(max_length=20, default='')
     
     
     
@@ -46,7 +49,7 @@ class extenduser(models.Model):
     goccupation = models.CharField(max_length=20, default='')
     gcontact = models.CharField(max_length=20, default='')
     
-    idpic = models.ImageField(upload_to="images/", default='' )
+    # idpic = models.ImageField(upload_to="images/", default='' )
     sickness  = models.CharField(max_length=100, default='')
 
     proof = models.FileField(upload_to="proof/", default='')
@@ -210,6 +213,8 @@ class extenduser(models.Model):
     
     first_equivalents = models.CharField(max_length=20, default='')
     second_equivalents = models.CharField(max_length=20, default='')
+    
+    
     
     # date_enrolled = models.DateTimeField(max_length=40, default='WAITING')
     

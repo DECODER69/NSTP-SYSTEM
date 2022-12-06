@@ -180,8 +180,11 @@ urlpatterns = [
     path('save_cwts_finale_grades/', views.save_cwts_finale_grades, name='save_cwts_finale_grades'),
     path('file_upload_index/', views.file_upload_index, name='file_upload_index'),
     path('health/', views.health, name='health'),
-    path('each_student/', views.each_student, name='each_student'),
-
+    path('each_student/<str:id>', views.each_student, name='each_student'),
+    path('update_each_student/', views.update_each_student, name='update_each_student'),
+    path('custom999/', views.custom999, name='custom999'),
+    
+    
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
     path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='activities/registration/password_reset_confirm.html'),name='password_reset_confirm'),
