@@ -911,7 +911,7 @@ def pl_content(request):
 def add_students(request):
     if request.method == 'POST':
         platoon = request.POST.get('platoon')
-        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING')
+        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING').filter(field='ROTC')
     else:
         return redirect('/manage_section')
     context = {
@@ -3228,3 +3228,33 @@ def cwts_each_student_2(request, id):
     
         
     return render(request, 'activities/cwts_each.html', context)
+
+
+
+def add_cwts_students(request):
+    if request.method == 'POST':
+        platoon = request.POST.get('platoon')
+        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING').filter(field='CWTS')
+    else:
+        return redirect('/manage_section')
+    context = {
+        'allstudent':allstudent,
+        'platoon':platoon
+    }
+    return render(request, 'activities/cwts_students_list.html', context)
+
+def assign_cwts_section(request):
+    if request.method == 'POST':
+        platoons=request.POST.get('platoons')
+        lists = request.POST.getlist('students[]')
+ 
+        for s in lists:
+            extenduser.objects.filter(id=s).update(platoons=platoons)
+            print("id ito" +str(s))
+            messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
+
+        messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
+  
+        return redirect('/manage_cwts_section')
+    else:
+        return redirect('/manage_cwts_section')

@@ -187,6 +187,8 @@ urlpatterns = [
     path('cwts_section_content/', views.cwts_section_content, name='cwts_section_content'),
     path('cwts_each_student/<str:id>', views.cwts_each_student, name='cwts_each_student'),
     path('cwts_each_student_2/<str:id>', views.cwts_each_student_2, name='cwts_each_student_2'),
+    path('add_cwts_students/', views.add_cwts_students, name='add_cwts_students'),
+    path('assign_cwts_section/', views.assign_cwts_section, name='assign_cwts_section'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
