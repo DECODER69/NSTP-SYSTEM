@@ -15,7 +15,7 @@
     {% include 'activities/admin_nav.html' %}
     <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bxs-certification'></i>ROTC CERTIFICATION</h1><br>
+            <h1 class="text"><i class='bx bxs-certification'></i>CWTS CERTIFICATION</h1><br>
         </div>
         <div class="bg">
             <div class="containers">
@@ -37,7 +37,7 @@
                             <h6 class="card-title font-weight-bold"><i class="fa-solid fa-scroll"></i> Certificate Set up</h6>
                             <hr>
                             <br>
-                            <form action="{% url 'activities:add_details' %}" method="POST">
+                            <form action="{% url 'activities:cwts_add_details' %}" method="POST">
                                 {% csrf_token %}
 
                                 <div>
@@ -51,11 +51,11 @@
                                     </div>
                                     {% for s in details %}
                                     <div class="form-group ">
-                                        <label for="exampleFormControlInput1 ">Commandant</label>
+                                        <label for="exampleFormControlInput1 ">Campus Director</label>
                                         <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1 " placeholder="Commandant 's  Name" name="commandant" value="{{s.commandant}}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleFormControlInput1">Registrar</label>
+                                        <label for="exampleFormControlInput1">NSTP Coordinator</label>
                                         <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Registrar" name="registrar" value="{{s.registrar}}" required>
                                     </div>
                                     <div class="form-group">
@@ -278,11 +278,11 @@
                             <tr>
                                 <td id="syears">{{s.years}}</td>
                                 <!-- for pendings -->
-                                {% if s.acts == 'PENDING' %}
+                                {% if s.acts_2 == 'PENDING' %}
                                 <td id="pends">
                                     <h3><i class="fa-solid fa-hourglass-start"></i></h3>&nbsp;<br>
 
-                                    <h5>{{s.acts}}</h5>
+                                    <h5>{{s.acts_2}}</h5>
 
 
                                 </td>
@@ -290,14 +290,14 @@
                                 <td id="pends">
                                     <h3><i class="fa-solid fa-circle-check" id="ch"></i></h3>&nbsp;<br>
 
-                                    <h5>{{s.acts}}</h5>
+                                    <h5>{{s.acts_2}}</h5>
 
 
                                 </td>
                                 {% endif %}
                                 <td>
-                                    {% if s.date_generated != None %}
-                                    <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated}} </h2>
+                                    {% if s.date_generated_2 != None %}
+                                    <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated_2}} </h2>
                                     {% else %}
                                     <h2 style="color:rgb(188, 100, 0); font-size:15px;">No date Available</h2>
                                     {% endif %}

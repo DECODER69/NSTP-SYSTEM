@@ -964,6 +964,7 @@ def update_officially(request, id):
 def cert_page(request):
     sys = school_year.objects.all()
     pota = extenduser.objects.filter(status='ENROLLED')
+  
     # last = school_year.objects.all()
     details = certification.objects.all()
     context = {
@@ -973,6 +974,20 @@ def cert_page(request):
         # 'last':[last.last()],
     }
     return render(request, 'activities/rotc_cert_page.html', context)
+
+
+def cwts_cert_page(request):
+    sys = school_year.objects.all()
+    pota = extenduser.objects.filter(status='ENROLLED')
+    # last = school_year.objects.all()
+    details = certification.objects.all()
+    context = {
+        'sys':sys,
+        'details':[details.last()],
+        'pota':pota,
+        # 'last':[last.last()],
+    }
+    return render(request, 'activities/cwts_cert_page.html', context)
     # return render(request, 'activities/certificate_page.html', context)
 
 def open_cert_page(request):
@@ -1023,6 +1038,18 @@ def add_details(request):
         data = certification(school_year2=sys1, commandant=commandant, registrar=registrar, month=month, date=date, year=year)
         data.save()
     return redirect('/cert_page', context)
+
+def cwts_add_details(request):
+    if request.method == 'POST':
+        sys1 = request.POST.get('sys1')
+        commandant = request.POST.get('commandant')
+        registrar = request.POST.get('registrar')
+        month = request.POST.get('month')
+        date = request.POST.get('date')
+        year = request.POST.get('year')
+        data = certification(school_year2=sys1, commandant=commandant, registrar=registrar, month=month, date=date, year=year)
+        data.save()
+    return redirect('/cwts_cert_page', context)
 
 def update_acts(request):
     if request.method == 'POST':

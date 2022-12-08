@@ -226,7 +226,9 @@ class school_year(models.Model):
     years = models.CharField(blank=True, null=True, max_length=20)
     sem = models.CharField(max_length=20, default='First Term')
     acts = models.CharField(max_length=20, default='PENDING')
+    acts_2 = models.CharField(max_length=20, default='PENDING')
     date_generated = models.DateTimeField(null=True)
+    date_generated_2 = models.DateTimeField(null=True)
     
     # for certificates
     
@@ -238,6 +240,9 @@ class school_year(models.Model):
     status = models.CharField(max_length=20, default='')
     def __str__(self):
         return self.years
+    
+    
+
 
 class sections(models.Model):
     fiel = models.CharField(max_length=20, default='')
