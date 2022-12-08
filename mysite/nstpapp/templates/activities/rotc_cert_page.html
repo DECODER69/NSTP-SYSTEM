@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERTIFICATION</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/cert_page.css">
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-certification'></i> CERTIFICATION</h1><br>
+        </div>
+        <div class="bg">
+            <div class="containers">
+                <div class="row flex-lg-nowrap">
+                    <div class="col-12 col-lg-auto mb-3" style="width: 30%;">
+                        <!-- <div class="card p-3">
+                            <div class="e-navlist e-navlist--active-bg">
+                                <ul class="nav">
+                                    <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
+                                    <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-crud-users" target="__blank"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
+                                    <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+                        <div class="card p-3">
+
+                            <!-- <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Certificate Set up</b></div> -->
+                            <h6 class="card-title font-weight-bold"><i class="fa-solid fa-scroll"></i> Certificate Set up</h6>
+                            <hr>
+                            <br>
+                            <form action="{% url 'activities:add_details' %}" method="POST">
+                                {% csrf_token %}
+
+                                <div>
+                                    <div class="form-group ">
+                                        <label for="exampleFormControlInput1 ">School Year </label>
+                                        <select name="sys1" id="sys1" class="form-control form-control-sm">
+                                        {% for s in sys %}
+                                        <option value="{{s.years}}">{{s.years}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                    {% for s in details %}
+                                    <div class="form-group ">
+                                        <label for="exampleFormControlInput1 ">Commandant</label>
+                                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1 " placeholder="Commandant 's  Name" name="commandant" value="{{s.commandant}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Registrar</label>
+                                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Registrar" name="registrar" value="{{s.registrar}}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Given Date</label>
+                                        <div style="display: flex; justify-content:space-between;">
+                                            <input type="text" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Month: July" name="month" required>
+                                            <input type="text" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Day: 20th" name="date" required>
+                                            <input type="text" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Year: 2022" name="year" required>
+                                        </div>
+
+                                    </div>
+                                    {% endfor %}
+                                    <br>
+
+                                    <br> &nbsp; <br>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-floppy-disk"></i> SAVE CHANGES</button>
+                            </form>
+
+
+                        </div>
+                        <br>
+                        <!-- <div class="card p-3">
+                            <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Grade</b></div>
+                            <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>First Sem Grade</label>
+                                        <input type="text" class="form-control" value="{{s.final_grade}}" placeholder="1st Sem grade" readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Second Sem Grade</label>
+                                        <input type="text" class="form-control" value="{{s.final_grade_2}}" placeholder="2nd Sem grade" readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div> -->
+                    </div>
+
+                    <div class="col">
+                        <div class="row row1">
+                            <div class="col  sheesh">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="e-profile">
+                                            <h6 class="card-title font-weight-bold"><i class="fa-solid fa-certificate"></i> Certificate preview</h6>
+                                            <!-- <div class="mb-2"><b>Certificate preview</b></div> -->
+                                            <div class="tab-content pt-3">
+                                                <div class="inner1">
+                                                    {% for s in details %} {% if s.id %}
+                                                    <div id="img1">
+                                                        <img src="../../static/images/236.png">
+                                                    </div>
+
+                                                    <div id="img2">
+                                                        <img src="../../static/images/NRCEN.png">
+                                                    </div>
+
+                                                    <span class="up1">Naval Reserve Center-National Capital Region</span><br>
+                                                    <span class="up2">Department of Naval Science and Tactics</span><br>
+                                                    <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br>
+                                                    <span class="up4">Technological University of the Philippines-Cavite</span><br>
+                                                    <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br>
+                                                    <span class="line1">Certificate of Completion</span><br>
+                                                    <span class="line7"><i>is herby awarded to</i></span><br>
+                                                    <span class="line8"><i>CADET DELA CRUZ JUAN</i></span><br>&nbsp;
+                                                    <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
+                                                    <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
+                                                    <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
+                                                    <span class="line12"><i>Given this <span style="color: red;">{{s.date}}</span> day of <span style="color: red;">{{s.month}}  {{s.year}}</span> at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas
+                                                    City, Cavite</i>
+                                                    </span><br>&nbsp;<br>
+                                                    <div class="bot">
+                                                        <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}</u>&emsp;<u class="control">236-20-1</u></span>
+                                                    </div>
+                                                    {% else %}
+                                                    <div id="img1">
+                                                        <img src="../../static/images/236.png">
+                                                    </div>
+
+                                                    <div id="img2">
+                                                        <img src="../../static/images/NRCEN.png">
+                                                    </div>
+
+                                                    <span class="up1">Naval Reserve Center-National Capital Region</span><br>
+                                                    <span class="up2">Department of Naval Science and Tactics</span><br>
+                                                    <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br>
+                                                    <span class="up4">Technological University of the Philippines-Cavite</span><br>
+                                                    <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br>
+                                                    <span class="line1">Certificate of Completion</span><br>
+                                                    <span class="line7"><i>is herby awarded to</i></span><br>
+                                                    <span class="line8"><i>CADET DELA CRUZ JUAN</i></span><br>&nbsp;
+                                                    <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
+                                                    <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
+                                                    <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
+                                                    <span class="line12"><i>Given this <span style="color: red; font-weight:bolder;">Date</span> day of <span style="color: red; font-weight:bolder;">Month  Year</span>{{s.year}} at TUP-Cavite, Carlos Q.
+                                                    Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i>
+                                                    </span><br>
+                                                    <div class="bot">
+                                                        <span class="lastline"> <u class="com"><span style="color: red; font-weight:bolder;">* Commandant</span></u>&nbsp;&nbsp; &nbsp; <u class="comm"><span style="color: red; font-weight:bolder;">* Registrar</span></u>&emsp;
+                                                        <u class="control">236-20-1</u>
+                                                        </span>
+                                                    </div>
+                                                    {% endif %} {% endfor %}
+                                                </div>
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="card-title font-weight-bold"><i class="fa-solid fa-certificate"></i> Generate Certificate</h6>
+                                        <!-- <select name="field" id="" class="form-control">
+                                        <option value="{{s.field}}" selected >{{s.field}}</option>
+                                        <option value="ROTC">ROTC</option>
+                                        <option value="CWTS">CWTS</option>
+                                    </select> -->
+                                    </div>
+                                    <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
+                                        {% csrf_token %}
+                                        <div class="card-body">
+                                            {% for s in sys %}
+                                            <input type="hidden" value="{{s.years}}" name="years">
+                                            <label>School Year</label>
+                                            <select name="platoons" id="" class="form-control">
+                                        <option value="{{s.years}}" selected >{{s.years}}</option>
+                                      
+                                    
+                          
+                                        {% endfor %}
+                                       
+                                    </select>
+                                            <br>
+                                            <br>
+                                            <button class="btn btn-block btn-success" type="submit">
+                                            <i class="fa-solid fa-file-export"></i>
+                                   Generate
+                                </button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <br>
+                                <!-- <div class="card">
+
+
+                                    <div class="card-body">
+                                        <h6 class="card-title font-weight-bold">Status</h6>
+                                        <select name="status" id="" class="form-control">
+                                            <option value="{{s.status}}" selected >{{s.status}}</option>
+                                            <option value="DROPPED" >DROP</option>
+                                            <option value="PENDING"  >UN- ENROLL</option>
+                                            <option value="GRADUATE"  >GRADUATE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="card-title font-weight-bold">Note</h6>
+                                        <textarea name="note" id="" rows="5" placeholder="Note" class="form-control">{{s.note}}</textarea>
+
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="px-xl-3">
+                                            <button class="btn btn-block btn-success" type="submit">
+                                            <i class="fa-solid fa-file-export"></i>
+                                       Update
+                                    </button>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="kail">
+                <div class="table-responsive">
+
+                    <table id="example" class="table table-bordered table-hover">
+                        <thead class="thead">
+                            <tr>
+
+                                <th scope="col">SCHOOL YEAR</th>
+                                <th scope="col">CERTIFICATE MAKING</th>
+                                <th scope="col">DATE GENERATED</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in sys %}
+
+                            <tr>
+                                <td id="syears">{{s.years}}</td>
+                                <!-- for pendings -->
+                                {% if s.acts == 'PENDING' %}
+                                <td id="pends">
+                                    <h3><i class="fa-solid fa-hourglass-start"></i></h3>
+                                    <div class="fin">
+                                        <h2>{{s.acts}}</h2>
+                                    </div>
+
+                                </td>
+                                {% else %}
+                                <td id="pends">
+
+                                    <div class="fin">
+                                        <h2>{{s.acts}}</h2>
+                                    </div>
+
+                                </td>
+                                {% endif %}
+                                <td>
+                                    {% if s.date_generated != None %}
+                                    <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated}} </h2>
+                                    {% else %}
+                                    <h2 style="color:rgb(188, 100, 0); font-size:15px;">{{s.date_generated}} </h2>
+                                    {% endif %}
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+</body>
+
+</html>

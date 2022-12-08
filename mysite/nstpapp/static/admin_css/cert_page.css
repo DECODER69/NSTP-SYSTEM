@@ -77,15 +77,15 @@ section {
 
 .table-responsive {
     padding: 10px !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74), 0 6px 20px 0 rgba(0, 0, 0, 0.644);
     height: auto;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
 }
 
 .table th {
     color: rgb(36, 36, 36);
     font-size: 15px;
-    background-color: #222d325a !important;
+    background-color: #5a5a5aa9 !important;
 }
 
 .table td {
@@ -199,10 +199,15 @@ section {
     margin: auto;
     width: 99.5%;
     height: 98%;
-    border: solid 1px black;
+    border: solid 1px rgba(0, 0, 0, 0.425);
     background-color: #ffffff;
     text-align: center;
-    padding: 3px;
+    background-image: url('../../static/images/lowop.png');
+    background-position: center;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .inner1 .line1 {
@@ -264,13 +269,6 @@ section {
     left: 0px;
     width: 50px;
     height: 50px;
-}
-
-.inner1 {
-    background-image: url('../../static/images/lowop.png');
-    background-position: center;
-    background-size: 200px;
-    background-repeat: no-repeat;
 }
 
 .inner1 .up1 {
@@ -627,3 +625,15 @@ section {
         height: 10px;
     }
 } */
+
+.row1 {}
+
+.sheesh {
+    width: 50% !important;
+}
+
+.kail {
+    background-color: #ff0606;
+    width: 100%;
+    height: 100px;
+}

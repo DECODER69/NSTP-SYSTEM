@@ -972,7 +972,8 @@ def cert_page(request):
         'pota':pota,
         # 'last':[last.last()],
     }
-    return render(request, 'activities/certificate_page.html', context)
+    return render(request, 'activities/rotc_cert_page.html', context)
+    # return render(request, 'activities/certificate_page.html', context)
 
 def open_cert_page(request):
     section = sections.objects.all()
