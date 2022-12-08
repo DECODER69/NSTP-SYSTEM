@@ -283,18 +283,18 @@
                                 <!-- for pendings -->
                                 {% if s.acts == 'PENDING' %}
                                 <td id="pends">
-                                    <h3><i class="fa-solid fa-hourglass-start"></i></h3>
-                                    <div class="fin">
-                                        <h2>{{s.acts}}</h2>
-                                    </div>
+                                    <h3><i class="fa-solid fa-hourglass-start"></i></h3>&nbsp;<br>
+
+                                    <h5>{{s.acts}}</h5>
+
 
                                 </td>
                                 {% else %}
                                 <td id="pends">
+                                    <h3><i class="fa-solid fa-circle-check" id="ch"></i></h3>&nbsp;<br>
 
-                                    <div class="fin">
-                                        <h2>{{s.acts}}</h2>
-                                    </div>
+                                    <h5>{{s.acts}}</h5>
+
 
                                 </td>
                                 {% endif %}
@@ -302,7 +302,7 @@
                                     {% if s.date_generated != None %}
                                     <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated}} </h2>
                                     {% else %}
-                                    <h2 style="color:rgb(188, 100, 0); font-size:15px;">{{s.date_generated}} </h2>
+                                    <h2 style="color:rgb(188, 100, 0); font-size:15px;">No date Available</h2>
                                     {% endif %}
 
                                 </td>

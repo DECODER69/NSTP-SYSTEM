@@ -385,17 +385,24 @@ section {
 
 #pends {
     display: flex;
+    height: 100%;
+    width: 100%;
 }
 
 #pends h3 {
-    padding-top: 2px;
-    height: 100%;
+    height: 30px;
+}
+
+#pends h5 {
+    height: 30px;
+    width: 100%;
+    margin-top: 11px;
+    font-size: 16px !important;
 }
 
 #pends h3 i {
     color: rgb(245, 98, 0);
     font-size: 20px;
-    vertical-align: middle;
 }
 
 #pends h3 #ch {
@@ -404,11 +411,10 @@ section {
     vertical-align: middle;
 }
 
-.fin h2 {
+#pends h2 {
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
     vertical-align: middle;
-    padding: 5px;
 }
 
 .bx {
