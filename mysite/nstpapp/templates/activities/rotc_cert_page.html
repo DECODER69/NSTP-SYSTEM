@@ -63,7 +63,7 @@
                                         <div style="display: flex; justify-content:space-between;">
                                             <input type="text" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Month: July" name="month" required>
                                             <input type="text" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Day: 20th" name="date" required>
-                                            <input type="text" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Year: 2022" name="year" required>
+                                            <input type="number" style="width: 30%;" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Year: 2022" name="year" required>
                                         </div>
 
                                     </div>
@@ -147,7 +147,14 @@
                                                     <div class="bot">
                                                         <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}</u>&emsp;<u class="control">236-20-1</u></span>
                                                     </div>
-                                                    {% else %}
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <h6 class="card-title font-weight-bold"><i class="fa-solid fa-certificate"></i> Certificate preview <span style="color: rgb(255, 0, 0);">SY: </span><span style="color:rgb(106, 112, 106);">YEARS</span></h6>
+                                            <!-- <div class="mb-2"><b>Certificate preview</b></div> -->
+                                            <div class="tab-content pt-3">
+                                                <div class="inner1">
+
                                                     <div id="img1">
                                                         <img src="../../static/images/236.png">
                                                     </div>
@@ -167,53 +174,53 @@
                                                     <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
                                                     <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
                                                     <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
-                                                    <span class="line12"><i>Given this <span style="color: red; font-weight:bolder;">Date</span> day of <span style="color: red; font-weight:bolder;">Month  Year</span>{{s.year}} at TUP-Cavite, Carlos Q.
-                                                    Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i>
-                                                    </span><br>
+                                                    <span class="line12"><i>Given this <span style="color: red;">{{s.date}}</span> day of <span style="color: red;">{{s.month}}  {{s.year}}</span> at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas
+                                                    City, Cavite</i>
+                                                    </span><br>&nbsp;<br>
                                                     <div class="bot">
-                                                        <span class="lastline"> <u class="com"><span style="color: red; font-weight:bolder;">* Commandant</span></u>&nbsp;&nbsp; &nbsp; <u class="comm"><span style="color: red; font-weight:bolder;">* Registrar</span></u>&emsp;
-                                                        <u class="control">236-20-1</u>
-                                                        </span>
+                                                        <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}</u>&emsp;<u class="control">236-20-1</u></span>
                                                     </div>
-                                                    {% endif %} {% endfor %}
                                                 </div>
-                                                &nbsp;
                                             </div>
+                                            {% endif %} {% endfor %}
                                         </div>
+                                        &nbsp;
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="col-12 col-md-3 mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="card-title font-weight-bold"><i class="fa-solid fa-certificate"></i> Generate Certificate</h6>
-                                        <!-- <select name="field" id="" class="form-control">
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6 class="card-title font-weight-bold"><i class="fa-solid fa-certificate"></i> Generate Certificate</h6>
+                                <!-- <select name="field" id="" class="form-control">
                                         <option value="{{s.field}}" selected >{{s.field}}</option>
                                         <option value="ROTC">ROTC</option>
                                         <option value="CWTS">CWTS</option>
                                     </select> -->
-                                    </div>
-                                    <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
-                                        {% csrf_token %}
-                                        <div class="card-body">
-                                            {% for s in sys %}
-                                            <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
-                                            <label>School Year</label>
-                                            <select name="platoons" id="" class="form-control">
+                            </div>
+                            <form action="{% url 'activities:generate' %}" method="POST" target="_blank">
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    {% for s in sys %}
+                                    <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
+                                    <label>School Year</label>
+                                    <select name="platoons" id="" class="form-control">
                                                 {% for s in sys %}
                                                 <option value="{{s.years}}" selected >{{s.years}}</option>
                                                 {% endfor %}
                                             </select>
-                                            <br>
-                                            <br>
-                                            <button class="btn btn-block btn-success" type="submit">
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-block btn-success" type="submit">
                                             <i class="fa-solid fa-file-export"></i>Generate</button>
-                                        </div>
-                                    </form>
                                 </div>
-                                <br>
-                                <!-- <div class="card">
+                            </form>
+                        </div>
+                        <br>
+                        <!-- <div class="card">
 
 
                                     <div class="card-body">
@@ -248,68 +255,68 @@
                                     </div>
                                 </div> -->
 
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+
             </div>
+        </div>
+        </div>
 
-            <div class="kail">
+        <div class="kail">
 
-                <div class="table-responsive">
-                    <h6 class="card-title font-weight-bold"><i class="fa-solid fa-clock-rotate-left"></i>&nbsp; Certificate making History</h6>
-                    <br>
-                    <table id="example" class="table table-bordered table-hover">
-                        <thead class="thead">
-                            <tr>
+            <div class="table-responsive">
+                <h6 class="card-title font-weight-bold" style="color:rgb(201, 137, 0); "><i class="fa-solid fa-clock-rotate-left"></i>&nbsp; Certificate making History</h6>
+                <br>
+                <table id="example" class="table table-bordered table-hover">
+                    <thead class="thead">
+                        <tr>
 
-                                <th scope="col">SCHOOL YEAR</th>
-                                <th scope="col">CERTIFICATE MAKING</th>
-                                <th scope="col">DATE GENERATED</th>
-
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for s in sys %}
-
-                            <tr>
-                                <td id="syears">{{s.years}}</td>
-                                <!-- for pendings -->
-                                {% if s.acts == 'PENDING' %}
-                                <td id="pends">
-                                    <h3><i class="fa-solid fa-hourglass-start"></i></h3>&nbsp;<br>
-
-                                    <h5>{{s.acts}}</h5>
+                            <th scope="col">SCHOOL YEAR</th>
+                            <th scope="col">CERTIFICATE MAKING</th>
+                            <th scope="col">DATE GENERATED</th>
 
 
-                                </td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in sys %}
+
+                        <tr>
+                            <td id="syears">{{s.years}}</td>
+                            <!-- for pendings -->
+                            {% if s.acts == 'PENDING' %}
+                            <td id="pends">
+                                <h3><i class="fa-solid fa-hourglass-start"></i></h3>&nbsp;<br>
+
+                                <h5>{{s.acts}}</h5>
+
+
+                            </td>
+                            {% else %}
+                            <td id="pends">
+                                <h3><i class="fa-solid fa-circle-check" id="ch"></i></h3>&nbsp;<br>
+
+                                <h5>{{s.acts}}</h5>
+
+
+                            </td>
+                            {% endif %}
+                            <td>
+                                {% if s.date_generated != None %}
+                                <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated}} </h2>
                                 {% else %}
-                                <td id="pends">
-                                    <h3><i class="fa-solid fa-circle-check" id="ch"></i></h3>&nbsp;<br>
-
-                                    <h5>{{s.acts}}</h5>
-
-
-                                </td>
+                                <h2 style="color:rgb(188, 100, 0); font-size:15px;">No date Available</h2>
                                 {% endif %}
-                                <td>
-                                    {% if s.date_generated != None %}
-                                    <h2 style="color:rgb(11, 115, 0); font-size:15px;">{{s.date_generated}} </h2>
-                                    {% else %}
-                                    <h2 style="color:rgb(188, 100, 0); font-size:15px;">No date Available</h2>
-                                    {% endif %}
 
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
+
+        </div>
         </div>
     </section>
 

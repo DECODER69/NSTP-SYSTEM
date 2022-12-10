@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* add */
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+}
+
+section {
+    display: inline-block;
+    width: 100%;
+    padding-left: 0px;
+}
+
+section>div {
+    padding: 20px 40px;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+.heads {
+    justify-content: space-between;
+    display: flex;
+    background: #4b4d52;
+    height: 60px !important;
+}
+
+.heads .text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* eof new */
+
+.holder {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lef {
+    width: 60%;
+}
+
+.container {
+    width: 40% !important;
+    display: flex;
+}
+
+.it {
+    width: 100% !important;
+    display: flex;
+}
+
+#one {
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px 2px rgba(82, 82, 82, 0);
+    width: 100% !important;
+    border: solid 1px rgb(221, 221, 221);
+}
+
+.it .btn-orange {
+    background-color: transparent;
+    border-color: #777!important;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    width: 100%;
+}
+
+.it input.form-control {
+    height: 54px;
+    border: none;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: none;
+}
+
+.it .form-control:focus {
+    border-color: #ff4d0d;
+    box-shadow: none;
+    outline: none;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    background-color: #6d6d6d !important;
+}
+
+.upl {
+    color: #e4e4e4;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.it .btn-new {
+    margin: 30px 0px;
+    border-radius: 0px;
+    background-color: rgb(0, 96, 109);
+    color: #f5f5f5 !important;
+    font-size: 16px;
+    width: 155px;
+}
+
+.it .btn-next {
+    background-color: #da6b03;
+    color: #fff !important;
+}
+
+.it .btn-check {
+    cursor: pointer;
+    line-height: 54px;
+    color: red;
+}
+
+.it .uploadDoc {
+    margin-bottom: 20px;
+}
+
+.it .uploadDoc {
+    margin-bottom: 20px;
+}
+
+.it .btn-orange img {
+    width: 30px;
+}
+
+p {
+    font-size: 16px;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.it #uploader .docErr {
+    position: absolute;
+    right: auto;
+    left: 10px;
+    top: -56px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #fff;
+    color: red;
+    box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.it #uploader .docErr:after {
+    content: '\f0d7';
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 50px;
+    color: #fff;
+    position: absolute;
+    left: 30px;
+    bottom: -40px;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+#one p {
+    color: #575757;
+}
+
+* announcements */ .inside2 {
+    height: auto;
+    padding: 18px;
+}
+
+.hes {
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px 2px rgba(82, 82, 82, 0);
+    width: 100% !important;
+    border: solid 1px rgb(221, 221, 221);
+}
+
+#bts {
+    align-items: center;
+    display: flex;
+}
+
+#bts a {
+    margin: auto;
+}
+
+#ed {
+    padding: 10px;
+}
+
+#ed label {
+    font-weight: bolder;
+}

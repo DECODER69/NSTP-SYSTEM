@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final
+from .models import activity,cwts_certification, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final, rfiles, cfiles
 import os
 import csv  
 
@@ -525,10 +525,14 @@ def create_sy(request):
         yearsz = request.POST.get('year')
         if school_year.objects.filter(years=yearsz).exists():
             messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
+        
             return redirect('/school_years')
+
         else:
             data = school_year(years=yearsz)
+        
             data.save()
+          
             messages.success(request, 'School year ' + str (yearsz) + ' Successfully Created !')
             return redirect('/school_years')
     return redirect('/school_years')
@@ -980,7 +984,7 @@ def cwts_cert_page(request):
     sys = school_year.objects.all()
     pota = extenduser.objects.filter(status='ENROLLED')
     # last = school_year.objects.all()
-    details = certification.objects.all()
+    details = cwts_certification.objects.all()
     context = {
         'sys':sys,
         'details':[details.last()],
@@ -1014,7 +1018,7 @@ def generate(request):
         section = request.POST.get('section')
         details = certification.objects.all()
         yyy =  extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
-        namess = extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
+        namess = extenduser.objects.filter(s_year=years).filter(status='GRADUATE').filter(field='ROTC')
         print(section)
         print("pogi"+str(years))
         
@@ -1026,6 +1030,27 @@ def generate(request):
             
         }
         return render(request, 'activities/certificate.html', context)
+    
+def cwts_generate(request):
+    
+    if request.method == 'POST':
+        years = request.POST.get('years')
+        sys1 = school_year.objects.filter(years=years)
+        section = request.POST.get('section')
+        details = certification.objects.all()
+        yyy =  extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
+        namess = extenduser.objects.filter(s_year=years).filter(status='GRADUATE').filter(field='CWTS')
+        print(section)
+        print("pogi"+str(years))
+        
+        context = {
+            'yyy':yyy,
+            'sys1':sys1,
+            'namess':namess,
+            'details':[details.last()],
+            
+        }
+        return render(request, 'activities/cwts_certificate.html', context)
     
 def add_details(request):
     if request.method == 'POST':
@@ -1047,7 +1072,7 @@ def cwts_add_details(request):
         month = request.POST.get('month')
         date = request.POST.get('date')
         year = request.POST.get('year')
-        data = certification(school_year2=sys1, commandant=commandant, registrar=registrar, month=month, date=date, year=year)
+        data = cwts_certification(school_year2=sys1, commandant=commandant, registrar=registrar, month=month, date=date, year=year)
         data.save()
     return redirect('/cwts_cert_page', context)
 
@@ -1059,6 +1084,15 @@ def update_acts(request):
         school_year.objects.filter(years=ids).update(acts='DONE', date_generated=current_datetime)
         print("hahahaha" + str(ids))
         return redirect('/cert_page')
+    
+def cwts_update_acts(request):
+    if request.method == 'POST':
+        current_datetime = datetime.datetime.now() 
+        ids= request.POST.get('ids')
+        print("hahahaha" + str(ids))
+        school_year.objects.filter(years=ids).update(acts_2='DONE', date_generated_2=current_datetime)
+        print("hahahaha" + str(ids))
+        return redirect('/cwts_cert_page')
         
 def admin_files(request):
     section = sections.objects.all()
@@ -3030,8 +3064,7 @@ def each_student(request, id):
         
     return render(request, 'activities/each_student.html', context)
     
-def file_upload_index(request):
-    return render(request, 'activities/file_upload_preface.html')
+
 
 
 def update_each_student(request):
@@ -3286,3 +3319,32 @@ def assign_cwts_section(request):
         return redirect('/manage_cwts_section')
     else:
         return redirect('/manage_cwts_section')
+    
+    
+    
+    # fil upload
+    
+def file_upload_index(request):
+    allfile = rfiles.objects.all()
+    platoons = sections.objects.filter(fiel='ROTC')
+    context = {
+        'allfile':allfile,
+        'platoons':platoons
+    }
+    return render(request, 'activities/file_upload_preface.html', context)
+
+def upload_file(request):
+    current_datetime = datetime.datetime.now() 
+    if request.method == 'POST':
+        platoons = request.POST.get('platoons')
+        files = request.FILES['files']
+        note = request.POST.get('note')
+        date = request.POST.get('date')
+        data = rfiles(files=files, note=note, date_posted=current_datetime, platoons=platoons)
+        data.save()
+    return redirect('/file_upload_index')
+        
+def delete_files(request, id):
+    rfiles.objects.filter(id=id).delete()
+
+    return redirect('/file_upload_index')

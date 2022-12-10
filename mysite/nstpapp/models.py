@@ -241,6 +241,8 @@ class school_year(models.Model):
     def __str__(self):
         return self.years
     
+
+    
     
 
 
@@ -270,6 +272,20 @@ class Announcement(models.Model):
         return self.subject
     
 class certification(models.Model):
+    
+    # for rotc
+    school_year2 = models.CharField(max_length=20, default='')
+    commandant = models.CharField(max_length=40, default='')
+    registrar = models.CharField(max_length=40, default='')
+    month = models.CharField(max_length=20, default='')
+    date = models.CharField(max_length=20, default='')
+    year = models.CharField(max_length=20, default='')
+    
+        
+    def __str__(self):
+        return self.year
+    
+class cwts_certification(models.Model):
     
     # for rotc
     school_year2 = models.CharField(max_length=20, default='')
@@ -337,3 +353,16 @@ class cwts_final(models.Model):
     semester = models.CharField(max_length=20, default='')
     date = models.DateField(blank= True,null=True)
     items = models.CharField(max_length=100, default='')
+    
+    
+class rfiles(models.Model):
+    note = models.CharField(max_length=50, default='')
+    files = models.FileField(upload_to='all_files/', default='')
+    date_posted = models.DateTimeField(null=True)
+    platoons = models.CharField(max_length=50, default='')
+    
+class cfiles(models.Model):
+    note = models.CharField(max_length=50, default='')
+    files = models.FileField(upload_to='all_files/', default='')
+    date_posted = models.DateTimeField(null=True)
+    platoons = models.CharField(max_length=50, default='')

@@ -191,6 +191,10 @@ urlpatterns = [
     path('assign_cwts_section/', views.assign_cwts_section, name='assign_cwts_section'),
     path('cwts_cert_page/', views.cwts_cert_page, name='cwts_cert_page'),
     path('cwts_add_details/', views.cwts_add_details, name='cwts_add_details'),
+    path('cwts_generate/', views.cwts_generate, name='cwts_generate'),
+    path('cwts_update_acts/', views.cwts_update_acts, name='cwts_update_acts'),
+    path('upload_file/', views.upload_file, name='upload_file'),
+    path('delete_files/<str:id>', views.delete_files, name='delete_files'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

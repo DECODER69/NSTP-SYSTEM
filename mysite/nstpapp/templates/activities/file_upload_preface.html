@@ -6,10 +6,272 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>file upload</title>
+    <link rel="stylesheet" href="../../static/admin_css/rotc_files.css">
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
 </head>
 
 <body>
     {% include 'activities/admin_nav.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/grades">
+                <h1 class="text"><i class='bx bxs-dashboard'></i>ROTC FILES</h1>
+            </a>
+
+        </div>
+
+        <br>
+
+        <div class="holder">
+            <div class="lef">
+
+
+                <div class="inside2">
+                    <div class="hes">
+                        <br>
+                        <div class="for">
+                            <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega"><i class="fa-solid fa-file"></i> Course Materials</h1><br>
+
+                        </div>
+                        <hr>
+                        <br>
+                        <br>
+
+                        <div class="announce">
+
+                            <table id="example" class="table table-bordered table-hover ">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">NOTE</th>
+                                        <th scope="col">PLATOON</th>
+
+                                        <th scope="col">FILE</th>
+                                        <th scope="col">Date Posted</th>
+
+
+                                        <th scope="col">ACTION</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for s in allfile %}
+                                    <tr>
+                                        <form action="{% url 'activities:edit_announcement' s.id %}" method="POST">
+                                            {% csrf_token %}
+
+                                            <td>{{s.note}}</td>
+                                            <td>{{s.platoons}}</td>
+                                            <td>
+                                                <a href="{{s.files.url}}">{{s.files.url}}</a>
+                                            </td>
+                                            <td id="posted"> <i class='bx bx-calendar'></i> {{s.date_posted}}</td>
+
+
+                                            <td id="bts">
+
+
+                                                <a href="/delete_files/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class="fa-solid fa-trash-can"></i> Delete</a>
+
+
+
+                                            </td>
+                                        </form>
+
+
+                                    </tr>
+
+                                    {% empty %} {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- </div> -->
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="container">
+                <div class="row it">
+                    <div class="col-sm-offset-1 col-sm-10" id="one">
+                        <br>
+                        <div class="for">
+                            <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega"><i class="fa-solid fa-upload"></i> Upload here</h1><br>
+
+                        </div>
+                        <hr>
+                        <p>
+                            Please upload documents only in 'pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png' & 'text' format.
+                        </p><br>
+                        <form action="{% url 'activities:upload_file' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <!--row-->
+                            <div id="uploader">
+                                <div class="form-group" id="ed">
+                                    <label for="pl">Select Platoon</label>
+                                    <select name="platoons" id="pl" class="form-control">
+                                        {% for s in platoons %}
+                                        <option value="{{s.section_created}}">{{s.section_created}}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+
+
+                                <div class="row uploadDoc">
+                                    <div class="col-sm-5">
+                                        <div class="docErr">Please upload valid file</div>
+
+                                        <!--error-->
+                                        <div class="fileUpload btn btn-orange">
+                                            <img src="../../static/images/cloud-computing.png" class="icon">
+                                            <span class="upl" id="upload">Upload document</span>
+                                            <input type="file" required class="upload up" id="up" onchange="readURL(this);" name="files" />
+                                        </div>
+                                        <!-- btn-orange -->
+                                    </div>
+                                    <!-- col-3 -->
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="note" placeholder="Note">
+                                    </div>
+                                    <!--col-8-->
+                                    <div class="col-sm-1"><a class="btn-check"><i class="fa fa-times"></i></a></div>
+                                    <!-- col-1 -->
+                                </div>
+
+                                <!--row-->
+                            </div>
+                            <!--uploader-->
+                            <div class="text-center">
+                                <!-- <a class="btn btn-new"><i class="fa fa-plus"></i> Add new</a> -->
+                                <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--one-->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+
+        </div>
+
+
+        <!-- Upload  -->
+
+    </section>
+
+
+    <script>
+        var fileTypes = ['pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'txt']; //acceptable file types
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var extension = input.files[0].name.split('.').pop().toLowerCase(), //file extension from input file
+                    isSuccess = fileTypes.indexOf(extension) > -1; //is extension in acceptable types
+
+                if (isSuccess) { //yes
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (extension == 'pdf') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/pdf.png');
+                        } else if (extension == 'docx') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/docx.png');
+                        } else if (extension == 'rtf') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/rtf-file.png');
+                        } else if (extension == 'png') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/png.png');
+                        } else if (extension == 'jpg' || extension == 'jpeg') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/jpg.png');
+                        } else if (extension == 'txt') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/txt-file.png');
+                        } else {
+                            //console.log('here=>'+$(input).closest('.uploadDoc').length);
+                            $(input).closest('.uploadDoc').find(".docErr").slideUp('slow');
+                        }
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    //console.log('here=>'+$(input).closest('.uploadDoc').find(".docErr").length);
+                    $(input).closest('.uploadDoc').find(".docErr").fadeIn();
+                    setTimeout(function() {
+                        $('.docErr').fadeOut('slow');
+                    }, 9000);
+                }
+            }
+        }
+        $(document).ready(function() {
+
+            $(document).on('change', '.up', function() {
+                var id = $(this).attr('id'); /* gets the filepath and filename from the input */
+                var profilePicValue = $(this).val();
+                var fileNameStart = profilePicValue.lastIndexOf('\\'); /* finds the end of the filepath */
+                profilePicValue = profilePicValue.substr(fileNameStart + 1).substring(0, 20); /* isolates the filename */
+                //var profilePicLabelText = $(".upl"); /* finds the label text */
+                if (profilePicValue != '') {
+                    //console.log($(this).closest('.fileUpload').find('.upl').length);
+                    $(this).closest('.fileUpload').find('.upl').html(profilePicValue); /* changes the label text */
+                }
+            });
+
+            $(".btn-new").on('click', function() {
+                $("#uploader").append('<div class="row uploadDoc"><div class="col-sm-5"><div class="docErr">Please upload valid file</div><!--error--><div class="fileUpload btn btn-orange"> <img src="../../static/images/cloud-computing.png" class="icon"><span class="upl" id="upload">Upload document</span><input type="file" class="upload up" id="up" onchange="readURL(this);" /></div></div><div class="col-sm-6"><input type="text" class="form-control" name="" placeholder="Note"></div><div class="col-sm-1"><a class="btn-check"><i class="fa fa-times"></i></a></div></div>');
+            });
+
+            $(document).on("click", "a.btn-check", function() {
+                if ($(".uploadDoc").length > 1) {
+                    $(this).closest(".uploadDoc").remove();
+                } else {
+                    alert("You have to upload at least one document.");
+                }
+            });
+        });
+    </script>
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
+
 
 </body>
 

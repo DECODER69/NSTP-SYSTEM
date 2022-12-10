@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../static/images/tup.png">
+    <title></title>
+    <link rel="stylesheet" href="../../static/admin_css/certificate.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+</head>
+
+<body>
+    {% for s in sys1 %}
+    <form action="{% url 'activities:cwts_update_acts' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{s.years}}" name="ids">
+        <button type="submit" onclick="window.print()"><i class='bx bx-printer'></i> PRINT</button>
+    </form>
+    {% endfor %}
+    <!--     
+    baba -->
+
+    {% for s in namess %}
+
+    <div class="outer" id="outer">
+
+        <div class="inner2">
+            <div class="inner1">
+                <div id="img1">
+                    <img src="../../static/images/236.png">
+                </div>
+
+                <div id="img2">
+                    <img src="../../static/images/NRCEN.png">
+                </div>
+
+                <span class="up1">Naval Reserve Center-National Capital Region</span><br>+
+                <span class="up2">Department of Naval Science and Tactics</span><br>
+                <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br>
+                <span class="up4">Technological University of the Philippines-Cavite</span><br>
+                <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br><br/>
+                <span class="line1">Certificate of Completion</span><br>
+                <span class="line7"><i>is herby awarded to</i></span><br><br>
+                <span class="line8"><i>cadet&nbsp;</i></span><span class="line8"> <i> {{s.lastname}}</i></span> <span class="line8"><i>{{s.firstname}}</i></span><br>&nbsp;<br>&nbsp;
+                <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
+                <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
+
+                <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br> {% for s in details %}
+                <span class="line12"><i>Given this {{s.date}} day of {{s.month}} {{s.year}}at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
+                <div class="bot">
+
+
+                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}  {% endfor %}</u>&emsp;<u class="control">236-20-{{forloop.counter}}</u></span>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div><br>{% endfor %}
+
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+
+</body>
+
+</html>
