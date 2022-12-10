@@ -51,22 +51,22 @@ section {
 
 .holder {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between !important;
     width: 100%;
 }
 
 .lef {
-    width: 60%;
+    width: 70%;
 }
 
 .container {
-    width: 40% !important;
+    width: 35% !important;
     display: flex;
+    padding: 0 !important;
 }
 
 .it {
     width: 100% !important;
-    display: flex;
 }
 
 #one {
@@ -77,7 +77,7 @@ section {
     border-radius: 6px;
     box-shadow: 0px 0px 5px 2px rgba(82, 82, 82, 0);
     width: 100% !important;
-    border: solid 1px rgb(221, 221, 221);
+    border: solid 1px rgb(179, 179, 179);
 }
 
 .it .btn-orange {
@@ -232,4 +232,19 @@ p {
 
 #posted {
     color: #004e04;
+}
+
+@media screen and (max-width:1248px) {
+    .holder {
+        display: block;
+    }
+    .lef {
+        width: 100% !important;
+    }
+    .container {
+        width: 100% !important;
+    }
+    .it {
+        margin: auto !important;
+    }
 }
