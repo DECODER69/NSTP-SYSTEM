@@ -195,6 +195,10 @@ urlpatterns = [
     path('cwts_update_acts/', views.cwts_update_acts, name='cwts_update_acts'),
     path('upload_file/', views.upload_file, name='upload_file'),
     path('delete_files/<str:id>', views.delete_files, name='delete_files'),
+    path('cwts_file_upload/', views.cwts_file_upload, name='cwts_file_upload'),
+    path('cwts_upload_file/', views.cwts_upload_file, name='cwts_upload_file'),
+    path('delete_cfiles/<str:id>', views.delete_cfiles, name='delete_cfiles'),
+    
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

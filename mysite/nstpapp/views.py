@@ -3348,3 +3348,31 @@ def delete_files(request, id):
     rfiles.objects.filter(id=id).delete()
 
     return redirect('/file_upload_index')
+
+
+
+def cwts_file_upload(request):
+    allfile = cfiles.objects.all()
+    platoons = sections.objects.filter(fiel='CWTS')
+    context = {
+        'allfile':allfile,
+        'platoons':platoons
+    }
+    return render(request, 'activities/cwts_file_upload.html', context)
+
+def cwts_upload_file(request):
+    current_datetime = datetime.datetime.now() 
+    if request.method == 'POST':
+        platoons = request.POST.get('platoons')
+        files = request.FILES['files']
+        note = request.POST.get('note')
+        date = request.POST.get('date')
+        data = cfiles(files=files, note=note, date_posted=current_datetime, platoons=platoons)
+        data.save()
+    return redirect('/cwts_file_upload')
+
+        
+def delete_cfiles(request, id):
+    cfiles.objects.filter(id=id).delete()
+
+    return redirect('/cwts_file_upload')

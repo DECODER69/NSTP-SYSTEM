@@ -16,7 +16,7 @@
     <section class="page-content">
         <div class="heads">
             <a href="/grades">
-                <h1 class="text"><i class='bx bxs-dashboard'></i>ROTC FILES</h1>
+                <h1 class="text"><i class='bx bxs-dashboard'></i>CWTS FILES</h1>
             </a>
 
         </div>
@@ -44,7 +44,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th scope="col">NOTE</th>
-                                        <th scope="col">PLATOON</th>
+                                        <th scope="col">SECTION</th>
 
                                         <th scope="col">FILE</th>
                                         <th scope="col">Date Posted</th>
@@ -71,7 +71,7 @@
                                             <td id="bts">
 
 
-                                                <a href="/delete_files/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                                                <a href="/delete_cfiles/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class="fa-solid fa-trash-can"></i> Delete</a>
 
 
 
@@ -108,7 +108,7 @@
                         <p>
                             Please upload documents only in 'pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png' & 'text' format.
                         </p><br>
-                        <form action="{% url 'activities:upload_file' %}" method="post" enctype="multipart/form-data">
+                        <form action="{% url 'activities:cwts_upload_file' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <!--row-->
