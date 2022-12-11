@@ -3387,7 +3387,7 @@ def add_alumni_years(request):
 
 
 def rotc_alumni(request):
-    school_years = alumni_school_year.objects.all()
+    school_years = alumni_school_year.objects.all().order_by('years')
     context = {
         'school_years':school_years
     }
@@ -3698,3 +3698,10 @@ def update_each_cwts_graduates(request):
     
     # return redirect('/manage_section')
         return redirect(request.META['HTTP_REFERER'])
+    
+    
+def alumni_year(request, id):
+    
+    alumni_school_year.objects.filter(id=id).delete()
+    messages.info(request, 'Deleted')
+    return redirect('/rotc_alumni')

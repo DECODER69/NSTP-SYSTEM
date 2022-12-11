@@ -356,10 +356,9 @@
                             <form action="{% url 'activities:cwts_generate' %}" method="POST" target="_blank">
                                 {% csrf_token %}
                                 <div class="card-body">
-                                    {% for s in sys %}
-                                    <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
+                         
                                     <label>School Year</label>
-                                    <select name="platoons" id="" class="form-control" required>
+                                    <select name="years" id="" class="form-control" required>
                                         <option value="" disabled selected>--Select School Year--</option>
                                                 {% for s in sys %}
                                                 <option value="{{s.years}}"  >{{s.years}}</option>
