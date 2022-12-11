@@ -1084,9 +1084,9 @@ def update_acts(request):
     if request.method == 'POST':
         current_datetime = datetime.datetime.now() 
         ids= request.POST.get('ids')
-        print("hahahaha" + str(ids))
+        print("acts" + str(ids))
         school_year.objects.filter(years=ids).update(acts='DONE', date_generated=current_datetime)
-        print("hahahaha" + str(ids))
+        print("acts" + str(ids))
         return redirect('/cert_page')
     
 def cwts_update_acts(request):
@@ -2026,7 +2026,7 @@ def save_finale_grades(request):
 
 def merits(request):
     acts3 = finals.objects.all()
-    section2 = sections.objects.all()
+    section2 = sections.objects.filter(fiel='ROTC')
     context = {
         'section2':section2,
         'acts3': acts3,
