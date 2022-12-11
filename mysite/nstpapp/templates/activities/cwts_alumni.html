@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/rotc_alimni.css">
+
+
+
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class='bx bxs-dashboard'></i> CWTS ALUMNI</h1>
+        </div>
+        <div class="bg">
+
+            <div class="left">
+                <div class="tss">
+
+
+                    <div class="txt ">
+                        <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class="fa-sharp fa-solid fa-calendar-week"></i> All School Years</h1>
+
+                    </div>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class="fa-solid fa-plus"></i> ADD SCHOOL YEAR</button>
+
+
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    {% for s in school_years %}
+                    <form action="{% url 'activities:cwts_alumni_years' %}" class="column" style="text-decoration: none;" method="POST">
+                        {% csrf_token %}
+                        <div class="card">
+                            <!-- <i class='bx bxs-calendar-check' id="calendar"></i><br> -->
+                            <h5 class="title">{{s.years}}</h5>
+                            <input type="hidden" value="{{s.years}}" name="years">
+                            <p>Graduates</p>
+                            <div class="multi">
+
+                                <button type="submit" class="btn btn-info" id="sub">Open</button>
+                                <a href="/del_tday/{{s.id}}" class="btn btn-dark" id="del"><i class="fa-solid fa-trash-can"></i></a>
+                            </div>
+
+
+                        </div>
+                    </form>
+                    {% empty %}
+                    <p1 style="text-align: center; margin:auto;">No School Years Available <i class='bx bx-sad'></i></p1>
+                    {% endfor %}
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

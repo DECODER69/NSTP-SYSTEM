@@ -56,7 +56,7 @@ urlpatterns = [
     path('create_sy/', views.create_sy, name='create_sy'),
     # path('allumni_page/', views.allumni_page, name='allumni_page'),
     path('allumni_content/', views.allumni_content, name='allumni_content'),
-    path('delete_sy/<str:id>', views.delete_sy, name='delete_sy'),
+    path('delete_sy/<str:years>', views.delete_sy, name='delete_sy'),
     path('create_platoon_page/', views.create_platoon_page, name='create_platoon_page'),
     path('create_section/', views.create_section, name='create_section'),
     path('counts/', views.counts, name='counts'),
@@ -96,7 +96,7 @@ urlpatterns = [
     path('open_folder/<str:section_created>', views.open_folder, name='open_folder'),
     path('dropped/', views.dropped, name='dropped'),
     path('download3/', views.download3, name='download3'),
-    path('alumni_page/', views.alumni_page, name='alumni_page'),
+  
     path('download4/', views.download4, name='download4'),
     path('sample_attendance/', views.sample_attendance, name='sample_attendance'),
     path('create_td/', views.create_td, name='create_td'),
@@ -198,7 +198,14 @@ urlpatterns = [
     path('cwts_file_upload/', views.cwts_file_upload, name='cwts_file_upload'),
     path('cwts_upload_file/', views.cwts_upload_file, name='cwts_upload_file'),
     path('delete_cfiles/<str:id>', views.delete_cfiles, name='delete_cfiles'),
-    
+    path('rotc_alumni/', views.rotc_alumni, name='rotc_alumni'),
+    path('alumni_years/', views.alumni_years, name='alumni_years'),
+    path('each_alumni/<str:id>', views.each_alumni, name='each_alumni'),
+    path('update_each_graduates/', views.update_each_graduates, name='update_each_graduates'),
+    path('cwts_alumni/', views.cwts_alumni, name='cwts_alumni'),
+    path('cwts_alumni_years/', views.cwts_alumni_years, name='cwts_alumni_years'),
+    path('cwts_each_alumni/<str:id>', views.cwts_each_alumni, name='cwts_each_alumni'),
+    path('update_each_cwts_graduates/', views.update_each_cwts_graduates, name='update_each_cwts_graduates'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

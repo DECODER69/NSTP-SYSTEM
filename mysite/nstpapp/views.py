@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity,cwts_certification, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final, rfiles, cfiles
+from .models import activity,cwts_certification,alumni_school_year, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final, rfiles, cfiles
 import os
 import csv  
 
@@ -525,13 +525,16 @@ def create_sy(request):
         yearsz = request.POST.get('year')
         if school_year.objects.filter(years=yearsz).exists():
             messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
-        
+            return redirect('/school_years')
+        elif alumni_school_year.objects.filter(years=yearsz).exists():
+            messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
             return redirect('/school_years')
 
         else:
             data = school_year(years=yearsz)
-        
+            data2 = alumni_school_year(years=yearsz)
             data.save()
+            data2.save()
           
             messages.success(request, 'School year ' + str (yearsz) + ' Successfully Created !')
             return redirect('/school_years')
@@ -558,8 +561,9 @@ def allumni_content(request):
 
 
 
-def delete_sy(request, id):
-    school_year.objects.filter(id=id).delete()
+def delete_sy(request, years):
+    school_year.objects.filter(years=years).delete()
+    alumni_school_year.objects.filter(years=years).delete()
     print(id)
     return redirect('/school_years')
 
@@ -1146,13 +1150,6 @@ def download3(request):
             writer.writerow([s.idnumber, s.firstname, s.lastname, s.field, s.platoons, s.status])  
     return response  
 
-
-def alumni_page(request):
-    school_years = school_year.objects.all()
-    context = {
-        'school_years':school_years
-    }
-    return render(request, 'activities/allumni.html', context)
 
 
 def download4(request):
@@ -3376,3 +3373,316 @@ def delete_cfiles(request, id):
     cfiles.objects.filter(id=id).delete()
 
     return redirect('/cwts_file_upload')
+#######################################
+def rotc_alumni(request):
+    school_years = alumni_school_year.objects.all()
+    context = {
+        'school_years':school_years
+    }
+    return render(request, 'activities/rotc_alumni.html', context)
+    
+
+
+
+def alumni_years(request):
+    if request.method == 'POST':
+        years = request.POST.get('years')
+        
+        peoples = extenduser.objects.filter(s_year = years).filter(status='GRADUATE').filter(field='ROTC')
+        context = {
+            'years': years,
+            'peoples':peoples
+        }
+        return render(request, 'activities/alumni_content.html', context)
+    return render(request, 'activities/alumni_content.html')
+
+
+
+def each_alumni(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='GRADUATE')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+        
+    return render(request, 'activities/each_alumni.html', context)
+
+def update_each_graduates(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status != 'GRADUATE' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status
+            
+            )
+            
+            return redirect('/rotc_alumni')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
+    
+    
+def cwts_alumni(request):
+    school_years = alumni_school_year.objects.all()
+    context = {
+        'school_years':school_years
+    }
+    return render(request, 'activities/cwts_alumni.html', context)
+    
+
+
+def cwts_alumni_years(request):
+    if request.method == 'POST':
+        years = request.POST.get('years')
+        
+        peoples = extenduser.objects.filter(s_year = years).filter(status='GRADUATE').filter(field='CWTS')
+        context = {
+            'years': years,
+            'peoples':peoples
+        }
+        return render(request, 'activities/cwts_alumni_content.html', context)
+    return render(request, 'activities/cwts_alumni_content.html')
+
+def cwts_each_alumni(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='GRADUATE')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+        
+    return render(request, 'activities/cwts_each_alumni.html', context)
+
+
+
+
+def update_each_cwts_graduates(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status != 'GRADUATE' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status
+            
+            )
+            
+            return redirect('/rotc_alumni')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])

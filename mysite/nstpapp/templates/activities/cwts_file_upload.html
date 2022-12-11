@@ -114,8 +114,9 @@
                             <!--row-->
                             <div id="uploader">
                                 <div class="form-group" id="ed">
-                                    <label for="pl">Select Platoon</label>
-                                    <select name="platoons" id="pl" class="form-control">
+                                    <label for="pl">Select Section</label>
+                                    <select name="platoons" id="pl" class="form-control" required>
+                                        <option value="" disabled selected>--Select Section--</option>
                                         {% for s in platoons %}
                                         <option value="{{s.section_created}}">{{s.section_created}}</option>
                                         {% endfor %}

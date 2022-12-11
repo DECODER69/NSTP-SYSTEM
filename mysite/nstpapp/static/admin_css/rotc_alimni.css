@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* add */
+
+body {
+    background-attachment: fixed;
+    background-image: url(../images/sd2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+}
+
+section {
+    display: inline-block;
+    width: 100%;
+    padding-left: 0px;
+}
+
+section>div {
+    padding: 20px 40px;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+.heads {
+    justify-content: space-between;
+    display: flex;
+    background: #4b4d52;
+    height: 60px !important;
+}
+
+.heads .text {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* eof new */
+
+.left {
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.886), 0 6px 20px 0 rgba(94, 94, 94, 0.837);
+    height: auto;
+    font-size: 15px;
+    padding: 10px;
+    /* background-color: white; */
+}
+
+.tss {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    float: left;
+    width: 15%;
+    padding: 5px;
+    padding-top: 20px;
+}
+
+
+/* Remove extra left and right margins, due to padding */
+
+.row {
+    margin: 0 -5px;
+    padding: 10px;
+}
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.tss {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.txt {
+    float: left;
+}
+
+.btn {
+    float: right;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.card p {
+    font-size: 15px;
+    color: rgb(0, 92, 0);
+}
+
+.card {
+    background-color: rgb(255, 255, 255) !important;
+    padding: 10px !important;
+}
+
+.multi {
+    margin: auto;
+    float: right !important;
+    width: 80% !important;
+    display: flex;
+    justify-content: space-between !important;
+}

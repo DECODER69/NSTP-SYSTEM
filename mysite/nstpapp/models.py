@@ -366,3 +366,10 @@ class cfiles(models.Model):
     files = models.FileField(upload_to='all_files/', default='')
     date_posted = models.DateTimeField(null=True)
     platoons = models.CharField(max_length=50, default='')
+    
+    
+class alumni_school_year(models.Model):
+    years = models.CharField(blank=True, null=True, max_length=20)
+    
+    def __str__(self):
+        return self.years

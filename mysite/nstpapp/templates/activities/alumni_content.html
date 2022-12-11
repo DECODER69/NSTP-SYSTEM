@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/admin_css/akumni_content.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+
+
+    <!-- pagination css -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <a href="/rotc_alumni">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> GRADUATES &nbsp;>&nbsp; </h1>
+            </a>
+
+            <h1 class="text" id="yrs"><i class='bx bx-intersect'></i> {{years}}
+            </h1>
+
+        </div>
+        <div class="bg">
+            <div class="inside">
+
+                <div class="table-responsives">
+                    <div class="he">
+
+                        <div class="ada">
+                            <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">All Graduates</p1><br>
+                          
+                        </div>
+
+                        <div class="adda">
+                            <!-- <form action="{% url 'activities:download' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="cate">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
+                                
+                            </form>
+                            <br>&nbsp;<br> -->
+                            <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{getSection}}" name="platoon">
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Add Alumni</button>
+                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                    <div class="table-responsive">
+
+                        <table id="myTable" class="table table-bordered table-hover">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col"><input type="checkbox" class="form-control" id="allcb" name="allcb"></th>
+                                    <th scope="col">ID NUMBER</th>
+                                    <th scope="col">FULL NAME</th>
+                                    <th scope="col">COURSE</th>
+                                    <th scope="col">PLATOON</th>
+                                    <th scope="col">1st Sem Grade</th>
+                                    <th scope="col">2nd Sem Grade</th>
+
+                                    <th scope="col">NOTES</th>
+
+                                    <th scope="col">ACTIONS</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in peoples %}
+
+                                <tr>
+                                    <form action="{% url 'activities:each_alumni' s.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <td><input type="checkbox" class="form-control" id="cb" name="cbs" value="{{s.id}}"></td>
+                                        <td scope="row">{{s.idnumber}}</td>
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
+                                        <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
+                                        <td>{{s.platoons}}</td>
+                                        {% if s.final_grade <= '74.99' %}
+                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;">{{s.final_grade}}</td>
+                                        {% elif s.final_grade >= '75' %}
+                                        <td style="color:rgb(13, 112, 0); font-weight:bolder;">{{s.final_grade}}</td>
+                                        {% endif %}
+      
+
+                                        {% if s.final_grade_2 <= '74.99' %}
+                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;">{{s.final_grade_2}}</td>
+                                        {% elif s.final_grade_2 >= '75' %}
+                                        <td style="color:rgb(13, 112, 0); font-weight:bolder;">{{s.final_grade_2}}</td>
+                                        {% endif %}
+                                        <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.note}}</textarea></td>
+
+                                        <td><button class="btn btn-success" type="submit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;View</button></td>
+
+                                    </form>
+
+                                </tr>
+
+
+                             {% endfor %}
+                            </tbody>
+
+                        </table>
+
+                        <br>
+                        <hr>
+                        <!-- <div class="secttion_c">
+                                <select name="options" id="sel" class="form-control" title="Options">
+                                <option value="DROPPED">DROP</option>
+                                <option value="GRADUATE">GRADUATE</option>
+                                <option value="PENDING">UN-ENROLL</option>
+                            </select>
+                                <br>&nbsp;<br>
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl2"><i class='bx bxs-save' ></i> Save </button>
+                            </div> -->
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- for editing tables -->
+    <script src="extensions/editable/bootstrap-table-editable.js"></script>
+
+
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').dataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '{{msg.icon}}',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script>   -->
+    <script>
+        $(function() {
+            $("#allcb").click(function() {
+                var chkBoxes = $("input[id^=cb]");
+                chkBoxes.prop("checked", !chkBoxes.prop("checked"));
+            });
+        });
+    </script>
+</body>
+
+</html>

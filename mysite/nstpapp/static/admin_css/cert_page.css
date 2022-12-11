@@ -57,7 +57,7 @@ section {
     background-size: cover;
     background-position: center;
     height: auto;
-    padding: 18px;
+    padding: 40px;
 }
 
 .hehe {
@@ -125,7 +125,7 @@ section {
 /* UPER PART */
 
 .upper {
-    padding: 5px;
+    padding: 10px;
     width: 100%;
     height: auto;
     display: flex;
