@@ -3374,6 +3374,18 @@ def delete_cfiles(request, id):
 
     return redirect('/cwts_file_upload')
 #######################################
+def add_alumni_years(request):
+    if request.method == 'POST':
+        years = request.POST.get('years')
+        if alumni_school_year.objects.filter(years=years).exists():
+            messages.error(request, 'School year ' + str (years) + ' Already Exist !')
+            return redirect('/rotc_alumni')
+        else:
+            data1 = alumni_school_year(years=years)
+            data1.save()
+    return redirect('/rotc_alumni')
+
+
 def rotc_alumni(request):
     school_years = alumni_school_year.objects.all()
     context = {
