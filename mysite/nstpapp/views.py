@@ -3705,3 +3705,9 @@ def alumni_year(request, id):
     alumni_school_year.objects.filter(id=id).delete()
     messages.info(request, 'Deleted')
     return redirect('/rotc_alumni')
+
+def cwts_alumni_year(request, id):
+    
+    alumni_school_year.objects.filter(id=id).delete()
+    messages.info(request, 'Deleted')
+    return redirect('/rotc_alumni')
