@@ -30,7 +30,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 
 #models imported
-from .models import activity,cwts_certification,alumni_school_year, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final, rfiles, cfiles
+from .models import activity,cwts_certification,alumni_school_year,feedback, extenduser,school_year, sections, training_day,Announcement, certification, activity, midterm, finals, cwts_training, cwts_grading, cwts_activity, cwts_exercises, cwts_midterm, cwts_final, rfiles, cfiles
 import os
 import csv  
 
@@ -92,12 +92,36 @@ def dashboard_page(request):
     return render(request, 'activities/dashboard.html', context)
 @login_required(login_url='/login_page')
 def profile_page(request):
-    name = extenduser.objects.filter(user = request.user)
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(user=request.user)
+    pres1 = extenduser.objects.filter(user=request.user)
+    abs1 = extenduser.objects.filter(user=request.user)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(user=request.user)
-    context={
-        'details':details,
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
         'name': name,
+        'pres1':pres1,
+        'abs1':abs1
     }
+    
     return render(request, 'activities/profile.html', context)
 @login_required(login_url='/login_page')
 def editprofile(request):
@@ -159,6 +183,7 @@ def logout_student(request):
 # @login_required(login_url='/login_page')
 def admin_dashboard(request):
     # staff = extenduser.objects.filter(user=request.user)
+    feed = feedback.objects.all().order_by('date_sent')
     audience = sections.objects.all()
     ann = Announcement.objects.all()
     sy = school_year.objects.all()
@@ -175,7 +200,8 @@ def admin_dashboard(request):
         'ann':ann,
         # 'staff':staff,
         'nav_pending_count':nav_pending_count,
-        'nav_rejected_count':nav_rejected_count 
+        'nav_rejected_count':nav_rejected_count ,
+        'feed':feed
     
     }
     return render(request, 'activities/admin_dashboard.html', context)
@@ -3003,15 +3029,17 @@ def edit_health(request):
         ids = request.POST.get('ids')
         # proof = request.FILES['proof']
         proof = extenduser.objects.get(id=ids)
+    
 
         proof.proof = request.FILES['proof']
-        image_path = proof.proof.path
-        if os.path.exists(image_path):
-            os.remove(image_path)
-        proof.save()
-        
-        sickness = request.POST.get('sickness')
-        extenduser.objects.filter(id=ids).update(sickness=sickness)
+        if proof.proof != '':
+            image_path = proof.proof.path
+            if os.path.exists(image_path):
+                os.remove(image_path)
+            proof.save()
+            
+            sickness = request.POST.get('sickness')
+            extenduser.objects.filter(id=ids).update(sickness=sickness)
         return redirect('/profile_page')
 
     return redirect('/profile_page')
@@ -3711,3 +3739,140 @@ def cwts_alumni_year(request, id):
     alumni_school_year.objects.filter(id=id).delete()
     messages.info(request, 'Deleted')
     return redirect('/rotc_alumni')
+
+
+
+def send_feedback(request):
+    date_time = datetime.datetime.now() 
+    if request.method == 'POST':
+       name = request.POST.get('name')
+       email = request.POST.get('email')
+       subject = request.POST.get('subject')
+       message = request.POST.get('message')
+       data = feedback(sender=name, email=email, date_sent=date_time, subject=subject, message=message)
+       data.save()
+    return redirect('/')
+
+
+def send_response(request):
+    feed = feedback.objects.all().order_by('date_sent')
+    audience = sections.objects.all()
+    ann = Announcement.objects.all()
+    sy = school_year.objects.all()
+    nav_pending_count = extenduser.objects.filter(status='PENDING').count()
+    nav_rejected_count = extenduser.objects.filter(status='REJECTED').count()
+    active = extenduser.objects.filter(status='ENROLLED').count()
+    pending = extenduser.objects.filter(status='PENDING').count()
+
+   
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        
+        details = feedback.objects.filter(email=email)
+        
+        context = {
+            'email': email,
+            'details': details,
+            'active':active,   
+            'pending':pending,
+            'sy':[sy.last()],
+            'audience':audience,
+            'ann':ann,
+            # 'staff':staff,
+            'nav_pending_count':nav_pending_count,
+            'nav_rejected_count':nav_rejected_count ,
+            'feed':feed
+        }
+        return render(request, 'activities/for_response.html', context)
+    
+    
+    
+def student_update(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+      
+        status = request.POST.get('status')
+        if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
+            
+            extenduser.objects.filter(user=request.user).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+       
+            field = field,
+  
+            status = status
+            
+            )
+            
+            return redirect('/manage_section')
+            
+        else:
+            extenduser.objects.filter(user=request.user).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+          
+            
+                
+            )
+        
+        
+    
+    return redirect('/profile_page')
+        # return redirect(request.META['HTTP_REFERER'])

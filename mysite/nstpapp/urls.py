@@ -209,6 +209,9 @@ urlpatterns = [
     path('add_alumni_years/', views.add_alumni_years, name='add_alumni_years'),
     path('alumni_year/<str:id>', views.alumni_year, name='alumni_year'),
     path('cwts_alumni_year/<str:id>', views.cwts_alumni_year, name='cwts_alumni_year'),
+    path('send_feedback/', views.send_feedback, name='send_feedback'),
+    path('send_response/', views.send_response, name='send_response'),
+    path('student_update/', views.student_update, name='student_update'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

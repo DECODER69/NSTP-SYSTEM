@@ -373,3 +373,15 @@ class alumni_school_year(models.Model):
     
     def __str__(self):
         return self.years
+    
+class feedback(models.Model):
+    sender = models.CharField(max_length=50, default='')
+    email = models.CharField(max_length=50, default='')
+    date_sent = models.DateTimeField(null=True)
+    subject = models.CharField(max_length=50, default='')
+    message = models.CharField(max_length=160, default='')
+    status = models.CharField(max_length=50, default='PENDING')
+    
+    def __str__(self):
+        return self.sender
+    

@@ -88,6 +88,10 @@
 
     <!-- eof     MODAL FOR EDIT ANNOUNCEMENTS -->
 
+
+
+
+
     <section class="page-content">
         <div class="heads">
             <h1 class="text"><i class='bx bx-home'></i> NSTP SYSTEM DASHBOARD</h1><br>
@@ -272,32 +276,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                {% for s in feed %}
                                 <tr>
-                                    <form action="" method="POST">
-                                        <td>Christian Rapal</td>
-                                        <td>christianrapal2000@gmail.com</td>
-                                        <td id="posted"><i class='bx bx-calendar'></i> Oct. 11, 2022</td>
-                                        <td>Service</td>
-                                        <td contenteditable="True" style="width: 40%;">
-                                            <textarea type="text" style="width: 100%; height:100%;" name="content">I would like to claim my certificate,  I graduated on june 1999</textarea>
+                                    <form action="{% url 'activities:send_response'  %}" method="POST">
+                                        {% csrf_token %}
+                                        <td>{{s.sender}}</td>
+                                        <td>{{s.email}}</td>
+                                        <td id="posted"><i class='bx bx-calendar'></i>{{s.date_sent}}</td>
+                                        <td>{{s.subject}}</td>
+                                        <td>
+                                            <textarea type="text" style="width: 100%; height:100%;" name="content">{{s.message}}</textarea>
                                         </td>
 
                                         <td>
                                             <select name="" id="" class="form-control">
-                                                <option value="done">Done</option>
+                                                <option value="{{s.status}}">{{s.status}}</option>
 
                                             </select>
 
 
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-warning"><i class='bx bx-message-rounded-check'></i> Send Response</button>
+                                            <input type="hidden" value="{{s.email}}" name="email">
+                                            <button type="submit" class="btn btn-warning open-modal"><i class="fa-solid fa-reply"></i> Send Response</button>
                                         </td>
                                     </form>
 
 
                                 </tr>
+                                {% endfor %}
 
 
                             </tbody>

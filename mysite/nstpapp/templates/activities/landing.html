@@ -180,27 +180,29 @@
 
         </div>
 
-        <form action="">
+        <form action="{% url 'activities:send_feedback' %}" method="post">
+            {% csrf_token %}
 
             <h1 class="heading">contact us</h1>
 
             <div class="inputBox">
-                <input type="text" required>
+                <input type="text" required name="name">
                 <label>Name</label>
+
             </div>
 
             <div class="inputBox">
-                <input type="email" required>
+                <input type="email" required name="email">
                 <label>Email</label>
             </div>
 
             <div class="inputBox">
-                <input type="text" required>
+                <input type="text" required name="subject">
                 <label>Subject</label>
             </div>
 
             <div class="inputBox">
-                <textarea required name="" id="" cols="30" rows="10"></textarea>
+                <textarea required name="message" id="" cols="30" rows="10"></textarea>
                 <label>Message</label>
             </div>
 
@@ -283,6 +285,7 @@
             setTimeout(showSlides, 4000); // Change image every 2 seconds
         }
     </script>
+
 
 </body>
 

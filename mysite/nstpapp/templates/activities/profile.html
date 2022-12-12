@@ -42,195 +42,495 @@
 
         <br>
         <!-- whole body -->
+        {% for s in details %}
         <div class="bg">
-            {% for s in details %}
-            <form action="{% url 'activities:edit' s.id %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'activities:student_update' %}" method="POST">
                 {% csrf_token %}
-                <div class="alls">
-                    <h3>NSTP Profile Completion</h3>
-                    <p><i class="fa-solid fa-location-crosshairs"></i> &nbsp;CQT Avenue Brgy. Salawag Dasmariñas City, Cavite, Dasmariñas, Philippines</p>
-
-                </div>
-
-                <div class="upper">
-                    <h3><span id="bar">|</span><span id="student">STUDENT</span> <span>INFORMATION</span></h3>
-
-
-
-                </div>
-                <hr>
-                <!-- ghugaugdagg -->
-
-                <div class="personal">
-                    <div class="per_2">
-                        <div class="profile">
-                            <img src="{{s.picture.url}}" alt="Profile picture" data-toggle="modal" data-target="#profile" class="btn btn-dark">
-
-                        </div>
-
-                        <div class="details">
-
-                            <div class="form-row">
-                                <div class="col-md-3 mb-3">
-                                    <label for="exampleFormControlInput1">ID Number</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="TUPC-18-XXX" value="{{s.idnumber}}" disabled>
+                <div class="containers">
+                    <div class="row flex-lg-nowrap">
+                        <div class="col-12 col-lg-auto mb-3" style="width: 300px;">
+                            <!-- <div class="card p-3">
+                                <div class="e-navlist e-navlist--active-bg">
+                                    <ul class="nav">
+                                        <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
+                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-crud-users" target="__blank"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
+                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="col-md-5 mb-3">
-                                    <label for="exampleFormControlInput1">Full name</label>
-                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.lastname}}, {{s.firstname}} {{s.middlename}}" disabled>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="exampleFormControlInput1">Course&nbsp;<i class="fa-solid fa-asterisk"></i></label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Course" value="{{s.section}}" name="section">
-                                </div>
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-                    <div class="details2">
-                        <div class="form-row">
-                            <div class="col-md-4 mb-3">
-                                <label for="exampleFormControlInput1">Email</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.email}}" name="email">
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="exampleFormControlInput1">Phone Number</label>
-                                <input type="number" class="form-control" id="validationDefault02" value="{{s.cpnumber}}" name="cpnumber">
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="exampleFormControlInput1">Birthday&nbsp;<i class="fa-solid fa-asterisk"></i></label>
-                                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Birthday" value="{{s.birthday}}" name="birthday">
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="details2">
-                        <div class="form-row">
-                            <div class="col-md-4 mb-3">
-                                <label for="exampleFormControlInput1">Complete Address&nbsp;<i class="fa-solid fa-asterisk"></i></label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Address" value="{{s.address}}" name="address">
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label for="exampleFormControlInput1">Civil Status&nbsp;<i class="fa-solid fa-asterisk"></i></label>
-                                <!-- <input type="text" class="form-control" id="validationDefault02" value="{{s.civil}}" name="civil"> -->
-                                <select name="civil" id="sel" class="form-control">
-                                    <option value="{{s.civil}}"  disabled>{{s.civil}}</option>
-                                    <option value="Single">Single</option>
-                                    <option value="Married">Married</option>
-
-                            </select>
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label for="exampleFormControlInput1">Age&nbsp;<i class="fa-solid fa-asterisk"></i></label>
-                                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.age}}" name="age">
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label for="exampleFormControlInput1">Gender&nbsp;<i class="fa-solid fa-asterisk"></i></label>
-                                <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.gender}}" name="gender"> -->
-                                <select name="gender" id="sel" class="form-control">
-                                <option value="{{s.gender}}" disabled>{{s.gender}}</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-
-                        </select>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <br>
-                <br>
-
-                <h3><span id="bar">|</span><span id="student">FAMILY</span> <span>INFORMATION</span>(At least one )</h3>
-                <div class="personal">
-                    <div class="per_3">
-
-
-                        <div class="details2">
-
-                            <div class="form-row">
-                                <div class="col-md-5 mb-3">
-                                    <label for="exampleFormControlInput1">Father's Name</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.nfather}}" name="nfather">
-                                </div>
-                                <div class="col-md-5 mb-3">
-                                    <label for="exampleFormControlInput1">Father's Profession</label>
-                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.foccupation}}" name="foccupation">
-                                </div>
-                                <!-- <div class="col-md-3 mb-3">
-                                <label for="exampleFormControlInput1">Contact</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.pcontact}}" disabled>
                             </div> -->
+
+                            <div class="card p-3">
+
+                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Atendance Record</b></div>
+                                <hr>
+                                <br>
+                                <div id="container" style="width: 100%; ">
+                                    <canvas id="pie-chart"></canvas>
+                                </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
+                                <h5 id='perci'>{{s.percentage1 }} %</h5>
+                                <h5 id="curr">Current Score</h5>
+                                <br>
+                                <div class="st">
+                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres1|floatformat:0}} Present Days</span><br>
+                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
+                                </div>
+
+                                {% elif s.second_sem == 'ENROLLED' and s.percentage2 != '' %}
+                                <h5 id='perci'>{{s.percentage2 }} %</h5>
+                                <h5 id="curr">Current Score</h5>
+                                <br>
+                                <div class="st">
+                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
+                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
+                                </div>
+                                {% else %}
+                                <h5>No Record yet</h5>
+                                {% endif %} {% endfor %}
+
                             </div>
+                            <br>
+                            <div class="card p-3">
+                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Grade</b></div>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>First Sem Grade</label>
+                                            <input type="text" class="form-control" value="{{s.final_grade}}" placeholder="1st Sem grade" readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Second Sem Grade</label>
+                                            <input type="text" class="form-control" value="{{s.final_grade_2}}" placeholder="2nd Sem grade" readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
 
 
+
+
+
+                            </div>
                         </div>
 
-                        <div class="details2">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="e-profile">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-auto mb-3">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                <span style="color: rgb(255, 255, 255); font: bold 8pt Arial;">
+                                                                <img src="{{s.picture.url}}" alt="" width="140px">
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{s.firstname}} {{s.lastname}}</h4>
+                                                            <p class="mb-0">{{s.email}}</p>
+                                                            <div class="text-muted"><small>{{s.status}} <i class="fa-solid fa-certificate" style="color: #1d7901;"></i></small></div>
+                                                            <!-- <div class="mt-2">
+                                                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">
+                                                                    <i class="fa-brands fa-telegram"></i>
+                                                                  <span>Message</span>
+                                                                </button>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="text-center text-sm-right">
+                                                            <span class="badge badge-success">Student</span>
+                                                            <div class="text-muted"><small>SY: {{s.s_year}}</small></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <!-- <ul class="nav nav-tabs">
+                                                <li class="nav-item"><a href="#" class="active nav-link">Student Information</a></li>
+                                            </ul> -->
+                                                <!-- <h5 class="pt-sm-2 pb-1 mb-0 text-nowrap">Student Information</h5> -->
+                                                <div class="mb-2"><b>Student Information</b></div>
+                                                <div class="tab-content pt-3">
+                                                    <div class="tab-pane active">
 
-                            <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="exampleFormControlInput1">Mother's Name</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.nmother}}" name="nmother">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="exampleFormControlInput1">Mother's Profession</label>
-                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.moccupation}}" name="moccupation">
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="exampleFormControlInput1">Parents Contact</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.pcontact}}" name="pcontact">
-                                </div>
-                            </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>First Name</label>
+                                                                            <input type="hidden" name="ids" value="{{s.id}}">
+                                                                            <input class="form-control" type="text" name="firstname" placeholder="First Name" value="{{s.firstname}}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Middle Name</label>
+                                                                            <input class="form-control" type="text" name="middlename" placeholder="Middle name" value="{{s.middlename}}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Last name</label>
+                                                                            <input class="form-control" type="text" name="lastname" placeholder="Last Name" value="{{s.lastname}}" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Email</label>
+                                                                            <input class="form-control" type="text" placeholder="gsfe Email" value="{{s.email}}" name="email" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>ID Number</label>
+                                                                            <input class="form-control" type="text" placeholder="Student ID" value="{{s.idnumber}}" name="idnumber" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Address</label>
+                                                                            <input class="form-control" type="text" placeholder="Address" value="{{s.address}}" name="address">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Gender</label>
+                                                                            <select id="" class="form-control" name="gender">
+                                                                                <option value="{{s.gender}}" selected di>{{s.gender}}</option>
+                                                                                <option value="Male">Male</option>
+                                                                                <option value="Female">Female</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Age</label>
+                                                                            <input type="number" placeholder="Age" class="form-control" name="age" value="{{s.age}}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Birthday</label>
+                                                                            <input type="date" name="birthday" class="form-control" value="{{s.birthday}}">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Course</label>
+                                                                            <input type="text" placeholder="Section" class="form-control" name="section" value="{{s.section}}">
+                                                                            <input type="hidden" value="{{s.status}}" name="status">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Contact</label>
+                                                                            <input type="number" name="cpnumber" class="form-control" value="{{s.cpnumber}}" placeholder="Contact Number">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Civil Status</label>
+                                                                            <select name="civil" id="" class="form-control">
+                                                                                <option value="{{s.civil}}" disabled>{{s.civil}}</option>
+                                                                                <option value="Single">Single</option>
+                                                                                <option value="Married">Married</option>
+                                                                                <option value="Widowed">Widowed</option>
+                                                                                <option value="Divorced">Divorced</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Nationality</label>
+                                                                            <input type="text" placeholder="Nationality" name="nationality" value="{{s.nationality}}" class="form-control">
+                                                                        </div>
+                                                                    </div>
 
 
+
+
+                                                                </div>
+                                                                <br>
+                                                                <div class="mb-2"><b>Family Information</b></div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Father</label>
+                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Father's Fullname">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Profession</label>
+                                                                            <input type="text" placeholder="Father Profession" class="form-control" name="foccupation" value="{{s.foccupation}}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Mother</label>
+                                                                            <input type="text" name="nmother" class="form-control" value="{{s.nmother}}" placeholder="Mother's Fullname">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Profession</label>
+                                                                            <input type="text" placeholder="Mother Profession" class="form-control" name="moccupaton" value="{{s.moccupation}}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Parents Contact</label>
+                                                                            <input type="number" name="pcontact" class="form-control" value="{{s.pcontact}}" placeholder="Parents Contact">
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Guardian</label>
+                                                                            <input type="text" name="nguardian" class="form-control" value="{{s.nguardian}}" placeholder="Guardian's Name">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Guardian's Contact</label>
+                                                                            <input type="number" name="gcontact" class="form-control" value="{{s.gcontact}}" placeholder="Guardian's Contact">
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <button class="btn btn-block btn-success" type="submit">
+                                                                                <i class="fa-solid fa-file-export"></i>
+                                                                           Update
+                                                                        </button>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+
+
+                                                                <hr>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            </form>
+
+            <div class="col-12 col-md-3 mb-3">
+                <div class="card">
+                    <form action="{% url 'activities:edit_health' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold">Health Status</h6>
+
+                            <textarea class="form-control" rows="3" placeholder="Health Conditions" name="sickness">{{s.sickness}}</textarea>
                         </div>
 
-                        <div class="details2">
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold">Health Certificate</h6>
+                            <div class="container">
+                                <div class="row it">
+                                    <div class="col-sm-offset-1 col-sm-12" id="one">
+                                        <p style="color: #7e7e7e; font-style:italic;">
+                                            'pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png' & 'text' format.
+                                        </p><br>
 
-                            <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="exampleFormControlInput1">Guardian's Name</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="{{s.nguardian}}" name="nguardian">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="exampleFormControlInput1">Guardian's Profession</label>
-                                    <input type="text" class="form-control" id="validationDefault02" value="{{s.goccupation}}" name="goccupation">
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="exampleFormControlInput1">Contact</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Optional" value="{{s.gcontact}}" name="gcontact">
+                                        <div id="uploader">
+                                            <div class="row uploadDoc">
+                                                <div class="col-sm-12" id="sm12" style="  margin:auto;">
+                                                    <div class="docErr">Please upload valid file</div>
+                                                    <div class="fileUpload btn btn-orange">
+                                                        <img src="../../static/images/cloud-computing.png" class="icon">
+                                                        <span class="upl" id="upload">Select</span>
+                                                        <input type="file" required class="upload up" id="up" onchange="readURL(this);" name="proof" />
+                                                        <input type="hidden" name="ids" value="{{s.id}}">
+                                                    </div>
+                                                    <br>&nbsp;&nbsp;<br>
+                                                    <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Upload</button>
+                                                </div>
+                                            </div>
+                                            <div class="details2">
+                                                <div class="proof">
+                                                    {% if s.proof.url != '' %}
+                                                    <a href="{{s.proof.url}}" target="_blank" title="Proof">View Proof Submitted</a> {% else %}
+                                                    <a href="#" title="No submitted proof" title="Proof">View Proof Submitted</a> {% endif %}
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                             </div>
-
-
                         </div>
-
-
-                    </div>
+                    </form>
                 </div>
                 <br>
 
 
-                <div class="buttons">
-                    <div class="ehe">
-
-                        <button type="submit" class="btn btn-info" id="mess" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-floppy-disk"></i>&nbsp;Update</button>
+            </div>
+            </div>
 
 
-                    </div>
-
-                </div>
 
 
-            </form>
             {% endfor %}
-        </div>
     </section>
+    <script>
+        var fileTypes = ['pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'txt']; //acceptable file types
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var extension = input.files[0].name.split('.').pop().toLowerCase(), //file extension from input file
+                    isSuccess = fileTypes.indexOf(extension) > -1; //is extension in acceptable types
+
+                if (isSuccess) { //yes
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (extension == 'pdf') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/pdf.png');
+                        } else if (extension == 'docx') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/docx.png');
+                        } else if (extension == 'rtf') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/rtf-file.png');
+                        } else if (extension == 'png') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/png.png');
+                        } else if (extension == 'jpg' || extension == 'jpeg') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/jpg.png');
+                        } else if (extension == 'txt') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/txt-file.png');
+                        } else {
+                            //console.log('here=>'+$(input).closest('.uploadDoc').length);
+                            $(input).closest('.uploadDoc').find(".docErr").slideUp('slow');
+                        }
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    //console.log('here=>'+$(input).closest('.uploadDoc').find(".docErr").length);
+                    $(input).closest('.uploadDoc').find(".docErr").fadeIn();
+                    setTimeout(function() {
+                        $('.docErr').fadeOut('slow');
+                    }, 9000);
+                }
+            }
+        }
+        $(document).ready(function() {
+
+            $(document).on('change', '.up', function() {
+                var id = $(this).attr('id'); /* gets the filepath and filename from the input */
+                var profilePicValue = $(this).val();
+                var fileNameStart = profilePicValue.lastIndexOf('\\'); /* finds the end of the filepath */
+                profilePicValue = profilePicValue.substr(fileNameStart + 1).substring(0, 20); /* isolates the filename */
+                //var profilePicLabelText = $(".upl"); /* finds the label text */
+                if (profilePicValue != '') {
+                    //console.log($(this).closest('.fileUpload').find('.upl').length);
+                    $(this).closest('.fileUpload').find('.upl').html(profilePicValue); /* changes the label text */
+                }
+            });
+
+            $(".btn-new").on('click', function() {
+                $("#uploader").append('<div class="row uploadDoc"><div class="col-sm-5"><div class="docErr">Please upload valid file</div><!--error--><div class="fileUpload btn btn-orange"> <img src="../../static/images/cloud-computing.png" class="icon"><span class="upl" id="upload">Upload document</span><input type="file" class="upload up" id="up" onchange="readURL(this);" /></div></div><div class="col-sm-6"><input type="text" class="form-control" name="" placeholder="Note"></div><div class="col-sm-1"><a class="btn-check"><i class="fa fa-times"></i></a></div></div>');
+            });
+
+            $(document).on("click", "a.btn-check", function() {
+                if ($(".uploadDoc").length > 1) {
+                    $(this).closest(".uploadDoc").remove();
+                } else {
+                    alert("You have to upload at least one document.");
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+
+    var config = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [ {{absent|safe}} , {{present |safe}}],
+          backgroundColor: [
+             '#D0021B','#7ED321'
+          ],
+          label: {{labels | safe}}
+        }],
+        labels: {{labels | safe}}
+      },
+      options: {
+        responsive: true
+      }
+    };
+    
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+   
+      window.myPie = new Chart(ctx, config);
+    };
+
+     </script>
 
 </body>
 

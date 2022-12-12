@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/admin_css/admin_dashboard.css">
+    <link rel="icon" href="../../static/images/tup.png">
+    <title>ADMIN DASHBOARD</title>
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+
+
+
+
+
+
+
+
+
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+</head>
+
+<body>
+    {% include 'activities/admin_nav.html' %}
+
+
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-home'></i> NSTP SYSTEM DASHBOARD</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
+        <div class="bg">
+
+            <div class="container-fluid">
+                <div class="stats">
+                    <div class="cards" id="blue">
+                        <div class="inside1">
+                            <div class="left">
+                                <h1>{{active}}</h1>
+                                <p>Active Students</p>
+                            </div>
+                            <div class="right">
+                                <img class="graph" src="../../static/images/graph.png">
+                            </div>
+                        </div>
+                        <div class="more">
+                            <p class="info"><a href="/admin_staff">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
+
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="cards" id="red">
+                        <div class="inside1">
+                            <div class="left">
+                                <h1>{{pending}}</h1>
+                                <p>Pending Enrollees</p>
+                            </div>
+                            <div class="right">
+                                <img class="graph" src="../../static/images/graph.png">
+                            </div>
+                        </div>
+                        <div class="more">
+                            <p class="info"><a href="/admin_pending">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
+
+                        </div>
+                    </div>
+                    <br>
+
+
+                    <div class="cards" id="yellow">
+                        <div class="inside1">
+                            <div class="left">
+                                {% for s in sy %} {% if s.years %}
+                                <h1>{{s.years}}</h1>
+                                {% else %}
+                                <h1>Not Available</h1>
+                                {% endif %} {% endfor %}
+                                <p>School Year</p>
+                            </div>
+                            <div class="right">
+                                <img class="graph" src="../../static/images/graph.png">
+                            </div>
+                        </div>
+                        <div class="more">
+                            <p class="info"><a href="/school_years">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
+
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="cards" id="green">
+                        <div class="inside1">
+                            <div class="left">
+                                <h1>8</h1>
+                                <p>All Sections</p>
+                            </div>
+                            <div class="right">
+                                <img class="graph" src="../../static/images/graph.png">
+                            </div>
+                        </div>
+                        <div class="more">
+                            <p class="info"><a href="#">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="inside2">
+                <div class="hes">
+                    <br>
+                    <div class="for">
+                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega">Announcements List</h1><br>
+                        <button type="button" class="btns" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="new"><i class="fa-solid fa-plus"></i>  ADD NEW ANNOUNCEMENT</button>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="announce">
+
+                        <table id="example" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">Subject</th>
+
+                                    <th scope="col">Target Audience</th>
+                                    <th scope="col">Date Posted</th>
+                                    <th scope="col">Content</th>
+
+                                    <th scope="col">Edit</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in ann %}
+                                <tr>
+                                    <form action="{% url 'activities:edit_announcement' s.id %}" method="POST">
+                                        {% csrf_token %}
+
+                                        <td>{{s.subject}}</td>
+                                        <td>{{s.assign}}</td>
+                                        <td id="posted"> <i class='bx bx-calendar'></i> {{s.date_posted}}</td>
+                                        <td contenteditable="True" style="width: 40%;">
+                                            <textarea type="text" style="width: 100%; height:100%;" name="content">{{s.content}}</textarea>
+                                        </td>
+
+                                        <td>
+
+                                            <div class="bbt">
+                                                <input type="hidden" value="{{s.id}}" name="ID">
+                                                <button type="submit" class="btn btn-success" title="Update Announcement"><i class='bx bx-check' ></i> Update</button><br>&nbsp;<br>
+
+
+                                                <a href="/delete_announcement/{{s.id}}" class="btn btn-danger" title="Edit" id="rights" style="float: right;"><i class='bx bx-trash'></i> Delete</a>
+                                            </div>
+
+
+                                        </td>
+                                    </form>
+
+
+                                </tr>
+
+                                {% empty %} {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- </div> -->
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- message from landing page -->
+
+            <br>
+            <div class="inside2">
+                <div class="hes">
+                    <br>
+                    <div class="for">
+                        <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega"><i class="fa-solid fa-comments"></i> Feedback</h1><br>
+
+                    </div>
+                    <br>
+                    <br>
+                    <div class="announce">
+
+                        <table id="example2" class="table table-bordered table-hover ">
+                            <thead class="thead">
+                                <tr>
+                                    <th scope="col">Sender</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Date Sent</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Send Response</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in feed %}
+                                <tr>
+                                    <form action="" method="POST">
+                                        <td>{{s.sender}}</td>
+                                        <td>{{s.email}}</td>
+                                        <td id="posted"><i class='bx bx-calendar'></i>{{s.date_sent}}</td>
+                                        <td>{{s.subject}}</td>
+                                        <td>
+                                            <textarea type="text" style="width: 100%; height:100%;" name="content">{{s.message}}</textarea>
+                                        </td>
+
+                                        <td>
+                                            <select name="" id="" class="form-control">
+                                                <option value="{{s.status}}">{{s.status}}</option>
+
+                                            </select>
+
+
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning open-modal"><i class="fa-solid fa-reply"></i> Send Response</button>
+                                        </td>
+                                    </form>
+
+
+                                </tr>
+                                {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                        <!-- </div> -->
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+    <script>
+        $(document).ready(function() {
+            $("#myModal").modal('show');
+        });
+    </script>
+
+    <!-- Latest compiled and minified CSS -->
+
+    <!-- for chart -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- EOF CHART -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> -->
+
+
+    <!-- pagination -->
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example2').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script>
+
+        {% for msg1 in messages %}
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '{{msg1}}',
+            showConfirmButton: false,
+            timer: 2500
+          }) {% endfor %}
+    </script>   -->
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    location.href = self.attr('href')
+                }
+            })
+        })
+    </script>
+    <script>
+        var timeDisplay = document.getElementById("time");
+
+
+        function refreshTime() {
+            var dateString = new Date().toLocaleString("en-US", {
+                timeZone: "UTC + 8"
+            });
+            var formattedString = dateString.replace(", ", " - ");
+            timeDisplay.innerHTML = formattedString;
+        }
+
+        setInterval(refreshTime, 1000);
+    </script>
+    <!-- <script>
+        const modal = document.querySelector(".modal");
+        const trigger = document.querySelector(".trigger");
+        const closeButton = document.querySelector(".close-button");
+
+        function toggleModal() {
+            modal.classList.toggle("show-modal");
+        }
+
+        function windowOnClick(event) {
+            if (event.target === modal) {
+                toggleModal();
+            }
+        }
+
+        trigger.addEventListener("click", toggleModal);
+        closeButton.addEventListener("click", toggleModal);
+        window.addEventListener("click", windowOnClick);
+    </script> -->
+
+
+</body>
+
+</html>

@@ -67,7 +67,7 @@ section {
 
 .column {
     float: left;
-    width: 15%;
+    width: 20%;
     padding: 5px;
     padding-top: 20px;
 }
@@ -99,6 +99,10 @@ section {
     float: left;
 }
 
+#sub {
+    width: 60%;
+}
+
 .btn {
     float: right;
 }
@@ -126,7 +130,7 @@ section {
 .multi {
     margin: auto;
     float: right !important;
-    width: 70% !important;
+    width: 90% !important;
     display: flex;
     justify-content: space-between !important;
 }
@@ -154,5 +158,18 @@ section {
     .card {
         width: 100%;
         background-color: aqua !;
+    }
+}
+
+@media screen and (min-width:721px) and (max-width:1000px) {
+    .column {
+        justify-content: space-between;
+        display: flex !important;
+        width: 100%;
+        background-color: #1f3e8f;
+    }
+    .card {
+        width: 30%;
+        background-color: aqua;
     }
 }
