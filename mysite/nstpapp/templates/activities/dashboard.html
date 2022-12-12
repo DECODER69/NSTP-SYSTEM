@@ -119,27 +119,38 @@
                         <div class="title"><i class="fa-solid fa-scroll"></i> Announcements</div>
                         <hr>
                         <div class="announce-details">
-                            {% for manji in announcement %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
-                            <button class="accordion">
-                                
-                                <div class="up">
-                                    <div class="headss">
-                                        <i class="fa-solid fa-user-shield"></i><br>&nbsp;
-                                        <div class="dts">
-                                            <h2>NSTP Staff</h2>
-                                            <h4>{{manji.date_posted}}</h4>
+                            {% for manji in announcement %}
+                                {% if manji %}
+                                    {% for s in name %}
+                                        {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
+                                        <button class="accordion">
+                                            
+                                            <div class="up">
+                                                <div class="headss">
+                                                    <i class="fa-solid fa-user-shield"></i><br>&nbsp;
+                                                    <div class="dts">
+                                                        <h2>NSTP Staff</h2>
+                                                        <h4>{{manji.date_posted}}</h4>
 
+                                                    </div>
+                                                
+                                                </div>
+                                                <h5>{{manji.subject}}</h5>
+
+                                            </div>
+                                        </button>
+                                        <div class="panel"><br>
+                                            <p>{{manji.content}}</p>
                                         </div>
-                                    
-                                    </div>
-                                    <h5>{{manji.subject}}</h5>
-
-                                </div>
-                            </button>
-                            <div class="panel"><br>
-                                <p>{{manji.content}}</p>
-                            </div>
-                            &nbsp; {% endif %}{% endfor %}{% endfor %}
+                                        &nbsp;
+                    
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <h1>dg</h1>
+                                {% endif %}
+                            
+                            {% endfor %}
 
                         </div>
 

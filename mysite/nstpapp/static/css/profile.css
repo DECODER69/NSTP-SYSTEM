@@ -285,3 +285,9 @@ p {
 #posted {
     color: #004e04;
 }
+
+@media screen and (min-width:247px) and (max-width:480px) {
+    #ro {
+        display: block;
+    }
+}
