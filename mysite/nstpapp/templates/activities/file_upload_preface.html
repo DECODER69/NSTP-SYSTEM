@@ -106,7 +106,7 @@
                         </div>
                         <hr>
                         <p>
-                            Please upload documents only in 'pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png' & 'text' format.
+                            Please upload documents only in 'pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'pptx' & 'text' format.
                         </p><br>
                         <form action="{% url 'activities:upload_file' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
@@ -170,7 +170,7 @@
 
 
     <script>
-        var fileTypes = ['pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'txt']; //acceptable file types
+        var fileTypes = ['pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'txt', 'pptx']; //acceptable file types
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var extension = input.files[0].name.split('.').pop().toLowerCase(), //file extension from input file
@@ -191,6 +191,8 @@
                             $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/jpg.png');
                         } else if (extension == 'txt') {
                             $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/txt-file.png');
+                        } else if (extension == 'pptx') {
+                            $(input).closest('.fileUpload').find(".icon").attr('src', '../../static/images/pptx.png');
                         } else {
                             //console.log('here=>'+$(input).closest('.uploadDoc').length);
                             $(input).closest('.uploadDoc').find(".docErr").slideUp('slow');

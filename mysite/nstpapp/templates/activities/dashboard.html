@@ -13,40 +13,7 @@
 </head>
 
 <body>
-    {% include 'activities/navbar.html' %} {% for s in name %}
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">USER: {{s.idnumber}}</h5>
- 
-
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="First Sem Grade" readonly value="{{s.final_grade}}">
-                                <label for="">&nbsp;&nbsp;First Sem</label>
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Second Sem Grade" readonly value="{{s.final_grade_2}}">
-                                <label for="">&nbsp;&nbsp;Second Sem</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <small>@sentinels 2022</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+    {% include 'activities/navbar.html' %} 
     <section class="page-content">
         <div class="heads">
             <h1 class="text"><i class='bx bx-home'></i>DASHBOARD</h1><br>

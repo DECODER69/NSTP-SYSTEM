@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP</title>
+    <link rel="icon" href="../../static/images/tup.png">
+    <link rel="stylesheet" href="../../static/css/display_file.css">
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+
+</head>
+
+<body>
+
+    {% include 'activities/navbar.html' %}
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class="fa-solid fa-folder"></i> FILES</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
+        <div class="bg">
+
+            <div class="out1">
+                <div class="table-responsive">
+                    <h2 id="tit"><i class="fa-regular fa-folder-open"></i> All Course Materials</h2><br>
+                    <table id="example" class="table table-bordered table-hover ">
+                        <thead class="thead">
+
+                            <tr>
+                                <th scope="col">Platoon / Section</th>
+                                <th scope="col">Date posted</th>
+                                <th scope="col">File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for s in userplatoon %}{% for f in files %} {% if s.platoons == f.platoons %}
+                            <tr>
+                                <td>
+                                    <h5 id="pls">{{f.platoons}}</h5>
+                                </td>
+
+                                <td>
+                                    <h5 id="dt">{{f.date_posted}}</h5>
+                                </td>
+                                <td id="ff">
+                                    <div class="lam" title="Click File to view or download">
+                                        <a href="{{f.files.url}}"></a>
+                                        <h5>{{f.note}}</h5>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td></td>
+                                <td>
+
+                                </td>
+                                <td>}</td>
+                            </tr>
+                            {% endif %} {% endfor %}{% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

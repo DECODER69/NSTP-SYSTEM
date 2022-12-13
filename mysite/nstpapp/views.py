@@ -3876,3 +3876,14 @@ def student_update(request):
     
     return redirect('/profile_page')
         # return redirect(request.META['HTTP_REFERER'])
+        
+def all_files(request):
+    name = extenduser.objects.filter(user = request.user)
+    userplatoon = extenduser.objects.filter(user=request.user)
+    files = rfiles.objects.all()
+    context = {
+        'userplatoon':userplatoon,
+        'files': files,
+        'name':name
+    }
+    return render(request, 'activities/display_file.html', context)

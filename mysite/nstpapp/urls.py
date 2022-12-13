@@ -212,6 +212,7 @@ urlpatterns = [
     path('send_feedback/', views.send_feedback, name='send_feedback'),
     path('send_response/', views.send_response, name='send_response'),
     path('student_update/', views.student_update, name='student_update'),
+    path('all_files/', views.all_files, name='all_files'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
