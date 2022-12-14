@@ -53,7 +53,7 @@
                     <form action="{% url 'activities:create_sy' %}" method="POST">
                         {% csrf_token %}
                         <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar' style="vertical-align: midddle;"></i> Add School Year </label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="2022-2023" required name="year"><br>
+                        <input type="text" class="form-control" placeholder="2022-2023" required name="year" pattern="[0-9]+([-\,][0-9]+)?" onKeyPress="if(this.value.length==9) return false;"><br>
                         <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
                     </form>
 
@@ -199,13 +199,13 @@
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
+    <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script> -->
+    </script>
 
     <script>
         $('.btn-danger').on('click', function(e) {
@@ -234,8 +234,8 @@
             })
         })
     </script>
-
-    <!-- <script>
+{% comment %} 
+    <script>
         $('.semester').on('click', function(e) {
             e.preventDefault();
             var self = $(this);
@@ -261,7 +261,7 @@
                 }
             })
         })
-    </script> -->
+    </script> {% endcomment %}
 
     <script src="../../static/js/pag.js"></script>
     <script src="../../static/js/datbot.js"></script>
