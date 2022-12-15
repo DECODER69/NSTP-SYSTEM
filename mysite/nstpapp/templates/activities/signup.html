@@ -5,7 +5,7 @@
     <link rel="icon" href="../../static/images/tup.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="../../static/css/signup.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>signup</title>
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -36,18 +37,29 @@
 
     {% comment %} ############################# {% endcomment %}
     <div class="page">
-        <div class="left">
+        <!-- <div class="left">
+            <h4 id="ank"><span style="color: red;">NS</span><span style="color: aliceblue;">TP</span></h4>
+            <div class="text">
+                <h1 id="tit">Tungo sa Masikhay at Tapat na Serbisyo para sa bayan</h1>
+                <br>&nbsp;
+                <br>
+                <div class="ce">
+                    <small id="sm">National Service training Program</small>
+                </div>
+
+            </div>
             <div class="logo">
                 <img src="../../static/images/tup.png">
             </div>
-            <div class="text">
-                <h1 id="tit">Sign up to NSTP</h1>
-            </div>
 
-        </div>
+
+        </div> -->
 
         <div class="right">
+
             <div class="cont">
+                <h4 id="dd">Sign up to TUPC NSTP</h4>
+                <hr>
                 <form class="container" action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
                     {%csrf_token%} {% for s in schools %} {% if s.years %}
                     <input type="hidden" name="s_year" value="{{s.years}}">
@@ -112,14 +124,14 @@
     {% comment %}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-    <script>
+
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>
+    </script> -->
 
     {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
     <script type="text/javascript">
@@ -146,10 +158,7 @@
             }
         }, 3000)
     </script>
-    {% comment %} {% else %}    {% endif %} {% endfor %} {% endcomment %}
-
-
-    {% for s in schools %} {% if s.years %} {% else %}
+    {% comment %} {% else %} {% endif %} {% endfor %} {% endcomment %} {% for s in schools %} {% if s.years %} {% else %}
     <script type="text/javascript">
         $(window).on('load', function() {
             $('#exampleModal').modal('show');

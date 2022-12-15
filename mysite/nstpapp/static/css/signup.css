@@ -1,95 +1,204 @@
-    .page {
-        background-image: url(../images/tupc3.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
-        width: 100%;
+   body {
+       background-repeat: no-repeat;
+       background-size: cover;
+       background-position: center;
+       height: 100vh;
+       width: 100%;
+       background-image: url(../images/landing4.jpg);
+   }
+   
+   .page {
+       background-color: #8fe5ff54;
+       padding: 10px;
+       position: fixed;
+       justify-content: space-between;
+       display: flex;
+       width: 100%;
+       height: 100vh;
+       float: left;
+   }
+   
+   .text {
+       width: 100%;
+   }
+   
+   #tit {
+       font-size: 25px !important;
+       float: left !important;
+       color: #313131;
+       font-weight: bolder;
+       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   }
+   
+   .ce {
+       width: 100%;
+       display: flex;
+   }
+   
+   #sm {
+       color: #3a3a3a;
+       font-weight: bold;
+       font-size: 15px;
+       margin: auto;
+       text-align: center !important;
+   }
+   
+   .left {
+       padding: 10px;
+       position: fixed;
+       justify-content: space-between;
+       display: block;
+       width: 35%;
+       height: 100vh;
+       float: left;
+   }
+   
+   #ank {
+       font-size: 20px;
+       font-family: Verdana, Geneva, Tahoma, sans-serif;
+   }
+   
+   #dd {
+       font-size: 20px;
+       font-weight: bold;
+       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   }
+   /* .cont {
+        background-color: bisque;
     }
-    
-    #tit {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-    
-    .left {
-        width: 50%;
-        height: 100vh;
-        float: left;
-    }
-    
-    .right {
-        width: 50%;
-        height: 100vh;
-        float: right;
-        align-content: center;
-    }
-    
-    .logo {
-        margin-top: 180px;
-        align-items: center;
-    }
-    
-    .logo img {
-        width: 200px;
-        margin: auto;
-        display: flex;
-    }
-    
-    .text {
-        margin: auto;
-        align-items: center;
-    }
-    
-    .text h1 {
-        text-align: center;
-        color: rgb(0, 0, 0);
-    }
-    
-    .cont {
-        margin: auto;
-        width: 80%;
-    }
-    
-    .container {
-        margin: auto;
-        padding: 10px;
-        background-color: #ffffff;
-        margin-top: 50px;
-        border-radius: 10px;
-    }
-    
-    .form-control {
-        height: 25px !important;
-        border: no;
-        border-top-style: hidden !important;
-        border-right-style: hidden !important;
-        border-left-style: hidden !important;
-    }
-    
-    .form-control:focus {
-        outline: none !important;
-        box-shadow: none !important;
-    }
-    
-    .form-group label {
-        font-size: 12px;
-    }
-    
-    #pass {
-        display: flex;
-        justify-content: space-between !important;
-    }
-    
-    .btn {
-        width: 100%;
-    }
-    
-    #already {
-        text-align: center;
-    }
-    
-    #by {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-    }
+     */
+   
+   .right {
+       padding: 20px;
+       width: 50%;
+       height: auto !important;
+       margin: auto;
+       align-content: center;
+   }
+   
+   .logo {
+       position: absolute;
+       bottom: 0;
+       width: 100% !important;
+       align-items: center;
+   }
+   
+   .logo img {
+       width: 100%;
+       margin: auto;
+       display: flex;
+   }
+   
+   .text {
+       margin-top: 10%;
+       width: 100%;
+       align-items: center;
+   }
+   
+   .text h1 {
+       text-align: center;
+       color: rgb(41, 41, 41);
+   }
+   
+   .cont {
+       padding: 20px;
+       background-color: #ffffff;
+       margin: auto;
+       width: 80%;
+       border-radius: 10px;
+       border: solid 1px rgba(66, 66, 66, 0.322);
+   }
+   
+   .container {
+       margin: auto;
+       padding: 10px;
+   }
+   
+   .form-control {
+       height: 25px !important;
+       border: no;
+       border-top-style: hidden !important;
+       border-right-style: hidden !important;
+       border-left-style: hidden !important;
+   }
+   
+   .form-control:focus {
+       outline: none !important;
+       box-shadow: none !important;
+   }
+   
+   .form-group label {
+       font-size: 12px;
+       font-weight: bold !important;
+       ;
+   }
+   
+   #pass {
+       display: flex;
+       justify-content: space-between !important;
+   }
+   
+   .btn {
+       width: 100%;
+   }
+   
+   #already {
+       text-align: center;
+   }
+   
+   #by {
+       display: flex;
+       width: 100%;
+       justify-content: space-between;
+   }
+   
+   @media screen and (max-width:360px) {
+       .page {
+           display: block !important;
+       }
+       .left {
+           display: none !important;
+       }
+       .right {
+           margin-top: 50px;
+           width: 100%;
+           padding: 5px;
+       }
+       .cont {
+           padding: 3px;
+       }
+   }
+   
+   @media screen and (min-width:360px)and (max-width:640px) {
+       .page {
+           display: block !important;
+       }
+       .left {
+           display: none !important;
+       }
+       .right {
+           margin-top: 50px;
+           width: 100%;
+           padding: 5px;
+       }
+       .cont {
+           padding: 3px;
+       }
+   }
+   
+   @media screen and (min-width:641px)and (max-width:900px) {
+       .page {
+           display: block !important;
+       }
+       .left {
+           display: none !important;
+       }
+       .right {
+           margin-top: 50px;
+           width: 100%;
+           padding: 5px;
+       }
+       .cont {
+           padding: 3px;
+       }
+   }

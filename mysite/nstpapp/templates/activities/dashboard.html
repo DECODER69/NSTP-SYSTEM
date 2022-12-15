@@ -13,7 +13,40 @@
 </head>
 
 <body>
-    {% include 'activities/navbar.html' %} 
+    {% include 'activities/navbar.html' %}
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Grade Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    {% for s in name %}
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">First Sem Grade</label>
+                            <input type="text" class="form-control" id="recipient-name" value="{{s.final_grade}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Second Sem Grade</label>
+                            <input type="text" class="form-control" id="recipient-name" value="{{s.final_grade_2}}" readonly>
+                        </div>
+                    </form>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="page-content">
         <div class="heads">
             <h1 class="text"><i class='bx bx-home'></i>DASHBOARD</h1><br>
@@ -86,11 +119,8 @@
                         <div class="title"><i class="fa-solid fa-scroll"></i> Announcements</div>
                         <hr>
                         <div class="announce-details">
-                            {% for manji in announcement %}
-                                {% if manji %}
-                                    {% for s in name %}
-                                        {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
-                                        <button class="accordion">
+                            {% for manji in announcement %} {% if manji %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
+                            <button class="accordion">
                                             
                                             <div class="up">
                                                 <div class="headss">
@@ -106,18 +136,12 @@
 
                                             </div>
                                         </button>
-                                        <div class="panel"><br>
-                                            <p>{{manji.content}}</p>
-                                        </div>
-                                        &nbsp;
-                    
-                                        {% endif %}
-                                    {% endfor %}
-                                {% else %}
-                                    <h1>dg</h1>
-                                {% endif %}
-                            
-                            {% endfor %}
+                            <div class="panel"><br>
+                                <p>{{manji.content}}</p>
+                            </div>
+                            &nbsp; {% endif %} {% endfor %} {% else %}
+                            <h1>dg</h1>
+                            {% endif %} {% endfor %}
 
                         </div>
 
@@ -212,7 +236,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script>
+     </script> 
 
 
 </body>
