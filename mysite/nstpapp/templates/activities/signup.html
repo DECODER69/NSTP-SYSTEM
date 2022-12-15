@@ -58,10 +58,11 @@
         <div class="right">
 
             <div class="cont">
-                <h4 id="dd">Sign up to TUPC NSTP</h4>
-                <hr>
+
+
                 <form class="container" action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
-                    {%csrf_token%} {% for s in schools %} {% if s.years %}
+                    <h4 id="dd">Sign up to TUPC NSTP</h4>
+                    <br> {%csrf_token%} {% for s in schools %} {% if s.years %}
                     <input type="hidden" name="s_year" value="{{s.years}}">
                     <div class="form-group">
                         <label for="firstname">First Name</label>
@@ -86,10 +87,18 @@
                         <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber">
                     </div>
                     <div class="custom-file mb-3">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required name="picture">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" required name="picture" accept=".jpg, .jpeg, .png">
                         <label class="custom-file-label" for="validatedCustomFile">1 x 1 Picture</label>
 
                     </div><br>
+
+                    <div class="form-group">
+                        <label for="lastname">NSTP Companion</label>
+                        <select name="field" id="" class="form-control">
+                            <option value="ROTC">ROTC</option>
+                            <option value="CWTS">CWTS</option>
+                       </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="">Password</label><br>
@@ -98,7 +107,7 @@
                             <input type="password" class="password2 form-control" id="password2" placeholder="Confirm Password" required name="password2">
                         </div>
                     </div><br>
-                    <button type="submit" class="btn btn-success">Sign Up</button><br>&nbsp;<br>
+                    <button type="submit" class="btn btn-success" id="ssss">Sign Up</button><br>&nbsp;<br>
                     <p id="already">Already have an Account? <a href="/login_page"> Login</a></p>
 
 

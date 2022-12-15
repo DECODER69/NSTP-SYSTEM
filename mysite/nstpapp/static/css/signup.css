@@ -4,13 +4,11 @@
        background-position: center;
        height: 100vh;
        width: 100%;
-       background-image: url(../images/landing4.jpg);
+       background-image: url(../images/tupc2.jpg)
    }
    
    .page {
-       background-color: #8fe5ff54;
        padding: 10px;
-       position: fixed;
        justify-content: space-between;
        display: flex;
        width: 100%;
@@ -28,6 +26,11 @@
        color: #313131;
        font-weight: bolder;
        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   }
+   
+   #ssss {
+       border: none;
+       background-color: rgb(90, 0, 0);
    }
    
    .ce {
@@ -59,7 +62,7 @@
    }
    
    #dd {
-       font-size: 20px;
+       font-size: 25px;
        font-weight: bold;
        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    }
@@ -69,7 +72,7 @@
      */
    
    .right {
-       padding: 20px;
+       padding: 10px;
        width: 50%;
        height: auto !important;
        margin: auto;
@@ -106,7 +109,7 @@
        margin: auto;
        width: 80%;
        border-radius: 10px;
-       border: solid 1px rgba(66, 66, 66, 0.322);
+       border: solid 1px rgba(0, 0, 0, 0.151);
    }
    
    .container {
@@ -115,7 +118,6 @@
    }
    
    .form-control {
-       height: 25px !important;
        border: no;
        border-top-style: hidden !important;
        border-right-style: hidden !important;
