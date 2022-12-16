@@ -77,6 +77,7 @@ body {
     margin: auto;
     font-size: 25px;
     text-align: center !important;
+    color: rgba(0, 0, 0, 0.678);
 }
 
 .twitter {
@@ -202,11 +203,17 @@ a {
     margin: auto;
 }
 
+#ssss {
+    background-color: rgb(107, 19, 60) !important;
+    border: none !important;
+}
+
 .form-control {
     border: no;
     border-top-style: hidden !important;
     border-right-style: hidden !important;
     border-left-style: hidden !important;
+    border-bottom: 1px solid rgba(99, 99, 99, 0.493) !important;
 }
 
 .form-control:focus {
@@ -214,9 +221,36 @@ a {
     box-shadow: none !important;
 }
 
+#fir {
+    font-size: 30px;
+    font-weight: bolder;
+    color: #e72604;
+}
+
+#sec {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.social-contact {
+    padding: 10px !important;
+    margin: auto;
+}
+
+.social-contact small,
+h5 {
+    text-align: center;
+}
+
+.col label {
+    color: #0000008f;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 991px) {
     .container-fluid {
         overflow-x: hidden !important;
+        padding-top: 20px !important;
     }
     #loo .row {
         display: block !important;
@@ -246,11 +280,10 @@ a {
     }
     .txt .logo {
         height: 100px !important;
-        padding-top: 10px !important;
         margin: auto !important;
     }
-    .tx {
-        font-size: 18px !important;
+    .tx h1 {
+        font-size: 15px !important;
         text-align: center;
         padding: 5px !important;
     }
@@ -266,5 +299,13 @@ a {
     }
     #sen {
         margin: auto;
+    }
+    .social-contact {
+        padding: 10px !important;
+        margin: auto;
+    }
+    .social-contact small,
+    h5 {
+        text-align: center;
     }
 }

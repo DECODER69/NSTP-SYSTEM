@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <link rel="stylesheet" href="../../static/css/login.css">
+    <link rel="stylesheet" href="../../static/css/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>login</title>
@@ -39,7 +39,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-success">Login</button><br>&nbsp;<br>
-                    <p id="already"><a href="{% url "activities:password_reset" %}"> Forgot Password </a></p>
+                    <p id="already"><a href="{% url " activities:password_reset " %}"> Forgot Password </a></p>
                     <p id="already">Don't have an Account? <a href="/signup_page"> Sign Up</a></p>
                 </form>
 
@@ -59,13 +59,13 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    <!-- <script>
         {% for m in messages %}
         Swal.fire({
             icon: 'error',
             text: '{{ m }}'
         }) {% endfor %}
-    </script>
+    </script> -->
 
 
 

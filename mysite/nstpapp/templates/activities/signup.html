@@ -12,7 +12,9 @@
     <!-- sweet alert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+    <link rel="stylesheet" href="../../static/admin_css/admin_nav.css">
+    <script src="https://kit.fontawesome.com/3e1139830b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -61,7 +63,9 @@
                     <div class="col-lg-6" id="loo">
                         <div class="card2 card border-0 px-4 py-5">
                             <div class="row mb-4 px-3">
-                                <h6 class="mb-0 mr-4 mt-2">Sign up to NSTP</h6>
+
+                                <h4 style="font-weight: bolder; color:rgba(0, 0, 0, 0.61);"><i class="fa-solid fa-pen-to-square"></i> Sign up to NSTP</h4>
+
 
                             </div>
 
@@ -73,16 +77,16 @@
                                     <div class="col">
 
                                         <input type="hidden" name="s_year" value="{{s.years}}">
-                                        <div class="form-group">
-                                            <label>First Name</label>
-                                            <input class="form-control" type="text" name="firstname" placeholder="Juan">
-                                        </div>
+
+                                        <label>First Name</label>
+                                        <input class="form-control" type="text" name="firstname" placeholder="Juan">
+
                                     </div>
                                     <div class="col">
-                                        <div class="form-group">
-                                            <label>Middle Name</label>
-                                            <input class="form-control" type="text" name="middlename" placeholder="Aquino">
-                                        </div>
+
+                                        <label>Middle Name</label>
+                                        <input class="form-control" type="text" name="middlename" placeholder="Aquino">
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -168,11 +172,14 @@
                 </div>
 
                 <div class="bg-blue py-4">
-                    <div class="row px-3">
-                        <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2022. All rights reserved.</small>
+                    <div class="row px-3" id="ra">
                         <div class="social-contact ml-4 ml-sm-auto">
-                            <img src="../../static/images/sen.png" alt="" id="sen">
+                            <small>Copyright &copy; 2022. All rights reserved.</small>
+                            <h5><span id="fir">NS</span><span id="sec">TP</span></h5>
                         </div>
+
+
+
                     </div>
                 </div>
 
@@ -181,17 +188,17 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      
-         
+
+
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-            <script>
+            <!-- <script>
             {% for msg in messages %}
                 Swal.fire({
                     icon: '',
                     text: '{{ msg }}'
                 }) {% endfor %}
-            </script> 
+            </script>  -->
 
             {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
             <script type="text/javascript">
@@ -218,78 +225,64 @@
                     }
                 }, 3000)
             </script>
-            
+
+
+
+
+
+
+
+
+            <script></script>
+
+            {% comment %}
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %} {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
+            <script type="text/javascript">
+                document.querySelector('.btn').onclick = function() {
+
+                    var password = document.querySelector('.password1').value,
+                        password2 = document.querySelector('.password2').value;
+
+                    if (password == "") {
+                        alert("Field cannot be empty");
+                    } else if (password != password2) {
+                        alert("Password didn't match try again.");
+                        document.querySelector('.password1').value = '';
+                        document.querySelector('.password2').value = '';
+
+                        return false
+                    }
+                    return true
+                }
+
+                setTimeout(function() {
+                    if ($('#msg').length > 0) {
+                        $('#msg').remove();
+                    }
+                }, 3000)
+            </script>
+            {% comment %} {% else %} {% endif %} {% endfor %} {% endcomment %} {% for s in schools %} {% if s.years %} {% else %}
+            <script type="text/javascript">
+                $(window).on('load', function() {
+                    $('#exampleModal').modal('show');
+                });
+            </script>
+            {% endif %} {% endfor %}
+
+
+            <script>
+                let container = document.getElementById('container')
+
+                toggle = () => {
+                    container.classList.toggle('sign-in')
+                    container.classList.toggle('sign-up')
+                }
+
+                setTimeout(() => {
+                    container.classList.add('sign-in')
+                }, 200)
+            </script>
 
     </body>
 
     </html>
-
-
-
-    <script></script>
-
-    {% comment %}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        { %
-            for msg in messages %
-        }
-        Swal.fire({
-            icon: '',
-            text: '{{ msg }}'
-        }) { % endfor %
-        }
-    </script>
-
-    {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
-    <script type="text/javascript">
-        document.querySelector('.btn').onclick = function() {
-
-            var password = document.querySelector('.password1').value,
-                password2 = document.querySelector('.password2').value;
-
-            if (password == "") {
-                alert("Field cannot be empty");
-            } else if (password != password2) {
-                alert("Password didn't match try again.");
-                document.querySelector('.password1').value = '';
-                document.querySelector('.password2').value = '';
-
-                return false
-            }
-            return true
-        }
-
-        setTimeout(function() {
-            if ($('#msg').length > 0) {
-                $('#msg').remove();
-            }
-        }, 3000)
-    </script>
-    {% comment %} {% else %} {% endif %} {% endfor %} {% endcomment %} {% for s in schools %} {% if s.years %} {% else %}
-    <script type="text/javascript">
-        $(window).on('load', function() {
-            $('#exampleModal').modal('show');
-        });
-    </script>
-    {% endif %} {% endfor %}
-
-
-    <script>
-        let container = document.getElementById('container')
-
-        toggle = () => {
-            container.classList.toggle('sign-in')
-            container.classList.toggle('sign-up')
-        }
-
-        setTimeout(() => {
-            container.classList.add('sign-in')
-        }, 200)
-    </script>
-
-</body>
-
-</html>
