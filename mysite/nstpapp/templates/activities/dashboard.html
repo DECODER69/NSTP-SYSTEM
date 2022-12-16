@@ -41,7 +41,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
+
                 </div>
             </div>
         </div>
@@ -211,32 +211,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [{
+                        {
+                            absent | safe
+                        }
+                    }, {
+                        {
+                            present | safe
+                        }
+                    }],
+                    backgroundColor: [
+                        '#D0021B', '#7ED321'
+                    ],
+                    label: {
+                        {
+                            labels | safe
+                        }
+                    }
+                }],
+                labels: {
+                    {
+                        labels | safe
+                    }
+                }
+            },
+            options: {
+                responsive: true
+            }
+        };
 
-    var config = {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [ {{absent|safe}} , {{present |safe}}],
-          backgroundColor: [
-             '#D0021B','#7ED321'
-          ],
-          label: {{labels | safe}}
-        }],
-        labels: {{labels | safe}}
-      },
-      options: {
-        responsive: true
-      }
-    };
-    
 
-    window.onload = function() {
-      var ctx = document.getElementById('pie-chart').getContext('2d');
-   
-      window.myPie = new Chart(ctx, config);
-    };
+        window.onload = function() {
+            var ctx = document.getElementById('pie-chart').getContext('2d');
 
-     </script> 
+            window.myPie = new Chart(ctx, config);
+        };
+    </script>
 
 
 </body>
