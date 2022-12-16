@@ -532,7 +532,7 @@ def r_approve(request, idnumber):
     platoons = request.POST.get('platoons')
     
 
-    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons=platoons)
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons=platoons, first_sem = 'ENROLLED')
     messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     return redirect('/admin_rejected')
 
@@ -3948,7 +3948,7 @@ def update_each_pending(request):
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
         status = request.POST.get('status')
-        if status == 'PENDING' or status == 'DROPPED' or status == 'REJECTED' :
+        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
             
             extenduser.objects.filter(id=ids).update(firstname = firstname,
             middlename = middlename,
@@ -3974,7 +3974,8 @@ def update_each_pending(request):
             field = field,
             platoons = platoons,
             note = note,
-            status = status
+            status = status,
+            first_sem = status
             
             )
             
