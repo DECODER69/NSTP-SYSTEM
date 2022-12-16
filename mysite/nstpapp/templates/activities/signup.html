@@ -5,142 +5,243 @@
     <link rel="icon" href="../../static/images/tup.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../../static/css/signup.css">
+    <!-- <link rel="stylesheet" href="../../static/css/signup.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
     <title>signup</title>
     <!-- sweet alert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
 
 <body>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: red;">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Attention !</h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button> -->
-                </div>
-                <div class="modal-body">
-                    Registration is not yet Open!
-                </div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% comment %} ############################# {% endcomment %}
-    <div class="page">
-        <!-- <div class="left">
-            <h4 id="ank"><span style="color: red;">NS</span><span style="color: aliceblue;">TP</span></h4>
-            <div class="text">
-                <h1 id="tit">Tungo sa Masikhay at Tapat na Serbisyo para sa bayan</h1>
-                <br>&nbsp;
-                <br>
-                <div class="ce">
-                    <small id="sm">National Service training Program</small>
-                </div>
-
-            </div>
-            <div class="logo">
-                <img src="../../static/images/tup.png">
-            </div>
 
 
-        </div> -->
 
-        <div class="right">
+    <!DOCTYPE html>{% load static%}
+    <html lang="en">
 
-            <div class="cont">
+    <head>
+        <link rel="icon" href="../../static/images/tup.png">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="../../static/css/signup.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <title>signup</title>
+        <!-- sweet alert -->
 
+    </head>
 
-                <form class="container" action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
-                    <h4 id="dd">Sign up to TUPC NSTP</h4>
-                    <br> {%csrf_token%} {% for s in schools %} {% if s.years %}
-                    <input type="hidden" name="s_year" value="{{s.years}}">
-                    <div class="form-group">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" id="firstname" placeholder="Juan" required name="firstname">
+    <body>
 
-                    </div>
-                    <div class="form-group">
-                        <label for="middle">MiddleName</label>
-                        <input type="text" class="form-control" id="middle" placeholder="Reyes" name="middle">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname" placeholder="Dela Cruz" required name="lastname">
-                    </div>
+        <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+            <div class="card card0 border-0">
+                <div class="row d-flex">
+                    <div class="col-lg-6">
+                        <div class="card1 pb-5">
+                            <div class="row" id="hea">
+                                <a class="txt" href="/">
+                                    <img src="../../static/images/tup.png" class="logo">
+                                </a>
 
-                    <div class="form-group">
-                        <label for="lastname">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Juan.DelaCruz@gsfe.tupcavite.edu.ph" required name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">ID Number</label>
-                        <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber">
-                    </div>
-                    <div class="custom-file mb-3">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required name="picture" accept=".jpg, .jpeg, .png">
-                        <label class="custom-file-label" for="validatedCustomFile">1 x 1 Picture</label>
+                                <div class="tx">
+                                    <h1>Technological University of the Philippines - Cavite</h1>
 
-                    </div><br>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="lastname">NSTP Companion</label>
-                        <select name="field" id="" class="form-control">
-                            <option value="ROTC">ROTC</option>
-                            <option value="CWTS">CWTS</option>
-                       </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Password</label><br>
-                        <div id="pass">
-                            <input type="password" class="password1 form-control" id="password1" placeholder="Password" required name="password1">
-                            <input type="password" class="password2 form-control" id="password2" placeholder="Confirm Password" required name="password2">
+                            </div>
+                            <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+                                <img src="https://i.imgur.com/uNGdWHi.png" class="image">
+                            </div>
                         </div>
-                    </div><br>
-                    <button type="submit" class="btn btn-success" id="ssss">Sign Up</button><br>&nbsp;<br>
-                    <p id="already">Already have an Account? <a href="/login_page"> Login</a></p>
+                    </div>
+                    <div class="col-lg-6" id="loo">
+                        <div class="card2 card border-0 px-4 py-5">
+                            <div class="row mb-4 px-3">
+                                <h6 class="mb-0 mr-4 mt-2">Sign up to NSTP</h6>
+
+                            </div>
+
+                            <form action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
+
+                                {%csrf_token%}
+                                <div class="row" id="ro">
+                                    {% for s in schools %} {% if s.years %}
+                                    <div class="col">
+
+                                        <input type="hidden" name="s_year" value="{{s.years}}">
+                                        <div class="form-group">
+                                            <label>First Name</label>
+                                            <input class="form-control" type="text" name="firstname" placeholder="Juan">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Middle Name</label>
+                                            <input class="form-control" type="text" name="middlename" placeholder="Aquino">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" class="form-control" id="lastname" placeholder="Dela Cruz" required name="lastname">
+                                    </div>
+
+                                    <div class="col">
+                                        <label for="lastname">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Juan.DelaCruz@gsfe.tupcavite.edu.ph" required name="email">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="lastname">ID Number</label>
+                                        <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber">
+                                    </div>
+                                    <div class="col">
+                                        <label for="lastname">NSTP Companion</label>
+                                        <select name="field" id="" class="form-control">
+                                        <option value="ROTC">ROTC</option>
+                                        <option value="CWTS">CWTS</option>
+                                   </select>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
 
 
 
-                    <!-- oppppssssssssssssss -->
+                                        <label for="lastname">1 x 1 Picture</label>
+                                        <input type="file" class="form-control " id="validatedCustomFile" required name="picture" accept=".jpg, .jpeg, .png">
+                                    </div>
+                                    <div class="col">
+                                        <label for="">Password</label>
+                                        <input type="password" class="password1 form-control" id="password1" placeholder="password" required name="password1">
 
-                    {% else %} {% endif %} {% endfor %}
-                </form>
+                                    </div>
 
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col">
+
+                                    </div>
+                                    <div class="col">
+                                        <label for="">Confirm Password</label><br>
+                                        <input type="password" class="password2 form-control" id="password2" placeholder="confirm password" required name="password2">
+                                    </div>
+
+                                </div>
+
+                                <br>
+                                <div class="row" id="sub">
+                                    <div class="col" id="sub2">
+                                        <button type="submit" class="btn btn-success" id="ssss">Sign Up</button><br>
+                                    </div>
+
+
+
+                                </div>
+                                <p id="already" style="text-align: center;">Already have an Account? <a href="/login_page"> Login</a></p>
+
+
+
+                                <!-- oppppssssssssssssss -->
+
+
+
+
+
+
+                                {% else %} {% endif %} {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue py-4">
+                    <div class="row px-3">
+                        <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2022. All rights reserved.</small>
+                        <div class="social-contact ml-4 ml-sm-auto">
+                            <img src="../../static/images/sen.png" alt="" id="sen">
+                        </div>
+                    </div>
+                </div>
 
             </div>
-        </div>
 
-    </div>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      
+         
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script>
+            {% for msg in messages %}
+                Swal.fire({
+                    icon: '',
+                    text: '{{ msg }}'
+                }) {% endfor %}
+            </script> 
+
+            {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
+            <script type="text/javascript">
+                document.querySelector('.btn').onclick = function() {
+
+                    var password = document.querySelector('.password1').value,
+                        password2 = document.querySelector('.password2').value;
+
+                    if (password == "") {
+                        alert("Field cannot be empty");
+                    } else if (password != password2) {
+                        alert("Password didn't match try again.");
+                        document.querySelector('.password1').value = '';
+                        document.querySelector('.password2').value = '';
+
+                        return false
+                    }
+                    return true
+                }
+
+                setTimeout(function() {
+                    if ($('#msg').length > 0) {
+                        $('#msg').remove();
+                    }
+                }, 3000)
+            </script>
+            
+
+    </body>
+
+    </html>
 
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <!-- sweet alert -->
+    <script></script>
 
     {% comment %}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- <script>
-        {% for msg in messages %}
+    <script>
+        { %
+            for msg in messages %
+        }
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
-        }) {% endfor %}
-    </script> -->
+        }) { % endfor %
+        }
+    </script>
 
     {% comment %} {% for s in schools %} {% if s.years %} {% endcomment %}
     <script type="text/javascript">
@@ -174,6 +275,20 @@
         });
     </script>
     {% endif %} {% endfor %}
+
+
+    <script>
+        let container = document.getElementById('container')
+
+        toggle = () => {
+            container.classList.toggle('sign-in')
+            container.classList.toggle('sign-up')
+        }
+
+        setTimeout(() => {
+            container.classList.add('sign-in')
+        }, 200)
+    </script>
 
 </body>
 

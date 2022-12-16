@@ -14,7 +14,7 @@ from datetime import timedelta
 
 class extenduser(models.Model):
     #first part of registration
-    firstname = models.CharField(max_length=30, default='', null=True)
+    firstname = models.CharField(max_length=30, default='')
     lastname = models.CharField(max_length=30, default='')
     middlename = models.CharField(max_length=30, default='')
     email = models.EmailField(max_length=254, null=True, unique=True)

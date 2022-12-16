@@ -277,6 +277,13 @@
                                                                         </div>
                                                                     </div>
 
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>NSTP Companion</label>
+                                                                            <input type="text" placeholder="Nationality" name="field" value="{{s.field}}" class="form-control" readonly>
+                                                                        </div>
+
+                                                                    </div>
 
 
 
@@ -339,7 +346,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Guardian's Contact</label>
-                                                                            <input type="number" name="gcontact"  class="form-control" value="{{s.gcontact}}" placeholder="Guardian's Contact" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==11) return false;">
+                                                                            <input type="number" name="gcontact" class="form-control" value="{{s.gcontact}}" placeholder="Guardian's Contact" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==11) return false;">
 
                                                                         </div>
                                                                     </div>
@@ -504,7 +511,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script>
+    <!-- <script>
 
     var config = {
       type: 'doughnut',
@@ -530,7 +537,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script>
+     </script> -->
 
 </body>
 

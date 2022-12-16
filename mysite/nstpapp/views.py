@@ -245,14 +245,38 @@ def admin_rejected(request):
     return render(request, 'activities/admin_rejected.html', context)
 
 def admin_view_profile(request, id):
-    sy = school_year.objects.all()
-    profiles = extenduser.objects.filter(id=id)
-    pending = extenduser.objects.filter(status='PENDING').count()
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='PENDING')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
     context = {
-        'profiles':profiles,
-        'pending':pending,
-        'sy':[sy.last()]
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
     }
+    
+
+    
     return render(request, 'activities/profile_view.html', context)
  
 
@@ -362,13 +386,14 @@ def attendance_main_page(request):
 def signup(request):
     if request.method == 'POST':
         firstname = request.POST.get('firstname')
-        middle = request.POST.get('middle')
+        middle = request.POST.get('middlename')
         lastname = request.POST.get('lastname')
         email = request.POST.get('email')
         idnumber = request.POST.get('idnumber')
         password = request.POST.get('password1')
         picture = request.FILES['picture']
         s_year = request.POST.get('s_year')
+        field = request.POST.get('field')
         if User.objects.filter(username=idnumber).exists():
             messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
             return redirect('/signup_page')
@@ -378,10 +403,10 @@ def signup(request):
        
         else:
             user = User.objects.create_user(username=idnumber, password=password, email=email)
-            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber,picture=picture,user=user)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber,picture=picture, field=field,user=user)
             datas.save()
             auth.login(request, user)
-            messages.info(request, 'Account created successfully\nPlease Login and complete profile for verification')
+            messages.info(request, 'Account created successfully\nPlease Login and complete profile for verification. Thank you')
             return redirect('/signup_page')
     else:
         return redirect('/')
@@ -3813,6 +3838,7 @@ def student_update(request):
         pcontact = request.POST.get('pcontact')
         nguardian = request.POST.get('nguardian')
         gcontact = request.POST.get('gcontact')
+        field = request.POST.get('field')
       
         status = request.POST.get('status')
         if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
@@ -3844,7 +3870,7 @@ def student_update(request):
             
             )
             
-            return redirect('/manage_section')
+            return redirect('/profile_page')
             
         else:
             extenduser.objects.filter(user=request.user).update(firstname = firstname,
@@ -3867,6 +3893,7 @@ def student_update(request):
                 pcontact = pcontact,
                 nguardian = nguardian,
                 gcontact = gcontact,
+                field = field,
           
             
                 
@@ -3887,3 +3914,101 @@ def all_files(request):
         'name':name
     }
     return render(request, 'activities/display_file.html', context)
+
+
+
+def update_each_pending(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status == 'PENDING' or status == 'DROPPED' or status == 'REJECTED' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status
+            
+            )
+            
+            return redirect('/admin_pending')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
