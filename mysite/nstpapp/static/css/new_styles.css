@@ -71,7 +71,13 @@ hr {
 }
 
 .section-header p {
-    text-align: center;
+    text-align: justify;
+    font-size: 17px;
+    padding: 10px;
+}
+
+.section-header p #sp {
+    font-weight: bolder;
 }
 
 .section-header .section-title {
@@ -310,6 +316,7 @@ ul.nostyle i {
     background: url('../../static/images/landing4.jpg');
     background-size: cover;
     color: #fff;
+    background-position: center;
 }
 
 #hero-banner.item {
@@ -691,8 +698,10 @@ ul.nostyle i {
 #about {
     padding: 100px 0;
     background: #07080A;
-    background: url('../images/img2.jpg');
+    background-image: linear-gradient(to right bottom, #182426, #192c3b, #342f4a, #582d47, #703030);
+    /* background-image: url('../../static/images/rotc2.png'); */
     background-size: cover;
+    margin: auto !important;
 }
 
 ;

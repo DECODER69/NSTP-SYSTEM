@@ -98,7 +98,7 @@ class extenduser(models.Model):
     TD14_dem= models.CharField(max_length=100, default='')
     TD15_dem= models.CharField(max_length=100, default='')
     first_merits = models.CharField(max_length=20, default='100')
-    equivalent_merits = models.CharField(max_length=20, default='')
+    equivalent_merits = models.CharField(max_length=20, default='30.00')
     
         # attendance 2nd semester
     TD1_2= models.CharField(max_length=100, default='')
@@ -141,7 +141,7 @@ class extenduser(models.Model):
     TD1_2_dem= models.CharField(max_length=100, default='')
     TD1_2_dem= models.CharField(max_length=100, default='')
     second_merits = models.CharField(max_length=20, default='100')
-    equivalent_merits2 = models.CharField(max_length=20, default='')
+    equivalent_merits2 = models.CharField(max_length=20, default='30.00')
         
     
     
