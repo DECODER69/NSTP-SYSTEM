@@ -53,7 +53,7 @@ import datetime
 import pandas as pd
 #   PAGE SHOWING
 def index(request):
-    return render(request, 'activities/landing.html')
+    return render(request, 'activities/new_landing.html')
 def signup_page(request):
     schools = school_year.objects.all()
     context = {

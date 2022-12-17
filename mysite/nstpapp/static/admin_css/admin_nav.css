@@ -171,25 +171,21 @@ body {
 /*--------------------sidebar-header----------------------*/
 
 .sidebar-wrapper .sidebar-header {
-    padding: 20px;
+    padding: 5px;
     overflow: hidden;
     display: flex;
 }
 
 .sidebar-wrapper .sidebar-header .user-pic {
     /* float: left; */
-    width: 120px;
-    padding: 2px;
-    border-radius: 12px;
-    margin: auto;
-    overflow: hidden;
+    width: 100%;
+    padding: 0px;
+    display: flex !important;
 }
 
 .sidebar-wrapper .sidebar-header .user-pic img {
-    object-fit: cover;
-    height: 70%;
-    width: 100%;
-    margin: auto !important;
+    margin: auto;
+    width: 100% !important;
 }
 
 .sidebar-wrapper .sidebar-header .user-info {
