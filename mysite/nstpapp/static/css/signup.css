@@ -1,8 +1,12 @@
 body {
-    color: #000;
     overflow-x: hidden !important;
-    background-color: #d4d4d4 !important;
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    background-image: linear-gradient(to right bottom, #e5c0a070, #f0b8a285, #f8b2ab8f, #fbabbb80, #f5a8cf54);
 }
 
 .card0 {
@@ -268,7 +272,8 @@ h5 {
     }
     .card2 {
         border-top: 1px solid #EEEEEE !important;
-        margin: 0px 15px;
+        margin: 0px 0px;
+        margin-top: -90px !important;
     }
     #hea {
         display: block !important;
@@ -281,15 +286,16 @@ h5 {
     .txt .logo {
         height: 100px !important;
         margin: auto !important;
+        margin-top: -60px !important;
     }
     .tx h1 {
-        font-size: 15px !important;
+        font-size: 19px !important;
         text-align: center;
         padding: 5px !important;
+        font-weight: bolder !important;
     }
     #sub .col {
         display: flex !important;
-        ;
     }
     #sub .col button {
         margin: auto;
@@ -307,5 +313,18 @@ h5 {
     .social-contact small,
     h5 {
         text-align: center;
+    }
+    body {
+        padding: 10px !important;
+    }
+    #rw {
+        font-size: 20px;
+        color: #000;
+        font-weight: bolder;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    #col-lg {
+        padding-bottom: 0px !important;
+        padding: 5px !important;
     }
 }
