@@ -34,6 +34,8 @@ from .models import activity,cwts_certification,alumni_school_year,feedback, ext
 import os
 import csv  
 
+from django.db.models import Q
+
 
 
 from django.http import HttpResponse, Http404
@@ -4013,3 +4015,31 @@ def update_each_pending(request):
     
     # return redirect('/manage_section')
         return redirect(request.META['HTTP_REFERER'])
+    
+    
+def search(request):
+    return render(request, 'activities/searching.html')
+
+# def search_on(request):
+#     results = []
+#     if request.method == "POST":
+#         query = request.POST.get('search')
+#         if query == '':
+#             query = 'None'
+#         results = extenduser.objects.filter(Q(firstname__icontains=query) | Q(lastname__icontains=query) | Q(idnumber__icontains=query) )
+#     return render(request, 'search.html', {'query': query, 'results': results})
+
+
+def search_on(request):
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname')
+        lastname = request.POST.get('lastname')
+        details = extenduser.objects.filter(firstname = firstname).filter(lastname = lastname)
+        count = extenduser.objects.filter(firstname = firstname).filter(lastname = lastname).count()
+        print(details)
+        context  = {
+            'details':details,
+            'count':count
+        }
+        
+    return render(request, 'activities/results.html', context)

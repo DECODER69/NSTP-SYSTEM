@@ -214,6 +214,8 @@ urlpatterns = [
     path('student_update/', views.student_update, name='student_update'),
     path('all_files/', views.all_files, name='all_files'),
     path('update_each_pending/', views.update_each_pending, name='update_each_pending'),
+    path('search/', views.search, name='search'),
+    path('search_on/', views.search_on, name='search_on'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

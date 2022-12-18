@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="webthemez">
+    <link rel="icon" href="../../static/images/tup.png">
+    <!-- core CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../static/css/animate.min.css" rel="stylesheet">
+    <link href="../../static/css/prettyphoto.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../static/css/search.css">
+    <script src="https://kit.fontawesome.com/3e1139830b.js" crossorigin="anonymous"></script>
+
+
+
+    <title>NSTP</title>
+
+
+</head>
+
+<body id="home">
+    <header id="header">
+        <nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarNavDropdown">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="../../static/images/samples.png" alt="logo"></a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right" id="navbarNavDropdown">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item scroll"><a href="/">Home</a></li>
+                        <li class="scroll"><a href="/">ABOUT</a></li>
+                        <li class="scroll"><a href="/">ROTC</a></li>
+                        <li class="scroll"><a href="/">CWTS</a></li>
+                        <li class="scroll  active"><a href="/search">ALUMNI</a></li>
+                        <li class="scroll"><a href="/signup_page">SIGN UP</a></li>
+                        <li class="scroll"><a href="/login_page">SIGN IN</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.container-->
+        </nav>
+        <!--/nav-->
+    </header>
+    <!--/header-->
+    <form action="" method="POST">
+        {% csrf_token %}
+        <section id="hero-banner">
+
+            <div class="container">
+
+                <div class="he">
+                    <h1 id="serv"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;ALUMNI NAME SEARCH</h1>
+                </div>
+                <div class="keys">
+                    <div class="key2">
+                        <h1>Enter Name(s)</h1>
+                        <div class="ins">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="firstname" placeholder="First name" required><br>
+                                <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i>  Search</button>
+
+                        </div>
+
+
+                    </div>
+                    <br>&nbsp;&nbsp;&nbsp;<br>
+                    <h5> <span style="font-weight: bolder;">{{count}}</span> result(s) found</h5>
+                    <br> <br>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Firstname</th>
+                                    <th scope="col">Lastname</th>
+                                    <th scope="col">NSTP Companion</th>
+                                    <th scope="col">School Year</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in details %}
+                                <tr>
+                                    <th scope="row">{{s.firstname}}</th>
+                                    <td>{{s.lastname}}</td>
+                                    <td>{{s.field}}</td>
+                                    <td>{{s.s_year}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                    <hr id="hr">
+                    <small>Note:</small><br>
+                    <p>The Alumni Informations that is limited only. NSTP System will not give the Full Information About Specific person Please Contact the NSTP Office or message us <span><a href="here">here</a></span></p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+    </form>
+    <!--/#main-slider-->
+    <br>&nbsp;<br>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2022 SENTINELS. NSTP System
+                </div>
+                <div class="col-sm-6">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="https://github.com/DECODER69/NSTP-SYSTEM.git" target="_blank"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--/#footer-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/js/custom-scripts.js"></script>
+    <!-- <script src="../../static/js/html5shiv.js"></script> -->
+    <script type="text/javascript" src="../../static/js/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.prettyphoto.js"></script>
+    <script type="text/javascript" src="../../static/js/mouse.js"></script>
+    <script type="text/javascript" src="../../static/js/respond.min.js"></script>
+    <script type="text/javascript" src="../../static/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="../../static/js/wow.min.js"></script>
+
+
+
+
+
+</body>
+
+</html>
