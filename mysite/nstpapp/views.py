@@ -579,9 +579,7 @@ def create_sy(request):
         if school_year.objects.filter(years=yearsz).exists():
             messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
             return redirect('/school_years')
-        elif alumni_school_year.objects.filter(years=yearsz).exists():
-            messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
-            return redirect('/school_years')
+
 
         else:
             data = school_year(years=yearsz)
@@ -3778,7 +3776,7 @@ def send_feedback(request):
        message = request.POST.get('message')
        data = feedback(sender=name, email=email, date_sent=date_time, subject=subject, message=message)
        data.save()
-    return redirect('/')
+    return redirect('/contact_us')
 
 
 def send_response(request):
@@ -4043,3 +4041,6 @@ def search_on(request):
         }
         
     return render(request, 'activities/results.html', context)
+
+def contact_us(request):
+    return render(request, 'activities/contact_us.html')

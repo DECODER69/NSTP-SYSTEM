@@ -125,6 +125,23 @@ hr {
     padding: 0px;
 }
 
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ro {
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+}
+
+#ro2 {
+    background-color: rgb(41, 129, 6);
+    display: flex;
+    justify-content: space-between;
+}
+
 .listarrow li {
     list-style: none;
     margin: 0px;
@@ -347,6 +364,11 @@ ul.nostyle i {
     width: 100%;
     height: auto;
     padding: 30px;
+}
+
+.keys h5 {
+    color: rgb(58, 58, 58);
+    font-size: 20px;
 }
 
 .keys2 {}
@@ -981,9 +1003,14 @@ li.plan-purchase .btn {
 /*Contact*/
 
 .contact-info {
-    background: #F9690E;
+    background: #792929;
     padding: 50px;
     margin-bottom: 50px;
+}
+
+.contact-info form {
+    background-color: #F9690B;
+    justify-content: space-between;
 }
 
 .contact-info address {
@@ -1007,6 +1034,11 @@ li.plan-purchase .btn {
     border-radius: 50%;
     position: absolute;
     width: 100px;
+}
+
+#contact {
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 
