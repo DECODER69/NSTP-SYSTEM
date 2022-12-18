@@ -7,7 +7,7 @@ from heapq import merge
 from pkgutil import extend_path
 from django.db.models import Sum
 import re
-from subprocess import IDLE_PRIORITY_CLASS
+# from subprocess import IDLE_PRIORITY_CLASS
 from turtle import end_fill
 from webbrowser import get
 from django.http import HttpResponseRedirect
