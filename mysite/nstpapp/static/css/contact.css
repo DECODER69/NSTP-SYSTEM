@@ -1104,6 +1104,10 @@ li.plan-purchase .btn {
     .form-group input {
         width: 100% !important;
     }
+    .row {
+        display: block !important;
+        ;
+    }
 }
 
 .form-control {
