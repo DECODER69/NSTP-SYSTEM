@@ -60,88 +60,119 @@
 
 
 
-    <section id="contact">
-
-        <div class="container">
-            <div class="container contact-info">
+    <section id="hero-banner">
+        <div class="banner-inner">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-4 col-md-4">
-                        <div class="contact-form">
-                            <h3>Sign Up</h3>
+                    <div class="col-sm-12">
 
-                            <address>
-                              <strong><i class="fa-solid fa-envelope"></i>  tupc.nstp@gmail.com.</strong><br>
-                              CQT Avenue Brgy. Salawag Dasmariñas City,<br>
-                              Cavite, Dasmariñas, Philippines<br>
-                              <abbr title="Phone"></abbr> 4114
-                            </address>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-sm-8 col-md-8">
-                        <div class="contact-form">
+                        <h2>Stronger than <b>EVER !</b></h2>
+                        <p>Train for future service in the ROTC or contribute to <br/> the general welfare of your community in the CWTS</p>
+                        <a class="btn btn-primary btn-lg" href="/signup_page">Sign Up</a>
 
-                            <form action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
-                                {% csrf_token %} {% for s in schools %} {% if s.years %}
-                                <div class="form-group">
-                                    <input type="hidden" name="s_year" value="{{s.years}}">
-
-                                    <label>First Name</label>
-                                    <input class="form-control" type="text" name="firstname" placeholder="Juan" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Middle Name</label>
-                                    <input class="form-control" type="text" name="middlename" placeholder="Aquino">
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" id="lastname" placeholder="Dela Cruz" required name="lastname">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastname">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Juan.DelaCruz@gsfe.tupcavite.edu.ph" required name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastname">ID Number</label>
-                                    <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber" value="TUPC-">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastname">NSTP Companion</label>
-                                    <select name="field" id="form-control" class="form-control">
-                                    <option value="ROTC">ROTC</option>
-                                    <option value="CWTS">CWTS</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastname">1 x 1 Picture</label>
-                                    <input type="file" class="form-control " id="validatedCustomFile" required name="picture" accept=".jpg, .jpeg, .png">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Password</label>
-                                    <input type="password" class="password1 form-control" id="password1" placeholder="password" required name="password1">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Confirm Password</label><br>
-                                    <input type="password" class="password2 form-control" id="password2" placeholder="confirm password" required name="password2">
-                                </div>
-                                <div class="form-group">
-
-                                </div>
-                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Account</button> {% else %}
-
-                                <h1 id="warning"><i class="fa-solid fa-face-frown-open"></i> Registration is not yet open</h1>
-
-
-                                {% endif %} {% endfor %}
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!--/#main-slider-->
+
+
+
+    <section id="about2">
+        <div class="container she">
+
+            <div class="col-sm-4 col-md-4">
+                <div class="contact-form">
+                    <h3>Sign Up to NSTP</h3>
+
+                    <address>
+                      <strong><i class="fa-solid fa-envelope"></i>  tupc.nstp@gmail.com.</strong><br>
+                      CQT Avenue Brgy. Salawag Dasmariñas City,<br>
+                      Cavite, Dasmariñas, Philippines<br>
+                      <abbr title="Phone"></abbr> 4114
+                    </address>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-8 col-md-8">
+                <div class="contact-form">
+
+                    <form action="{% url 'activities:signup' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} {% for s in schools %} {% if s.years %}
+                        <div class="form-group">
+                            <input type="hidden" name="s_year" value="{{s.years}}">
+
+                            <label>First Name</label>
+                            <input class="form-control" type="text" name="firstname" placeholder="Juan" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input class="form-control" type="text" name="middlename" placeholder="Aquino">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" id="lastname" placeholder="Dela Cruz" required name="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Juan.DelaCruz@gsfe.tupcavite.edu.ph" required name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">ID Number</label>
+                            <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber" value="TUPC-">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">NSTP Companion</label>
+                            <select name="field" id="form-control" class="form-control">
+                            <option value="ROTC">ROTC</option>
+                            <option value="CWTS">CWTS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">1 x 1 Picture</label>
+                            <input type="file" class="form-control " id="validatedCustomFile" required name="picture" accept=".jpg, .jpeg, .png">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" class="password1 form-control" id="password1" placeholder="password" required name="password1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Confirm Password</label><br>
+                            <input type="password" class="password2 form-control" id="password2" placeholder="confirm password" required name="password2">
+                        </div>
+                        <div class="form-group">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Account</button>
+                        
+                        <br>&nbsp;<br>
+                        <div class="alre">
+
+                          
+                            <p id="ff">Already have an Account? <a href="/login_page"> login here</a></p>
+                        </div>
+                        {% else %}
+
+                        <h1 id="warning"><i class="fa-solid fa-face-frown-open"></i> Registration is not yet open</h1>
+                        <br>
+         
+
+                        {% endif %} {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <br>
+
+
     <!--/#bottom-->
 
     <footer id="footer">

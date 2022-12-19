@@ -4032,8 +4032,8 @@ def search_on(request):
     if request.method == 'POST':
         firstname = request.POST.get('firstname')
         lastname = request.POST.get('lastname')
-        details = extenduser.objects.filter(firstname = firstname).filter(lastname = lastname)
-        count = extenduser.objects.filter(firstname = firstname).filter(lastname = lastname).count()
+        details = extenduser.objects.filter(firstname = firstname).filter(lastname = lastname).filter(status='GRADUATE')
+        count = extenduser.objects.filter(firstname = firstname).filter(lastname = lastname).filter(status='GRADUATE').count()
         print(details)
         context  = {
             'details':details,
