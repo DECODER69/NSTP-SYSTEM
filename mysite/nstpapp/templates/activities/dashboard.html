@@ -41,7 +41,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
+
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="home-content">
                 {% for s in name %}
                 <div class="overview-boxes">
-                    <div class="box">
+                    <div class="box box1">
                         <div class="right-side">
 
                             <div class="box-topic">{{s.firstname}} {{s.lastname}}</div>
@@ -110,6 +110,82 @@
                     </div>
                 </div>
                 {% endfor %}
+                <div class="overview-b">
+
+                </div>
+                <div class="overview-boxes2 hehe">
+                    <div class="box2">
+                        {% for s in name %}
+                        <div class="right-side">
+                            <img src="{{s.picture.url}}" alt="" id="profile">
+
+                        </div>
+
+                        <div class="lbs">
+                            <div class="right-side">
+
+                                <div class="s_name">{{s.firstname}} {{s.lastname}}</div>
+                                <!-- <div class="caption">Student</div> -->
+
+                            </div>
+                            <div class="right">
+                                {% if s.status == 'PENDING' %}
+                                <div style="color: rgb(128, 0, 0);" class="name">{{s.status}}&nbsp; <i class="fa-solid fa-clock"></i></div>
+                                {% else %}
+                                <div style="color: rgb(0, 153, 46);" class="name">{{s.status}} &nbsp; <i class="fa-solid fa-certificate"></i></div>
+                                {% endif %}
+                                <div class="caption">Status</div>
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="lbs">
+
+                            <div class="right-side">
+                                <div class="name" style="color: rgb(218, 98, 0);">{{s.field}}</div>
+                                <div class="caption">Companion</div>
+
+
+                            </div>
+
+                            <div class="right">
+                                <div class="name">{{s.platoons}}</div>
+                                {% if s.field == 'ROTC' %}
+                                <div class="caption">Platoon</div>
+                                {% else %}
+                                <div class="caption">Section</div>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="lbs">
+
+                            <div class="right-side">
+
+
+
+
+                            </div>
+
+                            <div class="right">
+                                <div class="eye">
+                                    <i class="fa-solid fa-eye-slash" data-toggle="modal" data-target="#exampleModal" title="View Grade"></i>
+                                </div>
+
+                                <div class="caption">Grade</div>
+                            </div>
+                        </div>
+
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+
 
 
                 <!-- lower part -->
@@ -120,8 +196,7 @@
                         <hr>
                         <div class="announce-details">
                             {% for manji in announcement %} {% if manji %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
-                            <button class="accordion">
-                                            
+                            <button class="accordion">                                        
                                             <div class="up">
                                                 <div class="headss">
                                                     <i class="fa-solid fa-user-shield"></i><br>&nbsp;

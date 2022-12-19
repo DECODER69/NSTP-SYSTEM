@@ -114,7 +114,7 @@ section {
 }
 
 .table tbody tr td .lam h5 {
-    font-size: 13px !important;
+    font-size: 12px !important;
     ;
 }
 
@@ -161,4 +161,20 @@ section {
 [href$=".pptx"]::after {
     content: url(../images/pptx.png);
     color: green;
+}
+
+@media screen and (min-width:360px) and (max-width:700px) {
+    .table .thead tr th {
+        font-size: 12px !important;
+    }
+    .table .tbody tr td {
+        font-size: 12px!important;
+    }
+    .table tbody td #pls,
+    #dt {
+        font-size: 12px!important;
+    }
+    .table tbody td #lam a {
+        width: 10px !important;
+    }
 }

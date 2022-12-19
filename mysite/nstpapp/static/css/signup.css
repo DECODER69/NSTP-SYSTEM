@@ -1128,6 +1128,15 @@ li.plan-purchase .btn {
     text-align: center;
 }
 
+.contact-form #enter {
+    float: left !important;
+}
+
+.errors h1,
+h2 {
+    color: red;
+}
+
 @media only screen and (min-width: 768px) {
     #footer .social-icons {
         float: right;
@@ -1150,6 +1159,10 @@ li.plan-purchase .btn {
     .form-group input {
         width: 100% !important;
     }
+}
+
+#form-control {
+    width: 250px !important;
 }
 
 .form-control {

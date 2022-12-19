@@ -43,7 +43,7 @@
         <br>
         <!-- whole body -->
         {% for s in details %}
-        <div class="bg">
+        <div class="bg" id="ggs">
             <form action="{% url 'activities:student_update' %}" method="POST">
                 {% csrf_token %}
                 <div class="containers">
@@ -120,7 +120,7 @@
                             </div>
                         </div>
 
-                        <div class="col">
+                        <div class="col" id="ggs">
                             <div class="row">
                                 <div class="col mb-3">
                                     <div class="card">
@@ -209,7 +209,7 @@
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row" id="colcol">
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Gender</label>
@@ -246,7 +246,7 @@
 
                                                                 </div>
 
-                                                                <div class="row">
+                                                                <div class="row" id="colcol">
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Contact</label>
@@ -269,7 +269,7 @@
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row" id="colcol">
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Nationality</label>
