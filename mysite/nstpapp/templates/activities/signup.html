@@ -194,6 +194,17 @@
             </div>
         </div>
     </footer>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        {% for msg in messages %}
+            Swal.fire({
+                icon: 'error',
+                text: '{{ msg }}'
+            }) {% endfor %}
+    </script> 
     <!--/#footer-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
@@ -211,8 +222,10 @@
     <script type="text/javascript" src="../../static/js/wow.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+    
     <script type="text/javascript">
-        document.querySelector('.btn').onclick = function() {
+        document.querySelector('.btn-success').onclick = function() {
 
             var password = document.querySelector('.password1').value,
                 password2 = document.querySelector('.password2').value;
@@ -235,6 +248,7 @@
             }
         }, 3000)
     </script>
+
 
 
 
