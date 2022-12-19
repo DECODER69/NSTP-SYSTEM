@@ -12,7 +12,7 @@ Author URL: http://webthemez.com
 
 body {
     padding-top: 100px;
-    background: #fff;
+    background: rgb(255, 255, 255);
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
     color: #282828;
@@ -1051,11 +1051,21 @@ li.plan-purchase .btn {
 ********* Footer ******
 ************************/
 
-#footer {
+
+/* #footer {
     bottom: 0;
     position: fixed;
     padding-top: 30px;
     padding-bottom: 30px;
+    color: #fff;
+    background: #222222;
+    width: 100%;
+} */
+
+#footer {
+    position: absolute;
+    bottom: 0 !important;
+    padding-top: 30px;
     color: #fff;
     background: #222222;
     width: 100%;
@@ -1086,6 +1096,13 @@ li.plan-purchase .btn {
     #footer .social-icons {
         float: right;
     }
+    #footer {
+        bottom: 0 !important;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: #fff;
+        background: #222222;
+    }
 }
 
 @media only screen and (max-width:768px) {
@@ -1107,6 +1124,12 @@ li.plan-purchase .btn {
     .row {
         display: block !important;
         ;
+    }
+    #footer {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: #fff;
+        background: #222222;
     }
 }
 
@@ -1138,5 +1161,12 @@ li.plan-purchase .btn {
     }
     #portfolio .portfolio-item .portfolio-item-inner .portfolio-info {
         padding: 7px 0 0;
+    }
+    #footer {
+        bottom: 0 !important;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: #fff;
+        background: #222222;
     }
 }
