@@ -11,7 +11,7 @@
 
 body {
     background-attachment: fixed;
-    background-image: url(../images/sd2.jpg);
+    /* background-image: url(../images/sd2.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -60,237 +60,129 @@ section {
     padding: 18px;
 }
 
-.nav-item .nav-link {
-    font-size: 15px;
-    font-weight: bold;
-    color: #33475B !important;
-}
-
-#active {
-    background-color: #272727 !important;
-    color: rgb(255, 255, 255) !important;
-}
-
-.filters {
-    padding-top: 20px;
-    display: flex;
-    height: 100px;
-}
-
-.filter_in {
-    padding-top: 20px;
-    width: 40%;
-    display: flex;
-}
-
-.filter_in select {
-    padding: 5px;
-    border-radius: 5px;
-    height: 40px;
-    width: auto;
-}
-
-.sear {
-    padding-top: 20px;
-    width: 60%;
-    float: right;
-}
-
-
-/* .inners .card {
-    width: 30%;
-} */
-
-.cards {
-    width: 100% !important;
-    height: auto;
-}
-
-.card1 {
-    width: 100%;
-    height: 100%;
-    /* background-color: #16A1B4; */
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.card1 button {
-    display: flex;
-}
-
-.add {
-    color: white;
-    font-size: 20px;
-    background-color: #222D32;
-}
-
 .inners {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.left {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    width: 70%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgba(176, 176, 176, 0.516);
+    border-radius: 5px;
+}
+
+.left2 {
+    width: 40%;
+    padding: 10px;
+}
+
+.left2 h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.right2 {
+    width: 55%;
+    padding: 10px;
+}
+
+.form-group-sm {
     display: flex;
     justify-content: space-between;
 }
 
-.form-group {
-    background-color: white;
-    text-align: center;
-    width: 22%;
-    padding: 5px;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.539), 0 6px 20px 0 rgba(29, 14, 14, 0.309);
+.form-group-sm input {
+    width: 60%;
 }
 
-.form-group label i {
-    color: rgb(101, 90, 84) !important;
-    font-size: 20px !important;
-}
-
-.form-group button {
-    background-color: #434d4e !important;
-    color: rgb(255, 241, 235);
-    outline: none !important;
-    border: none !important;
-}
-
-
-/* 
-#sys {
-    border-left: solid 5px rgb(174, 152, 123);
-} */
-
-.form-group h1 {
-    font-size: 20px;
-    text-align: center !important;
-}
-
-.fors {
-    width: 100%;
-    height: 100%;
-}
-
-.fors h1 {
-    font-size: 40px;
-    text-align: center;
-}
-
-.inside {
-    padding: 10px;
-}
-
-.haha {
-    padding: 5px;
-    display: flex;
-}
-
-.table-responsive {
-    padding: 10px !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: auto;
-    background-color: #fff;
-}
-
-.table th {
-    color: rgb(36, 36, 36);
-    font-size: 15px;
-    background-color: #222d325a !important;
-}
-
-.table td {
+.form-group-sm #labels {
     font-size: 13px;
+    font-weight: bold;
 }
 
-
-/* 
-pager */
-
-div.pager {
-    text-align: center;
-    margin: 1em 0;
+.right {
+    display: block;
+    justify-content: space-between;
+    padding: 30px;
+    width: 25%;
+    float: right;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgba(176, 176, 176, 0.516);
+    border-radius: 5px;
 }
 
-div.pager span {
-    display: inline-block;
-    width: 1.8em;
-    height: 1.8em;
-    line-height: 1.8;
-    text-align: center;
-    cursor: pointer;
-    background: #000;
-    color: #fff;
-    margin-right: 0.5em;
+.rapal {
+    background-color: #F9690E;
+    color: white;
 }
 
-div.pager span.active {
-    background: #c00;
+.right3 {
+    background-color: #ffffff;
 }
 
-.sh {
+.right3 h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.right4 {
+    color: #000000;
+}
+
+.form-group #open {
+    color: rgb(0, 190, 0);
+}
+
+.form-group #term {
+    color: rgb(0, 190, 0);
+}
+
+.form-group #closed {
+    color: rgb(255, 0, 0);
+}
+
+.current {}
+
+.current .form-group {
     display: flex;
+    justify-content: space-between;
 }
 
-#del {
-    font-size: 12px !important;
+.current .lab {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
 }
 
-#open {
-    font-size: 12px !important;
+.current .data {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #000000;
 }
 
-@media screen and (min-width:360px)and (max-width:640px) {
-    .add .btns {
-        border-radius: 5px;
-        padding: 10px;
-        height: 50px;
-        text-align: center !important;
-        text-decoration: none !important;
-        color: white;
-        width: 70%;
-        background-color: #0069d9;
-        display: -webkit-box;
-    }
-    .add p {
-        margin: auto;
-        text-align: center;
-        font-size: 12px;
-    }
-    .add i {
-        font-size: 15px;
-        vertical-align: middle;
-    }
-    .options {
-        width: 30%;
-    }
-    .options #mylist {
-        border-radius: 5px;
-        width: 100%;
-        height: 100%;
-    }
-    .details {
-        background-color: #811616;
-        padding: 5px;
-        display: inline-block;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .details p {
-        font-weight: bolder;
-        font-size: 20px;
-        vertical-align: middle;
-        color: white;
-        text-align: center;
-    }
-    #myInput {
-        border-radius: 5px;
-        margin: auto;
-        display: flex;
-    }
+.down {}
+
+.left22 {
+    display: block;
+    justify-content: space-between;
+    padding: 30px;
+    width: 70%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgba(176, 176, 176, 0.516);
+    border-radius: 5px;
 }
 
-@media screen and (min-width:1366px) and (max-width:1920px) {
-    .home-section .text {
-        /* background: #c51c39; */
-        display: inline-block;
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 500;
-        margin: 18px
-    }
+.left22 h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
 }

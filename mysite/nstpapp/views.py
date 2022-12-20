@@ -283,22 +283,6 @@ def admin_view_profile(request, id):
  
 
 
-def school_years(request):
-
-    s_years = school_year.objects.all()
-    ss_years = extenduser.objects.all()
-    ewan = school_year.objects.all()
-
-   
-    context = {
-        'ewan':ewan,
-        's_years':[s_years.last()],
-        'ss_years':ss_years,
-        # 'graduates':graduates
-        
-    }
-
-    return render(request, 'activities/sy.html', context)
 
 def create_platoon_page(request):
     current_datetime = datetime.datetime.now() 
@@ -573,23 +557,7 @@ def custom(request):
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return redirect('/admin_rejected')
         
-def create_sy(request):
-    if request.method == 'POST':
-        yearsz = request.POST.get('year')
-        if school_year.objects.filter(years=yearsz).exists():
-            messages.info(request, 'School year ' + str (yearsz) + ' ALready exist !')
-            return redirect('/school_years')
 
-
-        else:
-            data = school_year(years=yearsz)
-            data2 = alumni_school_year(years=yearsz)
-            data.save()
-            data2.save()
-          
-            messages.success(request, 'School year ' + str (yearsz) + ' Successfully Created !')
-            return redirect('/school_years')
-    return redirect('/school_years')
 
 def allumni_content(request):
     if request.method == 'POST':
@@ -4043,4 +4011,65 @@ def search_on(request):
     return render(request, 'activities/results.html', context)
 
 def contact_us(request):
+    # sss
     return render(request, 'activities/contact_us.html')
+
+
+
+
+def school_years(request):
+    
+    s_years = school_year.objects.all()
+    alls = school_year.objects.all().order_by('years').reverse()
+    ss_years = extenduser.objects.all()
+    ewan = school_year.objects.all()
+
+   
+    context = {
+        'ewan':ewan,
+        's_years':[s_years.last()],
+        'ss_years':ss_years,
+        'alls':alls
+        # 'graduates':graduates
+        
+    }
+
+    return render(request, 'activities/sy.html', context)
+
+
+def create_sy(request):
+    if request.method == 'POST':
+        start  = request.POST.get('start')
+        end =  request.POST.get('end')
+        
+        combine = (start +"-"+ end)
+        print(combine)
+        
+        
+        
+        
+        
+
+        if school_year.objects.filter(years=combine).exists():
+            messages.info(request, 'School year ' + str (combine) + ' ALready exist !')
+            return redirect('/school_years')
+
+
+        else:
+            data = school_year(years=combine)
+            data2 = alumni_school_year(years=combine)
+            data.save()
+            data2.save()
+          
+            messages.success(request, 'School year ' + str (combine) + ' Successfully Created !')
+            return redirect('/school_years')
+    return redirect('/school_years')
+
+def update_sel(request):
+    if request.method == 'POST':
+        year = request.POST.get('year')
+        status = request.POST.get('status')
+        sem = request.POST.get('sem')
+        
+        school_year.objects.filter(years=year).update(status=status, sem=sem)
+    return redirect('/school_years')

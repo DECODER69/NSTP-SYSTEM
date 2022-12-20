@@ -1217,3 +1217,99 @@ h2 {
         padding-bottom: 50px !important;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    #portfolio .portfolio-filter {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 12px;
+    }
+    #portfolio .portfolio-filter>li a {
+        display: block;
+        padding: 7px 15px;
+        margin: 5px 2px;
+    }
+    #portfolio .portfolio-item {
+        width: 48.9%;
+        padding: 8px;
+    }
+    #portfolio .portfolio-item .portfolio-item-inner .portfolio-info .preview {
+        width: 28px;
+        height: 24px;
+        line-height: 24px;
+        margin: 9px auto;
+    }
+    #portfolio .portfolio-item .portfolio-item-inner .portfolio-info {
+        padding: 7px 0 0;
+    }
+    #about2 {
+        padding-top: 100px !important;
+        padding: 10px;
+        background: #ffffff !important;
+        /* background-image: url('../../static/images/rotc2.png'); */
+        background-size: cover;
+        margin: auto !important;
+        height: auto !important;
+    }
+    #footer {
+        bottom: 0;
+        position: inherit;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: #fff;
+        background: #222222;
+        width: 100%;
+    }
+    .she {
+        padding: 0;
+        padding-bottom: 50px !important;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    #portfolio .portfolio-filter {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 12px;
+    }
+    #portfolio .portfolio-filter>li a {
+        display: block;
+        padding: 7px 15px;
+        margin: 5px 2px;
+    }
+    #portfolio .portfolio-item {
+        width: 48.9%;
+        padding: 8px;
+    }
+    #portfolio .portfolio-item .portfolio-item-inner .portfolio-info .preview {
+        width: 28px;
+        height: 24px;
+        line-height: 24px;
+        margin: 9px auto;
+    }
+    #portfolio .portfolio-item .portfolio-item-inner .portfolio-info {
+        padding: 7px 0 0;
+    }
+    #about2 {
+        padding-top: 100px !important;
+        padding: 10px;
+        background: #ffffff !important;
+        /* background-image: url('../../static/images/rotc2.png'); */
+        background-size: cover;
+        margin: auto !important;
+        height: 100vh !important;
+    }
+    #footer {
+        bottom: 0;
+        position: inherit;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: #fff;
+        background: #222222;
+        width: 100%;
+    }
+    .she {
+        padding: 0;
+        padding-bottom: 50px !important;
+    }
+}

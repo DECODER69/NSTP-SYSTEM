@@ -26,7 +26,7 @@
         </div>
 
         <div class="bg">
-            <ul class="nav nav-tabs nav-pills nav-fill">
+            <!-- <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
                     <a href="/school_years" class="nav-link active" id="active">School Year</a>
                 </li>
@@ -41,156 +41,152 @@
                 </li>
 
             </ul>
-            <br>
+            <br> -->
 
 
 
 
             <div class="inners">
+                <div class="left">
+
+                    <div class="left2">
+                        <h2><i class="fa-regular fa-calendar-days"></i> &nbsp;Setting up of Academic Year</h2>
+                        <small>This School year Created will reflect on <br> overall school years</small>
+
+                    </div>
+                    <div class="right2">
+                        <form action="{% url 'activities:create_sy' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group-sm">
+                                <label id="labels">Start Year</label>
+                                <input type="text" class="form-control " name="start" placeholder="2022" required minlength="4" maxlength="4" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+
+                            </div>
+                            <br>
+                            <div class="form-group-sm">
+                                <label id="labels">End Year</label>
+                                <input type="text" class="form-control " name="end" placeholder="2023" required minlength="4" maxlength="4" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+
+                            </div>
+                            <br>
+
+                            <button class="btn rapal"><i class="fa-solid fa-plus"></i> Create</button> &nbsp;
+                            <br> &nbsp;
+                            <br>
+                            <hr>
+                            <br> &nbsp;
+                            <br>
+                            <div class="current">
+                                {% for s in s_years %}
+                                <div class="form-group">
+                                    <h2 class="lab">School Year</h2>
+                                    <h2 class="data">{{s.years}}</h2>
+
+                                </div>
+                                <div class="form-group">
+                                    <h2 class="lab">Registration Status</h2>
+                                    {% if s.status == 'OPEN' %}
+                                    <h2 class="data" id="open">{{s.status}} <span id="open"><i class="fa-solid fa-circle-check"></i></span></h2>
+                                    {% else %}
+                                    <h2 class="data">{{s.status}} <span id="closed"><i class="fa-solid fa-circle-minus"></i></span></h2>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <h2 class="lab">Term</h2>
+                                    <h2 class="data" id="term">{{s.sem}}</h2>
+
+                                </div>
+
+                                {% endfor %}
 
 
-                <div class="form-group" id="sys">
-                    <form action="{% url 'activities:create_sy' %}" method="POST">
-                        {% csrf_token %}
-                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar' style="vertical-align: midddle;"></i> Add School Year </label>
-                        <input type="text" class="form-control" placeholder="2022-2023" required name="year" pattern="[0-9]+([-\,][0-9]+)?" onKeyPress="if(this.value.length==9) return false;"><br>
-                        <button type="submit" class="btn btn-info"><i class='bx bx-plus' style="vertical-align: middle;"></i> Add School Year</button>
-                    </form>
-
-
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <br>
-                <div class="form-group" id="fgroup">
-                    <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-calendar-check'  style="vertical-align: midddle;"></i>Current School Year</label><br>&nbsp;<br>
-                    <div class="fors">
+                <div class="right">
+                    <div class="right3">
 
-                        {% for s in s_years %} {% if s.years %}
+                        <h2><i class="fa-regular fa-calendar-days"></i> &nbsp;Modify Academic Year</h2>
+                        <small>Select School year you want to modify</small>
+                    </div>
+                    <br> &nbsp;<br>
 
-                        <h1 class="yss" style="font-size: 28px;;">{{s.years}}</h1>
-                        {% else%}
+                    <div class="right4">
+                        <form action="{% url 'activities:update_sel' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="">School Year</label>
+                                <select name="year" id="" class="form-control" required>
+                                <option value="" selected disabled>--Select Academic Year--</option>
+                                {% for s in alls %}
+                                    <option value="{{s.years}}">{{s.years}}</option>
+                                {% endfor %}
+                            </select>
 
-                        <h1 class="yss">None !</h1>
-                        {% endif %} {% endfor %}
+                            </div>
 
+                            <div class="form-group">
+
+                                <label for="">Registration Status </label>
+
+                                <select name="status" id="" class="form-control" required>
+                                <option value="" selected disabled>--Select Status--</option>
+                                <option value="OPEN">OPEN</option>
+                                <option value="CLOSED">CLOSED</option>
+                            </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="">Term</label>
+                                <select name="sem" id="" class="form-control" required>
+                                <option value="" selected disabled>--Select Term--</option>
+                                <option value="First Term">First Term</option>
+                                <option value="Second Term">Second Term</option>
+                            </select>
+
+                            </div>
+
+                            <button type="submit" class="btn rapal"><i class="fa-solid fa-arrows-rotate"></i> &nbsp;Update</button>
+                        </form>
                     </div>
 
 
                 </div>
-                <br>
-                <div class="form-group" id="fgroup">
-                    <form action="{% url 'activities:update_sys' %}" method="POST">
-                        {% csrf_token %}
-                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-info-circle' style="vertical-align: midddle;"></i> Registration Status </label>
-                        <div class="hold">
-                            {% for s in s_years %}
-                            <div class="sh" style="width: 100%;">
-                                <select name="status_sys" id="statuss" class="form-control" required>
-                                    <option value="{{s.status}}" selected >{{s.status}}</option>
-                                    <option value="CLOSED">CLOSED</option>
-                                    <option value="OPEN">OPEN</option>
-                                    
-                                </select>
-
-
-                            </div>
-                            <input type="hidden" value="{{s.id}}" name="current">
-                            <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
-
-                        </div>
-
-                        <br>
-
-                        <button type="submit" class="btn btn-info"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Status</button>
-                    </form>
-                </div>
-                <br>
-                <div class="form-group" id="fgroup">
-                    <form action="{% url 'activities:update_sy' %}" method="POST">
-                        {% csrf_token %}
-                        <label for="exampleFormControlInput1" style="float: left;"><i class='bx bxs-info-circle' style="vertical-align: midddle;"></i> Term </label>
-                        <div class="hold">
-                            {% for s in s_years %}
-                            <div class="sh" style="width: 100%;">
-                                <select name="status" id="statuss" class="form-control" required>
-                                    <option value="{{s.sem}}" disabled>{{s.sem}}</option>
-                                    <option value="First Term">First Term</option>
-                                    <option value="Second Term">Second term</option>
-                                    
-                                </select>
-
-
-                            </div>
-                            <input type="hidden" value="{{s.id}}" name="current">
-                            <input type="hidden" value="{{s.years}}" name="years"> {% endfor %}
-
-                        </div>
-
-                        <br>
-
-                        <button type="submit" class="btn semester"><i class='bx bx-check' style="vertical-align: midddle;"></i> Set Semester</button>
-                    </form>
-
-
-                </div>
-
-
-
-
-            </div>
-        </div>
-        <div class="inside">
-
-
-            <div class="">
-
 
             </div>
 
+            <div class="inners">
+                <div class="left22">
+                    <h2><i class="fa-regular fa-calendar-days"></i> &nbsp;School Year List</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">School Year</th>
+                                    <th scope="col">Action</th>
 
-            <div class="table-responsive">
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for s in alls %}
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{s.years}}</td>
+                                    <td>
+                                        <button class="btn">Delete</button>
+                                    </td>
 
-                <h1 style="margin-left: 10px; font-size:20px; color:#000000; font-weight:bold;" id="mega"><i class='bx bx-subdirectory-right'></i> School Year List</h1><br>&nbsp;
+                                </tr>
+                                {% endfor %}
 
+                            </tbody>
+                        </table>
 
+                    </div>
 
-                <table class="table table-bordered table-hover " id="myTable">
-                    <thead class="thead">
-                        <tr>
-                            <th scope="col">SCHOOL YEARS</th>
-                            <th scope="col">REGISTRATION STATUS</th>
-                            <th scope="col">ACTIONS</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for s in ewan %} {% if s.years %}
-                        <tr>
-                            <td>{{ s.years }}</td>
-                            <td>
-                                {% if s.status == 'OPEN' %}
-                                <p1 style="color: green;">{{s.status}} <i class='bx bxs-lock-open-alt' style="font-size: 20px; color:rgb(5, 158, 0); vertical-align:middle; float:right;"></i></p1>
-                                {% elif s.status == 'CLOSED' %}
-                                <p1 style="color: rgb(224, 14, 14);">{{s.status}} <i class='bx bxs-lock-alt' style="font-size: 20px; color:rgb(202, 0, 0); vertical-align:middle; float:right;"></i></p1>
-                                {% endif %}
-
-
-                            </td>
-
-
-                            <td style="text-align: center;">
-
-                                <div class="ehe">
-
-                                    <input type="hidden" name="getID2" value="{{s.years}}">
-                                    <a href="/delete_sy/{{s.years}}" class="btn btn-danger" title="Edit" id="del"><i class='bx bx-trash'></i> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-
-
-                        {% endif %} {% endfor %}
-                    </tbody>
-                </table>
+                </div>
             </div>
 
 
@@ -199,13 +195,13 @@
     </section>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>
+    </script> -->
 
     <script>
         $('.btn-danger').on('click', function(e) {
@@ -234,7 +230,7 @@
             })
         })
     </script>
-{% comment %} 
+    {% comment %}
     <script>
         $('.semester').on('click', function(e) {
             e.preventDefault();
