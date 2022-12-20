@@ -218,6 +218,7 @@ urlpatterns = [
     path('search_on/', views.search_on, name='search_on'),
     path('contact_us/', views.contact_us, name='contact_us'),
     path('update_sel/', views.update_sel, name='update_sel'),
+    path('cwts_admin_pending/', views.cwts_admin_pending, name='cwts_admin_pending'),
     
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),

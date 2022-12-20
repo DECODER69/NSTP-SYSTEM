@@ -186,3 +186,32 @@ section {
     font-weight: 600;
     color: #000000;
 }
+
+.table #open {
+    color: rgb(0, 190, 0);
+}
+
+.table #closed {
+    color: rgb(255, 0, 0);
+}
+
+.table th,
+td {
+    text-align: center !important;
+}
+
+#bt {
+    display: flex;
+}
+
+.del {
+    background-color: rgb(167, 0, 0);
+    color: white;
+    margin: auto;
+}
+
+.del:hover {
+    background-color: rgb(128, 0, 0);
+    color: white;
+    margin: auto;
+}

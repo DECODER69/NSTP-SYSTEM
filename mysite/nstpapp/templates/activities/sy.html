@@ -172,10 +172,16 @@
                             <tbody>
                                 {% for s in alls %}
                                 <tr>
-                                    <th scope="row">1</th>
+                                    {% if s.status == 'OPEN' %}
+                                    <th scope="row"><span id="open"><i class="fa-solid fa-circle-check"></i></span></th>
+                                    {% else %}
+                                    <th scope="row"><span id="closed"><i class="fa-solid fa-circle-minus"></i></span></th>
+                                    {% endif %}
+
+
                                     <td>{{s.years}}</td>
-                                    <td>
-                                        <button class="btn">Delete</button>
+                                    <td id="bt">
+                                        <a href="/delete_sy/{{s.years}}" class="btn del"><i class="fa-solid fa-trash-can"></i> &nbsp;Delete</a>
                                     </td>
 
                                 </tr>
@@ -204,7 +210,7 @@
     </script> -->
 
     <script>
-        $('.btn-danger').on('click', function(e) {
+        $('.del').on('click', function(e) {
             e.preventDefault();
             var self = $(this);
             console.log(self.data('title'))

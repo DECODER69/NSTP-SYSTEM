@@ -4073,3 +4073,39 @@ def update_sel(request):
         
         school_year.objects.filter(years=year).update(status=status, sem=sem)
     return redirect('/school_years')
+
+def delete_sy(request, years):
+    school_year.objects.filter(years=years).delete()
+    alumni_school_year.objects.filter(years=years).delete()
+    print(id)
+    return redirect('/school_years')
+
+# done
+
+def admin_pending(request):
+    s_years = school_year.objects.all()
+    platoons = sections.objects.all()
+    pending = extenduser.objects.filter(status='PENDING').count()
+    pendings = extenduser.objects.filter(status='PENDING', field='ROTC')
+    context = {
+        'pendings':pendings,
+        'pending':pending,
+        'platoons':platoons,
+        's_years':[s_years.last()],
+    }
+    return render(request, 'activities/admin_pending.html', context)
+
+
+def cwts_admin_pending(request):
+    s_years = school_year.objects.all()
+    platoons = sections.objects.all()
+    pending = extenduser.objects.filter(status='PENDING').count()
+    pendings = extenduser.objects.filter(status='PENDING' , field='CWTS')
+    context = {
+        'pendings':pendings,
+        'pending':pending,
+        'platoons':platoons,
+         's_years':[s_years.last()],
+    }
+    return render(request, 'activities/cwts_admin_pending.html', context)
+
