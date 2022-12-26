@@ -210,7 +210,7 @@ urlpatterns = [
     path('alumni_year/<str:id>', views.alumni_year, name='alumni_year'),
     path('cwts_alumni_year/<str:id>', views.cwts_alumni_year, name='cwts_alumni_year'),
     path('send_feedback/', views.send_feedback, name='send_feedback'),
-    path('send_response/', views.send_response, name='send_response'),
+    path('send_response/<str:email>', views.send_response, name='send_response'),
     path('student_update/', views.student_update, name='student_update'),
     path('all_files/', views.all_files, name='all_files'),
     path('update_each_pending/', views.update_each_pending, name='update_each_pending'),
@@ -219,7 +219,10 @@ urlpatterns = [
     path('contact_us/', views.contact_us, name='contact_us'),
     path('update_sel/', views.update_sel, name='update_sel'),
     path('cwts_admin_pending/', views.cwts_admin_pending, name='cwts_admin_pending'),
-    
+    path('response/', views.response, name='response'),
+    path('update_mess/', views.update_mess, name='update_mess'),
+
+
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

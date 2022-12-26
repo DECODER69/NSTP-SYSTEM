@@ -3747,7 +3747,7 @@ def send_feedback(request):
     return redirect('/contact_us')
 
 
-def send_response(request):
+def send_response(request, email):
     feed = feedback.objects.all().order_by('date_sent')
     audience = sections.objects.all()
     ann = Announcement.objects.all()
@@ -3758,27 +3758,27 @@ def send_response(request):
     pending = extenduser.objects.filter(status='PENDING').count()
 
    
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        
-        details = feedback.objects.filter(email=email)
-        
-        context = {
-            'email': email,
-            'details': details,
-            'active':active,   
-            'pending':pending,
-            'sy':[sy.last()],
-            'audience':audience,
-            'ann':ann,
-            # 'staff':staff,
-            'nav_pending_count':nav_pending_count,
-            'nav_rejected_count':nav_rejected_count ,
-            'feed':feed
-        }
-        return render(request, 'activities/for_response.html', context)
+
+    email = email
     
+    details = feedback.objects.filter(email=email)
     
+    context = {
+        'email': email,
+        'details': details,
+        'active':active,   
+        'pending':pending,
+        'sy':[sy.last()],
+        'audience':audience,
+        'ann':ann,
+        # 'staff':staff,
+        'nav_pending_count':nav_pending_count,
+        'nav_rejected_count':nav_rejected_count ,
+        'feed':feed
+    }
+    return render(request, 'activities/popup.html', context)
+
+
     
 def student_update(request):
     if request.method == 'POST':
@@ -4109,3 +4109,25 @@ def cwts_admin_pending(request):
     }
     return render(request, 'activities/cwts_admin_pending.html', context)
 
+def response(request):
+    if request.method == 'POST':
+        try:
+            sub = request.POST.get('emailtext')
+            msg = request.POST.get('message')
+            email = request.POST.get('email')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[email])
+            return redirect('/admin_dashboard')
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+    return redirect('/admin_dashboard')
+
+
+def update_mess(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        status = request.POST.get('status')
+
+        feedback.objects.filter(id=ids).update(status = status)
+        
+
+    return redirect('/admin_dashboard')
