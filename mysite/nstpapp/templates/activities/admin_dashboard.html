@@ -190,7 +190,7 @@
                     <br>
                     <br>
 
-                    <div class="announce">
+                    <div class="announce table-responsive">
 
                         <table id="example" class="table table-bordered table-hover ">
                             <thead class="thead">
@@ -256,10 +256,12 @@
                     <div class="for">
                         <h1 style="margin-left: 10px; font-size:30px; color:#000000" id="mega"><i class="fa-solid fa-comments"></i> Messages</h1><br>
 
+                        <a href=""><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+
                     </div>
                     <br>
                     <br>
-                    <div class="announce">
+                    <div class="announce table-responsive">
 
                         <table id="example2" class="table table-bordered table-hover ">
                             <thead class="thead">
@@ -294,11 +296,11 @@
 
                                         <td>
 
-                                            <a href="{% url 'activities:send_response' s.email %}" class="btn btn-warning open-modal"><i class="fa-solid fa-reply"></i> Send Response</a>
+                                            <a href="{% url 'activities:send_response' s.email %}" class="btn btn-warning open-modal"><i class="fa-solid fa-reply"></i> Reply</a>
                                         </td>
                                         <td>
-                                            <select name="status" id="" class="form-control">
-                                                <option value="{{s.status}}" selected disabled>{{s.status}}</option>
+                                            <select name="status" id="" class="form-control" required>
+                                                <option value="{{s.status}}"  disabled >{{s.status}}</option>
                                                 <option value="PENDING">PENDING</option>
                                                 <option value="DONE">DONE</option>
 

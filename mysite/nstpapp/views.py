@@ -185,7 +185,7 @@ def logout_student(request):
 # @login_required(login_url='/login_page')
 def admin_dashboard(request):
     # staff = extenduser.objects.filter(user=request.user)
-    feed = feedback.objects.all().order_by('date_sent')
+    feed = feedback.objects.filter(status = 'PENDING').order_by('date_sent')
     audience = sections.objects.all()
     ann = Announcement.objects.all()
     sy = school_year.objects.all()
