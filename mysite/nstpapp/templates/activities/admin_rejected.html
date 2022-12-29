@@ -23,10 +23,10 @@
     {% include 'activities/admin_nav.html' %}
     <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-time'></i> REJECTED</h1><br>
+            <h1 class="text"><i class='bx bx-time'></i>ROTC REJECTED</h1><br>
         </div>
         <div class="bg">
-            <ul class="nav nav-tabs nav-pills nav-fill">
+            <!-- <ul class="nav nav-tabs nav-pills nav-fill">
                 <li class="nav-item">
                     <a href="/school_years" class="nav-link">School Year</a>
                 </li>
@@ -41,7 +41,7 @@
                 </li>
 
 
-            </ul>
+            </ul> -->
             <!-- modal -->
             <br>
 
@@ -53,13 +53,13 @@
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
-                                <th scope="col">EMAIL</th>
+                                <th scope="col">REJECTION REASON</th>
 
                                 <th scope="col">COURSE</th>
-                                <th scope="col">FIELD</th>
-                                <th scope="col">VIEW PROFILE</th>
-                                <th scope="col">SEND EMAIL</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">DATE JOINED</th>
+                                <th scope="col" style="text-align: center;">VIEW PROFILE</th>
+
+                                <th scope="col" style="text-align: center;">Action</th>
 
                             </tr>
                         </thead>
@@ -71,20 +71,16 @@
                                     {{s.idnumber}}
                                 </td>
                                 <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                <td>{{s.email}}</td>
+                                <td style="color: #e90000;">{{s.note}}</td>
 
                                 <td>{{s.section}}</td>
-                                <td>{{s.field}}</td>
+                                <td style="color: #e64900;">{{s.date_joined}}</td>
                                 <td class="tar">
-                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="View student profile"><i class='bx bxs-show' style="vertical-align: middle;"></i>
+                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="View student profile"><i class="fa-solid fa-eye"></i>
                                          View Profile
                                     </a>
                                 </td>
-                                <td>
-                                    <a href="{% url 'activities:rejected_email_page' s.id %}" target="_self" title="Click to compose custom Email">
-                                        <button type="button" class="btn btn-info"> <i class='bx bx-envelope' style="vertical-align: middle;"></i> Send Email</button>
-                                    </a>
-                                </td>
+
 
                                 <td class="actions">
                                     <div class="ehe">
@@ -94,10 +90,7 @@
                                         </form>
                                     </div><br>&nbsp;<br>
                                     <div class="ehe">
-                                        <form action="{% url 'activities:r_decline' s.id %}" method="post">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="btn btn-danger"><i class='bx bx-x-circle'></i> Remove</button>
-                                        </form>
+                                        <a href="{% url 'activities:r_decline' s.id %}" class="btn btn-danger"> Remove</a>
                                     </div>
 
 

@@ -26,18 +26,18 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'activities:create_section' %}" method="POST">
+                    <form action="{% url 'activities:create_cwts_section' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Select Component</label>
                             <select name="field" id="" class="form-control">
-                                <option value="ROTC">ROTC</option>
+                               
                                 <option value="CWTS">CWTS</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Add here</label>
-                            <input type="text" class="form-control" id="message-text" placeholder="Ex: ALPHA" name="secs" required>
+                            <input type="text" class="form-control" id="message-text" placeholder="Ex: SECTION A" name="secs" required>
                         </div>
 
                 </div>

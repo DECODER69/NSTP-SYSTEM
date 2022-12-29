@@ -47,8 +47,13 @@ urlpatterns = [
     path('admin_staff/', views.admin_staff, name='admin_staff'),
     path('admin_pending/', views.admin_pending, name='admin_pending'),
     path('admin_view_profile/<str:id>', views.admin_view_profile, name='admin_view_profile'),
+    path('cwts_admin_view_profile/<str:id>', views.cwts_admin_view_profile, name='cwts_admin_view_profile'),
+
     path('approve/<str:idnumber>', views.approve, name='approve'),
+    path('cw_approve/<str:idnumber>', views.cw_approve, name= 'cw_approve'),
     path('decline/<str:id>', views.decline, name='decline'),
+    path('cw_decline/<str:id>', views.cw_decline, name='cw_decline'),
+
     path('admin_rejected/', views.admin_rejected, name='admin_rejected,'),
     path('custom/', views.custom, name='custom'),
     path('rejected_email_page/<str:id>', views.rejected_email_page, name='rejected_email_page'),
@@ -88,7 +93,7 @@ urlpatterns = [
     path('add_details/', views.add_details, name='add_details'),
     path('update_acts/', views.update_acts, name='update_acts'),
     path('r_approve/<str:idnumber>', views.r_approve, name='r_approve'),
-    path('r_decline/<str:idnumber>', views.r_decline, name='r_decline'),
+    path('r_decline/<str:id>', views.r_decline, name='r_decline'),
     path('download/', views.download, name='download'),
     path('download1/', views.download1, name='download1'),
     path('update_manage/', views.update_manage, name='update_manage'),
@@ -214,6 +219,7 @@ urlpatterns = [
     path('student_update/', views.student_update, name='student_update'),
     path('all_files/', views.all_files, name='all_files'),
     path('update_each_pending/', views.update_each_pending, name='update_each_pending'),
+    path('update_cwts_each_pending/', views.update_cwts_each_pending, name='update_cwts_each_pending'),
     path('search/', views.search, name='search'),
     path('search_on/', views.search_on, name='search_on'),
     path('contact_us/', views.contact_us, name='contact_us'),
@@ -223,6 +229,7 @@ urlpatterns = [
     path('update_mess/', views.update_mess, name='update_mess'),
     path('mess_history/', views.mess_history, name='mess_history'),
     path('del_ans/<str:id>', views.del_ans, name='del_ans' ),
+    path('create_cwts_section/', views.create_cwts_section, name='create_cwts_section'),
 
 
 

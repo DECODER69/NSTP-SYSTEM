@@ -54,8 +54,7 @@
                             <th scope="col">ID Number</th>
                             <th scope="col">Full name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">FIRST TERM</th>
-                            <th scope="col">SECOND TERM</th>
+
 
                             <th scope="col">Course</th>
                             <th scope="col">NSTP Field</th>
@@ -73,25 +72,24 @@
                             </td>
                             <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
                             <td>{{s.email}}</td>
-                            <td>{{s.first_sem}} <i class='bx bxs-badge-check' style="vertical-align: middle; color:green; font-size:14px;"></i></td>
-                            <td>{{s.second_sem}}</td>
+
 
                             <td>{{s.section}}</td>
                             <td>{{s.field}}</td>
                             <td class="tar">
-                                <a href="{% url 'activities:admin_view_profile' s.id %}" title="Click to view profile"><i class="fa-solid fa-eye"></i>
+                                <a href="{% url 'activities:cwts_admin_view_profile' s.id %}" title="Click to view profile"><i class="fa-solid fa-eye"></i>
                                         View Profile
                                         </a>
                             </td>
                             <td class="actions">
                                 <div class="ehe">
-                                    <form action="{% url 'activities:approve' s.idnumber %}" method="post">
+                                    <form action="{% url 'activities:cw_approve' s.idnumber %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="btn btn-success"><i class='bx bx-check'></i>  Approve</button>
                                     </form>
                                 </div><br>&nbsp;<br>
                                 <div class="ehe">
-                                    <form action="{% url 'activities:decline' s.id %}" method="post">
+                                    <form action="{% url 'activities:cw_decline' s.id %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="getID2" value="{{s.idnumber}}"><button type="submit" class="btn btn-danger"><i class='bx bx-x-circle'></i> Decline</button>
                                     </form>

@@ -228,6 +228,7 @@ def admin_pending(request):
     platoons = sections.objects.all()
     pending = extenduser.objects.filter(status='PENDING').count()
     pendings = extenduser.objects.filter(status='PENDING')
+
     context = {
         'pendings':pendings,
         'pending':pending,
@@ -237,7 +238,7 @@ def admin_pending(request):
 
 def admin_rejected(request):
     # pending = extenduser.objects.filter(status='PENDING').count()
-    rejected = extenduser.objects.filter(status='REJECTED')
+    rejected = extenduser.objects.filter(status='REJECTED').filter(field = 'ROTC')
 
     context = {
       
@@ -280,6 +281,43 @@ def admin_view_profile(request, id):
 
     
     return render(request, 'activities/profile_view.html', context)
+
+def cwts_admin_view_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.filter(fiel = 'CWTS')
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='PENDING')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/cwts_profile_view.html', context)
+ 
+
  
 
 
@@ -380,6 +418,7 @@ def signup(request):
         picture = request.FILES['picture']
         s_year = request.POST.get('s_year')
         field = request.POST.get('field')
+        date_joined = datetime.datetime.now()  
         if User.objects.filter(username=idnumber).exists():
             messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
             return redirect('/signup_page')
@@ -389,7 +428,7 @@ def signup(request):
        
         else:
             user = User.objects.create_user(username=idnumber, password=password, email=email)
-            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, idnumber=idnumber,picture=picture, field=field,user=user)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, field=field,user=user)
             datas.save()
             auth.login(request, user)
             messages.error(request, 'Account created successfully\nPlease Login and complete profile for verification. Thank you')
@@ -504,6 +543,15 @@ def approve(request, idnumber):
     messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
     return redirect('/admin_pending')
 
+def cw_approve(request, idnumber):
+    stat2 = request.POST.get('getID')
+    platoons = request.POST.get('platoons')
+    
+
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', first_sem='ENROLLED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    return redirect('/cwts_admin_pending')
+
 def decline(request, id):
    
     stat2 = request.POST.get('getID2')
@@ -513,22 +561,27 @@ def decline(request, id):
     messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
     return redirect('/admin_pending')
 
-def r_approve(request, idnumber):
-    stat2 = request.POST.get('getID')
-    platoons = request.POST.get('platoons')
-    
-
-    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons=platoons, first_sem = 'ENROLLED')
-    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
-    return redirect('/admin_rejected')
-
-def r_decline(request, id):
-   
+def cw_decline(request, id):
+       
     stat2 = request.POST.get('getID2')
    
     print(stat2)
     extenduser.objects.filter(idnumber=stat2).update(status='REJECTED')
     messages.success(request, 'Student ' + str (stat2) + ' has been Rejected !')
+    return redirect('/cwts_admin_pending')
+
+def r_approve(request, idnumber):
+    stat2 = request.POST.get('getID')
+ 
+    
+
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons='PROCESSING', first_sem = 'ENROLLED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    return redirect('/admin_rejected')
+
+def r_decline(request, id):
+    extenduser.objects.filter(id=id).delete()
+    User.objects.filter(id=id).delete()
     return redirect('/admin_rejected')
 
 
@@ -603,6 +656,25 @@ def create_section(request):
             messages.info(request, 'Please Input Something!! Ex: ALPHA')
             return redirect('/manage_section')
     return redirect('/manage_section')
+    
+def create_cwts_section(request):
+    if request.method == 'POST':
+        secs = request.POST.get('secs')
+        field = request.POST.get('field')
+        if secs is not None and field is not None:
+            if sections.objects.filter(section_created  = secs).exists():
+                messages.info(request, 'Section ' + str (secs) + ' Already exist !')
+                return redirect('/manage_cwts_section')
+            else:
+                data = sections(section_created=secs, fiel=field)
+                data.save()
+                messages.info(request, 'Section ' + str (secs) + ' Created !')
+                return redirect('/manage_cwts_section')
+        else:
+            messages.info(request, 'Please Input Something!! Ex: ALPHA')
+            return redirect('/manage_cwts_section')
+    return redirect('/manage_cwts_section')
+
 
 def counts(request, secton_created):
     data1 = extenduser.objects.all()
@@ -3142,7 +3214,8 @@ def update_each_student(request):
             field = field,
             platoons = platoons,
             note = note,
-            status = status
+            status = status,
+         
             
             )
             
@@ -3326,15 +3399,20 @@ def assign_cwts_section(request):
     if request.method == 'POST':
         platoons=request.POST.get('platoons')
         lists = request.POST.getlist('students[]')
+        
+        if lists != '':
+            
  
-        for s in lists:
-            extenduser.objects.filter(id=s).update(platoons=platoons)
-            print("id ito" +str(s))
-            messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
+            for s in lists:
+                extenduser.objects.filter(id=s).update(platoons=platoons)
+                print("id ito" +str(s))
+                
 
-        messages.info(request, 'Adding Students to ' + str(platoons + ' done.'))
-  
-        return redirect('/manage_cwts_section')
+       
+    
+            return redirect('/manage_cwts_section')
+        else:
+            return redirect('/manage_cwts_section')
     else:
         return redirect('/manage_cwts_section')
     
@@ -3948,6 +4026,103 @@ def update_each_pending(request):
             )
             
             return redirect('/admin_pending')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
+
+def update_cwts_each_pending(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status,
+            first_sem = status
+            
+            )
+            
+            return redirect('/cwts_admin_pending')
             
         else:
             extenduser.objects.filter(id=ids).update(firstname = firstname,
