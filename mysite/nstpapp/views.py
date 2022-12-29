@@ -3747,8 +3747,8 @@ def send_feedback(request):
     return redirect('/contact_us')
 
 
-def send_response(request, email):
-    feed = feedback.objects.all().order_by('date_sent')
+def send_response(request, id):
+    feed = feedback.objects.filter(status = 'PENDING').order_by('date_sent')
     audience = sections.objects.all()
     ann = Announcement.objects.all()
     sy = school_year.objects.all()
@@ -3759,12 +3759,12 @@ def send_response(request, email):
 
    
 
-    email = email
+    id = id
     
-    details = feedback.objects.filter(email=email)
+    details = feedback.objects.filter(id=id)
     
     context = {
-        'email': email,
+        'id': id,
         'details': details,
         'active':active,   
         'pending':pending,
@@ -4131,3 +4131,17 @@ def update_mess(request):
         
 
     return redirect('/admin_dashboard')
+
+
+def mess_history(request):
+    details = feedback.objects.filter(status = 'DONE')
+    context = {
+        'details':details,
+    }
+    return render(request, 'activities/history.html', context)
+
+def del_ans(request, id):
+    feedback.objects.filter(id=id).delete()
+ 
+
+    return redirect('/mess_history')

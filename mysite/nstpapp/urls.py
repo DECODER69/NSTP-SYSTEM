@@ -210,7 +210,7 @@ urlpatterns = [
     path('alumni_year/<str:id>', views.alumni_year, name='alumni_year'),
     path('cwts_alumni_year/<str:id>', views.cwts_alumni_year, name='cwts_alumni_year'),
     path('send_feedback/', views.send_feedback, name='send_feedback'),
-    path('send_response/<str:email>', views.send_response, name='send_response'),
+    path('send_response/<str:id>', views.send_response, name='send_response'),
     path('student_update/', views.student_update, name='student_update'),
     path('all_files/', views.all_files, name='all_files'),
     path('update_each_pending/', views.update_each_pending, name='update_each_pending'),
@@ -221,6 +221,9 @@ urlpatterns = [
     path('cwts_admin_pending/', views.cwts_admin_pending, name='cwts_admin_pending'),
     path('response/', views.response, name='response'),
     path('update_mess/', views.update_mess, name='update_mess'),
+    path('mess_history/', views.mess_history, name='mess_history'),
+    path('del_ans/<str:id>', views.del_ans, name='del_ans' ),
+
 
 
     
