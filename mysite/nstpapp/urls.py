@@ -94,6 +94,10 @@ urlpatterns = [
     path('update_acts/', views.update_acts, name='update_acts'),
     path('r_approve/<str:idnumber>', views.r_approve, name='r_approve'),
     path('r_decline/<str:id>', views.r_decline, name='r_decline'),
+    path('c_approve/<str:idnumber>', views.c_approve, name='c_approve'),
+    path('c_decline/<str:id>', views.c_decline, name='c_decline'),
+
+
     path('download/', views.download, name='download'),
     path('download1/', views.download1, name='download1'),
     path('update_manage/', views.update_manage, name='update_manage'),
@@ -230,6 +234,13 @@ urlpatterns = [
     path('mess_history/', views.mess_history, name='mess_history'),
     path('del_ans/<str:id>', views.del_ans, name='del_ans' ),
     path('create_cwts_section/', views.create_cwts_section, name='create_cwts_section'),
+    path('rejected_rotc_profile/<str:id>', views.rejected_rotc_profile, name='rejected_rotc_profile'),
+    path('rejected_custom/', views.rejected_custom, name='rejected_custom'),
+    path('update_each_rejected/', views.update_each_rejected, name='update_each_rejected'),
+    path('cwts_admin_rejected/', views.cwts_admin_rejected, name='cwts_admin_rejected'),
+    path('rejected_cwts_profile/<str:id>', views.rejected_cwts_profile, name='rejected_cwts_profile'),
+    path('update_each_cwts_rejected/', views.update_each_cwts_rejected, name='update_each_cwts_rejected'),
+    path('cwts_rejected_custom/', views.cwts_rejected_custom, name='cwts_rejected_custom'),
 
 
 

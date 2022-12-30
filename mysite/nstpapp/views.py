@@ -247,6 +247,18 @@ def admin_rejected(request):
     }
     return render(request, 'activities/admin_rejected.html', context)
 
+def cwts_admin_rejected(request):
+    # pending = extenduser.objects.filter(status='PENDING').count()
+    rejected = extenduser.objects.filter(status='REJECTED').filter(field = 'CWTS')
+
+    context = {
+      
+        'rejected':rejected,
+       
+    }
+    return render(request, 'activities/cwts_rejected.html', context)
+
+
 def admin_view_profile(request, id):
     ids= request.POST.get('ids')
     labels = [ 'ABSENT','PRESENT']
@@ -584,7 +596,16 @@ def r_decline(request, id):
     User.objects.filter(id=id).delete()
     return redirect('/admin_rejected')
 
+def c_approve(request, idnumber):
+    stat2 = request.POST.get('getID')
+    extenduser.objects.filter(idnumber=stat2).update(status='ENROLLED', platoons='PROCESSING', first_sem = 'ENROLLED')
+    messages.success(request, 'Student ' + str (stat2) + ' has been Approved !')
+    return redirect('/cwts_admin_rejected')
 
+def c_decline(request, id):
+    extenduser.objects.filter(id=id).delete()
+    User.objects.filter(id=id).delete()
+    return redirect('/cwts_admin_rejected')
 
 # EMAILS
 def rejected_email_page(request, id):
@@ -4320,3 +4341,308 @@ def del_ans(request, id):
  
 
     return redirect('/mess_history')
+
+
+
+
+
+def rejected_rotc_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id)
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/rejected_rotc_profile.html', context)
+
+
+def rejected_custom(request):
+    if request.method == 'POST':
+        try:
+            sub = request.POST.get('subject')
+            msg = request.POST.get('message')
+            emaila = request.POST.get('rname')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+            print(sub)
+            return redirect(request.META['HTTP_REFERER'])
+            # return redirect('/admin_view_profile')
+ 
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+    return redirect('/admin_rejected')
+
+
+def update_each_rejected(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status,
+            first_sem = status
+            
+            )
+            
+            return redirect('/admin_rejected')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
+    
+    
+    
+    
+def rejected_cwts_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id)
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/rejected_cwts_profile.html', context)
+
+def update_each_cwts_rejected(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status,
+            first_sem = status
+            
+            )
+            
+            return redirect('/cwts_admin_rejected')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
+    
+    
+def cwts_rejected_custom(request):
+    if request.method == 'POST':
+        try:
+            sub = request.POST.get('subject')
+            msg = request.POST.get('message')
+            emaila = request.POST.get('rname')
+            send_mail(sub, msg,'tupc.nstp@gmail.com',[emaila])
+            print(sub)
+            return redirect(request.META['HTTP_REFERER'])
+            # return redirect('/admin_view_profile')
+
+        except ImportError:
+            messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
+    return redirect('/cwts_admin_rejected')
+

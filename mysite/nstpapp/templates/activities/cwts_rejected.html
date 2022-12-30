@@ -23,7 +23,7 @@
     {% include 'activities/admin_nav.html' %}
     <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-time'></i>ROTC REJECTED</h1><br>
+            <h1 class="text"><i class='bx bx-time'></i>CWTS REJECTED</h1><br>
         </div>
         <div class="bg">
             <!-- <ul class="nav nav-tabs nav-pills nav-fill">
@@ -76,7 +76,7 @@
                                 <td>{{s.section}}</td>
                                 <td style="color: #009113;">{{s.date_joined}}</td>
                                 <td class="tar">
-                                    <a href="{% url 'activities:rejected_rotc_profile' s.id %}" target="_self" title="View student profile"><i class="fa-solid fa-eye"></i>
+                                    <a href="{% url 'activities:rejected_cwts_profile' s.id %}" target="_self" title="View student profile"><i class="fa-solid fa-eye"></i>
                                          View Profile
                                     </a>
                                 </td>
@@ -84,13 +84,13 @@
 
                                 <td class="actions">
                                     <div class="ehe">
-                                        <form action="{% url 'activities:r_approve' s.idnumber %}" method="post">
+                                        <form action="{% url 'activities:c_approve' s.idnumber %}" method="post">
                                             {% csrf_token %}
                                             <input type="hidden" name="getID" value="{{s.idnumber}}"><button type="submit" class="btn btn-success"><i class='bx bx-check'></i>  Approve</button>
                                         </form>
                                     </div><br>&nbsp;<br>
                                     <div class="ehe">
-                                        <a href="{% url 'activities:r_decline' s.id %}" class="btn btn-danger"> Remove</a>
+                                        <a href="{% url 'activities:c_decline' s.id %}" class="btn btn-danger"> Remove</a>
                                     </div>
 
 
