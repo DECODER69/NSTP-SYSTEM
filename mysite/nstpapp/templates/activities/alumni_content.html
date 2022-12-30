@@ -51,7 +51,7 @@
                             <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{getSection}}" name="platoon">
-                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Add Alumni</button>
+                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class="fa-solid fa-plus"></i> Add Alumni</button>
                                 <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                             </form>
                         </div>

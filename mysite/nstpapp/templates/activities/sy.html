@@ -72,10 +72,7 @@
 
                             <button class="btn rapal"><i class="fa-solid fa-plus"></i> Create</button> &nbsp;
                             <br> &nbsp;
-                            <br>
                             <hr>
-                            <br> &nbsp;
-                            <br>
                             <div class="current">
                                 {% for s in s_years %}
                                 <div class="form-group">
@@ -110,7 +107,7 @@
                         <h2><i class="fa-regular fa-calendar-days"></i> &nbsp;Modify Academic Year</h2>
                         <small>Select School year you want to modify</small>
                     </div>
-                    <br> &nbsp;<br>
+                    <br>
 
                     <div class="right4">
                         <form action="{% url 'activities:update_sel' %}" method="post">
@@ -164,6 +161,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Status</th>
+
                                     <th scope="col">School Year</th>
                                     <th scope="col">Action</th>
 
@@ -173,9 +171,9 @@
                                 {% for s in alls %}
                                 <tr>
                                     {% if s.status == 'OPEN' %}
-                                    <th scope="row"><span id="open"><i class="fa-solid fa-circle-check"></i></span></th>
+                                    <th scope="row"><span id="open"><i class="fa-solid fa-circle-check"></i></span> Open</th>
                                     {% else %}
-                                    <th scope="row"><span id="closed"><i class="fa-solid fa-circle-minus"></i></span></th>
+                                    <th scope="row"><span id="closed"><i class="fa-solid fa-circle-minus"></i></span> Closed</th>
                                     {% endif %}
 
 
