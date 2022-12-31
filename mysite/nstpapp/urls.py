@@ -241,7 +241,8 @@ urlpatterns = [
     path('rejected_cwts_profile/<str:id>', views.rejected_cwts_profile, name='rejected_cwts_profile'),
     path('update_each_cwts_rejected/', views.update_each_cwts_rejected, name='update_each_cwts_rejected'),
     path('cwts_rejected_custom/', views.cwts_rejected_custom, name='cwts_rejected_custom'),
-
+    path('add_rotc_alumni/', views.add_rotc_alumni, name='add_rotc_alumni'),
+    path('add_new_alumni/', views.add_new_alumni, name='add_new_alumni'),
 
 
     

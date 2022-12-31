@@ -4646,3 +4646,39 @@ def cwts_rejected_custom(request):
             messages.success(request, 'Email Encountered some errors. Please Contact your Administrator')
     return redirect('/cwts_admin_rejected')
 
+
+
+def add_rotc_alumni(request):
+    return render(request, 'activities/add_rotc_alumni.html')
+
+
+def add_new_alumni(request):
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname')
+        middle = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber = request.POST.get('idnumber')
+        s_year = request.POST.get('s_year')
+        note = request.POST.get('note')
+        picture = '../nstpapp/static/images/tup.png'
+
+        date_joined = datetime.datetime.now() 
+         
+        if User.objects.filter(username=idnumber).exists():
+            messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
+            return redirect('/rotc_alumni')
+        elif extenduser.objects.filter(email=email).exists():
+            messages.error(request, 'Email ' + str (email) + ' Already Exist !')
+            return redirect('/rotc_alumni')
+       
+        else:
+            user = User.objects.create_user(username=idnumber,  email=email)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber, field='ROTC', status='GRADUATE', picture=picture, note=note,user=user)
+            datas.save()
+        
+            messages.error(request, 'Alumni  Aded successfully\n')
+            # return redirect(request.META['HTTP_REFERER'])
+            return redirect('/rotc_alumni')
+    else:
+        return redirect('/rotc_alumni')
