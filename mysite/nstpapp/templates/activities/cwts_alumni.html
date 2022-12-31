@@ -28,9 +28,16 @@
                 <div class="modal-body">
                     <form action="{% url 'activities:add_alumni_years2' %}" method="POST">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">School Year:</label>
-                            <input type="text" class="form-control" pattern="[0-9]+([-\,][0-9]+)?" id="recipient-name" name="years" required accept="">
+                        <div class="form-group-sm">
+                            <label id="labels">Start Year</label>
+                            <input type="text" class="form-control " name="start" placeholder="2022" required minlength="4" maxlength="4" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+
+                        </div>
+                        <br>
+                        <div class="form-group-sm">
+                            <label id="labels">End Year</label>
+                            <input type="text" class="form-control " name="end" placeholder="2023" required minlength="4" maxlength="4" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+
                         </div>
 
                 </div>

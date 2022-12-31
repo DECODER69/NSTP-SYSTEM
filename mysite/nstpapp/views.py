@@ -3496,12 +3496,14 @@ def delete_cfiles(request, id):
 #######################################
 def add_alumni_years(request):
     if request.method == 'POST':
-        years = request.POST.get('years')
-        if alumni_school_year.objects.filter(years=years).exists():
-            messages.error(request, 'School year ' + str (years) + ' Already Exist !')
+        start = request.POST.get('start')
+        end = request.POST.get('end')
+        combine = (start +"-"+ end)
+        if alumni_school_year.objects.filter(years=combine).exists():
+            messages.error(request, 'School year ' + str (combine) + ' Already Exist !')
             return redirect('/rotc_alumni')
         else:
-            data1 = alumni_school_year(years=years)
+            data1 = alumni_school_year(years=combine)
             data1.save()
     return redirect('/rotc_alumni')
 
@@ -4740,11 +4742,13 @@ def al_cwts_remove(request, id):
     
 def add_alumni_years2(request):
     if request.method == 'POST':
-        years = request.POST.get('years')
-        if alumni_school_year.objects.filter(years=years).exists():
-            messages.error(request, 'School year ' + str (years) + ' Already Exist !')
+        start = request.POST.get('start')
+        end = request.POST.get('end')
+        combine = (start +"-"+ end)
+        if alumni_school_year.objects.filter(years=combine).exists():
+            messages.error(request, 'School year ' + str (combine) + ' Already Exist !')
             return redirect('/cwts_alumni')
         else:
-            data1 = alumni_school_year(years=years)
+            data1 = alumni_school_year(years=combine)
             data1.save()
     return redirect('/cwts_alumni')
