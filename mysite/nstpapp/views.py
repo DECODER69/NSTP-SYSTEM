@@ -4682,3 +4682,11 @@ def add_new_alumni(request):
             return redirect('/rotc_alumni')
     else:
         return redirect('/rotc_alumni')
+    
+    
+    
+def al_remove(request, id):
+    extenduser.objects.filter(id=id).delete()
+    User.objects.filter(id=id).delete()
+    return redirect('/rotc_alumni')
+    # return redirect('/admin_rejected')

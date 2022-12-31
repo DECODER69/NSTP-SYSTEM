@@ -243,6 +243,8 @@ urlpatterns = [
     path('cwts_rejected_custom/', views.cwts_rejected_custom, name='cwts_rejected_custom'),
     path('add_rotc_alumni/', views.add_rotc_alumni, name='add_rotc_alumni'),
     path('add_new_alumni/', views.add_new_alumni, name='add_new_alumni'),
+    path('al_remove/<str:id>', views.al_remove, name='al_remove'),
+
 
 
     
