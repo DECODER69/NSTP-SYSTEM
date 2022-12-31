@@ -16,6 +16,33 @@
 </head>
 
 <body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add School Year</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'activities:add_alumni_years2' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">School Year:</label>
+                            <input type="text" class="form-control" pattern="[0-9]+([-\,][0-9]+)?" id="recipient-name" name="years" required accept="">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
     {% include 'activities/admin_nav.html' %}
 
 
@@ -78,7 +105,7 @@
         {% for msg1 in messages %}
         Swal.fire({
             position: 'top-end',
-            icon: 'success',
+            icon: '',
             title: '{{msg1}}',
             showConfirmButton: false,
             timer: 2500

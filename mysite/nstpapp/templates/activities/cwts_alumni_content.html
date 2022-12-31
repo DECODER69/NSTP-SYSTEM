@@ -17,6 +17,71 @@
 </head>
 
 <body>
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Alumni for School year <span style="color: rgb(245, 98, 0);">{{years}}</span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <i class="fa-solid fa-user-graduate" style="font-size: 80px ; color:#575757;"></i><br>&nbsp;<br>
+                    <form action="{% url 'activities:add_new_cwts_alumni' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="First name" name="firstname" required>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Middle name" name="middlename">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name" name="lastname" required>
+                            </div>
+                            <div class="col">
+                                <input type="email" class="form-control" placeholder="Email" name="email">
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="ID Number  *if available *" name="idnumber" required>
+                            </div>
+                            <input type="hidden" value="{{years}}" name="s_year">
+
+
+                            <div class="col">
+                                <textarea name="note" id="" cols="" rows="3" class="form-control" placeholder="Note"></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <small>Other Informations will be Update after Adding</small>
+
+
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     {% include 'activities/admin_nav.html' %}
 
     <section class="page-content">
@@ -37,7 +102,7 @@
 
                         <div class="ada">
                             <p1 style="margin-left:  10px;font-size:20px;  color:#000000;">All Graduates</p1><br>
-                          
+
                         </div>
 
                         <div class="adda">
@@ -51,7 +116,7 @@
                             <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
                                 {% csrf_token %}
                                 <input type="hidden" value="{{getSection}}" name="platoon">
-                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Add Alumni</button>
+                                <button class="btn btn-success" type="button" style="width: 100%;" id="adds" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-plus"></i> Add Alumni</button>
                                 <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
                             </form>
                         </div>
@@ -69,13 +134,14 @@
                                     <th scope="col">ID NUMBER</th>
                                     <th scope="col">FULL NAME</th>
                                     <th scope="col">COURSE</th>
-                                    <th scope="col">PLATOON</th>
-                                    <th scope="col">1st Sem Grade</th>
-                                    <th scope="col">2nd Sem Grade</th>
+                                    <th scope="col">FIELD</th>
+                                    <th scope="col">SECTION</th>
+
 
                                     <th scope="col">NOTES</th>
 
-                                    <th scope="col">ACTIONS</th>
+                                    <th scope="col">VIEW</th>
+                                    <th scope="col">REMOVE</th>
 
 
 
@@ -86,34 +152,25 @@
 
                                 <tr>
                                     <form action="{% url 'activities:cwts_each_alumni' s.id %}" method="POST">
-                                        {% csrf_token %}
                                         <td><input type="checkbox" class="form-control" id="cb" name="cbs" value="{{s.id}}"></td>
                                         <td scope="row">{{s.idnumber}}</td>
                                         <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
-                                        <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
-                                        <td>{{s.platoons}}</td>
-                                        {% if s.final_grade <= '74.99' %}
-                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;">{{s.final_grade}}</td>
-                                        {% elif s.final_grade >= '75' %}
-                                        <td style="color:rgb(13, 112, 0); font-weight:bolder;">{{s.final_grade}}</td>
-                                        {% endif %}
-      
 
-                                        {% if s.final_grade_2 <= '74.99' %}
-                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;">{{s.final_grade_2}}</td>
-                                        {% elif s.final_grade_2 >= '75' %}
-                                        <td style="color:rgb(13, 112, 0); font-weight:bolder;">{{s.final_grade_2}}</td>
-                                        {% endif %}
+                                        <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
+                                        <td>{{s.field}}</td>
+                                        <td>{{s.platoons}}</td>
+
                                         <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.note}}</textarea></td>
 
-                                        <td><button class="btn btn-success" type="submit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;View</button></td>
+                                        <td><a href="{% url 'activities:cwts_each_alumni' s.id %}" class="btn btn-success"><i class="fa-solid fa-pen-to-square" style="margin:auto;"></i>&nbsp;View</a></td>
+                                        <td><a href="{% url 'activities:al_cwts_remove' s.id %}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Remove</a></td>
 
                                     </form>
 
                                 </tr>
 
 
-                             {% endfor %}
+                                {% endfor %}
                             </tbody>
 
                         </table>
@@ -155,14 +212,14 @@
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- <script>
+    <script>
 
         {% for msg in messages %}
         Swal.fire({
             icon: '{{msg.icon}}',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>   -->
+    </script>  
     <script>
         $(function() {
             $("#allcb").click(function() {
@@ -170,6 +227,34 @@
                 chkBoxes.prop("checked", !chkBoxes.prop("checked"));
             });
         });
+    </script>
+
+    <script>
+        $('.btn-danger').on('click', function(e) {
+            e.preventDefault();
+            var self = $(this);
+            console.log(self.data('title'))
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This will be permanently remove from your records",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    location.href = self.attr('href')
+                }
+            })
+        })
     </script>
 </body>
 

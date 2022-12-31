@@ -4249,6 +4249,12 @@ def create_sy(request):
         if school_year.objects.filter(years=combine).exists():
             messages.info(request, 'School year ' + str (combine) + ' ALready exist !')
             return redirect('/school_years')
+        elif alumni_school_year.objects.filter(years=combine).exists():
+            data = school_year(years=combine)
+
+            data.save()
+    
+            return redirect('/school_years')
 
 
         else:
@@ -4690,3 +4696,55 @@ def al_remove(request, id):
     User.objects.filter(id=id).delete()
     return redirect('/rotc_alumni')
     # return redirect('/admin_rejected')
+    
+    
+def add_new_cwts_alumni(request):
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname')
+        middle = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber = request.POST.get('idnumber')
+        s_year = request.POST.get('s_year')
+        note = request.POST.get('note')
+        picture = '../nstpapp/static/images/tup.png'
+
+        date_joined = datetime.datetime.now() 
+         
+        if User.objects.filter(username=idnumber).exists():
+            messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
+            return redirect('/cwts_alumni')
+        elif extenduser.objects.filter(email=email).exists():
+            messages.error(request, 'Email ' + str (email) + ' Already Exist !')
+            return redirect('/cwts_alumni')
+       
+        else:
+            user = User.objects.create_user(username=idnumber,  email=email)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber, field='CWTS', status='GRADUATE', picture=picture, note=note,user=user)
+            datas.save()
+        
+            messages.error(request, 'Alumni  Aded successfully\n')
+       
+            return redirect('/cwts_alumni')
+    else:
+        return redirect('/cwts_alumni')
+    
+def al_cwts_remove(request, id):
+    extenduser.objects.filter(id=id).delete()
+    User.objects.filter(id=id).delete()
+    messages.error(request, 'Deleted')
+    return redirect('/cwts_alumni')
+    # return redirect('/admin_rejected')
+    
+    
+    
+def add_alumni_years2(request):
+    if request.method == 'POST':
+        years = request.POST.get('years')
+        if alumni_school_year.objects.filter(years=years).exists():
+            messages.error(request, 'School year ' + str (years) + ' Already Exist !')
+            return redirect('/cwts_alumni')
+        else:
+            data1 = alumni_school_year(years=years)
+            data1.save()
+    return redirect('/cwts_alumni')

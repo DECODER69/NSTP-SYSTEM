@@ -16,8 +16,6 @@
 </head>
 
 <body>
-    {% include 'activities/admin_nav.html' %}
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -45,6 +43,9 @@
             </div>
         </div>
     </div>
+
+    {% include 'activities/admin_nav.html' %}
+
 
 
     <section class="page-content">
@@ -100,14 +101,17 @@
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+   <script>
 
-        {% for msg in messages %}
+        {% for msg1 in messages %}
         Swal.fire({
-            icon: '{{msg.icon}}',
-            text: '{{ msg }}'
-        }) {% endfor %}
-    </script>  
+            position: 'top-end',
+            icon: '',
+            title: '{{msg1}}',
+            showConfirmButton: false,
+            timer: 2500
+          }) {% endfor %}
+    </script>   
 
     <script>
         $('.btn-dark').on('click', function(e) {

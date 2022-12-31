@@ -244,6 +244,10 @@ urlpatterns = [
     path('add_rotc_alumni/', views.add_rotc_alumni, name='add_rotc_alumni'),
     path('add_new_alumni/', views.add_new_alumni, name='add_new_alumni'),
     path('al_remove/<str:id>', views.al_remove, name='al_remove'),
+    path('add_new_cwts_alumni/', views.add_new_cwts_alumni, name='add_new_cwts_alumni'),
+    path('al_cwts_remove/<str:id>', views.al_cwts_remove, name='al_cwts_remove'),
+    path('add_alumni_years2/', views.add_alumni_years2, name='add_alumni_years2'),
+
 
 
 
