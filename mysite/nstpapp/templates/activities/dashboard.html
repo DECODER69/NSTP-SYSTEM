@@ -56,21 +56,56 @@
         <div class="bg">
             <div class="home-content">
 
-                <div class=uper>
+                <div class="uper">
                     <div class="uper2">
                         {% for s in name %}
                         <div class="left">
-                            <img src="{{s.picture.url}}" alt="" id="profile2">
+                            <img src="{{s.picture.url}}" alt="Profile picture" id="profile2">
+
+                            <div class="mid">
+                                <h5 style="font-size: 25px;">Hi <span style="font-weight: bolder;">{{s.firstname}} !</span></h5>
+                                <h6 id="wel">Welcome to NSTP System.</h6>
+
+
+                                <h6 id="he" style="font-weight: bolder;"><i class="fa-solid fa-id-card"></i> {{s.idnumber}}</h6>
+                                <h6 id="he" style="font-weight: bolder;"><i class="fa-solid fa-envelope"></i> {{s.email}} </h6>
+
+
+                            </div>
+
+
+
 
                         </div>
-                        <br>
-                        <div class="mid">
-                            <h2>Welcome Back <span style="font-weight: bolder;">{{s.firstname}} !</span></h2>
 
-                        </div>
-                        <br>
+
+
                         <div class="right">
-                            <h2><span style="font-size: 18px;">Status: </span>{{s.status}}</h2>
+
+                            <div class="one">
+                                {% if s.status == 'PENDING' %}
+                                <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-hourglass-start" style="color: rgb(236, 106, 0);"></i></span></h2>
+                                <small>Status</small> {% elif s.status == 'ENROLLED' %}
+                                <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-circle-check" style="color: green;"></i></span></h2>
+                                <small>Status</small> {% elif s.status == 'DROPPED' %}
+                                <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-circle-minus" style="color: rgb(207, 0, 0);"></i></span></h2>
+                                <small>Status</small> {% elif s.status == 'GRADUATE' %}
+                                <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-user-graduate" style="color: rgb(0, 230, 77);"></i></span></h2>
+                                <small>Status</small> {% endif %} </div>
+
+                            <div class="two">
+                                <h2><span id="st"></span> <span id="stat">{{s.field}}&nbsp;</span></h2>
+                                <small>Components</small>
+                            </div>
+
+
+                            <div class="three">
+                                {% if s.field == 'ROTC' %}
+                                <h2><span id="st"></span> <span id="stat">{{s.platoons}}&nbsp;</span></h2>
+                                <small>Platoon</small> {% elif s.field == 'CWTS' %}
+
+                                <h2><span id="st"></span> <span id="stat">{{s.field}}&nbsp;</span></h2>
+                                {% endif %}</div>
 
                         </div>
                         {% endfor %}
@@ -104,9 +139,10 @@
 
                                             </div>
                                         </button>
-                            <div class="panel"><br>
+                            <div class="panel">
                                 <p>{{manji.content}}</p>
                             </div>
+                            <br>
                             {% else %} {% endif %} {% endfor %} {% elif manji.subject == '' %} {% endif %} {% endfor %}
 
                         </div>
@@ -177,7 +213,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <!-- <script>
+    <script>
 
     var config = {
       type: 'doughnut',
@@ -203,7 +239,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script>   -->
+     </script>  
 
 
 </body>
