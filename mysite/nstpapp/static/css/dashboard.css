@@ -122,6 +122,47 @@ section {
     padding: 2px;
 }
 
+.uper2 {
+    justify-content: space-between;
+    display: flex;
+    background-color: #fff2f2;
+    width: 100%;
+    height: 100%;
+    border: solid 2px rgba(197, 197, 197, 0.13);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(143, 143, 143, 0.575), 0 6px 20px 0 rgba(94, 94, 94, 0.089);
+}
+
+
+/* news */
+
+.uper {
+    width: 100%;
+    height: 30vh;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.left {
+    float: left;
+    display: flex;
+    height: 100%;
+    width: 16%;
+    border-radius: 50%;
+}
+
+.left #profile2 {
+    max-width: 85% !important;
+    max-height: 100%!important;
+    margin: auto;
+}
+
+.mid {
+    width: 60%;
+}
+
 
 /* ###################### */
 
@@ -272,6 +313,7 @@ section {
     justify-content: space-between;
     width: 100%;
     padding: 5px;
+    background-color: white;
     /* padding: 0 20px; */
 }
 

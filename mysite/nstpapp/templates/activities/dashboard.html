@@ -55,138 +55,31 @@
         </div><br>
         <div class="bg">
             <div class="home-content">
-                {% for s in name %}
-                <div class="overview-boxes">
-                    <div class="box box1">
-                        <div class="right-side">
 
-                            <div class="box-topic">{{s.firstname}} {{s.lastname}}</div>
-                            <div class="caption">Student</div>
-
-                        </div>
-                        <i class='bx bx-user-circle color'></i>
-                    </div>
-                    <div class="box">
-                        <div class="right-side">
-                            <div class="box-topic">{{s.status}}</div>
-                            <div class="caption">Status</div>
-                        </div>
-                        {% if s.status == 'PENDING' %}
-                        <i class='bx bxs-time color XXX'></i> {% else %}
-                        <i class='bx bxs-check-circle color two'></i> {% endif %}
-
-
-                    </div>
-                    <div class="box">
-
-                        <div class="right-side">
-                            <div class="box-topic">{{s.field}}</div>
-                            <div class="caption">Components</div>
-                        </div>
-
-                        <i class='bx bx-group color three'></i>
-                    </div>
-                    <div class="box">
-                        {% if s.field == 'ROTC' %}
-                        <div class="right-side">
-                            <div class="box-topic">{{s.platoons}}</div>
-                            <div class="caption">Platoon</div>
-                        </div>
-                        {% else %}
-                        <div class="right-side">
-                            <div class="box-topic">{{s.platoons}}</div>
-                            <div class="caption">Section</div>
-                        </div>
-                        {% endif %}
-                        <i class='bx bx-star color four'></i>
-                    </div>
-                    <div class="box" id="box">
-                        <div class="eye">
-                            <i class="fa-solid fa-eye-slash" data-toggle="modal" data-target="#exampleModal" title="View Grade"></i>
-                        </div>
-
-                        <div class="caption">Grade</div>
-
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="overview-b">
-
-                </div>
-                <div class="overview-boxes2 hehe">
-                    <div class="box2">
+                <div class=uper>
+                    <div class="uper2">
                         {% for s in name %}
-                        <div class="right-side">
-                            <img src="{{s.picture.url}}" alt="" id="profile">
+                        <div class="left">
+                            <img src="{{s.picture.url}}" alt="" id="profile2">
 
                         </div>
-
-                        <div class="lbs">
-                            <div class="right-side">
-
-                                <div class="s_name">{{s.firstname}} {{s.lastname}}</div>
-                                <!-- <div class="caption">Student</div> -->
-
-                            </div>
-                            <div class="right">
-                                {% if s.status == 'PENDING' %}
-                                <div style="color: rgb(128, 0, 0);" class="name">{{s.status}}&nbsp; <i class="fa-solid fa-clock"></i></div>
-                                {% else %}
-                                <div style="color: rgb(0, 153, 46);" class="name">{{s.status}} &nbsp; <i class="fa-solid fa-certificate"></i></div>
-                                {% endif %}
-                                <div class="caption">Status</div>
-
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="lbs">
-
-                            <div class="right-side">
-                                <div class="name" style="color: rgb(218, 98, 0);">{{s.field}}</div>
-                                <div class="caption">Companion</div>
-
-
-                            </div>
-
-                            <div class="right">
-                                <div class="name">{{s.platoons}}</div>
-                                {% if s.field == 'ROTC' %}
-                                <div class="caption">Platoon</div>
-                                {% else %}
-                                <div class="caption">Section</div>
-                                {% endif %}
-
-
-                            </div>
-                        </div>
-
                         <br>
+                        <div class="mid">
+                            <h2>Welcome Back <span style="font-weight: bolder;">{{s.firstname}} !</span></h2>
 
-                        <div class="lbs">
-
-                            <div class="right-side">
-
-
-
-
-                            </div>
-
-                            <div class="right">
-                                <div class="eye">
-                                    <i class="fa-solid fa-eye-slash" data-toggle="modal" data-target="#exampleModal" title="View Grade"></i>
-                                </div>
-
-                                <div class="caption">Grade</div>
-                            </div>
                         </div>
+                        <br>
+                        <div class="right">
+                            <h2><span style="font-size: 18px;">Status: </span>{{s.status}}</h2>
 
-
+                        </div>
                         {% endfor %}
 
                     </div>
+
                 </div>
 
-
+                <br>&nbsp;<br>
 
                 <!-- lower part -->
 
@@ -195,7 +88,7 @@
                         <div class="title"><i class="fa-solid fa-scroll"></i> Announcements</div>
                         <hr>
                         <div class="announce-details">
-                            {% for manji in announcement %} {% if manji %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
+                            {% for manji in announcement %} {% if manji.subject != '' %} {% for s in name %} {% if manji.assign == 'ALL' or manji.assign == s.platoons %}
                             <button class="accordion">                                        
                                             <div class="up">
                                                 <div class="headss">
@@ -214,9 +107,7 @@
                             <div class="panel"><br>
                                 <p>{{manji.content}}</p>
                             </div>
-                            &nbsp; {% endif %} {% endfor %} {% else %}
-                            <h1>dg</h1>
-                            {% endif %} {% endfor %}
+                            {% else %} {% endif %} {% endfor %} {% elif manji.subject == '' %} {% endif %} {% endfor %}
 
                         </div>
 
@@ -245,8 +136,9 @@
                             <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
                             <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
                         </div>
+
                         {% else %}
-                        <h5>No Record yet</h5>
+                        <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
                         {% endif %} {% endfor %}
 
                     </div>
@@ -285,7 +177,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script>
+    <!-- <script>
 
     var config = {
       type: 'doughnut',
@@ -311,7 +203,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script> 
+     </script>   -->
 
 
 </body>
