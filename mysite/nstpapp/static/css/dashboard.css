@@ -590,6 +590,84 @@ h5 {
 }
 
 @media screen and (min-width:701px)and (max-width:1000px) {
+    .bg {
+        background-color: #dbdbdb;
+        padding: 1px !important;
+    }
+    .uper {
+        width: 100%;
+        height: 40vh;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: transparent !important;
+    }
+    .uper2 {
+        display: block;
+        background: transparent !important;
+    }
+    .left {
+        display: flex;
+        width: 100%;
+        height: 15vh;
+        justify-content: space-between;
+        background-color: #660f0f;
+        padding: 8px;
+        border-radius: 5px;
+        color: white !important;
+    }
+    .left #profile2 {
+        width: 20% !important;
+        border: solid 2px rgba(192, 192, 192, 0.411);
+        border-radius: 10px;
+        margin-left: 0px !important;
+    }
+    .left .mid {
+        padding: 0 !important;
+        width: 70% !important;
+    }
+    .mid h5 {
+        font-size: 19px !important;
+        color: white;
+    }
+    .mid #wel {
+        font-size: 11px;
+    }
+    .mid #he {
+        font-size: 10px !important;
+    }
+    .right {
+        display: flex;
+        margin-top: 150px !important;
+        width: 100%;
+        height: 12vh;
+        justify-content: space-between;
+        background-color: #ffffff;
+        padding: 8px;
+        border-radius: 5px;
+        color: rgb(24, 24, 24) !important;
+    }
+    .right .one,
+    .two,
+    .three {
+        font-size: 12px!important;
+        display: block;
+        height: 100px;
+        width: 100%;
+    }
+    .one #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    .two #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    .three #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    /* 
+gap */
     .overview-b,
     .overview-boxes2 {
         display: none;
@@ -597,6 +675,84 @@ h5 {
 }
 
 @media screen and (min-width:551px)and (max-width:700px) {
+    .bg {
+        background-color: #dbdbdb;
+        padding: 1px !important;
+    }
+    .uper {
+        width: 100%;
+        height: 40vh;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: transparent !important;
+    }
+    .uper2 {
+        display: block;
+        background: transparent !important;
+    }
+    .left {
+        display: flex;
+        width: 100%;
+        height: 15vh;
+        justify-content: space-between;
+        background-color: #660f0f;
+        padding: 8px;
+        border-radius: 5px;
+        color: white !important;
+    }
+    .left #profile2 {
+        width: 20% !important;
+        border: solid 2px rgba(192, 192, 192, 0.411);
+        border-radius: 10px;
+        margin-left: 0px !important;
+    }
+    .left .mid {
+        padding: 0 !important;
+        width: 70% !important;
+    }
+    .mid h5 {
+        font-size: 19px !important;
+        color: white;
+    }
+    .mid #wel {
+        font-size: 11px;
+    }
+    .mid #he {
+        font-size: 10px !important;
+    }
+    .right {
+        display: flex;
+        margin-top: 150px !important;
+        width: 100%;
+        height: 12vh;
+        justify-content: space-between;
+        background-color: #ffffff;
+        padding: 8px;
+        border-radius: 5px;
+        color: rgb(24, 24, 24) !important;
+    }
+    .right .one,
+    .two,
+    .three {
+        font-size: 12px!important;
+        display: block;
+        height: 100px;
+        width: 100%;
+    }
+    .one #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    .two #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    .three #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    /* 
+gap */
     nav .sidebar-button .dashboard,
     .home-section nav .profile-details {
         height: 50px;
@@ -612,6 +768,84 @@ h5 {
 }
 
 @media (max-width: 550px) {
+    .bg {
+        background-color: #dbdbdb;
+        padding: 1px !important;
+    }
+    .uper {
+        width: 100%;
+        height: 40vh;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: transparent !important;
+    }
+    .uper2 {
+        display: block;
+        background: transparent !important;
+    }
+    .left {
+        display: flex;
+        width: 100%;
+        height: 15vh;
+        justify-content: space-between;
+        background-color: #660f0f;
+        padding: 8px;
+        border-radius: 5px;
+        color: white !important;
+    }
+    .left #profile2 {
+        width: 20% !important;
+        border: solid 2px rgba(192, 192, 192, 0.411);
+        border-radius: 10px;
+        margin-left: 0px !important;
+    }
+    .left .mid {
+        padding: 0 !important;
+        width: 70% !important;
+    }
+    .mid h5 {
+        font-size: 19px !important;
+        color: white;
+    }
+    .mid #wel {
+        font-size: 11px;
+    }
+    .mid #he {
+        font-size: 10px !important;
+    }
+    .right {
+        display: flex;
+        margin-top: 150px !important;
+        width: 100%;
+        height: 12vh;
+        justify-content: space-between;
+        background-color: #ffffff;
+        padding: 8px;
+        border-radius: 5px;
+        color: rgb(24, 24, 24) !important;
+    }
+    .right .one,
+    .two,
+    .three {
+        font-size: 12px!important;
+        display: block;
+        height: 100px;
+        width: 100%;
+    }
+    .one #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    .two #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    .three #stat {
+        font-size: 15px!important;
+        display: block;
+    }
+    /* 
+gap */
     .overview-boxes .box {
         width: 100%;
         margin-bottom: 15px;
