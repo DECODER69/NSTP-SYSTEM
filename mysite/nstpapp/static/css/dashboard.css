@@ -126,13 +126,13 @@ section {
 .uper2 {
     justify-content: space-between;
     display: flex;
-    /* background-color: #FFF7ED; */
+    background-color: #FFF7ED;
     /* background-color: #660f0f; */
-    background: rgb(96, 96, 96);
-    background: linear-gradient(90deg, rgba(96, 96, 96, 1) 0%, rgba(255, 243, 220, 1) 100%);
+    /* background: rgb(96, 96, 96);
+    background: linear-gradient(90deg, rgba(96, 96, 96, 1) 0%, rgba(255, 243, 220, 1) 100%); */
     width: 100%;
     height: 100%;
-    /* border: solid 2px rgba(161, 161, 161, 0.486); */
+    border: solid 2px rgba(161, 161, 161, 0.486);
     padding: 10px;
     border-radius: 6px;
     margin-bottom: 30px;
@@ -176,13 +176,13 @@ section {
 }
 
 .mid h5 {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-align: left !important;
     font-size: 29px !important;
 }
 
 .mid h6 {
-    color: white;
+    color: rgb(10, 10, 10);
 }
 
 .right #st {
