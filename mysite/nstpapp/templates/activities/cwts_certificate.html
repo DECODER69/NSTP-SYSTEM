@@ -30,31 +30,45 @@
 
         <div class="inner2">
             <div class="inner1">
-                <div id="img1">
-                    <img src="../../static/images/236.png">
-                </div>
-
                 <div id="img2">
-                    <img src="../../static/images/NRCEN.png">
+                    <img src="../../static/images/tup.png">
                 </div>
+                <!-- <div id="img1">
+                    <img src="../../static/images/tup.png">
+                </div> -->
 
+
+                <!-- 
                 <span class="up1">Naval Reserve Center-National Capital Region</span><br>+
                 <span class="up2">Department of Naval Science and Tactics</span><br>
-                <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br>
+                <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br> -->
                 <span class="up4">Technological University of the Philippines-Cavite</span><br>
                 <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br><br/>
                 <span class="line1">Certificate of Completion</span><br>
-                <span class="line7"><i>is herby awarded to</i></span><br><br>
-                <span class="line8"><i>cadet&nbsp;</i></span><span class="line8"> <i> {{s.lastname}}</i></span> <span class="line8"><i>{{s.firstname}}</i></span><br>&nbsp;<br>&nbsp;
-                <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
-                <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
+                <span class="line7"><i>This is to certify that</i></span><br><br>
+                <span class="line8"><i></i></span><span class="line8"> <i> {{s.firstname}}</i></span> <span class="line8"><i>{{s.lastname}}</i></span><br>&nbsp;<br>&nbsp;
+                <span class="line9"><i>has completed the required number of hours and rendered community service in</i></span><br>
+                <span class="line10"><i>Technological University of the Philippines - Cavite</i></span><br>
 
-                <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br> {% for s in details %}
+                <span class="line11">This certificate is issued in partial fulfillment of the National Service Training Program (NSTP)</span><br> {% for s in details %}
                 <span class="line12"><i>Given this {{s.date}} day of {{s.month}} {{s.year}}at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
                 <div class="bot">
+                    <div class="l1">
+                        <h4>{{s.commandant}}</h4>
+                        <h6>NSTP Coordinator</h6>
 
+                    </div>
+                    <div class="l2">
+                        <h4>{{s.registrar}}</h4>
+                        <h6>NSTP Coordinator</h6>
 
-                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}  {% endfor %}</u>&emsp;<u class="control">236-20-{{forloop.counter}}</u></span>
+                    </div>
+                    <div class="cou">
+                        CWTS-23-{{forloop.counter}}
+
+                    </div>
+                    <!-- 
+                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}  {% endfor %}</u>&emsp;<u class="control">236-20-{{forloop.counter}}</u></span> -->
                 </div>
 
 

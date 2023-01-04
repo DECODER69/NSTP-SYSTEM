@@ -72,7 +72,7 @@
 .inner1 .line1 {
     font-size: 50px;
     font-weight: bold;
-    color: darkred;
+    color: rgb(182, 155, 0);
     font-family: 'Times New Roman';
 }
 
@@ -222,9 +222,10 @@
 }
 
 .bot {
-    width: 100%;
+    width: 90%;
     margin-top: 100px;
     justify-content: space-between;
+    display: flex;
 }
 
 .comm {

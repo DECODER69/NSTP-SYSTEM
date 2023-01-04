@@ -52,11 +52,11 @@
                                     {% for s in details %}
                                     <div class="form-group ">
                                         <label for="exampleFormControlInput1 ">Campus Director</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1 " placeholder="Commandant 's  Name" name="commandant" value="{{s.commandant}}" required>
+                                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1 " placeholder="Campus Director" name="commandant" value="{{s.commandant}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">NSTP Coordinator</label>
-                                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Registrar" name="registrar" value="{{s.registrar}}" required>
+                                        <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="NSTP Coordinator" name="registrar" value="{{s.registrar}}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">Given Date</label>
@@ -310,30 +310,31 @@
                                                 <div class="inner1">
 
                                                     <!-- <div id="img1">
-                                                        <img src="../../static/images/236.png">
+                                                        <img src="../../static/images/tup.png">
                                                     </div> -->
 
                                                     <div id="img2">
                                                         <img src="../../static/images/tup.png">
                                                     </div>
 
-                                                    <span class="up1">Naval Reserve Center-National Capital Region</span><br>
-                                                    <span class="up2">Department of Naval Science and Tactics</span><br>
-                                                    <span class="up3">236TH NAVAL RESERVE OFFICER TRAINING CORPS UNIT</span><br>
+
                                                     <span class="up4">Technological University of the Philippines-Cavite</span><br>
                                                     <span class="up5">Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</span><br>
                                                     <span class="line1">Certificate of Completion</span><br>
                                                     <span class="line7"><i>is herby awarded to</i></span><br>
-                                                    <span class="line8"><i>CADET DELA CRUZ JUAN</i></span><br>&nbsp;
+                                                    <span class="line8"><i>DELA CRUZ JUAN</i></span><br>&nbsp;
                                                     <span class="line9"><i>for having satisfactory completed the prescribed</i></span><br>
-                                                    <span class="line10"><i>Program of Instruction (POI) of MS1 and MS2 for Basic</i></span><br>
-                                                    <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br>
+                                                    <span class="line10"><i>Program of Instruction (POI) of </i></span><br>
+                                                    <span class="line11">Civic Welfare and Training Service (CWTS)</span><br>
                                                     <span class="line12"><i>Given this <span style="color: red;">{{s.date}}</span> day of <span style="color: red;">{{s.month}}  {{s.year}}</span> at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas
                                                     City, Cavite</i>
                                                     </span><br>&nbsp;<br>
                                                     <div class="bot">
-                                                        <span class="lastline"> <u class="com">Campus Director</u>&nbsp;&nbsp; &nbsp;  <u class="comm">NSTP Coordinator</u>&emsp;<u class="control"></u></span>
+                                                        <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}</u>&emsp;<u class="control">1213-20-1</u></span>
                                                     </div>
+
+
+
                                                 </div>
                                             </div>
                                             {% endif %} {% endfor %}
