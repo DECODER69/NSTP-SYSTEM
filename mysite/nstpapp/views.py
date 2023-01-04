@@ -5000,14 +5000,40 @@ def get_all(request):
             
    
             
-        return redirect(request.META['HTTP_REFERER'])
+        return redirect('/manage_section')
     
 def get_all2(request):
     if request.method == 'POST':
-        ids = request.POST.getlist('cbs2')
-        mains = request.POST.get('mains')
-        print("haha" +str (mains))
-        for s in ids:
-            print("2nd to" + str(s))
+        first = request.POST.get('1st')
+        second = request.POST.get('2nd')
+        dropped = request.POST.get('dropped')
+        graduate = request.POST.get('graduate')
+        
+        ids = request.POST.getlist('cbs')
+        ids2 = request.POST.getlist('cbs2')
+        ids3 = request.POST.getlist('cbs3')
+        
+        if first is not None:
+            for a in ids:
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='ENROLLED')
+                
+        if second is not None:
+            for a in ids2:
+                extenduser.objects.filter(id=a).update(second_sem = second )
+                
+            # for first sem
+        if dropped is not None:
+            for a in ids:
+                extenduser.objects.filter(id=a).update(status = dropped, first_sem=dropped  )
+            # for second sem
+        if dropped is not None:
+            for a in ids2:
+                extenduser.objects.filter(id=a).update(status = dropped, second_sem=dropped  )
+                
+    # end of dropping\
+        if graduate is not None:
+            for a in ids3:
+                extenduser.objects.filter(id=a).update(status = graduate )
+                
             
-        return redirect(request.META['HTTP_REFERER'])
+        return redirect('/manage_cwts_section')

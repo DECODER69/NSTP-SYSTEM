@@ -61,35 +61,44 @@
                     <br>
 
                     <div class="table-responsive">
+                        <form action="{% url 'activities:get_all2' %}" method="POST" id="form1">
+                            {% csrf_token %}
 
-                        <table id="myTable" class="table table-bordered table-hover">
-                            <thead class="thead">
-                                <tr>
-                                    <th scope="col"><input type="checkbox" class="form-control" id="allcb" name="allcb"></th>
-                                    <th scope="col">ID NUMBER</th>
-                                    <th scope="col">FULL NAME</th>
-                                    <th scope="col">COURSE</th>
-                                    <th scope="col">MEDICAL CONDITIONS</th>
-                                    <th scope="col">MEDICAL PROOF</th>
+                            <table id="myTable" class="table table-bordered table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col"><input type="checkbox" class="form-control" id="allcb" name="allcb">Select All</th>
 
-                                    <th scope="col">NOTES</th>
+                                        <th scope="col">FULL NAME</th>
+                                        <th scope="col">COURSE</th>
+                                        <th scope="col">1st SEM GRADE</th>
+                                        <th scope="col">2nd SEM GRADE</th>
+                                        <th scope="col">1st SEM STATUS</th>
+                                        <th scope="col">2nd SEM STATUS</th>
+                                        <th scope="col">MEDICAL CONDITIONS</th>
+                                        <th scope="col">MEDICAL PROOF</th>
 
-                                    <th scope="col">ACTIONS</th>
+                                        <th scope="col">NOTES</th>
+
+                                        <th scope="col">ACTIONS</th>
 
 
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for s in content3 %}{% if s.first_sem == 'ENROLLED' %}
 
-                                <tr>
-                                    <form action="{% url 'activities:cwts_each_student' s.id %}" method="POST">
-                                        {% csrf_token %}
+                                    <tr>
+
                                         <td><input type="checkbox" class="form-control" id="cb" name="cbs" value="{{s.id}}"></td>
-                                        <td scope="row">{{s.idnumber}}</td>
+
                                         <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
+                                        <td>{{s.final_grade}}</td>
+                                        <td>{{s.final_grade_2}}</td>
+                                        <td>{{s.first_sem}}</td>
+                                        <td>{{s.second_sem}}</td>
                                         {% if s.sickness != '' %}
                                         <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>
                                         {% if s.proof != '' %}
@@ -107,20 +116,23 @@
                                         {% endif %}
                                         <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.note}}</textarea></td>
 
-                                        <td><button class="btn btn-success" type="submit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
+                                        <td><a class="btn btn-success" href="{% url 'activities:cwts_each_student' s.id %}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a></td>
 
-                                    </form>
 
-                                </tr>
-                                {% elif s.second_sem == 'ENROLLED' %}
 
-                                <tr>
-                                    <form action="{% url 'activities:cwts_each_student_2' s.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <td><input type="checkbox" class="form-control" id="cb_2" name="cbs" value="{{s.id}}"></td>
-                                        <td scope="row">{{s.idnumber}}</td>
+                                    </tr>
+                                    {% elif s.first_sem == 'COMPLETED' and s.second_sem == 'ENROLLED' %}
+
+                                    <tr>
+
+                                        <td><input type="checkbox" class="form-control" id="cb_2" name="cbs2" value="{{s.id}}"></td>
+
                                         <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
+                                        <td>{{s.final_grade}}</td>
+                                        <td>{{s.final_grade_2}}</td>
+                                        <td>{{s.first_sem}}</td>
+                                        <td>{{s.second_sem}}</td>
                                         {% if s.sickness != '' %}
                                         <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>
                                         <td>
@@ -133,16 +145,61 @@
                                         {% endif %}
                                         <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly></textarea></td>
 
-                                        <td><button class="btn btn-success" type="submit"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</button></td>
+                                        <td><a class="btn btn-success" href="{% url 'activities:cwts_each_student' s.id %}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a></td>
 
-                                    </form>
 
-                                </tr>
 
-                                {% endif %} {% empty %} {% endfor %}
-                            </tbody>
+                                    </tr>
+                                    {% elif s.first_sem == 'COMPLETED' and s.second_sem == 'COMPLETED' %}
+                                    <tr>
 
-                        </table>
+                                        <td><input type="checkbox" class="form-control" id="cb_2" name="cbs3" value="{{s.id}}"></td>
+
+                                        <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
+                                        <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
+                                        <td>{{s.final_grade}}</td>
+                                        <td>{{s.final_grade_2}}</td>
+                                        <td>{{s.first_sem}}</td>
+                                        <td>{{s.second_sem}}</td>
+                                        {% if s.sickness != '' %}
+                                        <td style="color:rgb(202, 0, 0); font-weight:bolder;"><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly>{{s.sickness}}</textarea></td>
+                                        <td>
+                                            <a href="{{s.proof.url}}" target="_blank">Medical Proof</a>
+                                        </td>
+                                        {% else %}
+                                        <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
+
+                                        <td style="color:rgb(0, 153, 0); font-weight:bolder;">Physically Fit</td>
+                                        {% endif %}
+                                        <td><textarea class="form-control" name="" id="" cols="30" rows="1" placeholder="Notes" readonly></textarea></td>
+
+                                        <td><a class="btn btn-success" href="{% url 'activities:cwts_each_student' s.id %}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit</a></td>
+
+
+
+                                    </tr>
+
+
+                                    {% endif %} {% empty %} {% endfor %}
+                                </tbody>
+
+                            </table>
+                            <hr>
+                            <input type="checkbox" id="vehicle1" name="1st" value="COMPLETED" class="single-checkbox">
+                            <label for="vehicle1">1st Sem Complete</label> &nbsp; &nbsp;
+
+                            <input type="checkbox" id="vehicle2" name="2nd" value="COMPLETED" class="single-checkbox">
+                            <label for="vehicle2">2nd Sem Complete</label> &nbsp; &nbsp;
+
+                            <input type="checkbox" id="vehicle3" name="dropped" value="DROPPED" class="single-checkbox">
+                            <label for="vehicle3" style="color: red;">DROP</label> &nbsp; &nbsp;
+
+                            <input type="checkbox" id="vehicle3" name="graduate" value="GRADUATE" class="single-checkbox">
+                            <label for="vehicle3" style="color: rgb(0, 83, 238);">GRADUATE</label> &nbsp; &nbsp;
+
+
+                            <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Update</button><br>&nbsp;<br>
+                        </form>
 
                         <br>
                         <hr>
