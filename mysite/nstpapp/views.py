@@ -3181,7 +3181,7 @@ def each_student(request, id):
 def update_each_student(request):
     if request.method == 'POST':
         ids = request.POST.get('ids')
-        
+        current_datetime = datetime.datetime.now() 
         print("sheesh" + str(ids))
         
         firstname = request.POST.get('firstname')
@@ -3236,6 +3236,7 @@ def update_each_student(request):
             platoons = platoons,
             note = note,
             status = status,
+            date_joined = current_datetime
          
             
             )
@@ -4752,3 +4753,237 @@ def add_alumni_years2(request):
             data1 = alumni_school_year(years=combine)
             data1.save()
     return redirect('/cwts_alumni')
+
+
+def cwts_update_each_student(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        current_datetime = datetime.datetime.now() 
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status,
+            date_joined = current_datetime
+         
+            
+            )
+            
+            return redirect('/manage_cwts_section')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
+
+
+def rotc_dropped(request):
+    # pending = extenduser.objects.filter(status='PENDING').count()
+    rejected = extenduser.objects.filter(status='DROPPED').filter(field = 'ROTC')
+
+    context = {
+      
+        'rejected':rejected,
+       
+    }
+    return render(request, 'activities/rotc_dropped.html', context)
+
+
+def cwts_dropped(request):
+    # pending = extenduser.objects.filter(status='PENDING').count()
+    rejected = extenduser.objects.filter(status='DROPPED').filter(field = 'CWTS')
+
+    context = {
+      
+        'rejected':rejected,
+       
+    }
+    return render(request, 'activities/cwts_dropped.html', context)
+
+
+
+
+# all dropped data
+
+
+def dropped_rotc_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id)
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/rotc_dropped_profile.html', context)
+
+def ro_drop_remove(request, id):
+    extenduser.objects.filter(id=id).delete()
+    User.objects.filter(id=id).delete()
+    return redirect('/rotc_dropped')
+
+def dropped_cwts_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section = sections.objects.all()
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id)
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/cwts_dropped_profile.html', context)
+
+
+def cw_drop_remove(request, id):
+    extenduser.objects.filter(id=id).delete()
+    User.objects.filter(id=id).delete()
+    return redirect('/cwts_dropped')
+
+def get_all(request):
+    if request.method == 'POST':
+        first = request.POST.get('1st')
+        second = request.POST.get('2nd')
+        ids = request.POST.getlist('cbs')
+        
+        if first is not None:
+            for a in ids:
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='ENROLLED')
+            
+   
+            
+        return redirect(request.META['HTTP_REFERER'])
+    
+def get_all2(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('cbs2')
+        mains = request.POST.get('mains')
+        print("haha" +str (mains))
+        for s in ids:
+            print("2nd to" + str(s))
+            
+        return redirect(request.META['HTTP_REFERER'])

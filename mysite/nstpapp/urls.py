@@ -247,10 +247,17 @@ urlpatterns = [
     path('add_new_cwts_alumni/', views.add_new_cwts_alumni, name='add_new_cwts_alumni'),
     path('al_cwts_remove/<str:id>', views.al_cwts_remove, name='al_cwts_remove'),
     path('add_alumni_years2/', views.add_alumni_years2, name='add_alumni_years2'),
-
-
-
-
+    path('rotc_dropped/', views.rotc_dropped, name='rotc_dropped'),
+    path('cwts_update_each_student/', views.cwts_update_each_student, name='cwts_update_each_student'),
+    path('cwts_dropped/', views.cwts_dropped, name='cwts'),
+    path('dropped_rotc_profile/<str:id>', views.dropped_rotc_profile, name='dropped_rotc_profile'),
+    path('ro_drop_remove/<str:id>', views.ro_drop_remove, name='ro_drop_remove'),
+    path('dropped_cwts_profile/<str:id>', views.dropped_cwts_profile, name='dropped_cwts_profile'),
+    path('cw_drop_remove/<str:id>', views.cw_drop_remove, name='cw_drop_remove'),
+    path('get_all/', views.get_all, name='get_all'),
+    path('get_all2/', views.get_all2, name='get_all2'),
+    
+    
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

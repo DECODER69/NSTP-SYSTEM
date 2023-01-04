@@ -19,7 +19,7 @@
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{% url 'activities:custom999' %}" method="POST">
+            <form action="{% url 'activities:rejected_custom' %}" method="POST">
                 {% csrf_token %}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -57,13 +57,13 @@
 
     <section class="page-content">
         <div class="heads">
-            <a href="/manage_cwts_section">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> Manage Section &nbsp;>&nbsp; </h1>
+            <a href="/rotc_dropped">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> ROTC DROPPED &nbsp;>&nbsp; </h1>
             </a>
 
 
             {% for s in details %}
-            <h1 class="text"><i class='bx bx-intersect'></i>{{s.idnumber}}
+            <h1 class="text" style="color: red;"><i class='bx bx-intersect'></i>{{s.idnumber}}
             </h1>
             {% endfor %}
 
@@ -71,81 +71,11 @@
         {% for s in details %}
 
         <div class="bg">
-            <form action="{% url 'activities:cwts_update_each_student' %}" method="POST">
+            <form action="{% url 'activities:update_each_rejected' %}" method="POST">
                 {% csrf_token %}
                 <div class="containers">
                     <div class="row flex-lg-nowrap">
-                        <div class="col-12 col-lg-auto mb-3" style="width: 300px;">
-                            <!-- <div class="card p-3">
-                                <div class="e-navlist e-navlist--active-bg">
-                                    <ul class="nav">
-                                        <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
-                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-crud-users" target="__blank"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
-                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
 
-                            <div class="card p-3">
-
-                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Atendance Record</b></div>
-                                <hr>
-                                <br>
-                                <div id="container" style="width: 100%; ">
-                                    <canvas id="pie-chart"></canvas>
-                                </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
-                                <h5 id='perci'>{{s.percentage1 }} %</h5>
-                                <h5 id="curr">Current Score</h5>
-                                <br>
-                                <div class="st">
-                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres1|floatformat:0}} Present Days</span><br>
-                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
-                                </div>
-
-                                {% elif s.second_sem == 'ENROLLED' and s.percentage2 != '' %}
-                                <h5 id='perci'>{{s.percentage2 }} %</h5>
-                                <h5 id="curr">Current Score</h5>
-                                <br>
-                                <div class="st">
-                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
-                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
-                                </div>
-                                {% else %}
-                                <h5>No Record yet</h5>
-                                {% endif %} {% endfor %}
-
-                            </div>
-                            <br>
-                            <div class="card p-3">
-                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Grade</b></div>
-                                <hr>
-                                <br>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>First Sem Grade</label>
-                                            <input type="text" class="form-control" value="{{s.final_grade}}" placeholder="1st Sem grade" readonly>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label>Second Sem Grade</label>
-                                            <input type="text" class="form-control" value="{{s.final_grade_2}}" placeholder="2nd Sem grade" readonly>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                            </div>
-                        </div>
 
                         <div class="col">
                             <div class="row">
@@ -177,7 +107,7 @@
                                                         </div>
                                                         <div class="text-center text-sm-right">
                                                             <span class="badge badge-success">Student</span>
-                                                            <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                                            <div class="text-muted"><small>{{s.s_year}}</small></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -411,50 +341,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="row">
-                                                            <div class="col-12 col-sm-6 mb-3">
-                                                                <div class="mb-2"><b>Change Password</b></div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Current Password</label>
-                                                                            <input class="form-control" type="password" placeholder="••••••">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                                <div class="mb-2"><b>Keeping in Touch</b></div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <label>Email Notifications</label>
-                                                                        <div class="custom-controls-stacked px-2">
-                                                                            <div class="custom-control custom-checkbox">
-                                                                                <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-                                                                                <label class="custom-control-label" for="notifications-blog">Blog posts</label>
-                                                                            </div>
-                                                                            <div class="custom-control custom-checkbox">
-                                                                                <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-                                                                                <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                                                                            </div>
-                                                                            <div class="custom-control custom-checkbox">
-                                                                                <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-                                                                                <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
-                                                        <br>
-                                                        <!-- <div class="row">
-                                                            <div class="col d-flex justify-content-end">
-                                                                <button class="btn btn-primary" type="submit">Save Changes</button>
-                                                            </div>
-                                                        </div> -->
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -490,11 +376,11 @@
 
                                         <div class="card-body">
                                             <h6 class="card-title font-weight-bold">Status</h6>
-                                            <select name="status" id="" class="form-control">
-                                                <option value="{{s.status}}" selected >{{s.status}}</option>
-                                                <option value="DROPPED" >DROP</option>
-                                                <option value="PENDING"  >UN- ENROLL</option>
-                                                <option value="GRADUATE"  >GRADUATE</option>
+                                            <select name="status" id="" class="form-control" required>
+                                                <option value="{{s.status}}"  selected>{{s.status}}</option>
+                                                <option value="ENROLLED" >RE-APPROVE</option>
+                                                
+                                               
                                             </select>
                                         </div>
                                     </div>
@@ -509,7 +395,7 @@
 
                                     </div>
                                     <br>
-                                    <div class="card mb-3">
+                                    <!-- <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
                                                 <button class="btn btn-block btn-success" type="submit">
@@ -518,7 +404,7 @@
                                         </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </div>
