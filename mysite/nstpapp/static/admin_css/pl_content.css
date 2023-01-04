@@ -197,6 +197,11 @@ h1 {
     border-color: transparent !important;
 }
 
+form label {
+    font-weight: bolder !important;
+    font-size: 15px !important;
+}
+
 
 /* ANNOUNCEMENTS */
 
