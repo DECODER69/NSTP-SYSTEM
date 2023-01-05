@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="webthemez">
+    <link rel="icon" href="../../static/images/tup.png">
+    <!-- core CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../static/css/animate.min.css" rel="stylesheet">
+    <link href="../../static/css/prettyphoto.css" rel="stylesheet">
+
+    <link href="../../static/css/signup.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3e1139830b.js" crossorigin="anonymous"></script>
+
+
+    <title>NSTP</title>
+
+
+</head>
+
+<body id="home">
+
+
+
+
+
+
+
+
+
+
+
+    <section id="about2">
+        <div class="container she">
+
+            <div class="col-sm-4 col-md-4">
+                <div class="contact-form">
+                    <h3>Sign Up to NSTP Staff</h3>
+
+                    <address>
+                      <strong><i class="fa-solid fa-envelope"></i>  tupc.nstp@gmail.com.</strong><br>
+                      CQT Avenue Brgy. Salawag Dasmariñas City,<br>
+                      Cavite, Dasmariñas, Philippines<br>
+                      <abbr title="Phone"></abbr> 4114
+                    </address>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-8 col-md-8">
+                <div class="contact-form">
+
+                    <form action="{% url 'activities:staff_signup' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="hidden" name="s_year" value="{{s.years}}">
+
+                            <label>First Name</label>
+                            <input class="form-control" type="text" name="firstname" placeholder="Juan" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Middle Name</label>
+                            <input class="form-control" type="text" name="middlename" placeholder="Aquino">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" id="lastname" placeholder="Dela Cruz" required name="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Juan.DelaCruz@gsfe.tupcavite.edu.ph" required name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">ID Number</label>
+                            <input type="text" class="form-control" id="idnumber" placeholder="TUPC-18-XXXX" required name="idnumber" value="TUPC-">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">NSTP Companion</label>
+                            <select name="field" id="form-control" class="form-control">
+                            <option value="ROTC">ROTC</option>
+                            <option value="CWTS">CWTS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">1 x 1 Picture</label>
+                            <input type="file" class="form-control " id="validatedCustomFile" required name="picture" accept=".jpg, .jpeg, .png">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" class="password1 form-control" id="password1" placeholder="password" required name="password1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Confirm Password</label><br>
+                            <input type="password" class="password2 form-control" id="password2" placeholder="confirm password" required name="password2">
+                        </div>
+                        <div class="form-group">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Account</button>
+
+                        <br>&nbsp;<br>
+                        <div class="alre">
+
+
+                            <p id="ff">Already have an Account? <a href="/staff_login"> login here</a></p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <br>
+
+
+    <!--/#bottom-->
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2022 SENTINELS. NSTP System
+                </div>
+                <div class="col-sm-6">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="https://github.com/DECODER69/NSTP-SYSTEM.git" target="_blank"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: '',
+            text: '{{ msg }}'
+        }) {% endfor %}
+    </script> -->
+    <!--/#footer-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../static/js/custom-scripts.js"></script>
+    <!-- <script src="../../static/js/html5shiv.js"></script> -->
+    <script type="text/javascript" src="../../static/js/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.prettyphoto.js"></script>
+    <script type="text/javascript" src="../../static/js/mouse.js"></script>
+    <script type="text/javascript" src="../../static/js/respond.min.js"></script>
+    <script type="text/javascript" src="../../static/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="../../static/js/wow.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        document.querySelector('.btn-success').onclick = function() {
+
+            var password = document.querySelector('.password1').value,
+                password2 = document.querySelector('.password2').value;
+
+            if (password == "") {
+                alert("Field cannot be empty");
+            } else if (password != password2) {
+                alert("Password didn't match try again.");
+                document.querySelector('.password1').value = '';
+                document.querySelector('.password2').value = '';
+
+                return false
+            }
+            return true
+        }
+
+        setTimeout(function() {
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 3000)
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

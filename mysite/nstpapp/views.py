@@ -431,6 +431,7 @@ def signup(request):
         s_year = request.POST.get('s_year')
         field = request.POST.get('field')
         date_joined = datetime.datetime.now()  
+        
         if User.objects.filter(username=idnumber).exists():
             messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
             return redirect('/signup_page')
@@ -440,7 +441,7 @@ def signup(request):
        
         else:
             user = User.objects.create_user(username=idnumber, password=password, email=email)
-            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, field=field,user=user)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STUDENT', field=field,user=user)
             datas.save()
             auth.login(request, user)
             messages.error(request, 'Account created successfully\nPlease Login and complete profile for verification. Thank you')
@@ -5037,3 +5038,59 @@ def get_all2(request):
                 
             
         return redirect('/manage_cwts_section')
+    
+    
+def staff(request):
+    return render(request, 'activities/staff.html')
+
+def staff_login(request):
+    return render(request, 'activities/staff_login.html')
+
+def staff_signup(request):
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname')
+        middle = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber = request.POST.get('idnumber')
+        password = request.POST.get('password1')
+        picture = request.FILES['picture']
+        s_year = request.POST.get('s_year')
+        field = request.POST.get('field')
+        date_joined = datetime.datetime.now()  
+        if User.objects.filter(username=idnumber).exists():
+            messages.error(request, 'ID Number ' + str (idnumber) + ' Already Exist !')
+            return redirect('/staff')
+        elif extenduser.objects.filter(email=email).exists():
+            messages.error(request, 'Email ' + str (email) + ' Already Exist !')
+            return redirect('/staff')
+       
+        else:
+            user = User.objects.create_user(username=idnumber, password=password, email=email)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STAFF', field=field,user=user)
+            datas.save()
+            auth.login(request, user)
+            messages.error(request, 'Account created successfully\nPlease Login and complete profile for verification. Thank you')
+            return redirect('/staff_login')
+    else:
+        return redirect('/staff')
+    
+    
+def staff_signin(request):
+    if request.method == "POST":
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            if User.objects.filter(username=username).exists():
+                user = authenticate(username=username, password=password)
+                if user is not None and user.is_staff:
+                    auth.login(request, user)
+                    return redirect('/admin_dashboard')
+                else:
+                    messages.error(request, 'Invalid username or password')
+                    return redirect('/login_page')
+            else:
+                messages.error(request, 'ID Number ' + str (username) + ' Does not exist !')
+                return redirect('/login_page')
+    else:
+        messages.error(request, 'Invalid username or password !')
+        return redirect('/login_page')

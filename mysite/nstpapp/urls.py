@@ -256,6 +256,10 @@ urlpatterns = [
     path('cw_drop_remove/<str:id>', views.cw_drop_remove, name='cw_drop_remove'),
     path('get_all/', views.get_all, name='get_all'),
     path('get_all2/', views.get_all2, name='get_all2'),
+    path('staff/', views.staff, name='staff'),
+    path('staff_signup/', views.staff_signup, name='staff_signup'),
+    path('staff_login/', views.staff_login, name='staff_login'),
+    path('staff_signin/', views.staff_signin, name='staff_signin'),
     
     
     

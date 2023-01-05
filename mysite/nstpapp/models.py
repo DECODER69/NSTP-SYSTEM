@@ -34,6 +34,7 @@ class extenduser(models.Model):
     nationality = models.CharField(max_length=20, default='')
     note = models.CharField(max_length=200, default='')
     date_joined = models.DateTimeField(null=True, blank=True, default='')
+    category = models.CharField(max_length=20, default='')
     
     
     
