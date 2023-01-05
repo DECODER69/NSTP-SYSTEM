@@ -261,6 +261,10 @@ urlpatterns = [
     path('staff_login/', views.staff_login, name='staff_login'),
     path('staff_signin/', views.staff_signin, name='staff_signin'),
     
+    # for admin
+    path('admin1/', views.admin1, name='admin1'),
+
+    
     
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),

@@ -5066,7 +5066,7 @@ def staff_signup(request):
             return redirect('/staff')
        
         else:
-            user = User.objects.create_user(username=idnumber, password=password, email=email)
+            user = User.objects.create_user(username=idnumber, password=password, email=email, first_name=firstname, last_name=lastname)
             datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STAFF', field=field,user=user)
             datas.save()
             auth.login(request, user)
@@ -5075,7 +5075,7 @@ def staff_signup(request):
     else:
         return redirect('/staff')
     
-    
+    # we will use this as login url
 def staff_signin(request):
     if request.method == "POST":
             username = request.POST.get('username')
@@ -5087,10 +5087,13 @@ def staff_signin(request):
                     return redirect('/admin_dashboard')
                 else:
                     messages.error(request, 'Invalid username or password')
-                    return redirect('/login_page')
+                    return redirect('/staff_login')
             else:
                 messages.error(request, 'ID Number ' + str (username) + ' Does not exist !')
-                return redirect('/login_page')
+                return redirect('/staff_login')
     else:
         messages.error(request, 'Invalid username or password !')
-        return redirect('/login_page')
+        return redirect('/staff_login')
+    
+def admin1(request):
+    return render(request, 'activities/admin_ui.html')
