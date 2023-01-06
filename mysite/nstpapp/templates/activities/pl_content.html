@@ -130,7 +130,7 @@
                                     <tr>
 
                                         {% csrf_token %}
-                                        <td><input type="checkbox" class="form-control" id="cb_2" name="cbs2" value="{{s.id}}"></td>
+                                        <td><input type="checkbox" class="form-control" id="cb" name="cbs2" value="{{s.id}}"></td>
 
                                         <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
@@ -159,7 +159,7 @@
                                     <tr>
 
                                         {% csrf_token %}
-                                        <td><input type="checkbox" class="form-control" id="cb_2" name="cbs3" value="{{s.id}}"></td>
+                                        <td><input type="checkbox" class="form-control" id="cb" name="cbs3" value="{{s.id}}"></td>
 
                                         <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}<input type="hidden" value="{{s.id}}" name="ids"></td>
                                         <td>{{s.section}} <input type="hidden" value="{{getSection}}" name="getSection"></td>
@@ -265,6 +265,7 @@
             });
         });
     </script>
+
 
 
 

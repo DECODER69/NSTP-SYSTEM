@@ -29,6 +29,7 @@
                 <div class="table-responsive">
                     <h1><i class="fa-solid fa-calculator"></i> CWTS Grading Evaluation</h1>
                     <br>&nbsp;<br>
+                    <h6 style="color:red;">The results must be "1" to obtain 100% raiting of each students</h6>
                     <form action="{% url 'activities:save_evaluation' %}" method="post">
                         {% csrf_token %}
                         <table class="table table-bordered table-hover" id="grades">

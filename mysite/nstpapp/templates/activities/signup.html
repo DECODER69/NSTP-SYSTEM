@@ -23,6 +23,26 @@
 </head>
 
 <body id="home">
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <h3>Terms of Use</h3>
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <header id="header">
         <nav id="main-nav" class="navbar navbar-default navbar-fixed-top" role="banner">
             <div class="container">
@@ -143,24 +163,25 @@
                             <label for="">Confirm Password</label><br>
                             <input type="password" class="password2 form-control" id="password2" placeholder="confirm password" required name="password2">
                         </div>
-                        <div class="form-group">
+                        <br>
+                        <!-- <div class="form-groups" id="form-groups">
 
-                        </div>
+                            <p id="ffs">By Clicking Create Account, you are agree to our <span><a type="button" href="" data-toggle="modal" data-target="#staticBackdrop">Terms of Use</a></span></p>
+
+                        </div> -->
+                        <br>
                         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Account</button>
-                        
+
                         <br>&nbsp;<br>
                         <div class="alre">
 
-                          
+
                             <p id="ff">Already have an Account? <a href="/login_page"> login here</a></p>
                         </div>
                         {% else %}
 
                         <h1 id="warning"><i class="fa-solid fa-face-frown-open"></i> Registration is not yet open</h1>
-                        <br>
-         
-
-                        {% endif %} {% endfor %}
+                        <br> {% endif %} {% endfor %}
                     </form>
                 </div>
             </div>
@@ -197,14 +218,14 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
+    <!-- 
     <script>
         {% for msg in messages %}
         Swal.fire({
             icon: '',
             text: '{{ msg }}'
         }) {% endfor %}
-    </script>
+    </script> -->
     <!--/#footer-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
@@ -223,7 +244,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.2.js" integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
-    
+
     <script type="text/javascript">
         document.querySelector('.btn-success').onclick = function() {
 

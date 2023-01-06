@@ -591,8 +591,8 @@ h5 {
 
 @media screen and (min-width:701px)and (max-width:1000px) {
     .bg {
-        background-color: #dbdbdb;
-        padding: 1px !important;
+        background-color: #e4e4e4;
+        padding: 0;
     }
     .uper {
         width: 100%;
@@ -610,10 +610,11 @@ h5 {
         width: 100%;
         height: 15vh;
         justify-content: space-between;
-        background-color: #660f0f;
+        background: rgb(96, 96, 96);
+        background: linear-gradient(90deg, rgba(96, 96, 96, 1) 0%, rgba(255, 243, 220, 1) 100%);
         padding: 8px;
         border-radius: 5px;
-        color: white !important;
+        color: rgb(43, 43, 43) !important;
     }
     .left #profile2 {
         width: 20% !important;
@@ -627,13 +628,15 @@ h5 {
     }
     .mid h5 {
         font-size: 19px !important;
-        color: white;
+        color: rgb(29, 29, 29);
     }
     .mid #wel {
         font-size: 11px;
+        color: rgb(22, 22, 22);
     }
     .mid #he {
         font-size: 10px !important;
+        color: black;
     }
     .right {
         display: flex;
@@ -677,6 +680,7 @@ gap */
 @media screen and (min-width:551px)and (max-width:700px) {
     .bg {
         background-color: #e4e4e4;
+        padding: 0;
     }
     .uper {
         width: 100%;
@@ -772,6 +776,7 @@ gap */
 @media (max-width: 550px) {
     .bg {
         background-color: #e4e4e4;
+        padding: 0;
     }
     .uper {
         width: 100%;
@@ -781,6 +786,7 @@ gap */
         background-color: transparent !important;
     }
     .uper2 {
+        background-color: #008822 !important;
         display: block;
         background: transparent !important;
     }

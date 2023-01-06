@@ -92,6 +92,7 @@ def dashboard_page(request):
     }
     print(labels)
     return render(request, 'activities/dashboard.html', context)
+
 @login_required(login_url='/login_page')
 def profile_page(request):
     ids= request.POST.get('ids')
@@ -182,31 +183,33 @@ def logout_student(request):
 ####################
 #########################
 # ADMIN PAGE DISPLAYS
-# @login_required(login_url='/login_page')
+@login_required(login_url='/staff_signin')
 def admin_dashboard(request):
+    if request.user.is_staff:
     # staff = extenduser.objects.filter(user=request.user)
-    feed = feedback.objects.filter(status = 'PENDING').order_by('date_sent')
-    audience = sections.objects.all()
-    ann = Announcement.objects.all()
-    sy = school_year.objects.all()
-    nav_pending_count = extenduser.objects.filter(status='PENDING').count()
-    nav_rejected_count = extenduser.objects.filter(status='REJECTED').count()
-    active = extenduser.objects.filter(status='ENROLLED').count()
-    pending = extenduser.objects.filter(status='PENDING').count()
+        feed = feedback.objects.filter(status = 'PENDING').order_by('date_sent')
+        audience = sections.objects.all()
+        ann = Announcement.objects.all()
+        sy = school_year.objects.all()
+        nav_pending_count = extenduser.objects.filter(status='PENDING').count()
+        nav_rejected_count = extenduser.objects.filter(status='REJECTED').count()
+        active = extenduser.objects.filter(status='ENROLLED').count()
+        pending = extenduser.objects.filter(status='PENDING').count()
 
-    context = {
-        'active':active,   
-        'pending':pending,
-        'sy':[sy.last()],
-        'audience':audience,
-        'ann':ann,
-        # 'staff':staff,
-        'nav_pending_count':nav_pending_count,
-        'nav_rejected_count':nav_rejected_count ,
-        'feed':feed
-    
-    }
-    return render(request, 'activities/admin_dashboard.html', context)
+        context = {
+            'active':active,   
+            'pending':pending,
+            'sy':[sy.last()],
+            'audience':audience,
+            'ann':ann,
+            # 'staff':staff,
+            'nav_pending_count':nav_pending_count,
+            'nav_rejected_count':nav_rejected_count ,
+            'feed':feed
+        
+        }
+        return render(request, 'activities/admin_dashboard.html', context)
+    return redirect('/')
 
 def admin_staff(request):
     s_years = school_year.objects.all()
@@ -236,28 +239,37 @@ def admin_pending(request):
     }
     return render(request, 'activities/admin_pending.html', context)
 
+
+@login_required(login_url='/staff_signin')
 def admin_rejected(request):
     # pending = extenduser.objects.filter(status='PENDING').count()
-    rejected = extenduser.objects.filter(status='REJECTED').filter(field = 'ROTC')
+    if request.user.is_staff:
+    
+        rejected = extenduser.objects.filter(status='REJECTED').filter(field = 'ROTC')
 
-    context = {
-      
-        'rejected':rejected,
-       
-    }
-    return render(request, 'activities/admin_rejected.html', context)
+        context = {
+        
+            'rejected':rejected,
+        
+        }
+        return render(request, 'activities/admin_rejected.html', context)
+    return redirect('/staff_signin')
 
+
+@login_required(login_url='/staff_signin')
 def cwts_admin_rejected(request):
+    if request.user.is_staff:
+    
     # pending = extenduser.objects.filter(status='PENDING').count()
-    rejected = extenduser.objects.filter(status='REJECTED').filter(field = 'CWTS')
+        rejected = extenduser.objects.filter(status='REJECTED').filter(field = 'CWTS')
 
-    context = {
-      
-        'rejected':rejected,
-       
-    }
-    return render(request, 'activities/cwts_rejected.html', context)
-
+        context = {
+        
+            'rejected':rejected,
+        
+        }
+        return render(request, 'activities/cwts_rejected.html', context)
+    return redirect('/staff_signin')
 
 def admin_view_profile(request, id):
     ids= request.POST.get('ids')
@@ -373,31 +385,35 @@ def create_platoon_page2(request):
     }
     return render (request, 'activities/create_platoon2.html', context)
 
+
+@login_required(login_url='/staff_signin')
 def manage_section(request):
-    current_datetime = datetime.datetime.now() 
-    userContent = User.objects.all()
-    sectionxx = extenduser.objects.all()
-    counts = extenduser.objects.filter(status='ENROLLED').count()
-    counts1 = extenduser.objects.filter(status='ENROLLED')
-    section = sections.objects.filter(fiel='ROTC')
-    section1 = sections.objects.all().count()
-    secCount = request.POST.get('secCount')
-    # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
-    context = {
-        
-    'counts':counts,
-    'counts1':counts1,
-    'section':section,
-    'section1':section1,
-    'sectionxx':sectionxx,
-    'userContent':userContent,
-    'current_datetime':current_datetime,
-    # 'counts3':counts3
-    }
- 
-    print(secCount)
-    return render(request, 'activities/manage_section.html', context)
-  
+    if request.user.is_staff:
+        current_datetime = datetime.datetime.now() 
+        userContent = User.objects.all()
+        sectionxx = extenduser.objects.all()
+        counts = extenduser.objects.filter(status='ENROLLED').count()
+        counts1 = extenduser.objects.filter(status='ENROLLED')
+        section = sections.objects.filter(fiel='ROTC')
+        section1 = sections.objects.all().count()
+        secCount = request.POST.get('secCount')
+        # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
+        context = {
+            
+        'counts':counts,
+        'counts1':counts1,
+        'section':section,
+        'section1':section1,
+        'sectionxx':sectionxx,
+        'userContent':userContent,
+        'current_datetime':current_datetime,
+        # 'counts3':counts3
+        }
+    
+        print(secCount)
+        return render(request, 'activities/manage_section.html', context)
+    return redirect('/staff_signin')
+    
 
 
 
@@ -854,32 +870,35 @@ def edit_student(request, id):
     
 
 
-
+@login_required(login_url='/staff_signin')
 def section_content(request):
-    userContent = User.objects.all()
-    schools = school_year.objects.all()
-    rotc_section = sections.objects.filter(fiel='ROTC')
-    if request.method == 'POST':
-     
-        getSection = request.POST.get('getSection')
+    if request.user.is_staff:
+    
+        userContent = User.objects.all()
+        schools = school_year.objects.all()
+        rotc_section = sections.objects.filter(fiel='ROTC')
+        if request.method == 'POST':
+        
+            getSection = request.POST.get('getSection')
+            print(getSection)
+            content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+            content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+        else:
+        
+            return render(request, 'activities/pl_content.html')
+        context = {
+            'content3':content3,
+            'userContent':userContent,
+            'content33':content33,
+            'getSection':getSection,
+            'schools':[schools.last()],
+            'section':rotc_section
+            
+        }
+        print(content33)
         print(getSection)
-        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
-        content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
-    else:
-       
-        return render(request, 'activities/pl_content.html')
-    context = {
-        'content3':content3,
-        'userContent':userContent,
-        'content33':content33,
-        'getSection':getSection,
-        'schools':[schools.last()],
-        'section':rotc_section
-         
-    }
-    print(content33)
-    print(getSection)
-    return render(request, 'activities/pl_content.html', context)
+        return render(request, 'activities/pl_content.html', context)
+    return redirect('/staff_signin')
 
 def download(request):
     if request.method == 'POST':
@@ -893,7 +912,7 @@ def download(request):
         writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'NSTP COMPONENT', 'NSTP SECTION', 'STATUS'])  
         for s in csvfile:  
    
-            writer.writerow([s.idnumber, s.firstname, s.lastname, s.field, s.platoons, s.status])  
+            writer.writerow([s.idnumber, s.school_yearsfirstname, s.lastname, s.field, s.platoons, s.status])  
     return response  
 def download1(request):
     if request.method == 'POST':
@@ -1029,18 +1048,21 @@ def attendance_main(request):
 def pl_content(request):
     return render(request, 'activities/pl_content.html')
 
-def add_students(request):
-    if request.method == 'POST':
-        platoon = request.POST.get('platoon')
-        allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING').filter(field='ROTC')
-    else:
-        return redirect('/manage_section')
-    context = {
-        'allstudent':allstudent,
-        'platoon':platoon
-    }
-    return render(request, 'activities/students_list.html', context)
 
+@login_required(login_url='/staff_signin')
+def add_students(request):
+    if request.user.is_staff:
+        if request.method == 'POST':
+            platoon = request.POST.get('platoon')
+            allstudent = extenduser.objects.filter(status='ENROLLED').filter(platoons='PROCESSING').filter(field='ROTC')
+        else:
+            return redirect('/manage_section')
+        context = {
+            'allstudent':allstudent,
+            'platoon':platoon
+        }
+        return render(request, 'activities/students_list.html', context)
+    return redirect('/staff_signin')
 def assign_section(request):
     if request.method == 'POST':
         platoons=request.POST.get('platoons')
@@ -1280,30 +1302,35 @@ def download4(request):
             writer.writerow([s.idnumber, s.firstname, s.lastname])  
     return response  
 
+@login_required(login_url='/staff_signin')
 def sample_attendance(request):
+    if request.user.is_staff:
+        section = sections.objects.all()
+        date = training_day.objects.all()
 
-    section = sections.objects.all()
-    date = training_day.objects.all()
+        context = {
+            'date':date, 
+            'section':section,
+        }
 
-    context = {
-        'date':date, 
-        'section':section,
-    }
+        return render(request, 'activities/sample_attendance.html', context)
+    return redirect('/staff_signin')
 
-    return render(request, 'activities/sample_attendance.html', context)
-
+@login_required(login_url='/staff_signin')
 def show_students(request):
-    counted = training_day.objects.values_list('td_count', flat=True).count()
-    getSection = request.POST.get('getSection')
-    content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
-    content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
-    context = {
-        'content3':content3,
-        'getSection':getSection,
-        'counted':counted,
-        'content33':content33,
-    }
-    return render(request, 'activities/show_studens.html', context)
+    if request.user.is_staff:
+        counted = training_day.objects.values_list('td_count', flat=True).count()
+        getSection = request.POST.get('getSection')
+        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+        content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+        context = {
+            'content3':content3,
+            'getSection':getSection,
+            'counted':counted,
+            'content33':content33,
+        }
+        return render(request, 'activities/show_studens.html', context)
+    return redirect('/staff_signin')
 
 def create_td(request):
     if request.method == 'POST':
@@ -1868,29 +1895,37 @@ def update_att_credits(request):
         for k, l in zip(ids2, credits2):
             extenduser.objects.filter(id=k).update(att_credits_2=l)
     return redirect('/attendance_tab')
-def grades(request):
-    acts = activity.objects.all()
-    section = sections.objects.filter(fiel= 'ROTC')
-    context = {
-        'section':section, 
-        'acts': acts
-    }
-    return render(request, 'activities/grades.html', context)
 
-def modify_grades(request):
-    total = activity.objects.aggregate(TOTAL = Sum('act_numbers'))['TOTAL']
-    items = activity.objects.all()
-    if request.method == 'POST':
-        getSection = request.POST.get('getSection')
-        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+@login_required(login_url='/staff_signin')
+def grades(request):
+    if request.user.is_staff:
+        acts = activity.objects.all()
+        section = sections.objects.filter(fiel= 'ROTC')
         context = {
-            'content3':content3,
-            'getSection':getSection,
-            'total':total,
-            'items':items
+            'section':section, 
+            'acts': acts
         }
+        return render(request, 'activities/grades.html', context)
+    return redirect('/staff_signin')
+
+@login_required(login_url='/staff_signin')
+def modify_grades(request):
+    if request.user.is_staff:
+        total = activity.objects.aggregate(TOTAL = Sum('act_numbers'))['TOTAL']
+        items = activity.objects.all()
+        if request.method == 'POST':
+            getSection = request.POST.get('getSection')
+            content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+            context = {
+                'content3':content3,
+                'getSection':getSection,
+                'total':total,
+                'items':items
+            }
+            return render(request, 'activities/modify.html', context)
         return render(request, 'activities/modify.html', context)
-    return render(request, 'activities/modify.html', context)
+    return redirect('/staff_signin')
+
 
 def set_activities(request):
   
@@ -1995,15 +2030,18 @@ def attendance_tab(request):
     }
     return render(request, 'activities/attendance_tab.html', context)
 
+@login_required(login_url='/staff_signin')
 def midterms(request):
-    acts3 = midterm.objects.all()
-    section2 = sections.objects.filter(fiel='ROTC')
-    context = {
-        'section2':section2,
-        'acts3': acts3,
-    }
-    return render(request, 'activities/midterm.html', context)
-
+    if request.user.is_staff:
+    
+        acts3 = midterm.objects.all()
+        section2 = sections.objects.filter(fiel='ROTC')
+        context = {
+            'section2':section2,
+            'acts3': acts3,
+        }
+        return render(request, 'activities/midterm.html', context)
+    return redirect('/staff_signin')
 
 def add_midterm(request):
     semester = request.POST.get('sem')
@@ -2047,15 +2085,17 @@ def save_midterm(request):
 
     return redirect('/midterms')
 
+@login_required(login_url='/staff_signin')
 def finals_(request):
-    acts3 = finals.objects.all()
-    section2 = sections.objects.filter(fiel='ROTC')
-    context = {
-        'section2':section2,
-        'acts3': acts3,
-    }
-    return render(request, 'activities/finals.html', context)
-
+    if request.user.is_staff:
+        acts3 = finals.objects.all()
+        section2 = sections.objects.filter(fiel='ROTC')
+        context = {
+            'section2':section2,
+            'acts3': acts3,
+        }
+        return render(request, 'activities/finals.html', context)
+    return redirect('/staff_signin')
 
 def modify_finals(request):
     #  first = midterm.objects.aggregate(TOTAL = Sum('items'))['TOTAL']
@@ -2097,14 +2137,18 @@ def save_finals(request):
         for d, e,f in zip(ids2, finals2, subtot2):
             extenduser.objects.filter(id=d).update(finals2=e, finals_credits2=f)
         return redirect('/finals_')
+    
+@login_required(login_url='/staff_signin')
 def final_grade(request):
-    acts3 = finals.objects.all()
-    section2 = sections.objects.filter(fiel='ROTC')
-    context = {
-        'section2':section2,
-        'acts3': acts3,
-    }
-    return render(request, 'activities/final_grade.html', context)
+    if request.user.is_staff:
+        acts3 = finals.objects.all()
+        section2 = sections.objects.filter(fiel='ROTC')
+        context = {
+            'section2':section2,
+            'acts3': acts3,
+        }
+        return render(request, 'activities/final_grade.html', context)
+    return redirect('/staff_signin')
 
 def access_final_grade(request):
     if request.method == 'POST':
@@ -2137,15 +2181,18 @@ def save_finale_grades(request):
             messages.success(request, 'Final Grade Updated successfully')
         return redirect('/final_grade')
 
+@login_required(login_url='/staff_signin')
 def merits(request):
-    acts3 = finals.objects.all()
-    section2 = sections.objects.filter(fiel='ROTC')
-    context = {
-        'section2':section2,
-        'acts3': acts3,
-    }
-    return render(request, 'activities/merits.html', context)
-
+    if request.user.is_staff:
+        
+        acts3 = finals.objects.all()
+        section2 = sections.objects.filter(fiel='ROTC')
+        context = {
+            'section2':section2,
+            'acts3': acts3,
+        }
+        return render(request, 'activities/merits.html', context)
+    return redirect('/staff_signin')
 def access_merits(request):
     getSection = request.POST.get('getSection')
     content4 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
@@ -2429,16 +2476,20 @@ def update_section(request):
         extenduser.objects.filter(id=a).update(status=options[0], first_sem=options[0])
     return redirect ('/manage_section')
 
+
+@login_required(login_url='/staff_signin')
 def cwts_attendance(request):
-    section = sections.objects.all()
-    date = cwts_training.objects.all()
+    if request.user.is_staff:
+        section = sections.objects.all()
+        date = cwts_training.objects.all()
 
-    context = {
-        'date':date, 
-        'section':section,
-    }
+        context = {
+            'date':date, 
+            'section':section,
+        }
 
-    return render(request, 'activities/cwts_attendance.html', context)
+        return render(request, 'activities/cwts_attendance.html', context)
+    return redirect('/staff_signin')
 
 def cwts_td(request):
     if request.method == 'POST':
@@ -2658,15 +2709,17 @@ def del_cwts_tday(request, id):
 
 # CWTS GRADING SYSTEM
 
-
+@login_required(login_url='/staff_signin')
 def cwts_attendance_tab(request):
-    acts2 = cwts_training.objects.all()
-    section2 = sections.objects.filter(fiel='CWTS')
-    context = {
-        'section2':section2,
-        'acts2': acts2,
-    }
-    return render(request, 'activities/cwts_attendance_tab.html', context)
+    if request.user.is_staff:
+        acts2 = cwts_training.objects.all()
+        section2 = sections.objects.filter(fiel='CWTS')
+        context = {
+            'section2':section2,
+            'acts2': acts2,
+        }
+        return render(request, 'activities/cwts_attendance_tab.html', context)
+    return redirect('/staff_signin')
 
 
 def cwts_show_students(request):
@@ -3293,59 +3346,64 @@ def custom999(request):
     return redirect('/manage_section')
 
 
-
+@login_required(login_url='/staff_signin')
 def manage_cwts_section(request):
-    current_datetime = datetime.datetime.now() 
-    userContent = User.objects.all()
-    sectionxx = extenduser.objects.all()
-    counts = extenduser.objects.filter(status='ENROLLED').count()
-    counts1 = extenduser.objects.filter(status='ENROLLED')
-    section = sections.objects.filter(fiel='CWTS')
-    section1 = sections.objects.all().count()
-    secCount = request.POST.get('secCount')
-    # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
-    context = {
-        
-    'counts':counts,
-    'counts1':counts1,
-    'section':section,
-    'section1':section1,
-    'sectionxx':sectionxx,
-    'userContent':userContent,
-    'current_datetime':current_datetime,
-    # 'counts3':counts3
-    }
- 
-    print(secCount)
-    return render(request, 'activities/manage_cwts_section.html', context)
-
-
-    
-def cwts_section_content(request):
-    userContent = User.objects.all()
-    schools = school_year.objects.all()
-    rotc_section = sections.objects.filter(fiel='CWTS')
-    if request.method == 'POST':
-     
-        getSection = request.POST.get('getSection')
-        print(getSection)
-        content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
-        content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
-    else:
-       
-        return render(request, 'activities/cwts_pl_content.html')
-    context = {
-        'content3':content3,
+    if request.user.is_staff:
+        current_datetime = datetime.datetime.now() 
+        userContent = User.objects.all()
+        sectionxx = extenduser.objects.all()
+        counts = extenduser.objects.filter(status='ENROLLED').count()
+        counts1 = extenduser.objects.filter(status='ENROLLED')
+        section = sections.objects.filter(fiel='CWTS')
+        section1 = sections.objects.all().count()
+        secCount = request.POST.get('secCount')
+        # counts3 = extenduser.objects.filter(status='ENROLLED').filter(platoons='ALPHA')
+        context = {
+            
+        'counts':counts,
+        'counts1':counts1,
+        'section':section,
+        'section1':section1,
+        'sectionxx':sectionxx,
         'userContent':userContent,
-        'content33':content33,
-        'getSection':getSection,
-        'schools':[schools.last()],
-        'section':rotc_section
-         
-    }
-    print(content33)
-    print(getSection)
-    return render(request, 'activities/cwts_pl_content.html', context)
+        'current_datetime':current_datetime,
+        # 'counts3':counts3
+        }
+    
+        print(secCount)
+        return render(request, 'activities/manage_cwts_section.html', context)
+    return redirect('/staff_signin')
+
+
+@login_required(login_url='/staff_signin')
+def cwts_section_content(request):
+    if request.user.is_staff:
+    
+        userContent = User.objects.all()
+        schools = school_year.objects.all()
+        rotc_section = sections.objects.filter(fiel='CWTS')
+        if request.method == 'POST':
+        
+            getSection = request.POST.get('getSection')
+            print(getSection)
+            content3 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED')
+            content33 = extenduser.objects.filter(platoons=getSection).filter(status='ENROLLED').count()
+        else:
+        
+            return render(request, 'activities/cwts_pl_content.html')
+        context = {
+            'content3':content3,
+            'userContent':userContent,
+            'content33':content33,
+            'getSection':getSection,
+            'schools':[schools.last()],
+            'section':rotc_section
+            
+        }
+        print(content33)
+        print(getSection)
+        return render(request, 'activities/cwts_pl_content.html', context)
+    return redirect('/staff_signin')
 
 
 
@@ -3974,7 +4032,7 @@ def student_update(request):
     
     return redirect('/profile_page')
         # return redirect(request.META['HTTP_REFERER'])
-        
+@login_required(login_url='/login_page')
 def all_files(request):
     name = extenduser.objects.filter(user = request.user)
     userplatoon = extenduser.objects.filter(user=request.user)
@@ -4216,25 +4274,28 @@ def contact_us(request):
 
 
 
-
+@login_required(login_url='/staff_signin')
 def school_years(request):
+    if request.user.is_staff:
     
-    s_years = school_year.objects.all()
-    alls = school_year.objects.all().order_by('years').reverse()
-    ss_years = extenduser.objects.all()
-    ewan = school_year.objects.all()
+        s_years = school_year.objects.all()
+        alls = school_year.objects.all().order_by('years').reverse()
+        ss_years = extenduser.objects.all()
+        ewan = school_year.objects.all()
 
-   
-    context = {
-        'ewan':ewan,
-        's_years':[s_years.last()],
-        'ss_years':ss_years,
-        'alls':alls
-        # 'graduates':graduates
-        
-    }
+    
+        context = {
+            'ewan':ewan,
+            's_years':[s_years.last()],
+            'ss_years':ss_years,
+            'alls':alls
+            # 'graduates':graduates
+            
+        }
 
-    return render(request, 'activities/sy.html', context)
+        return render(request, 'activities/sy.html', context)
+    return redirect('/staff_signin')
+
 
 
 def create_sy(request):
@@ -4287,34 +4348,40 @@ def delete_sy(request, years):
     return redirect('/school_years')
 
 # done
-
+@login_required(login_url='/staff_signin')
 def admin_pending(request):
-    s_years = school_year.objects.all()
-    platoons = sections.objects.all()
-    pending = extenduser.objects.filter(status='PENDING').count()
-    pendings = extenduser.objects.filter(status='PENDING', field='ROTC')
-    context = {
-        'pendings':pendings,
-        'pending':pending,
-        'platoons':platoons,
-        's_years':[s_years.last()],
-    }
-    return render(request, 'activities/admin_pending.html', context)
+    if request.user.is_staff:
+    
+        s_years = school_year.objects.all()
+        platoons = sections.objects.all()
+        pending = extenduser.objects.filter(status='PENDING').count()
+        pendings = extenduser.objects.filter(status='PENDING', field='ROTC')
+        context = {
+            'pendings':pendings,
+            'pending':pending,
+            'platoons':platoons,
+            's_years':[s_years.last()],
+        }
+        return render(request, 'activities/admin_pending.html', context)
+    return redirect('/staff_signin')
 
 
+
+@login_required(login_url='/staff_signin')
 def cwts_admin_pending(request):
-    s_years = school_year.objects.all()
-    platoons = sections.objects.all()
-    pending = extenduser.objects.filter(status='PENDING').count()
-    pendings = extenduser.objects.filter(status='PENDING' , field='CWTS')
-    context = {
-        'pendings':pendings,
-        'pending':pending,
-        'platoons':platoons,
-         's_years':[s_years.last()],
-    }
-    return render(request, 'activities/cwts_admin_pending.html', context)
-
+    if request.user.is_staff:
+        s_years = school_year.objects.all()
+        platoons = sections.objects.all()
+        pending = extenduser.objects.filter(status='PENDING').count()
+        pendings = extenduser.objects.filter(status='PENDING' , field='CWTS')
+        context = {
+            'pendings':pendings,
+            'pending':pending,
+            'platoons':platoons,
+            's_years':[s_years.last()],
+        }
+        return render(request, 'activities/cwts_admin_pending.html', context)
+    return redirect('/staff_signin')
 def response(request):
     if request.method == 'POST':
         try:
@@ -4854,31 +4921,35 @@ def cwts_update_each_student(request):
     # return redirect('/manage_section')
         return redirect(request.META['HTTP_REFERER'])
 
-
+@login_required(login_url='/staff_signin')
 def rotc_dropped(request):
+    if request.user.is_staff:
     # pending = extenduser.objects.filter(status='PENDING').count()
-    rejected = extenduser.objects.filter(status='DROPPED').filter(field = 'ROTC')
+        rejected = extenduser.objects.filter(status='DROPPED').filter(field = 'ROTC')
 
-    context = {
-      
-        'rejected':rejected,
-       
-    }
-    return render(request, 'activities/rotc_dropped.html', context)
+        context = {
+        
+            'rejected':rejected,
+        
+        }
+        return render(request, 'activities/rotc_dropped.html', context)
+    return redirect('/staff_signin')
 
-
+@login_required(login_url='/staff_signin')
 def cwts_dropped(request):
+    if request.user.is_staff:
+    
     # pending = extenduser.objects.filter(status='PENDING').count()
-    rejected = extenduser.objects.filter(status='DROPPED').filter(field = 'CWTS')
+        rejected = extenduser.objects.filter(status='DROPPED').filter(field = 'CWTS')
 
-    context = {
-      
-        'rejected':rejected,
-       
-    }
-    return render(request, 'activities/cwts_dropped.html', context)
+        context = {
+        
+            'rejected':rejected,
+        
+        }
+        return render(request, 'activities/cwts_dropped.html', context)
 
-
+    return redirect('/staff_signin')
 
 
 # all dropped data
