@@ -216,6 +216,8 @@ class extenduser(models.Model):
     first_equivalents = models.CharField(max_length=20, default='')
     second_equivalents = models.CharField(max_length=20, default='')
     approved_by = models.CharField(max_length=20, default='')
+    date_declined = models.DateTimeField(null=True)
+    
     
     
     
@@ -387,6 +389,7 @@ class feedback(models.Model):
     message = models.CharField(max_length=160, default='')
     status = models.CharField(max_length=50, default='PENDING')
     action_by = models.CharField(max_length=20, default='')
+    action_date = models.DateTimeField(null=True)
     
     def __str__(self):
         return self.sender

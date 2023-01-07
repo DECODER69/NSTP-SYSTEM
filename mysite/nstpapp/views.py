@@ -4079,9 +4079,10 @@ def update_each_pending(request):
         note = request.POST.get('note')
         status = request.POST.get('status')
         approved_by = request.POST.get('approved_by')
+        date_declined = datetime.datetime.now()
         platoon_count = extenduser.objects.filter(platoons=platoons).count()
         print("hahahah" +str(platoon_count))
-        if platoon_count < 29 and status == 'ENROLLED'  :
+        if platoon_count < 29 :
    
             if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
                 
@@ -4111,7 +4112,9 @@ def update_each_pending(request):
                 note = note,
                 status = status,
                 first_sem = status,
-                approved_by = approved_by
+                approved_by = approved_by,
+                date_declined = date_declined,
+                
                 
                 )
                 
@@ -4411,11 +4414,12 @@ def response(request):
 
 def update_mess(request):
     if request.method == 'POST':
+        action_date = datetime.datetime.now() 
         actionby = request.POST.get('action')
         ids = request.POST.get('ids')
         status = request.POST.get('status')
 
-        feedback.objects.filter(id=ids).update(status = status, action_by = actionby)
+        feedback.objects.filter(id=ids).update(status = status, action_by = actionby, action_date=action_date)
         
 
     return redirect('/admin_dashboard')
