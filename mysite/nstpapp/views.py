@@ -4078,41 +4078,14 @@ def update_each_pending(request):
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
         status = request.POST.get('status')
-        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
-            
-            extenduser.objects.filter(id=ids).update(firstname = firstname,
-            middlename = middlename,
-            lastname=lastname,
-            email = email,
-            idnumber = idnumber,
-            address = address,
-            gender = gender,
-            age = age,
-            birthday = birthday,
-            section = section, 
-            cpnumber = cpnumber,
-            civil = civil,
-            nationality = nationality,
-            nfather = nfather,
-            foccupation = foccupation,
-            nmother = nmother,
-            moccupation = moccupation,
-            pcontact = pcontact,
-            nguardian = nguardian,
-            gcontact = gcontact,
-            sickness = sickness,
-            field = field,
-            platoons = platoons,
-            note = note,
-            status = status,
-            first_sem = status
-            
-            )
-            
-            return redirect('/admin_pending')
-            
-        else:
-            extenduser.objects.filter(id=ids).update(firstname = firstname,
+        approved_by = request.POST.get('approved_by')
+        platoon_count = extenduser.objects.filter(platoons=platoons).count()
+        print("hahahah" +str(platoon_count))
+        if platoon_count < 29 and status == 'ENROLLED' :
+   
+            if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
+                
+                extenduser.objects.filter(id=ids).update(firstname = firstname,
                 middlename = middlename,
                 lastname=lastname,
                 email = email,
@@ -4136,13 +4109,48 @@ def update_each_pending(request):
                 field = field,
                 platoons = platoons,
                 note = note,
-                status = status
-            )
+                status = status,
+                first_sem = status,
+                approved_by = approved_by
+                
+                )
+                
+                return redirect('/admin_pending')
+                
+            else:
+                extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status
+                )
+                return redirect(request.META['HTTP_REFERER'])
+        else:
+            messages.info(request,  str(platoons) + ' platoon has reached the maximum number of students')
+            
         
-        
-    
-    # return redirect('/manage_section')
-        return redirect(request.META['HTTP_REFERER'])
+        # return redirect('/manage_section')
+            return redirect(request.META['HTTP_REFERER'])
 
 def update_cwts_each_pending(request):
     if request.method == 'POST':

@@ -398,6 +398,8 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
+                                                {% if user.is_authenticated %}
+                                                <input type="hidden" name="approved_by" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
                                                 <button class="btn btn-block btn-success" type="submit">
                                                 <i class="fa-solid fa-file-export"></i>
                                            Update
@@ -420,6 +422,16 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <script>
+        {% for msg in messages %}
+        Swal.fire({
+            icon: 'msg.icon',
+            text: '{{ msg }}'
+        }) 
+        {% endfor %}
+    </script>  
     <!-- <script>
 
     var config = {

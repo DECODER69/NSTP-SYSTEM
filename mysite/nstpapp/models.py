@@ -215,6 +215,7 @@ class extenduser(models.Model):
     
     first_equivalents = models.CharField(max_length=20, default='')
     second_equivalents = models.CharField(max_length=20, default='')
+    approved_by = models.CharField(max_length=20, default='')
     
     
     
