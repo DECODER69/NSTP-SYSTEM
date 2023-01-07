@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    {% include 'activities/admin_nav.html' %}
+    {{ redirect_to_login_immediately }} {% include 'activities/admin_nav.html' %}
 
     <!-- MODAL FOR EDIT ANNOUNCEMENTS -->
 
@@ -113,7 +113,8 @@
                             </div>
                         </div>
                         <div class="more">
-                            <p class="info"><a href="/admin_staff">More info  </a> <i class='bx bxs-right-arrow-circle'></i></p>
+                            <p class="info">
+                                <a href="#">;</a> <i class='bx bxs-right-arrow-circle'></i></p>
 
                         </div>
                     </div>
@@ -308,7 +309,8 @@
 
 
                                         </td>
-                                        <td>
+                                        <td>{% if user.is_authenticated %}
+                                            <input type="hidden" name="action" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
                                             <input type="hidden" value="{{s.id}}" name="ids">
                                             <button type="Submit" class="btn btn-dark">Update</button>
                                         </td>

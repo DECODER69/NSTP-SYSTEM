@@ -21,8 +21,8 @@
                 <div class="sidebar-brand">
 
                     <a href="#" style="justify-content:space-between;">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Christian Rapal</span>
+                        <i class="fa-solid fa-user"></i> {% if user.is_authenticated %}
+                        <span>{{user.first_name}} {{user.last_name}}</span> {% endif %}
                     </a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
@@ -76,36 +76,15 @@
                                 </ul>
                             </div> -->
                         </li>
+                        {% if request.user.is_superuser %}
                         <li class="sidebar-dropdowns">
                             <a href="/school_years">
                                 <i class="fa-sharp fa-solid fa-address-card"></i>
                                 <span>School Year</span>
-
-
-
-
                             </a>
-                            <!-- <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="/school_years">School Year
-</a>
-                                    </li>
-                                    <li>
-                                        <a href="/admin_staff">Enrolled</a>
-                                    </li>
-                                 
-                                    <li>
-                                        <a href="/admin_pending">Pending <span class="badge badge-pill badge-danger">{{nav_pending_count}}</span></a>
-                                    </li>
 
-                                  
-                                    <li>
-                                        <a href="/admin_rejected">Rejected <span class="badge badge-pill badge-danger">{{nav_rejected_count}}</span></a>
-                                    </li>
-                                </ul>
-                            </div> -->
                         </li>
+                        {% else %} {% endif %}
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa-solid fa-hourglass-half"></i>

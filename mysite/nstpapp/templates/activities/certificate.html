@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    {% for s in sys1 %}
+    {{ redirect_to_login_immediately }} {% for s in sys1 %}
     <form action="{% url 'activities:update_acts' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" value="{{s.years}}" name="ids">

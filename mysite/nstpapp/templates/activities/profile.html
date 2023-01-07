@@ -294,7 +294,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Father</label>
-                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Father's Fullname">
+                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Father's Fullname" required>
 
                                                                         </div>
                                                                     </div>
@@ -406,12 +406,12 @@
                                                     <div class="docErr">Please upload valid file</div>
                                                     <div class="fileUpload btn btn-orange">
                                                         <img src="../../static/images/cloud-computing.png" class="icon">
-                                                        <span class="upl" id="upload">Select</span>
+                                                        <span class="upl" id="upload">Upload</span>
                                                         <input type="file" required class="upload up" id="up" onchange="readURL(this);" name="proof" />
                                                         <input type="hidden" name="ids" value="{{s.id}}">
                                                     </div>
                                                     <br>&nbsp;&nbsp;<br>
-                                                    <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Upload</button>
+                                                    <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Submit</button>
                                                 </div>
                                             </div>
                                             <div class="details2">

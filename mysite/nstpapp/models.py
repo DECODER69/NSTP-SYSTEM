@@ -218,6 +218,8 @@ class extenduser(models.Model):
     
     
     
+    
+    
     # date_enrolled = models.DateTimeField(max_length=40, default='WAITING')
     
     
@@ -383,6 +385,7 @@ class feedback(models.Model):
     subject = models.CharField(max_length=50, default='')
     message = models.CharField(max_length=160, default='')
     status = models.CharField(max_length=50, default='PENDING')
+    action_by = models.CharField(max_length=20, default='')
     
     def __str__(self):
         return self.sender

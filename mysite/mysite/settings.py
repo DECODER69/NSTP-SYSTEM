@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 templates = [{'DIRS': [os.path.join(SETTINGS_PATH, 'templates')]}]
@@ -56,7 +57,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_auto_logout.middleware.auto_logout',
 ]
+
+AUTO_LOGOUT = {
+    'IDLE_TIME': timedelta(minutes=30),
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+}
+
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -71,6 +79,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 # !!! Add this !!!
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },

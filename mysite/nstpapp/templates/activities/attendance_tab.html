@@ -16,7 +16,7 @@
 {% include 'activities/loader.html' %}
 
 <body>
-    {% include 'activities/admin_nav.html' %}
+    {{ redirect_to_login_immediately }} {% include 'activities/admin_nav.html' %}
 
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

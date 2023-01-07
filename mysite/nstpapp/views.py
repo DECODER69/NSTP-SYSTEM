@@ -186,7 +186,8 @@ def logout_student(request):
 @login_required(login_url='/staff_signin')
 def admin_dashboard(request):
     if request.user.is_staff:
-    # staff = extenduser.objects.filter(user=request.user)
+        admin = User.objects.filter(is_superuser=True)
+        staff = extenduser.objects.filter(user=request.user)
         feed = feedback.objects.filter(status = 'PENDING').order_by('date_sent')
         audience = sections.objects.all()
         ann = Announcement.objects.all()
@@ -194,7 +195,7 @@ def admin_dashboard(request):
         nav_pending_count = extenduser.objects.filter(status='PENDING').count()
         nav_rejected_count = extenduser.objects.filter(status='REJECTED').count()
         active = extenduser.objects.filter(status='ENROLLED').count()
-        pending = extenduser.objects.filter(status='PENDING').count()
+        pending = extenduser.objects.filter(status='PENDING', category = 'STUDENT').count()
 
         context = {
             'active':active,   
@@ -202,7 +203,7 @@ def admin_dashboard(request):
             'sy':[sy.last()],
             'audience':audience,
             'ann':ann,
-            # 'staff':staff,
+            'staff':staff,
             'nav_pending_count':nav_pending_count,
             'nav_rejected_count':nav_rejected_count ,
             'feed':feed
@@ -4276,8 +4277,8 @@ def contact_us(request):
 
 @login_required(login_url='/staff_signin')
 def school_years(request):
-    if request.user.is_staff:
-    
+    if request.user.is_superuser:
+        
         s_years = school_year.objects.all()
         alls = school_year.objects.all().order_by('years').reverse()
         ss_years = extenduser.objects.all()
@@ -4299,38 +4300,43 @@ def school_years(request):
 
 
 def create_sy(request):
-    if request.method == 'POST':
-        start  = request.POST.get('start')
-        end =  request.POST.get('end')
-        
-        combine = (start +"-"+ end)
-        print(combine)
-        
-        
-        
-        
-        
-
-        if school_year.objects.filter(years=combine).exists():
-            messages.info(request, 'School year ' + str (combine) + ' ALready exist !')
-            return redirect('/school_years')
-        elif alumni_school_year.objects.filter(years=combine).exists():
-            data = school_year(years=combine)
-
-            data.save()
     
-            return redirect('/school_years')
+        if request.method == 'POST':
+            start  = request.POST.get('start')
+            end =  request.POST.get('end')
+            
+            combine = (start +"-"+ end)
+            print(combine)
+            
+            
+            
+            
+            
+            if request.user.is_superuser:
+                if school_year.objects.filter(years=combine).exists():
+                    messages.info(request, 'School year ' + str (combine) + ' ALready exist !')
+                    return redirect('/school_years')
+                elif alumni_school_year.objects.filter(years=combine).exists():
+                    data = school_year(years=combine)
+
+                    data.save()
+            
+                    return redirect('/school_years')
 
 
-        else:
-            data = school_year(years=combine)
-            data2 = alumni_school_year(years=combine)
-            data.save()
-            data2.save()
-          
-            messages.success(request, 'School year ' + str (combine) + ' Successfully Created !')
-            return redirect('/school_years')
-    return redirect('/school_years')
+                else:
+                    data = school_year(years=combine)
+                    data2 = alumni_school_year(years=combine)
+                    data.save()
+                    data2.save()
+                
+                    messages.success(request, 'School year ' + str (combine) + ' Successfully Created !')
+                    return redirect('/school_years')
+            else:
+                messages.success(request, 'You Are not authorize to Modify School Year \nPlease Contact your Administrator')
+        return redirect('/school_years')
+   
+
 
 def update_sel(request):
     if request.method == 'POST':
@@ -4397,10 +4403,11 @@ def response(request):
 
 def update_mess(request):
     if request.method == 'POST':
+        actionby = request.POST.get('action')
         ids = request.POST.get('ids')
         status = request.POST.get('status')
 
-        feedback.objects.filter(id=ids).update(status = status)
+        feedback.objects.filter(id=ids).update(status = status, action_by = actionby)
         
 
     return redirect('/admin_dashboard')

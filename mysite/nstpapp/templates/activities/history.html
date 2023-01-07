@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    {% include 'activities/admin_nav.html' %}
+    {{ redirect_to_login_immediately }} {% include 'activities/admin_nav.html' %}
 
     <section class="page-content">
         <div class="heads">
@@ -46,7 +46,7 @@
                                 <th scope="col">Message</th>
 
 
-                                <th scope="col">Action</th>
+                                <th scope="col">Action Done By</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,9 +64,9 @@
 
 
 
-                                <td>
+                                <td style="color:rgb(255, 136, 0);">
 
-                                    <a href="{% url 'activities:del_ans' s.id %}" class="btn btn-danger">Delete</a>
+                                    {{s.action_by}}
                                 </td>
 
 

@@ -54,6 +54,7 @@
                         <small>This School year Created will reflect on <br> overall school years</small>
 
                     </div>
+                    {% if request.user.is_superuser %}
                     <div class="right2">
                         <form action="{% url 'activities:create_sy' %}" method="post">
                             {% csrf_token %}
@@ -100,6 +101,57 @@
                             </div>
                         </form>
                     </div>
+                    {% else %}
+
+                    <div class="right2">
+                        <form action="{% url 'activities:create_sy' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group-sm">
+                                <label id="labels">Start Year</label>
+                                <input type="text" class="form-control " name="start" placeholder="2022" required minlength="4" maxlength="4" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" readonly>
+
+                            </div>
+                            <br>
+                            <div class="form-group-sm">
+                                <label id="labels">End Year</label>
+                                <input type="text" class="form-control " name="end" placeholder="2023" required minlength="4" maxlength="4" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" readonly>
+
+                            </div>
+                            <br>
+
+                            <button class="btn rapal" disabled readonly><i class="fa-solid fa-plus" ></i> Create</button> &nbsp;
+                            <br> &nbsp;
+                            <hr>
+                            <div class="current">
+                                {% for s in s_years %}
+                                <div class="form-group">
+                                    <h2 class="lab">School Year</h2>
+                                    <h2 class="data">{{s.years}}</h2>
+
+                                </div>
+                                <div class="form-group">
+                                    <h2 class="lab">Registration Status</h2>
+                                    {% if s.status == 'OPEN' %}
+                                    <h2 class="data" id="open">{{s.status}} <span id="open"><i class="fa-solid fa-circle-check"></i></span></h2>
+                                    {% else %}
+                                    <h2 class="data">{{s.status}} <span id="closed"><i class="fa-solid fa-circle-minus"></i></span></h2>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <h2 class="lab">Term</h2>
+                                    <h2 class="data" id="term">{{s.sem}}</h2>
+
+                                </div>
+
+                                {% endfor %}
+
+
+                            </div>
+                        </form>
+                    </div>
+
+                    {% endif %}
+                    
                 </div>
                 <div class="right">
                     <div class="right3">
