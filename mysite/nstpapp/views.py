@@ -4081,7 +4081,7 @@ def update_each_pending(request):
         approved_by = request.POST.get('approved_by')
         platoon_count = extenduser.objects.filter(platoons=platoons).count()
         print("hahahah" +str(platoon_count))
-        if platoon_count < 29 and status == 'ENROLLED' :
+        if platoon_count < 29 and status == 'ENROLLED'  :
    
             if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
                 
