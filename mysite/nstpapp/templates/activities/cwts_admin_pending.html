@@ -57,10 +57,10 @@
 
 
                             <th scope="col">Course</th>
-                            <th scope="col">NSTP Field</th>
+                            <th scope="col">Date registered</th>
                             <th scope="col">View Profile</th>
                             <!-- <th scope="col">Select Section / Platoon</th> -->
-                            <th scope="col">Action</th>
+
 
                         </tr>
                     </thead>
@@ -75,13 +75,13 @@
 
 
                             <td>{{s.section}}</td>
-                            <td>{{s.field}}</td>
+                            <td>{{s.date_joined}}</td>
                             <td class="tar">
                                 <a href="{% url 'activities:cwts_admin_view_profile' s.id %}" title="Click to view profile"><i class="fa-solid fa-eye"></i>
                                         View Profile
                                         </a>
                             </td>
-                            <td class="actions">
+                            <!-- <td class="actions">
                                 <div class="ehe">
                                     <form action="{% url 'activities:cw_approve' s.idnumber %}" method="post">
                                         {% csrf_token %}
@@ -96,7 +96,7 @@
                                 </div>
 
 
-                            </td>
+                            </td> -->
 
 
                         </tr>

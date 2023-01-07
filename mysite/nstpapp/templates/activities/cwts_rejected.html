@@ -23,7 +23,7 @@
     {% include 'activities/admin_nav.html' %}
     <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-time'></i>CWTS REJECTED</h1><br>
+            <h1 class="text"><i class='bx bx-time'></i>CWTS DECLINED</h1><br>
         </div>
         <div class="bg">
             <!-- <ul class="nav nav-tabs nav-pills nav-fill">
@@ -47,18 +47,18 @@
 
             <div>
                 <div class="table-responsive">
-                    <p1 style="font-size:20px;color:#000000;">List of all Rejected Student/s.</p1><br>&nbsp;<br>
+                    <p1 style="font-size:20px;color:#000000;">List of all Declined ROTC Student/s.</p1><br>&nbsp;<br>
                     <table id="table1" class="table table-bordered table-hover ">
                         <thead class="thead">
                             <tr>
                                 <th scope="col">ID NUMBER</th>
                                 <th scope="col">FULL NAME</th>
-                                <th scope="col">REJECTION REASON</th>
-
                                 <th scope="col">COURSE</th>
                                 <th scope="col">DATE REGISTERED</th>
+                                <th scope="col">DECLINING REASON</th>
+                                <th scope="col">DATE DECLINED</th>
+                                <th scope="col">DECLINED BY</th>
                                 <th scope="col" style="text-align: center;">VIEW PROFILE</th>
-
                                 <th scope="col" style="text-align: center;">Action</th>
 
                             </tr>
@@ -67,14 +67,17 @@
                             {% for s in rejected %} {% if s.idnumber %}
                             <tr>
 
+
                                 <td>
                                     {{s.idnumber}}
                                 </td>
                                 <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
-                                <td style="color: #ff0000;">{{s.note}}</td>
-
                                 <td>{{s.section}}</td>
                                 <td style="color: #009113;">{{s.date_joined}}</td>
+                                <td style="color: #ff0000;">{{s.note}}</td>
+                                <td>{{s.date_declined}}</td>
+                                <td>{{s.approved_by}}</td>
+
                                 <td class="tar">
                                     <a href="{% url 'activities:rejected_cwts_profile' s.id %}" target="_self" title="View student profile"><i class="fa-solid fa-eye"></i>
                                          View Profile
