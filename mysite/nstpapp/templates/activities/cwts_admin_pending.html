@@ -65,7 +65,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for s in pendings %}
+                        {% for s in pendings %} {% if s.category == 'STUDENT' %}
                         <tr>
                             <td>
                                 {{s.idnumber}}
@@ -100,7 +100,7 @@
 
 
                         </tr>
-                        {% empty %} {% endfor %}
+                        {% else %} {% endif %} {% endfor %}
 
                     </tbody>
                 </table>

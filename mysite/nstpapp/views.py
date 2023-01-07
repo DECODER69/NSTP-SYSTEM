@@ -229,8 +229,8 @@ def admin_staff(request):
 
 def admin_pending(request):
     platoons = sections.objects.all()
-    pending = extenduser.objects.filter(status='PENDING').count()
-    pendings = extenduser.objects.filter(status='PENDING')
+    pending = extenduser.objects.filter(status='PENDING').filter(category = 'STUDENT').count()
+    pendings = extenduser.objects.filter(status='PENDING').filter(category = 'STUDENT')
 
     context = {
         'pendings':pendings,
@@ -456,7 +456,7 @@ def signup(request):
             return redirect('/signup_page')
        
         else:
-            user = User.objects.create_user(username=idnumber, password=password, email=email)
+            user = User.objects.create_user(username=idnumber, password=password, email=email, first_name=firstname, last_name=lastname)
             datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STUDENT', field=field,user=user)
             datas.save()
             auth.login(request, user)
