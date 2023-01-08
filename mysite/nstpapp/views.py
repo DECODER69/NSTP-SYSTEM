@@ -5207,3 +5207,9 @@ def enrollment(request):
     }
     return render(request, 'activities/enrollment.html', context)
 
+def renew_enroll(request,idnumber):
+    if request.method == 'POST':
+        idnumber = request.POST.get('idnumber')
+        extenduser.objects.filter(idnumber=idnumber).update(second_sem='ENROLLED', status='ENROLLED')
+        messages.error(request, 'Enrolled')
+    return redirect('/enrollment')

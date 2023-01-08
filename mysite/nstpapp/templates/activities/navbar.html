@@ -22,7 +22,7 @@
 
                     <a href="#" style="justify-content:space-between;">
                         <i class="fa-solid fa-user"></i> {% for s in name %}
-                        <span>&nbsp;{{s.firstname}} {{s.lastname}}</span> {% endfor %}
+                        <span>&nbsp;{{s.lastname}}</span> {% endfor %}
                     </a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
@@ -130,7 +130,7 @@
             </div>
             <!-- sidebar-content -->
             <div class="sidebar-footer">
-                <a href="#">
+                <!-- <a href="#">
                     <i class="fa fa-bell"></i>
                     <span class="badge badge-pill badge-warning notification">3</span>
                 </a>
@@ -141,9 +141,9 @@
                 <a href="#">
                     <i class="fa fa-cog"></i>
                     <span class="badge-sonar"></span>
-                </a>
+                </a> -->
                 <a href="/logout_student">
-                    <i class="fa fa-power-off"></i>
+                    <i class="fa fa-power-off" style="color: red;"></i>
                 </a>
             </div>
         </nav>

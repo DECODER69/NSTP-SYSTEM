@@ -264,6 +264,7 @@ urlpatterns = [
     # for admin
     path('admin1/', views.admin1, name='admin1'),
     path('enrollment/', views.enrollment, name='enrollment'),
+    path('renew_enroll/<str:idnumber>', views.renew_enroll, name='renew_enroll'),
 
 
     

@@ -91,6 +91,8 @@
                                 <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-circle-minus" style="color: rgb(207, 0, 0);"></i></span></h2>
                                 <small>Status</small> {% elif s.status == 'GRADUATE' %}
                                 <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-user-graduate" style="color: rgb(0, 230, 77);"></i></span></h2>
+                                <small>Status</small> {% elif s.status == 'REJECTED' %}
+                                <h2 id="ew"> <span id="stat">{{s.status}}&nbsp; <i class="fa-solid fa-circle-minus" style="color: rgb(230, 0, 0);"></i></span></h2>
                                 <small>Status</small> {% endif %} </div>
 
                             <div class="two">
