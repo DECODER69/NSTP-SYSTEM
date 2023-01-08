@@ -3264,6 +3264,9 @@ def update_each_student(request):
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
         status = request.POST.get('status')
+        modified_by = request.POST.get('modified_by')
+        
+
         if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
             
             extenduser.objects.filter(id=ids).update(firstname = firstname,
@@ -3291,7 +3294,11 @@ def update_each_student(request):
             platoons = platoons,
             note = note,
             status = status,
-            date_joined = current_datetime
+            date_joined = current_datetime,
+            modified_by = modified_by,
+            date_modified = current_datetime,
+
+
          
             
             )
@@ -3323,7 +3330,10 @@ def update_each_student(request):
                 field = field,
                 platoons = platoons,
                 note = note,
-                status = status
+                status = status,
+                date_joined = current_datetime,
+                modified_by = modified_by,
+                date_modified = current_datetime,
             )
         
         
@@ -5068,7 +5078,7 @@ def get_all(request):
         
         if first is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='ENROLLED')
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='PENDING', status='PENDING')
                 
         if second is not None:
             for a in ids2:
@@ -5187,3 +5197,13 @@ def staff_signin(request):
     
 def admin1(request):
     return render(request, 'activities/admin_ui.html')
+
+
+def enrollment(request):
+    name = extenduser.objects.filter(user = request.user)
+    context = {
+        'name': name,
+
+    }
+    return render(request, 'activities/enrollment.html', context)
+

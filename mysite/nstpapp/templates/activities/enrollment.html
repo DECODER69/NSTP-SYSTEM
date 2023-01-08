@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP</title>
+    <link rel="stylesheet" href="../../static/css/enrollment.css">
+</head>
+
+<body>
+
+    {% include 'activities/navbar.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class="fa-solid fa-cash-register"></i> ENROLLMENT</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
+        <div class="bg">
+            {% if request.user.is_authenticated %}
+            <h6>Welcome {{user.last_name}}, {{user.first_name}} {{user.middle}} ({{user.username}})</h6>
+            {% endif %}
+            <hr> <br>
+
+            <div class="lower">
+                <div class="left">
+
+                    {% for user in name %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h5 style="font-weight: bolder;">{{user.firstname}} {{user.lastname}}</h5>
+                                <label>Student Name</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                {% if user.section != '' %}
+                                <h5 style="font-weight: bolder;">{{user.section}} </h5>
+                                {% else %}
+                                <h5 style="font-weight: bolder;">Not Available</h5>
+                                {% endif %}
+                                <label>Course</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h5 style="font-weight: bolder;">{{user.s_year}} </h5>
+                                <label>School year</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="right">
+
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h5 style="font-weight: bolder;">{{user.idnumber}} </h5>
+                                <label>Student Number</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <h5 style="font-weight: bolder;">{{user.first_sem}} </h5>
+                                <label>First Semester</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

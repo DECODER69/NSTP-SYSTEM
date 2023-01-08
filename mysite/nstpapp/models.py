@@ -217,6 +217,8 @@ class extenduser(models.Model):
     second_equivalents = models.CharField(max_length=20, default='')
     approved_by = models.CharField(max_length=20, default='')
     date_declined = models.DateTimeField(null=True)
+    modified_by = models.CharField(max_length=20, default='')
+    date_modified = models.DateTimeField(null=True)
     
     
     

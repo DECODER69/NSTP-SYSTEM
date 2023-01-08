@@ -263,6 +263,8 @@ urlpatterns = [
     
     # for admin
     path('admin1/', views.admin1, name='admin1'),
+    path('enrollment/', views.enrollment, name='enrollment'),
+
 
     
     
