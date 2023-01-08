@@ -195,8 +195,8 @@
                             <label for="vehicle3" style="color: red;">DROP</label> &nbsp; &nbsp;
 
                             <input type="checkbox" id="vehicle3" name="graduate" value="GRADUATE" class="single-checkbox">
-                            <label for="vehicle3" style="color: rgb(0, 83, 238);">GRADUATE</label> &nbsp; &nbsp;
-
+                            <label for="vehicle3" style="color: rgb(0, 83, 238);">GRADUATE</label> &nbsp; &nbsp; {% if request.user.is_authenticated %}
+                            <input type="hidden" value="{{user.first_name}} {{user.last_name}}" name="approved_by"> {% endif %}
 
                             <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Update</button><br>&nbsp;<br>
                         </form>

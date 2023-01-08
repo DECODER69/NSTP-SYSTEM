@@ -5089,6 +5089,7 @@ def cw_drop_remove(request, id):
 
 def get_all(request):
     if request.method == 'POST':
+        approved_by = request.POST.get('approved_by')
         first = request.POST.get('1st')
         second = request.POST.get('2nd')
         dropped = request.POST.get('dropped')
@@ -5097,28 +5098,29 @@ def get_all(request):
         ids = request.POST.getlist('cbs')
         ids2 = request.POST.getlist('cbs2')
         ids3 = request.POST.getlist('cbs3')
+        date_modified = datetime.datetime.now()
         
         if first is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='PENDING', status='PENDING')
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='PENDING', status='PENDING', modified_by=approved_by, date_modified=date_modified)
                 
         if second is not None:
             for a in ids2:
-                extenduser.objects.filter(id=a).update(second_sem = second )
+                extenduser.objects.filter(id=a).update(second_sem = second, modified_by=approved_by, date_modified=date_modified )
                 
             # for first sem
         if dropped is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(status = dropped, first_sem=dropped  )
+                extenduser.objects.filter(id=a).update(status = dropped, first_sem=dropped , modified_by=approved_by, date_modified=date_modified )
             # for second sem
         if dropped is not None:
             for a in ids2:
-                extenduser.objects.filter(id=a).update(status = dropped, second_sem=dropped  )
+                extenduser.objects.filter(id=a).update(status = dropped, second_sem=dropped , modified_by=approved_by, date_modified=date_modified )
                 
     # end of dropping\
         if graduate is not None:
             for a in ids3:
-                extenduser.objects.filter(id=a).update(status = graduate )
+                extenduser.objects.filter(id=a).update(status = graduate , modified_by=approved_by, date_modified=date_modified)
                 
             
    
@@ -5127,6 +5129,7 @@ def get_all(request):
     
 def get_all2(request):
     if request.method == 'POST':
+        approved_by = request.POST.get('approved_by')
         first = request.POST.get('1st')
         second = request.POST.get('2nd')
         dropped = request.POST.get('dropped')
@@ -5135,29 +5138,32 @@ def get_all2(request):
         ids = request.POST.getlist('cbs')
         ids2 = request.POST.getlist('cbs2')
         ids3 = request.POST.getlist('cbs3')
+        date_modified = datetime.datetime.now()
         
         if first is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='ENROLLED')
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='PENDING', status='PENDING', modified_by=approved_by, date_modified=date_modified)
                 
         if second is not None:
             for a in ids2:
-                extenduser.objects.filter(id=a).update(second_sem = second )
+                extenduser.objects.filter(id=a).update(second_sem = second, modified_by=approved_by, date_modified=date_modified )
                 
             # for first sem
         if dropped is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(status = dropped, first_sem=dropped  )
+                extenduser.objects.filter(id=a).update(status = dropped, first_sem=dropped , modified_by=approved_by, date_modified=date_modified )
             # for second sem
         if dropped is not None:
             for a in ids2:
-                extenduser.objects.filter(id=a).update(status = dropped, second_sem=dropped  )
+                extenduser.objects.filter(id=a).update(status = dropped, second_sem=dropped , modified_by=approved_by, date_modified=date_modified )
                 
     # end of dropping\
         if graduate is not None:
             for a in ids3:
-                extenduser.objects.filter(id=a).update(status = graduate )
+                extenduser.objects.filter(id=a).update(status = graduate , modified_by=approved_by, date_modified=date_modified)
                 
+            
+   
             
         return redirect('/manage_cwts_section')
     

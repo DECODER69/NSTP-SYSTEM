@@ -57,6 +57,7 @@
 
                                 <th scope="col">COURSE</th>
                                 <th scope="col">DATE DROPPED</th>
+                                <th scope="col">APPROVED BY</th>
                                 <th scope="col" style="text-align: center;">VIEW PROFILE</th>
 
                                 <th scope="col" style="text-align: center;">Action</th>
@@ -74,7 +75,8 @@
                                 <td style="color: #ff0000;">{{s.note}}</td>
 
                                 <td>{{s.section}}</td>
-                                <td style="color: #912e00;">{{s.date_joined}}</td>
+                                <td style="color: #912e00;">{{s.date_modified}}</td>
+                                <td>{{s.modified_by}}</td>
                                 <td class="tar">
                                     <a href="{% url 'activities:dropped_rotc_profile' s.id %}" target="_self" title="View student profile"><i class="fa-solid fa-eye"></i>
                                          View Profile

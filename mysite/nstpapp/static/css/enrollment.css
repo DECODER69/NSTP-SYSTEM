@@ -54,7 +54,7 @@ section {
     margin-top: 70px !important;
     border-radius: 10px;
     width: 80%;
-    height: 50vh;
+    height: auto;
     background-color: #ffffff;
     margin: auto;
     border: solid 1px rgba(128, 128, 128, 0.459);
@@ -75,4 +75,64 @@ section {
 .right {
     float: right;
     width: 35%;
+}
+
+@media only screen and (max-width: 600px) {
+    .bg {
+        margin-top: 20px !important;
+        padding: 5px !important;
+    }
+    .lower {
+        width: 100%;
+        display: flex !important;
+    }
+    .left {
+        width: 50%;
+        display: flexbox !important;
+        ;
+    }
+    .bg h6 {
+        font-size: 12px !important;
+    }
+    .left h5 {
+        font-size: 12px !important;
+        ;
+    }
+    .right h5 {
+        font-size: 12px !important;
+        ;
+    }
+    .lower label {
+        font-size: 11px !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .bg {
+        margin-top: 20px !important;
+        padding: 5px !important;
+    }
+    .lower {
+        width: 100%;
+        display: flex !important;
+    }
+    .left {
+        width: 50%;
+        display: flexbox !important;
+        ;
+    }
+    .bg h6 {
+        font-size: 12px !important;
+    }
+    .left h5 {
+        font-size: 12px !important;
+        ;
+    }
+    .right h5 {
+        font-size: 12px !important;
+        ;
+    }
+    .lower label {
+        font-size: 11px !important;
+    }
 }
