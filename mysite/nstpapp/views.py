@@ -280,7 +280,7 @@ def admin_view_profile(request, id):
     name = extenduser.objects.filter(id=id)
     pres1 = extenduser.objects.filter(id=id)
     abs1 = extenduser.objects.filter(id = id)
-    section = sections.objects.all()
+    section =  sections.objects.filter(fiel = 'ROTC')
     
     print(ids)
     getSection = request.POST.get('getSection')
@@ -458,7 +458,7 @@ def signup(request):
        
         else:
             user = User.objects.create_user(username=idnumber, password=password, email=email, first_name=firstname, last_name=lastname)
-            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STUDENT', field=field,user=user)
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STUDENT', field=field,user=user, first_sem='PENDING')
             datas.save()
             auth.login(request, user)
             messages.error(request, 'Account created successfully\nPlease Login and complete profile for verification. Thank you')
@@ -4196,41 +4196,15 @@ def update_cwts_each_pending(request):
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
         status = request.POST.get('status')
-        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
-            
-            extenduser.objects.filter(id=ids).update(firstname = firstname,
-            middlename = middlename,
-            lastname=lastname,
-            email = email,
-            idnumber = idnumber,
-            address = address,
-            gender = gender,
-            age = age,
-            birthday = birthday,
-            section = section, 
-            cpnumber = cpnumber,
-            civil = civil,
-            nationality = nationality,
-            nfather = nfather,
-            foccupation = foccupation,
-            nmother = nmother,
-            moccupation = moccupation,
-            pcontact = pcontact,
-            nguardian = nguardian,
-            gcontact = gcontact,
-            sickness = sickness,
-            field = field,
-            platoons = platoons,
-            note = note,
-            status = status,
-            first_sem = status
-            
-            )
-            
-            return redirect('/cwts_admin_pending')
-            
-        else:
-            extenduser.objects.filter(id=ids).update(firstname = firstname,
+        approved_by = request.POST.get('approved_by')
+        date_declined = datetime.datetime.now()
+        platoon_count = extenduser.objects.filter(platoons=platoons).count()
+        print("hahahah" +str(platoon_count))
+        if platoon_count < 29 :
+   
+            if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
+                
+                extenduser.objects.filter(id=ids).update(firstname = firstname,
                 middlename = middlename,
                 lastname=lastname,
                 email = email,
@@ -4254,13 +4228,50 @@ def update_cwts_each_pending(request):
                 field = field,
                 platoons = platoons,
                 note = note,
-                status = status
-            )
+                status = status,
+                first_sem = status,
+                approved_by = approved_by,
+                date_declined = date_declined,
+                
+                
+                )
+                
+                return redirect('/cwts_admin_pending')
+                
+            else:
+                extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status
+                )
+                return redirect(request.META['HTTP_REFERER'])
+        else:
+            messages.info(request,  str(platoons) + ' platoon has reached the maximum number of students')
+            
         
-        
-    
-    # return redirect('/manage_section')
-        return redirect(request.META['HTTP_REFERER'])
+        # return redirect('/manage_section')
+            return redirect(request.META['HTTP_REFERER'])
     
     
 def search(request):
@@ -4883,6 +4894,9 @@ def cwts_update_each_student(request):
         platoons = request.POST.get('platoons')
         note = request.POST.get('note')
         status = request.POST.get('status')
+        modified_by = request.POST.get('modified_by')
+        
+
         if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
             
             extenduser.objects.filter(id=ids).update(firstname = firstname,
@@ -4910,7 +4924,11 @@ def cwts_update_each_student(request):
             platoons = platoons,
             note = note,
             status = status,
-            date_joined = current_datetime
+            date_joined = current_datetime,
+            modified_by = modified_by,
+            date_modified = current_datetime,
+
+
          
             
             )
@@ -4942,13 +4960,17 @@ def cwts_update_each_student(request):
                 field = field,
                 platoons = platoons,
                 note = note,
-                status = status
+                status = status,
+                date_joined = current_datetime,
+                modified_by = modified_by,
+                date_modified = current_datetime,
             )
         
         
     
     # return redirect('/manage_section')
         return redirect(request.META['HTTP_REFERER'])
+
 
 @login_required(login_url='/staff_signin')
 def rotc_dropped(request):

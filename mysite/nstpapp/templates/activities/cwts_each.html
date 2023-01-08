@@ -145,6 +145,69 @@
 
 
                             </div>
+
+                            <div class="card p-3">
+                                <div class="mb-2" style="color: red;"><b><i class="fa-solid fa-scroll"></i> Logs</b></div>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold;">{{s.approved_by}}</h6>
+                                            <label>Approved by</label>
+
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#1d7901;">{{s.date_declined}}</h6>
+                                            <label>Date Approved</label>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#e49c00;">{{s.modified_by}}</h6>
+                                            <label>Last Modified by</label>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#e49c00;">{{s.date_modified}}</h6>
+                                            <label>Last Date Modified</label>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+                            </div>
                         </div>
 
                         <div class="col">
@@ -512,6 +575,8 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
+                                                {% if request.user.is_authenticated %}
+                                                <input type="hidden" value="{{user.first_name}} {{user.last_name}}" name="modified_by"> {% endif %}
                                                 <button class="btn btn-block btn-success" type="submit">
                                                 <i class="fa-solid fa-file-export"></i>
                                            Update

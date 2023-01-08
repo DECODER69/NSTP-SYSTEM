@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Datepicker - Display month & year menus</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script>
+        jQuery("#dob").on('change', function() {
+            var dob1 = jQuery(this).val();
+            var dob = $.datepicker.formatDate('yy-mm-dd', new Date(dob1));
+            var str = dob.split('-');
+            var firstdate = new Date(str[0], str[1], str[2]);
+            var today = new Date();
+            var dayDiff = Math.ceil(today.getTime() - firstdate.getTime()) / (1000 * 60 * 60 * 24 * 365);
+            var age = parseInt(dayDiff);
+            jQuery("#age").html(age + ' years old');
+        });
+    </script>
+</head>
+
+<body>
+
+    <input type="text" id="#dob" class="datepicker" name="dob" />
+    <p id="age"></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+
+
+</body>
+
+</html>

@@ -8,6 +8,29 @@
     <link rel="stylesheet" href="../../static/css/profile.css">
     <link rel="icon" href="../../static/images/tup.png">
     <title>profile</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#birthday").datepicker({
+                onSelect: function(value, ui) {
+                    var today = new Date(),
+                        age = today.getFullYear() - ui.selectedYear;
+                    $('#age').val(age);
+                },
+
+                dateFormat: 'dd-mm-yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "c-100:c+0"
+            });
+
+        });
+    </script>
 </head>
 
 <body>
@@ -41,6 +64,7 @@
         </div>
 
         <br>
+
         <!-- whole body -->
         {% for s in details %}
         <div class="bg" id="ggs">
@@ -273,6 +297,26 @@
 
                                                                 </div>
                                                                 <div class="row" id="colcol">
+
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Birthday</label>
+                                                                            <input type="date" name="birthday" id="birthday" class="form-control"><br/><br/>
+
+                                                                            <input type="hidden" name="m" class="form-control"><br>
+                                                                            <input type="hidden" name="d" class="form-control"><br>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Age</label>
+                                                                            <input type="text" placeholder="Age" name="age" id="age" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Gender</label>
@@ -283,22 +327,7 @@
                                                                             </select>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Age</label>
-                                                                            <input type="number" placeholder="Age" class="form-control" name="age" value="{{s.age}}">
-                                                                        </div>
-                                                                    </div>
 
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Birthday</label>
-                                                                            <input type="date" name="birthday" class="form-control" value="{{s.birthday}}">
-
-                                                                        </div>
-                                                                    </div>
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Course</label>
@@ -309,7 +338,7 @@
 
                                                                 </div>
 
-                                                                <div class="row" id="colcol">
+                                                                <div class="row">
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Contact</label>
@@ -352,70 +381,26 @@
 
                                                                 </div>
                                                                 <br>
-                                                                <div class="mb-2"><b>Family Information</b></div>
+                                                                <div class="mb-2"><b>Emergency Contact</b></div>
                                                                 <div class="row" id="ro">
                                                                     <div class="col">
                                                                         <div class="form-group">
-                                                                            <label>Father</label>
-                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Father's Fullname" required>
+                                                                            <label>Contact person</label>
+                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Contact Person" required>
 
                                                                         </div>
                                                                     </div>
                                                                     <div class="col">
                                                                         <div class="form-group">
-                                                                            <label>Profession</label>
-                                                                            <input type="text" placeholder="Father Profession" class="form-control" name="foccupation" value="{{s.foccupation}}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="row" id="ro">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Mother</label>
-                                                                            <input type="text" name="nmother" class="form-control" value="{{s.nmother}}" placeholder="Mother's Fullname">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Profession</label>
-                                                                            <input type="text" placeholder="Mother Profession" class="form-control" name="moccupaton" value="{{s.moccupation}}">
+                                                                            <label>Contact Number</label>
+                                                                            <input type="text" placeholder="Number" class="form-control" name="pcontact" value="{{s.pcontact}}" minlength="11" maxlength="11" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
 
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Parents Contact</label>
-                                                                            <input type="number" name="pcontact" class="form-control" value="{{s.pcontact}}" placeholder="Parents Contact">
-
-                                                                        </div>
-                                                                    </div>
 
 
-                                                                </div>
-
-                                                                <div class="row" id="ro">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Guardian</label>
-                                                                            <input type="text" name="nguardian" class="form-control" value="{{s.nguardian}}" placeholder="Guardian's Name">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Guardian's Contact</label>
-                                                                            <input type="number" name="gcontact" class="form-control" value="{{s.gcontact}}" placeholder="Guardian's Contact" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==11) return false;">
-
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col">
                                                                         <div class="form-group">
@@ -469,12 +454,12 @@
                                                     <div class="docErr">Please upload valid file</div>
                                                     <div class="fileUpload btn btn-orange">
                                                         <img src="../../static/images/cloud-computing.png" class="icon">
-                                                        <span class="upl" id="upload">Upload</span>
+                                                        <span class="upl" id="upload">Select</span>
                                                         <input type="file" required class="upload up" id="up" onchange="readURL(this);" name="proof" />
                                                         <input type="hidden" name="ids" value="{{s.id}}">
                                                     </div>
                                                     <br>&nbsp;&nbsp;<br>
-                                                    <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Submit</button>
+                                                    <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Upload</button>
                                                 </div>
                                             </div>
                                             <div class="details2">
@@ -574,7 +559,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script>
+    <!-- <script>
 
     var config = {
       type: 'doughnut',
@@ -600,7 +585,9 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script>
+     </script> -->
+
+
 
 </body>
 

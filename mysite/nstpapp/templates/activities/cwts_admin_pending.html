@@ -54,10 +54,10 @@
                             <th scope="col">ID Number</th>
                             <th scope="col">Full name</th>
                             <th scope="col">Email</th>
-
-
                             <th scope="col">Course</th>
                             <th scope="col">Date registered</th>
+                            <th scope="col">First Sem</th>
+                            <th scope="col">Second Sem</th>
                             <th scope="col">View Profile</th>
                             <!-- <th scope="col">Select Section / Platoon</th> -->
 
@@ -76,6 +76,8 @@
 
                             <td>{{s.section}}</td>
                             <td>{{s.date_joined}}</td>
+                            <td>{{s.first_sem}}</td>
+                            <td>{{s.second_sem}}</td>
                             <td class="tar">
                                 <a href="{% url 'activities:cwts_admin_view_profile' s.id %}" title="Click to view profile"><i class="fa-solid fa-eye"></i>
                                         View Profile
