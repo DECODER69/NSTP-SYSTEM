@@ -901,6 +901,8 @@ def section_content(request):
         return render(request, 'activities/pl_content.html', context)
     return redirect('/staff_signin')
 
+
+# TO BE CONTINUED AFTER DEFENSE
 def download(request):
     if request.method == 'POST':
     
@@ -910,10 +912,10 @@ def download(request):
         
         response['Content-Disposition'] = 'attachment; filename="List.csv"  '
         writer = csv.writer(response)  
-        writer.writerow(['STUDENT NUMBER', 'FIRSTNAME', 'LASTNAME', 'NSTP COMPONENT', 'NSTP SECTION', 'STATUS'])  
+        writer.writerow(['ATTENDANCE 30%', 'MERITS 30%', 'ACTIVITIES 10%', 'MIDTERM EXAM 15%', 'FINAL EXAM 15%', 'FINAL GRADE'])  
         for s in csvfile:  
    
-            writer.writerow([s.idnumber, s.school_yearsfirstname, s.lastname, s.field, s.platoons, s.status])  
+            writer.writerow([s.idnumber, s.firstname, s.lastname, s.field, s.platoons, s.status])  
     return response  
 def download1(request):
     if request.method == 'POST':
@@ -1157,6 +1159,7 @@ def generate(request):
         sys1 = school_year.objects.filter(years=years)
         section = request.POST.get('section')
         details = certification.objects.all()
+        
         yyy =  extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
         namess = extenduser.objects.filter(s_year=years).filter(status='GRADUATE').filter(field='ROTC')
         print(section)
@@ -1219,18 +1222,20 @@ def cwts_add_details(request):
 def update_acts(request):
     if request.method == 'POST':
         current_datetime = datetime.datetime.now() 
+        generate_by = request.POST.get('generate_by')
         ids= request.POST.get('ids')
         print("acts" + str(ids))
-        school_year.objects.filter(years=ids).update(acts='DONE', date_generated=current_datetime)
+        school_year.objects.filter(years=ids).update(acts='DONE', date_generated=current_datetime, generate_by=generate_by)
         print("acts" + str(ids))
         return redirect('/cert_page')
     
 def cwts_update_acts(request):
     if request.method == 'POST':
+        generate_by = request.POST.get('generate_by')
         current_datetime = datetime.datetime.now() 
         ids= request.POST.get('ids')
         print("hahahaha" + str(ids))
-        school_year.objects.filter(years=ids).update(acts_2='DONE', date_generated_2=current_datetime)
+        school_year.objects.filter(years=ids).update(acts_2='DONE', date_generated_2=current_datetime, generate_by2=generate_by)
         print("hahahaha" + str(ids))
         return redirect('/cwts_cert_page')
         
@@ -5241,3 +5246,6 @@ def renew_enroll(request,idnumber):
         extenduser.objects.filter(idnumber=idnumber).update(second_sem='ENROLLED', status='ENROLLED')
         messages.error(request, 'Enrolled')
     return redirect('/enrollment')
+
+
+

@@ -16,7 +16,8 @@
 <body>
     {{ redirect_to_login_immediately }} {% for s in sys1 %}
     <form action="{% url 'activities:update_acts' %}" method="POST">
-        {% csrf_token %}
+        {% csrf_token %} {% if request.user.is_authenticated %}
+        <input type="hidden" name="generate_by" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
         <input type="hidden" value="{{s.years}}" name="ids">
         <button type="submit" onclick="window.print()"><i class='bx bx-printer'></i> PRINT</button>
     </form>

@@ -238,6 +238,8 @@ class school_year(models.Model):
     acts_2 = models.CharField(max_length=20, default='PENDING')
     date_generated = models.DateTimeField(null=True)
     date_generated_2 = models.DateTimeField(null=True)
+    generate_by = models.CharField(max_length=20, default='')
+    generate_by2 = models.CharField(max_length=20, default='')
     
     # for certificates
     
