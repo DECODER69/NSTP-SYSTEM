@@ -147,7 +147,7 @@
                             </div>
                             <br>
 
-                            <div class="card p-3">
+                            <div class="card p-3" style="background-color:#fcf5b2;">
                                 <div class="mb-2" style="color: red;"><b><i class="fa-solid fa-scroll"></i> Logs</b></div>
                                 <hr>
                                 <br>
@@ -182,7 +182,7 @@
                                     <div class="col">
                                         <div class="form-group">
 
-                                            <h6 style="font-weight: bold; color:#e49c00;">{{s.modified_by}}</h6>
+                                            <h6 style="font-weight: bold; color:#5a5a5a;">{{s.modified_by}}</h6>
                                             <label>Last Modified by</label>
 
                                         </div>
@@ -195,7 +195,7 @@
                                     <div class="col">
                                         <div class="form-group">
 
-                                            <h6 style="font-weight: bold; color:#e49c00;">{{s.date_modified}}</h6>
+                                            <h6 style="font-weight: bold; color:#3f3f3f;">{{s.date_modified}}</h6>
                                             <label>Last Date Modified</label>
 
                                         </div>
@@ -389,7 +389,7 @@
                                                                     </div>
 
                                                                 </div>
-                                                                
+
 
 
 
@@ -400,12 +400,12 @@
                                                                         <div class="form-group">
                                                                             <label></label> {% if s.sickness == '' %}
                                                                             <div class="form-check checkbox-xl">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" checked style="accent-color: green !important; "  readonly />
+                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" checked style="accent-color: green !important; " readonly />
                                                                                 <label class="form-check-label" for="checkbox-3" style="font-size: 15px !important;">Physically Fit</label>
                                                                             </div>
                                                                             {% elif s.sickness != '' %}
                                                                             <div class="form-check checkbox-xl">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3"  readonly />
+                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" readonly />
                                                                                 <label class="form-check-label" for="checkbox-3">Physically Fit</label>
                                                                             </div>
                                                                             {% endif %}
@@ -420,7 +420,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             {% if s.proof == '' %}
-                                                                            <a href="#" class="form-conrol" >Submitted Proof</a> {% else %}
+                                                                            <a href="#" class="form-conrol">Submitted Proof</a> {% else %}
                                                                             <a href="{{s.proof.url}}" class="form-conrol">Submitted Proof</a> {% endif %}
                                                                         </div>
 
@@ -512,7 +512,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   <script>
+    <script>
         {% for msg in messages %}
         Swal.fire({
             icon: 'msg.icon',

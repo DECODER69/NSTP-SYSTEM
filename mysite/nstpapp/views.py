@@ -5284,8 +5284,10 @@ def renew_enroll(request,idnumber):
 
 def ro_enrolled(request):
     approved = extenduser.objects.filter(status='ENROLLED', field='ROTC')
+    total = extenduser.objects.filter(status='ENROLLED', field='ROTC').count()
     context = {
-        'approved':approved
+        'approved':approved,
+        'total':total
     }
     return render(request, 'activities/ro_enrolled.html', context)
 

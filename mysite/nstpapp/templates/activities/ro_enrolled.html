@@ -26,6 +26,9 @@
             <div class="table-responsive">
 
                 <h4 style="color:#5e5e5e;">List of all Enrolled <span style="color: rgb(0, 0, 0); font-weight:bolder;">ROTC</span> Students</h4><br>
+
+                <h6 style="color: rgb(0, 136, 0);">{{total}} Student(s)</h6>
+                <br>
                 <table class="table table-bordered" id="myTable">
                     <thead class="thead">
                         <tr>
@@ -59,7 +62,7 @@
                             </td>
                             {% else %}
                             <td>
-                                <h6 style="background-color: rgba(3, 100, 0, 0.801); padding:2px;border-radius:5px; color:white;">{{s.platoons}}</h6>
+                                <h6 style="background-color: rgb(97, 121, 167); padding:2px;border-radius:5px; color:white;">{{s.platoons}}</h6>
                             </td>
                             {% endif %}
                             <td class="tar">
