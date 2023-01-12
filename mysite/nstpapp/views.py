@@ -496,13 +496,21 @@ def signin(request):
                 if usertype:
                     print("gago")
                     user = authenticate(username=username, password=password)
-                    auth.login(request, user)
-                    return redirect('/admin_dashboard')
+                    if user is not None:
+                        auth.login(request, user)
+                        return redirect('/admin_dashboard')
+                    else:
+                        messages.error(request, 'Incorrect password')
+                        return redirect('/login_page')
                 else:
                     user = authenticate(username=username, password=password)
-                    auth.login(request, user)
-                    return redirect('/dashboard_page')
-                
+                    if user is not None:
+                        auth.login(request, user)
+                        return redirect('/admin_dashboard')
+                    else:
+                        messages.error(request, 'Incorrect password')
+                        return redirect('/login_page')
+                    
                 
                 
                 # user = authenticate(username=username, password=password)
