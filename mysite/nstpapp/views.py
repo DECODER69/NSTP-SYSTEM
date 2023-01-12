@@ -467,18 +467,51 @@ def signup(request):
         return redirect('/')
 
 
+# def signin(request):
+#     if request.method == "POST":
+#             username = request.POST.get('username')
+#             password = request.POST.get('password')
+#             if User.objects.filter(username=username).exists():
+#                 user = authenticate(username=username, password=password)
+#                 if user is not None:
+#                     auth.login(request, user)
+#                     return redirect('/dashboard_page')
+#                 else:
+#                     messages.error(request, 'Incorrect password')
+#                     return redirect('/login_page')
+#             else:
+#                 messages.error(request, 'ID Number ' + str (username) + ' Does not exist !')
+#                 return redirect('/login_page')
+#     else:
+#         messages.error(request, 'Invalid username or password !')
+#         return redirect('/login_page')
+
+
 def signin(request):
     if request.method == "POST":
             username = request.POST.get('username')
             password = request.POST.get('password')
+            usertype = User.objects.filter(username=username).filter(is_staff=1)
             if User.objects.filter(username=username).exists():
-                user = authenticate(username=username, password=password)
-                if user is not None:
+                if usertype:
+                    print("gago")
+                    user = authenticate(username=username, password=password)
+                    auth.login(request, user)
+                    return redirect('/admin_dashboard')
+                else:
+                    user = authenticate(username=username, password=password)
                     auth.login(request, user)
                     return redirect('/dashboard_page')
-                else:
-                    messages.error(request, 'Incorrect password')
-                    return redirect('/login_page')
+                
+                
+                
+                # user = authenticate(username=username, password=password)
+                # if user is not None:
+                #     auth.login(request, user)
+                #     return redirect('/dashboard_page')
+                # else:
+                #     messages.error(request, 'Incorrect password')
+                #     return redirect('/login_page')
             else:
                 messages.error(request, 'ID Number ' + str (username) + ' Does not exist !')
                 return redirect('/login_page')
@@ -5246,6 +5279,162 @@ def renew_enroll(request,idnumber):
         extenduser.objects.filter(idnumber=idnumber).update(second_sem='ENROLLED', status='ENROLLED')
         messages.error(request, 'Enrolled')
     return redirect('/enrollment')
+
+
+
+def ro_enrolled(request):
+    approved = extenduser.objects.filter(status='ENROLLED', field='ROTC')
+    context = {
+        'approved':approved
+    }
+    return render(request, 'activities/ro_enrolled.html', context)
+
+def enrolled_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section =  sections.objects.filter(fiel = 'ROTC')
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/enrolled_profile.html', context)
+
+def update_enrolled_student(request):
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        current_datetime = datetime.datetime.now() 
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        modified_by = request.POST.get('modified_by')
+        
+
+        if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
+            
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+            middlename = middlename,
+            lastname=lastname,
+            email = email,
+            idnumber = idnumber,
+            address = address,
+            gender = gender,
+            age = age,
+            birthday = birthday,
+            section = section, 
+            cpnumber = cpnumber,
+            civil = civil,
+            nationality = nationality,
+            nfather = nfather,
+            foccupation = foccupation,
+            nmother = nmother,
+            moccupation = moccupation,
+            pcontact = pcontact,
+            nguardian = nguardian,
+            gcontact = gcontact,
+            sickness = sickness,
+            field = field,
+            platoons = platoons,
+            note = note,
+            status = status,
+            date_joined = current_datetime,
+            modified_by = modified_by,
+            date_modified = current_datetime,
+
+
+         
+            
+            )
+            
+            return redirect('/ro_enrolled')
+            
+        else:
+            extenduser.objects.filter(id=ids).update(firstname = firstname,
+                middlename = middlename,
+                lastname=lastname,
+                email = email,
+                idnumber = idnumber,
+                address = address,
+                gender = gender,
+                age = age,
+                birthday = birthday,
+                section = section, 
+                cpnumber = cpnumber,
+                civil = civil,
+                nationality = nationality,
+                nfather = nfather,
+                foccupation = foccupation,
+                nmother = nmother,
+                moccupation = moccupation,
+                pcontact = pcontact,
+                nguardian = nguardian,
+                gcontact = gcontact,
+                sickness = sickness,
+                field = field,
+                platoons = platoons,
+                note = note,
+                status = status,
+                date_joined = current_datetime,
+                modified_by = modified_by,
+                date_modified = current_datetime,
+            )
+        
+        
+    
+    # return redirect('/manage_section')
+        return redirect(request.META['HTTP_REFERER'])
+
+
+def cw_enrolled(request):
+    return render(request, 'activities/ro_enrolled.html')
 
 
 

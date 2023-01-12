@@ -57,8 +57,8 @@
 
     <section class="page-content">
         <div class="heads">
-            <a href="/admin_pending">
-                <h1 class="text"><i class='bx bxs-dashboard'></i> PENDING ENROLLEES &nbsp;>&nbsp; </h1>
+            <a href="/ro_enrolled">
+                <h1 class="text"><i class='bx bxs-dashboard'></i> ENROLLED ROTC &nbsp;>&nbsp; </h1>
             </a>
 
 
@@ -71,11 +71,145 @@
         {% for s in details %}
 
         <div class="bg">
-            <form action="{% url 'activities:update_each_pending' %}" method="POST">
+            <form action="{% url 'activities:update_enrolled_student' %}" method="POST">
                 {% csrf_token %}
                 <div class="containers">
                     <div class="row flex-lg-nowrap">
+                        <div class="col-12 col-lg-auto mb-3" style="width: 300px;">
+                            <!-- <div class="card p-3">
+                                <div class="e-navlist e-navlist--active-bg">
+                                    <ul class="nav">
+                                        <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
+                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-crud-users" target="__blank"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
+                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
 
+                            <div class="card p-3">
+
+                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Atendance Record</b></div>
+                                <hr>
+                                <br>
+                                <div id="container" style="width: 100%; ">
+                                    <canvas id="pie-chart"></canvas>
+                                </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
+                                <h5 id='perci'>{{s.percentage1 }} %</h5>
+                                <h5 id="curr">Current Score</h5>
+                                <br>
+                                <div class="st">
+                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres1|floatformat:0}} Present Days</span><br>
+                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
+                                </div>
+
+                                {% elif s.second_sem == 'ENROLLED' and s.percentage2 != '' %}
+                                <h5 id='perci'>{{s.percentage2 }} %</h5>
+                                <h5 id="curr">Current Score</h5>
+                                <br>
+                                <div class="st">
+                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
+                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
+                                </div>
+                                {% else %}
+                                <h5>No Record yet</h5>
+                                {% endif %} {% endfor %}
+
+                            </div>
+                            <br>
+                            <div class="card p-3">
+                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Grade</b></div>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>First Sem Grade</label>
+                                            <input type="text" class="form-control" value="{{s.final_grade}}" placeholder="1st Sem grade" readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Second Sem Grade</label>
+                                            <input type="text" class="form-control" value="{{s.final_grade_2}}" placeholder="2nd Sem grade" readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+                            <br>
+
+                            <div class="card p-3">
+                                <div class="mb-2" style="color: red;"><b><i class="fa-solid fa-scroll"></i> Logs</b></div>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold;">{{s.approved_by}}</h6>
+                                            <label>Approved by</label>
+
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#1d7901;">{{s.date_declined}}</h6>
+                                            <label>Date Approved</label>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#e49c00;">{{s.modified_by}}</h6>
+                                            <label>Last Modified by</label>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#e49c00;">{{s.date_modified}}</h6>
+                                            <label>Last Date Modified</label>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+                        </div>
 
                         <div class="col">
                             <div class="row">
@@ -97,7 +231,7 @@
                                                         <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{s.firstname}} {{s.lastname}}</h4>
                                                             <p class="mb-0">{{s.email}}</p>
-                                                            <div class="text-muted" style="color:red;"><small>{{s.status}} </small></div>
+                                                            <div class="text-muted"><small>{{s.status}} <i class="fa-solid fa-certificate" style="color: #1d7901;"></i></small></div>
                                                             <div class="mt-2">
                                                                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">
                                                                     <i class="fa-brands fa-telegram"></i>
@@ -106,10 +240,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="text-center text-sm-right">
-                                                          
-                                                            <span class="badge badge-danger">Student</span>
-                                                           
-                                                            <div class="text-muted"><small>{{s.s_year}}</small></div>
+                                                            <span class="badge badge-success">Student</span>
+                                                            <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,70 +372,24 @@
 
                                                                 </div>
                                                                 <br>
-                                                                <div class="mb-2"><b>Family Information</b></div>
+                                                                <div class="mb-2"><b>Emergency Contact</b></div>
                                                                 <div class="row">
                                                                     <div class="col">
                                                                         <div class="form-group">
-                                                                            <label>Father</label>
-                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Father's Fullname">
+                                                                            <label>Contact Person</label>
+                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Contact person name">
 
                                                                         </div>
                                                                     </div>
                                                                     <div class="col">
                                                                         <div class="form-group">
-                                                                            <label>Profession</label>
-                                                                            <input type="text" placeholder="Father Profession" class="form-control" name="foccupation" value="{{s.foccupation}}">
+                                                                            <label>Contact Number</label>
+                                                                            <input type="number" placeholder="Contact Number" class="form-control" name="pcontact" value="{{s.pcontact}}">
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Mother</label>
-                                                                            <input type="text" name="nmother" class="form-control" value="{{s.nmother}}" placeholder="Mother's Fullname">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Profession</label>
-                                                                            <input type="text" placeholder="Mother Profession" class="form-control" name="moccupaton" value="{{s.moccupation}}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Parents Contact</label>
-                                                                            <input type="number" name="pcontact" class="form-control" value="{{s.pcontact}}" placeholder="Parents Contact">
-
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Guardian</label>
-                                                                            <input type="text" name="nguardian" class="form-control" value="{{s.nguardian}}" placeholder="Guardian's Name">
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Guardian's Contact</label>
-                                                                            <input type="number" name="gcontact" class="form-control" value="{{s.gcontact}}" placeholder="Guardian's Contact">
-
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
+                                                                
 
 
 
@@ -314,12 +400,12 @@
                                                                         <div class="form-group">
                                                                             <label></label> {% if s.sickness == '' %}
                                                                             <div class="form-check checkbox-xl">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" checked style="accent-color: green !important;" />
+                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" checked style="accent-color: green !important; "  readonly />
                                                                                 <label class="form-check-label" for="checkbox-3" style="font-size: 15px !important;">Physically Fit</label>
                                                                             </div>
                                                                             {% elif s.sickness != '' %}
                                                                             <div class="form-check checkbox-xl">
-                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
+                                                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3"  readonly />
                                                                                 <label class="form-check-label" for="checkbox-3">Physically Fit</label>
                                                                             </div>
                                                                             {% endif %}
@@ -334,7 +420,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             {% if s.proof == '' %}
-                                                                            <a href="#" class="form-conrol" target="__blank">Submitted Proof</a> {% else %}
+                                                                            <a href="#" class="form-conrol" >Submitted Proof</a> {% else %}
                                                                             <a href="{{s.proof.url}}" class="form-conrol">Submitted Proof</a> {% endif %}
                                                                         </div>
 
@@ -363,7 +449,7 @@
 
                                         <div class="card-body">
                                             <label>Platoon / Section</label>
-                                            <select name="platoons" id="" class="form-control">
+                                            <select name="platoons" id="" class="form-control" required>
                                             <option value="{{s.platoons}}" selected >{{s.platoons}}</option>
                                             {% for s in section %}
                                             <option value="{{s.section_created}}">{{s.section_created}}</option>
@@ -378,11 +464,11 @@
 
                                         <div class="card-body">
                                             <h6 class="card-title font-weight-bold">Status</h6>
-                                            <select name="status" id="" class="form-control" required>
-                                                <option value="{{s.status}}"  selected>{{s.status}}</option>
-                                                <option value="ENROLLED" >APPROVE</option>
-                                                <option value="REJECTED"  >DECLINE</option>
-                                               
+                                            <select name="status" id="" class="form-control">
+                                                <option value="{{s.status}}" selected >{{s.status}}</option>
+                                                <option value="DROPPED" >DROP</option>
+                                                <option value="PENDING"  >UN- ENROLL</option>
+                                                <option value="GRADUATE"  >GRADUATE</option>
                                             </select>
                                         </div>
                                     </div>
@@ -400,8 +486,8 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
-                                                {% if user.is_authenticated %}
-                                                <input type="hidden" name="approved_by" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
+                                                {% if request.user.is_authenticated %}
+                                                <input type="hidden" value="{{user.first_name}} {{user.last_name}}" name="modified_by"> {% endif %}
                                                 <button class="btn btn-block btn-success" type="submit">
                                                 <i class="fa-solid fa-file-export"></i>
                                            Update
@@ -434,7 +520,7 @@
         }) 
         {% endfor %}
     </script>  
-    <!-- <script>
+<script>
 
     var config = {
       type: 'doughnut',
@@ -460,7 +546,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script> -->
+     </script> 
 
 </body>
 

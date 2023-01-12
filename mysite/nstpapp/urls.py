@@ -265,7 +265,10 @@ urlpatterns = [
     path('admin1/', views.admin1, name='admin1'),
     path('enrollment/', views.enrollment, name='enrollment'),
     path('renew_enroll/<str:idnumber>', views.renew_enroll, name='renew_enroll'),
-
+    path('ro_enrolled/', views.ro_enrolled, name='ro_enrolled'),
+    path('cw_enrolled/', views.cw_enrolled, name='cw_enrolled'),
+    path('enrolled_profile/<str:id>', views.enrolled_profile, name='enrolled_profile'),
+    path('update_enrolled_student/', views.update_enrolled_student, name='update_enrolled_student'),
 
     
     

@@ -162,8 +162,10 @@
                     <div class="cards" id="green">
                         <div class="inside1">
                             <div class="left">
-                                <h1>8</h1>
-                                <p>All Sections</p>
+                                {% for s in sy %}
+                                <h1>{{s.sem}}</h1>
+                                {% endfor %}
+                                <p>Term</p>
                             </div>
                             <div class="right">
                                 <img class="graph" src="../../static/images/graph.png">
