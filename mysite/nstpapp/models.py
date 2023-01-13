@@ -28,7 +28,7 @@ class extenduser(models.Model):
     section = models.CharField(max_length=20, default='')
     field = models.CharField(max_length=20, default='Select Course')
     picture = models.ImageField(upload_to='images/', null=False)
-    status = models.CharField(max_length=10, default='PENDING')
+    status = models.CharField(max_length=10, default='')
     platoons = models.CharField(max_length=20, default='PROCESSING')
     
     nationality = models.CharField(max_length=20, default='')

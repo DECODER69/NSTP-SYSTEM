@@ -458,7 +458,7 @@ def signup(request):
        
         else:
             user = User.objects.create_user(username=idnumber, password=password, email=email, first_name=firstname, last_name=lastname)
-            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STUDENT', field=field,user=user, first_sem='PENDING')
+            datas = extenduser(s_year=s_year,firstname=firstname, middlename=middle, lastname=lastname, email=email, date_joined = date_joined,  idnumber=idnumber,picture=picture, category = 'STUDENT', field=field,user=user)
             datas.save()
             auth.login(request, user)
             messages.error(request, 'Account created successfully\nPlease Login and complete profile for verification. Thank you')
@@ -506,7 +506,7 @@ def signin(request):
                     user = authenticate(username=username, password=password)
                     if user is not None:
                         auth.login(request, user)
-                        return redirect('/admin_dashboard')
+                        return redirect('/dashboard_page')
                     else:
                         messages.error(request, 'Incorrect password')
                         return redirect('/login_page')
