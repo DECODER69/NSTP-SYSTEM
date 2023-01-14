@@ -398,6 +398,13 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
+                                                {% for s in sy %}
+                                                <input type="text" name="term" id="" value="{{s.sem}}"> {% if s.sem == 'First Term' %}
+                                                <input type="hidden" value="ENROLLED" name="first_sem">
+                                                <input type="hidden" value="" name="second_sem"> {% elif s.sem == 'Second Term' %}
+                                                <input type="hidden" value="COMPLETED" name="first_sem">
+                                                <input type="hidden" value="ENROLLED" name="second_sem"> {% endif %} {% endfor %} {% if user.is_authenticated %}
+                                                <input type="hidden" name="approved_by" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
                                                 <button class="btn btn-block btn-success" type="submit">
                                                 <i class="fa-solid fa-file-export"></i>
                                            Update

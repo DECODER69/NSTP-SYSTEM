@@ -26,11 +26,94 @@
         </div><br>
         <div class="bg">
             <div class="home-content">
-
+                {% for s in name %}
                 <div class="uper">
+                    <div class="card-part">
+                        <div class="card-deck">
+                            <div class="card">
+                                <div class="card-horizontal">
+                                    <div class="img-square-wrapper">
+                                        <img class="" src="{{s.picture.url}}" alt="Card image cap" width="130px" height="130px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">Hi {{s.firstname}} !</h4>
+                                        <p class="card-text"><i class="fa-solid fa-id-card"></i>: {{s.idnumber}}</p>
+
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-horizontal">
+                                    <div class="img-square-wrapper">
+                                        <img class="" src="../../static/images/course1.png" alt="Card image cap" width="130px" height="130px">
+                                    </div>
+                                    <div class="card-body">
+                                        {% if s.status == '' %}
+                                        <h4 class="card-title" title="Click to proceed"><a href="/enrollment" style="color: red;">Enroll Now !</a></h4>
+                                        {% elif s.status == 'PENDING' %}
+                                        <h4 class="card-title">{{s.status}}</h4>
+                                        {% elif s.status == 'ENROLLED' %}
+                                        <h4 class="card-title">{{s.status}} <span style="color: green;"><i class="fa-solid fa-circle-check"></i></span></h4>
+                                        {% elif s.status == 'DROPPED' %}
+                                        <h4 class="card-title">{{s.status}}</h4>
+                                        {% elif s.status == 'REJECTED' %}
+                                        <h4 class="card-title" style="color: red;"> DECLINED</h4>
+                                        {% elif s.status == 'GRADUATE' %}
+                                        <h4 class="card-title">{{s.status}}</h4>
+                                        {% endif %}
+                                        <p class="card-text">Enrollment Status</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-horizontal">
+                                    <div class="img-square-wrapper">
+                                        <img class="" src="../../static/images/course1.png" alt="Card image cap" width="130px" height="130px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{s.field}}</h4>
+                                        <p class="card-text">NSTP Companion Selected</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-horizontal">
+                                    <div class="img-square-wrapper">
+                                        <img class="" src="../../static/images/sec.png" alt="Card image cap" width="130px" height="130px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{s.platoons}}</h4>
+                                        {% if s.field == 'ROTC' %}
+                                        <p class="card-text">Assigned Platoon</p>
+                                        {% else %}
+                                        <p class="card-text">Assigned Section</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Last updated 3 mins ago</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
 
 
                 </div>
+                {% endfor %}
 
                 <br>&nbsp;<br>
 
@@ -156,7 +239,7 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script>   -->
+     </script>  -->
 
 
 </body>

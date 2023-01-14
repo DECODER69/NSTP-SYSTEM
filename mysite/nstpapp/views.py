@@ -285,6 +285,8 @@ def admin_view_profile(request, id):
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id).filter(status='PENDING')
+    
+    sy = school_year.objects.all()
     for s in pres1:
         present.append(s.pres1)
        
@@ -300,7 +302,8 @@ def admin_view_profile(request, id):
         'absent': absent,
         'name': name,
         'pres1':pres1,
-        'abs1':abs1
+        'abs1':abs1,
+        'sy': [sy.last()]
     }
     
 
@@ -4137,47 +4140,17 @@ def update_each_pending(request):
         approved_by = request.POST.get('approved_by')
         date_declined = datetime.datetime.now()
         platoon_count = extenduser.objects.filter(platoons=platoons).count()
+        
+        term = request.POST.get('term')
+        first_sem = request.POST.get('first_sem')
+        second_sem = request.POST.get('second_sem')
         print("hahahah" +str(platoon_count))
         if platoon_count < 29 :
+            if term == 'First Term':
    
-            if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
-                
-                extenduser.objects.filter(id=ids).update(firstname = firstname,
-                middlename = middlename,
-                lastname=lastname,
-                email = email,
-                idnumber = idnumber,
-                address = address,
-                gender = gender,
-                age = age,
-                birthday = birthday,
-                section = section, 
-                cpnumber = cpnumber,
-                civil = civil,
-                nationality = nationality,
-                nfather = nfather,
-                foccupation = foccupation,
-                nmother = nmother,
-                moccupation = moccupation,
-                pcontact = pcontact,
-                nguardian = nguardian,
-                gcontact = gcontact,
-                sickness = sickness,
-                field = field,
-                platoons = platoons,
-                note = note,
-                status = status,
-                first_sem = status,
-                approved_by = approved_by,
-                date_declined = date_declined,
-                
-                
-                )
-                
-                return redirect('/admin_pending')
-                
-            else:
-                extenduser.objects.filter(id=ids).update(firstname = firstname,
+                if status == 'PENDING':
+                    
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
                     middlename = middlename,
                     lastname=lastname,
                     email = email,
@@ -4201,9 +4174,194 @@ def update_each_pending(request):
                     field = field,
                     platoons = platoons,
                     note = note,
-                    status = status
-                )
-                return redirect(request.META['HTTP_REFERER'])
+                    status = status,
+            
+                    approved_by = approved_by,
+                    date_declined = date_declined,
+                    
+                    
+                    )
+                    
+                    return redirect('/admin_pending')
+                    
+                elif status == 'ENROLLED':
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                        first_sem = first_sem,
+                        second_sem = second_sem,
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                    )
+                    return redirect('/admin_pending')
+                    # return redirect(request.META['HTTP_REFERER'])
+                elif status == 'REJECTED':
+                
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                        first_sem = status,
+                        second_sem= second_sem,
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                    
+                    )
+                    
+                return redirect('/admin_pending')
+            
+            elif term == 'Second Term':
+                   
+                if status == 'PENDING':
+                    
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status,
+            
+                    approved_by = approved_by,
+                    date_declined = date_declined,
+                    
+                    
+                    )
+                    
+                    return redirect('/admin_pending')
+                    
+                elif status == 'ENROLLED':
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                        first_sem = first_sem,
+                        second_sem = second_sem,
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                    )
+                    return redirect('/admin_pending')
+                    # return redirect(request.META['HTTP_REFERER'])
+                elif status == 'REJECTED':
+                
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                        first_sem = first_sem,
+                        second_sem= status,
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                    
+                    )
+                    
+                return redirect('/admin_pending')
+                
         else:
             messages.info(request,  str(platoons) + ' platoon has reached the maximum number of students')
             
@@ -4522,6 +4680,7 @@ def rejected_rotc_profile(request, id):
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id)
+    sy = school_year.objects.all()
     for s in pres1:
         present.append(s.pres1)
        
@@ -4537,7 +4696,8 @@ def rejected_rotc_profile(request, id):
         'absent': absent,
         'name': name,
         'pres1':pres1,
-        'abs1':abs1
+        'abs1':abs1,
+        'sy':[sy.last()]
     }
     
 
@@ -4563,102 +4723,266 @@ def rejected_custom(request):
 
 def update_each_rejected(request):
     if request.method == 'POST':
-        ids = request.POST.get('ids')
-        
-        print("sheesh" + str(ids))
-        
-        firstname = request.POST.get('firstname')
-        middlename = request.POST.get('middlename')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        idnumber= request.POST.get('idnumber')
-        address = request.POST.get('address')
-        gender = request.POST.get('gender')
-        age = request.POST.get('age')
-        birthday = request.POST.get('birthday')
-        section = request.POST.get('section')
-        cpnumber = request.POST.get('cpnumber')
-        civil = request.POST.get('civil')
-        nationality = request.POST.get('nationality')
-        nfather = request.POST.get('nfather')
-        foccupation = request.POST.get('foccupation')
-        nmother = request.POST.get('nmother')
-        moccupation = request.POST.get('moccupation')
-        pcontact = request.POST.get('pcontact')
-        nguardian = request.POST.get('nguardian')
-        gcontact = request.POST.get('gcontact')
-        sickness = request.POST.get('sickness')
-        field = request.POST.get('field')
-        platoons = request.POST.get('platoons')
-        note = request.POST.get('note')
-        status = request.POST.get('status')
-        if status == 'PENDING' or status == 'ENROLLED' or status == 'REJECTED' :
+            ids = request.POST.get('ids')
             
-            extenduser.objects.filter(id=ids).update(firstname = firstname,
-            middlename = middlename,
-            lastname=lastname,
-            email = email,
-            idnumber = idnumber,
-            address = address,
-            gender = gender,
-            age = age,
-            birthday = birthday,
-            section = section, 
-            cpnumber = cpnumber,
-            civil = civil,
-            nationality = nationality,
-            nfather = nfather,
-            foccupation = foccupation,
-            nmother = nmother,
-            moccupation = moccupation,
-            pcontact = pcontact,
-            nguardian = nguardian,
-            gcontact = gcontact,
-            sickness = sickness,
-            field = field,
-            platoons = platoons,
-            note = note,
-            status = status,
-            first_sem = status
+            print("sheesh" + str(ids))
             
-            )
+            firstname = request.POST.get('firstname')
+            middlename = request.POST.get('middlename')
+            lastname = request.POST.get('lastname')
+            email = request.POST.get('email')
+            idnumber= request.POST.get('idnumber')
+            address = request.POST.get('address')
+            gender = request.POST.get('gender')
+            age = request.POST.get('age')
+            birthday = request.POST.get('birthday')
+            section = request.POST.get('section')
+            cpnumber = request.POST.get('cpnumber')
+            civil = request.POST.get('civil')
+            nationality = request.POST.get('nationality')
+            nfather = request.POST.get('nfather')
+            foccupation = request.POST.get('foccupation')
+            nmother = request.POST.get('nmother')
+            moccupation = request.POST.get('moccupation')
+            pcontact = request.POST.get('pcontact')
+            nguardian = request.POST.get('nguardian')
+            gcontact = request.POST.get('gcontact')
+            sickness = request.POST.get('sickness')
+            field = request.POST.get('field')
+            platoons = request.POST.get('platoons')
+            note = request.POST.get('note')
+            status = request.POST.get('status')
+            approved_by = request.POST.get('approved_by')
+            date_declined = datetime.datetime.now()
+            platoon_count = extenduser.objects.filter(platoons=platoons).count()
             
-            return redirect('/admin_rejected')
-            
-        else:
-            extenduser.objects.filter(id=ids).update(firstname = firstname,
-                middlename = middlename,
-                lastname=lastname,
-                email = email,
-                idnumber = idnumber,
-                address = address,
-                gender = gender,
-                age = age,
-                birthday = birthday,
-                section = section, 
-                cpnumber = cpnumber,
-                civil = civil,
-                nationality = nationality,
-                nfather = nfather,
-                foccupation = foccupation,
-                nmother = nmother,
-                moccupation = moccupation,
-                pcontact = pcontact,
-                nguardian = nguardian,
-                gcontact = gcontact,
-                sickness = sickness,
-                field = field,
-                platoons = platoons,
-                note = note,
-                status = status
-            )
-        
-        
+            term = request.POST.get('term')
+            first_sem = request.POST.get('first_sem')
+            second_sem = request.POST.get('second_sem')
+            print("hahahah" +str(platoon_count))
+            if platoon_count < 29 :
+                if term == 'First Term':
     
-    # return redirect('/manage_section')
-        return redirect(request.META['HTTP_REFERER'])
-    
-    
+                    if status == 'PENDING':
+                        
+                        extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                        
+                        )
+                        
+                        return redirect('/admin_pending')
+                        
+                    elif status == 'ENROLLED':
+                        extenduser.objects.filter(id=ids).update(firstname = firstname,
+                            middlename = middlename,
+                            lastname=lastname,
+                            email = email,
+                            idnumber = idnumber,
+                            address = address,
+                            gender = gender,
+                            age = age,
+                            birthday = birthday,
+                            section = section, 
+                            cpnumber = cpnumber,
+                            civil = civil,
+                            nationality = nationality,
+                            nfather = nfather,
+                            foccupation = foccupation,
+                            nmother = nmother,
+                            moccupation = moccupation,
+                            pcontact = pcontact,
+                            nguardian = nguardian,
+                            gcontact = gcontact,
+                            sickness = sickness,
+                            field = field,
+                            platoons = platoons,
+                            note = note,
+                            status = status,
+                            first_sem = first_sem,
+                            second_sem = second_sem,
+                            approved_by = approved_by,
+                            date_declined = date_declined,
+                        )
+                        return redirect('/admin_pending')
+                        # return redirect(request.META['HTTP_REFERER'])
+                    elif status == 'REJECTED':
+                    
+                        extenduser.objects.filter(id=ids).update(firstname = firstname,
+                            middlename = middlename,
+                            lastname=lastname,
+                            email = email,
+                            idnumber = idnumber,
+                            address = address,
+                            gender = gender,
+                            age = age,
+                            birthday = birthday,
+                            section = section, 
+                            cpnumber = cpnumber,
+                            civil = civil,
+                            nationality = nationality,
+                            nfather = nfather,
+                            foccupation = foccupation,
+                            nmother = nmother,
+                            moccupation = moccupation,
+                            pcontact = pcontact,
+                            nguardian = nguardian,
+                            gcontact = gcontact,
+                            sickness = sickness,
+                            field = field,
+                            platoons = platoons,
+                            note = note,
+                            status = status,
+                            first_sem = status,
+                            second_sem= second_sem,
+                            approved_by = approved_by,
+                            date_declined = date_declined,
+                            
+                        
+                        )
+                        
+                    return redirect('/admin_pending')
+                
+                elif term == 'Second Term':
+                    
+                    if status == 'PENDING':
+                        
+                        extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                        
+                        )
+                        
+                        return redirect('/admin_pending')
+                        
+                    elif status == 'ENROLLED':
+                        extenduser.objects.filter(id=ids).update(firstname = firstname,
+                            middlename = middlename,
+                            lastname=lastname,
+                            email = email,
+                            idnumber = idnumber,
+                            address = address,
+                            gender = gender,
+                            age = age,
+                            birthday = birthday,
+                            section = section, 
+                            cpnumber = cpnumber,
+                            civil = civil,
+                            nationality = nationality,
+                            nfather = nfather,
+                            foccupation = foccupation,
+                            nmother = nmother,
+                            moccupation = moccupation,
+                            pcontact = pcontact,
+                            nguardian = nguardian,
+                            gcontact = gcontact,
+                            sickness = sickness,
+                            field = field,
+                            platoons = platoons,
+                            note = note,
+                            status = status,
+                            first_sem = first_sem,
+                            second_sem = second_sem,
+                            approved_by = approved_by,
+                            date_declined = date_declined,
+                        )
+                        return redirect('/admin_pending')
+                        # return redirect(request.META['HTTP_REFERER'])
+                    elif status == 'REJECTED':
+                    
+                        extenduser.objects.filter(id=ids).update(firstname = firstname,
+                            middlename = middlename,
+                            lastname=lastname,
+                            email = email,
+                            idnumber = idnumber,
+                            address = address,
+                            gender = gender,
+                            age = age,
+                            birthday = birthday,
+                            section = section, 
+                            cpnumber = cpnumber,
+                            civil = civil,
+                            nationality = nationality,
+                            nfather = nfather,
+                            foccupation = foccupation,
+                            nmother = nmother,
+                            moccupation = moccupation,
+                            pcontact = pcontact,
+                            nguardian = nguardian,
+                            gcontact = gcontact,
+                            sickness = sickness,
+                            field = field,
+                            platoons = platoons,
+                            note = note,
+                            status = status,
+                            first_sem = first_sem,
+                            second_sem= status,
+                            approved_by = approved_by,
+                            date_declined = date_declined,
+                            
+                        
+                        )
+                        
+                    return redirect('/admin_pending')
+                    
+            else:
+                messages.info(request,  str(platoons) + ' platoon has reached the maximum number of students')
+                
+            
+            # return redirect('/manage_section')
+                return redirect(request.META['HTTP_REFERER'])
     
     
 def rejected_cwts_profile(request, id):
@@ -5148,7 +5472,7 @@ def get_all(request):
         
         if first is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='PENDING', status='PENDING', modified_by=approved_by, date_modified=date_modified)
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='', status='', modified_by=approved_by, date_modified=date_modified)
                 
         if second is not None:
             for a in ids2:
@@ -5284,8 +5608,15 @@ def enrollment(request):
 def renew_enroll(request,idnumber):
     if request.method == 'POST':
         idnumber = request.POST.get('idnumber')
-        extenduser.objects.filter(idnumber=idnumber).update(second_sem='ENROLLED', status='ENROLLED')
-        messages.error(request, 'Enrolled')
+        extenduser.objects.filter(idnumber=idnumber).update(second_sem='PENDING', status='PENDING')
+        messages.error(request, 'Enrollment Request Submitted')
+    return redirect('/enrollment')
+
+def enroll_first(request,idnumber):
+    if request.method == 'POST':
+        idnumber = request.POST.get('idnumber')
+        extenduser.objects.filter(idnumber=idnumber).update(first_sem='PENDING', status='PENDING')
+        messages.error(request, 'Enrollment Request Submitted')
     return redirect('/enrollment')
 
 

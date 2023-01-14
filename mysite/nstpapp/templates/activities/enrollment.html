@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             <h3 style="color: red;">
-                                ENROLL NOW ?
+                                Enroll Second Sem ?
                             </h3>
 
                         </div>
@@ -53,6 +53,46 @@
             </div>
         </div>
     </div>
+    <!-- modal 2 -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">First Semester Enrollment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    {% for s in name %}
+                    <form action="{% url 'activities:enroll_first' s.idnumber %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+
+                            <input id="1" type="hidden" value="{{s.idnumber}}" class="form-control" name="idnumber">
+                        </div>
+
+                        <div class="form-group">
+                            <h3 style="color: red;">
+                                Enroll First Sem?
+                            </h3>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Enroll</button>
+                        </div>
+
+                    </form>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
     <section class="page-content">
@@ -120,7 +160,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                {% if user.first_sem == 'PENDING' %}
+                                {% if user.first_sem == '' %}
+                                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal1" title="Enroll">Enroll Now</button><br> {% elif user.first_sem == 'PENDING' %}
                                 <h5 style="font-weight: bolder; color:orange;">{{user.first_sem}} <i class="fa-regular fa-clock"></i></h5>
                                 {% elif user.first_sem == 'REJECTED' %}
                                 <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">{{user.first_sem}} <i class="fa-regular fa-circle-xmark"></i></h5>
@@ -139,7 +180,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                {% if user.second_sem == 'PENDING' %}
+                                {% if user.second_sem == '' %}
+                                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" title="Enroll">Enroll Now</button><br> {% elif user.second_sem == 'PENDING' %}
                                 <h5 style="font-weight: bolder; color:orange;">{{user.second_sem}} <i class="fa-regular fa-clock"></i></h5>
                                 {% elif user.second_sem == 'REJECTED' %}
                                 <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">{{user.second_sem}} <i class="fa-regular fa-circle-xmark"></i></h5>
@@ -147,33 +189,13 @@
                                 <h5 style="font-weight: bolder; color:rgb(0, 172, 0);">{{user.second_sem}} <i class="fa-solid fa-check"></i></h5>
                                 {% elif user.second_sem == 'DROPPED' %}
                                 <h5 style="font-weight: bolder; color:rgb(245, 0, 0);">{{user.second_sem}} <i class="fa-solid fa-user-minus"></i></h5>
-                                {% elif user.second_sem == '' %}
-                                <h5 style="font-weight: bolder; color:rgb(145, 145, 145);">Enrollment is not yet open. <i class="fa-solid fa-hourglass-start"></i></h5>
                                 {% elif user.second_sem == 'COMPLETED' %}
-                                <h5 style="font-weight: bolder; color:rgb(0, 144, 163);">{{user.first_sem}} <i class="fa-solid fa-certificate"></i></h5>
+                                <h5 style="font-weight: bolder; color:rgb(0, 144, 163);">{{user.second_sem}} <i class="fa-solid fa-certificate"></i></h5>
                                 {% endif %}
                                 <label>Second Semester</label>
                             </div>
                         </div>
-                        <hr> {% if user.second_sem == 'PENDING' %}
-                        <div class="col">
-                            <div class="form-group">
-                                {% if user.first_sem == 'COMPLETED' %}
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Enroll Now</button> {% else %}
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" disabled>Enroll Now</button> {% endif %}
-
-                            </div>
-                        </div>
-                        {% elif user.second_sem == 'ENROLLED' %}
-                        <div class="col">
-                            <div class="form-group">
-
-                                <!-- <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" disabled>Enrolled</button> -->
-
-                            </div>
-                        </div>
-
-                        {% endif %}
+                        <hr>
                     </div>
 
 

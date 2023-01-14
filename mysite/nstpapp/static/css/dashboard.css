@@ -143,13 +143,6 @@ section {
 
 /* news */
 
-.uper {
-    width: 100%;
-    height: 30vh;
-    padding: 5px;
-    border-radius: 5px;
-}
-
 .left {
     padding: 5px;
     float: left;
@@ -358,11 +351,10 @@ section {
 .home-content .announce-boxes .recent-announce {
     width: 60%;
     height: auto;
-    border: solid 2px rgba(197, 197, 197, 0.74);
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 40px;
-    background-color: #ffffff;
+    background: rgb(255, 255, 255);
+    border: solid 1px rgb(161, 161, 161);
+    padding: 5px;
+    border-radius: 4px;
 }
 
 .outer {
@@ -473,6 +465,9 @@ section {
 .home-content .announce-boxes .recent-files {
     width: 30%;
     background: rgb(255, 255, 255);
+    border: solid 1px rgb(161, 161, 161);
+    padding: 5px;
+    border-radius: 4px;
 }
 
 .announce-boxes .recent-files {
@@ -595,13 +590,6 @@ h5 {
         background-color: #e4e4e4;
         padding: 0;
     }
-    .uper {
-        width: 100%;
-        height: 40vh;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: transparent !important;
-    }
     .uper2 {
         display: block;
         background: transparent !important;
@@ -682,13 +670,6 @@ gap */
     .bg {
         background-color: #e4e4e4;
         padding: 0;
-    }
-    .uper {
-        width: 100%;
-        height: 40vh;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: transparent !important;
     }
     .uper2 {
         display: block;
@@ -778,13 +759,6 @@ gap */
     .bg {
         background-color: #e4e4e4;
         padding: 0;
-    }
-    .uper {
-        width: 100%;
-        height: 40vh;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: transparent !important;
     }
     .uper2 {
         background-color: #008822 !important;
@@ -907,13 +881,6 @@ gap */
 @media (max-width: 400px) {
     .bg {
         background-color: #e4e4e4;
-    }
-    .uper {
-        width: 100%;
-        height: 40vh;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: transparent !important;
     }
     .uper2 {
         display: block;
@@ -1197,4 +1164,18 @@ gap */
 .st #sabsent i {
     color: #D0021B;
     font-size: 15px;
+}
+
+
+/* for card party=s */
+
+.uper {
+    width: 100%;
+    height: 30vh;
+    padding: 10px;
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
 }
