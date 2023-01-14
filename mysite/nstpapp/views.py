@@ -5838,7 +5838,7 @@ def get_all2(request):
         
         if first is not None:
             for a in ids:
-                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='PENDING', status='PENDING', modified_by=approved_by, date_modified=date_modified)
+                extenduser.objects.filter(id=a).update(first_sem = first , second_sem='', status='', modified_by=approved_by, date_modified=date_modified)
                 
         if second is not None:
             for a in ids2:
@@ -5857,8 +5857,6 @@ def get_all2(request):
         if graduate is not None:
             for a in ids3:
                 extenduser.objects.filter(id=a).update(status = graduate , modified_by=approved_by, date_modified=date_modified)
-                
-            
    
             
         return redirect('/manage_cwts_section')
@@ -6113,3 +6111,37 @@ def cw_enrolled(request):
 
 
 
+def cw_enrolled_profile(request, id):
+    ids= request.POST.get('ids')
+    labels = [ 'ABSENT','PRESENT']
+    present = []
+    absent = []
+    name = extenduser.objects.filter(id=id)
+    pres1 = extenduser.objects.filter(id=id)
+    abs1 = extenduser.objects.filter(id = id)
+    section =  sections.objects.filter(fiel = 'CWTS')
+    
+    print(ids)
+    getSection = request.POST.get('getSection')
+    details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
+    for s in pres1:
+        present.append(s.pres1)
+       
+    for k in abs1:
+        absent.append(k.abs1)
+    context = {
+        'ids': ids,
+        'getSection': getSection,
+        'details': details,
+        'section': section,
+        'labels': labels,
+        'present': present,
+        'absent': absent,
+        'name': name,
+        'pres1':pres1,
+        'abs1':abs1
+    }
+    
+
+    
+    return render(request, 'activities/cw_enrolled_profile.html', context)

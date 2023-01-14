@@ -271,6 +271,7 @@ urlpatterns = [
     path('update_enrolled_student/', views.update_enrolled_student, name='update_enrolled_student'),
     path('enroll_first/<str:idnumber>', views.enroll_first, name='enroll_first'),
     path('cw_enrolled/', views.cw_enrolled, name='cw_enrolled'),
+    path('cw_enrolled_profile/<str:id>',views.cw_enrolled_profile, name='cw_enrolled_profile'),	
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),
