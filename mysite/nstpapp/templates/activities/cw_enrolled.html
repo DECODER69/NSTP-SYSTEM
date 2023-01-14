@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP</title>
+    <link rel="stylesheet" href="../../static/admin_css/ro_enrolled.css">
+
+    <!-- for table pagination -->
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+</head>
+
+<body>
+    {{ redirect_to_login_immediately }} {% include 'activities/admin_nav.html' %}
+
+
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-home'></i> ENROLLED ROTC</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
+        <div class="bg">
+            <div class="table-responsive">
+
+                <h4 style="color:#5e5e5e;">List of all Enrolled <span style="color: rgb(0, 0, 0); font-weight:bolder;">CWTS</span> Students</h4><br>
+
+                <h6 style="color: rgb(0, 136, 0);">{{total}} Student(s)</h6>
+                <br>
+                <table class="table table-bordered" id="myTable">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">ID Number</th>
+                            <th scope="col">Full name</th>
+                            <th scope="col">Date Registered</th>
+                            <th scope="col">Date Approved</th>
+                            <th scope="col">Approved by</th>
+                            <th scope="col">Component</th>
+                            <th scope="col">Platoon</th>
+                            <th scope="col">View Profile</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in approved %} {% if s.category == 'STUDENT' %}
+                        <tr>
+                            <td>
+                                {{s.idnumber}}
+                            </td>
+                            <td>{{s.firstname}} {{s.middlename}} {{s.lastname}}</td>
+                            <td>{{s.date_joined}}</td>
+
+
+                            <td>{{s.date_declined}}</td>
+                            <td>{{s.approved_by}}</td>
+                            <td>{{s.field}}</td>
+                            {% if s.platoons == 'PROCESSING' %}
+                            <td>
+                                <h6 style="background-color: rgb(255, 60, 0); padding:2px;border-radius:5px;color:white;">{{s.platoons}}</h6>
+                            </td>
+                            {% else %}
+                            <td>
+                                <h6 style="background-color: rgb(97, 121, 167); padding:2px;border-radius:5px; color:white;">{{s.platoons}}</h6>
+                            </td>
+                            {% endif %}
+                            <td class="tar">
+                                <a href="{% url 'activities:enrolled_profile' s.id %}" title="Click to view profile"><i class="fa-solid fa-eye"></i>
+                                        View Profile
+                                        </a>
+                            </td>
+
+
+                        </tr>
+                        {% else %} {% endif %} {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+
+</body>
+
+</html>

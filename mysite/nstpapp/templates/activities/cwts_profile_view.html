@@ -399,7 +399,12 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
-                                                {% if user.is_authenticated %}
+                                                {% for s in sy %}
+                                                <input type="hidden" name="term" id="" value="{{s.sem}}"> {% if s.sem == 'First Term' %}
+                                                <input type="hidden" value="ENROLLED" name="first_sem">
+                                                <input type="hidden" value="" name="second_sem"> {% elif s.sem == 'Second Term' %}
+                                                <input type="hidden" value="COMPLETED" name="first_sem">
+                                                <input type="hidden" value="ENROLLED" name="second_sem"> {% endif %} {% endfor %} {% if user.is_authenticated %}
                                                 <input type="hidden" name="approved_by" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
                                                 <button class="btn btn-block btn-success" type="submit">
                                                 <i class="fa-solid fa-file-export"></i>
@@ -451,16 +456,16 @@
 
      </script> -->
 
-     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-     <script>
+    <!-- <script>
           {% for msg in messages %}
           Swal.fire({
               icon: 'msg.icon',
               text: '{{ msg }}'
           }) 
           {% endfor %}
-      </script>  
+      </script>   -->
 
 </body>
 

@@ -59,7 +59,7 @@
                                 <th scope="col">DATE DECLINED</th>
                                 <th scope="col">DECLINED BY</th>
                                 <th scope="col" style="text-align: center;">VIEW PROFILE</th>
-                                <th scope="col" style="text-align: center;">Action</th>
+                                <!-- <th scope="col" style="text-align: center;">Action</th> -->
 
                             </tr>
                         </thead>
@@ -85,7 +85,7 @@
                                 </td>
 
 
-                                <td class="actions">
+                                <!-- <td class="actions">
                                     <div class="ehe">
                                         <form action="{% url 'activities:c_approve' s.idnumber %}" method="post">
                                             {% csrf_token %}
@@ -97,7 +97,7 @@
                                     </div>
 
 
-                                </td>
+                                </td> -->
 
                             </tr>
                             {% endif %} {% endfor %}

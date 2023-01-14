@@ -401,7 +401,7 @@
                                         <div class="card-body">
                                             <div class="px-xl-3">
                                                 {% for s in sy %}
-                                                <input type="text" name="term" id="" value="{{s.sem}}"> {% if s.sem == 'First Term' %}
+                                                <input type="hidden" name="term" id="" value="{{s.sem}}"> {% if s.sem == 'First Term' %}
                                                 <input type="hidden" value="ENROLLED" name="first_sem">
                                                 <input type="hidden" value="" name="second_sem"> {% elif s.sem == 'Second Term' %}
                                                 <input type="hidden" value="COMPLETED" name="first_sem">

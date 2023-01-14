@@ -270,7 +270,7 @@ urlpatterns = [
     path('enrolled_profile/<str:id>', views.enrolled_profile, name='enrolled_profile'),
     path('update_enrolled_student/', views.update_enrolled_student, name='update_enrolled_student'),
     path('enroll_first/<str:idnumber>', views.enroll_first, name='enroll_first'),
-    
+    path('cw_enrolled/', views.cw_enrolled, name='cw_enrolled'),
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

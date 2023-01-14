@@ -156,7 +156,48 @@
                             </div>
                         </div>
                     </div>
+                    {% for k in sy %} {% if k.sem == 'First Term' %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                {% if user.first_sem == '' %}
+                                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal1" title="Enroll">Enroll Now</button><br> {% elif user.first_sem == 'PENDING' %}
+                                <h5 style="font-weight: bolder; color:orange;">{{user.first_sem}} <i class="fa-regular fa-clock"></i></h5>
+                                {% elif user.first_sem == 'REJECTED' %}
+                                <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">{{user.first_sem}} <i class="fa-regular fa-circle-xmark"></i></h5>
+                                {% elif user.first_sem == 'ENROLLED' %}
+                                <h5 style="font-weight: bolder; color:rgb(0, 172, 0);">{{user.first_sem}} <i class="fa-solid fa-check"></i></h5>
+                                {% elif user.first_sem == 'DROPPED' %}
+                                <h5 style="font-weight: bolder; color:rgb(245, 0, 0);">{{user.first_sem}} <i class="fa-solid fa-user-minus"></i></h5>
+                                {% elif user.first_sem == 'COMPLETED' %}
+                                <h5 style="font-weight: bolder; color:rgb(0, 144, 163);">{{user.first_sem}} <i class="fa-solid fa-certificate"></i></h5>
+                                {% endif %}
+                                <label>First Semester</label>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                {% if user.second_sem == '' %}
+                                <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">Enrollment is Not Yet Open</h5> {% elif user.second_sem == 'PENDING' %}
+                                <h5 style="font-weight: bolder; color:orange;">{{user.second_sem}} <i class="fa-regular fa-clock"></i></h5>
+                                {% elif user.second_sem == 'REJECTED' %}
+                                <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">{{user.second_sem}} <i class="fa-regular fa-circle-xmark"></i></h5>
+                                {% elif user.second_sem == 'ENROLLED' %}
+                                <h5 style="font-weight: bolder; color:rgb(0, 172, 0);">{{user.second_sem}} <i class="fa-solid fa-check"></i></h5>
+                                {% elif user.second_sem == 'DROPPED' %}
+                                <h5 style="font-weight: bolder; color:rgb(245, 0, 0);">{{user.second_sem}} <i class="fa-solid fa-user-minus"></i></h5>
+                                {% elif user.second_sem == 'COMPLETED' %}
+                                <h5 style="font-weight: bolder; color:rgb(0, 144, 163);">{{user.second_sem}} <i class="fa-solid fa-certificate"></i></h5>
+                                {% endif %}
+                                <label>Second Semester</label>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    {% elif k.sem == 'Second Term' %}
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -197,6 +238,7 @@
                         </div>
                         <hr>
                     </div>
+                    {% endif %} {% endfor %}
 
 
                 </div>
