@@ -4006,8 +4006,10 @@ def send_response(request, id):
 def student_update(request):
     if request.method == 'POST':
         ids = request.POST.get('ids')
+        all_id = extenduser.objects.get(id=ids)
         
-        print("sheesh" + str(ids))
+        
+        print("sheesh" + str(all_id.proof))
         
         firstname = request.POST.get('firstname')
         middlename = request.POST.get('middlename')
@@ -4030,8 +4032,17 @@ def student_update(request):
         nguardian = request.POST.get('nguardian')
         gcontact = request.POST.get('gcontact')
         field = request.POST.get('field')
+        sickness = request.POST.get('sickness')
+        
       
         status = request.POST.get('status')
+        if len(request.FILES) != 0:
+            if all_id.proof:
+                os.remove(all_id.proof.path)
+            else:
+                print("ERROR")
+                all_id.proof = request.FILES['proof']
+                all_id.save()
         if status == 'PENDING' or status == 'DROPPED' or status == 'GRADUATE' :
             
             extenduser.objects.filter(user=request.user).update(firstname = firstname,
@@ -4057,9 +4068,12 @@ def student_update(request):
        
             field = field,
   
-            status = status
+            status = status,
+            sickness=sickness,
+        
             
             )
+
             
             return redirect('/profile_page')
             
@@ -4085,12 +4099,13 @@ def student_update(request):
                 nguardian = nguardian,
                 gcontact = gcontact,
                 field = field,
+                sickness=sickness,
+                proof=proof
           
             
                 
             )
-        
-        
+
     
     return redirect('/profile_page')
         # return redirect(request.META['HTTP_REFERER'])

@@ -1,0 +1,28 @@
+- lagyan ng buttom for admin and staff for log in. 
+- dapat naka rekta na after dun sa login. 
+-Clarify status indicator for enrollees 
+-Login specific url, depending on user type
+-admin should not be able to access database
+-Student profile viewable via without adding to section
+-Complete data before accepting student if admin/applying for student
+- '*' if required profile information
+-incomplete info should redirect user to profile completion page
+-profile update button should be apply
+-Age field in profile should be read-only
+-Health status moved with rest of form
+-No health issue/have health issue radio button in health status 
+-General search in both components or per conponent (to identify student component&platoon/section) or put search bar in dashboard
+-student status if dropped for a semester, to prevent requiring to retake
+-manage section require pop-up to show which students for action picked
+-admin should be able to change grade (if due to human error)
+-remark if passed or failed
+-Demerit checkbox not input user by number
+-attendance change id number to student info
+-Attendance spreadsheet add column if on-time or late, add remarks
+-CWTS grading percentage should be whole number in input fields
+-cwts grade should be equal to 1 before saving, change to numeric field not text input
+-logout button add tooltip to clarify or change logo
+-managing students when 1st and 2nd sem complete should be automatically graduated
+-uncheckable if student finished semester
+-fix url models
+- spelling of certificate (hereby plus department)

@@ -69,7 +69,7 @@
         <!-- whole body -->
         {% for s in details %}
         <div class="bg" id="ggs">
-            <form action="{% url 'activities:student_update' %}" method="POST">
+            <form action="{% url 'activities:student_update'  %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="containers">
                     <div class="row flex-lg-nowrap">
@@ -394,18 +394,19 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Contact Number <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input type="text" placeholder="Number" class="form-control" name="pcontact" value="{{s.pcontact}}" minlength="11" maxlength="11" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+                                                                            <input required type="text" placeholder="Number" class="form-control" name="pcontact" value="{{s.pcontact}}" minlength="11" maxlength="11" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
                                                                         </div>
                                                                     </div>
 
                                                                 </div>
                                                                 <br>
-                                                                <div class="mb-2"><b>Health</b></div>
+                                                                <hr>
+                                                                <div class="mb-2"><b>Health <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></b></div>
                                                                 <br>
                                                                 <div class="row" id="ro">
                                                                     <div class="col">
-                                                                        <div class="form-group">
-                                                                            <input type="checkbox" id="phy" class="single-checkbox">
+                                                                        <div class="form-group" required>
+                                                                            <input type="checkbox" id="myCheckbox1" class="single-checkbox">
                                                                             <label for="">I am Physically Fit</label>
                                                                             <br>
 
@@ -418,7 +419,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label for="">List Your Health Issues here</label>
-                                                                            <textarea class="required form-control"></textarea>
+                                                                            <textarea name="sickness" class="required form-control" title="Please disegard if you are physically fit" required>{{s.sickness}}</textarea>
 
                                                                         </div>
 
@@ -426,9 +427,18 @@
                                                                             <label for="">Upload Your Medical certificate</label>
 
                                                                             <div class="custom-file">
-                                                                                <input type="file" class="required custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                                                <input type="file" class="required custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="proof">
                                                                                 <label class=" custom-file-label" for="inputGroupFile01">Choose file</label>
                                                                             </div>
+
+                                                                        </div>
+                                                                        <br>
+
+                                                                        <div class="form-group">
+                                                                            <label for="">Submitted Medical Certificate</label>
+                                                                            <br> {% if s.proof == '' %}
+                                                                            <a href="">Medical Certificate</a> {% else %}
+                                                                            <a href="{{s.proof.url}}" target="_blank">Medical Certificate</a> {% endif %}
 
                                                                         </div>
 
@@ -437,7 +447,7 @@
 
 
                                                                 </div>
-
+                                                                <br>
                                                                 <div class="row">
                                                                     <div class="col">
                                                                         <div class="form-group">
@@ -466,14 +476,14 @@
                                 </div>
             </form>
 
-            <div class="col-12 col-md-3 mb-3">
+            <!-- <div class="col-12 col-md-3 mb-3">
                 <div class="card">
                     <form action="{% url 'activities:edit_health' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="card-body">
                             <h6 class="card-title font-weight-bold">Health Status</h6>
 
-                            <textarea class="form-control" rows="3" placeholder="Health Conditions" name="sickness">{{s.sickness}}</textarea>
+                            <textarea class="form-control" rows="3" placeholder="Health Conditions">{{s.sickness}}</textarea>
                         </div>
 
                         <div class="card-body">
@@ -492,7 +502,7 @@
                                                     <div class="fileUpload btn btn-orange">
                                                         <img src="../../static/images/cloud-computing.png" class="icon">
                                                         <span class="upl" id="upload">Select</span>
-                                                        <input type="file" required class="upload up" id="up" onchange="readURL(this);" name="proof" />
+                                                        <input type="file" required class="upload up" id="up" onchange="readURL(this);" />
                                                         <input type="hidden" name="ids" value="{{s.id}}">
                                                     </div>
                                                     <br>&nbsp;&nbsp;<br>
@@ -517,8 +527,8 @@
                             </div>
                         </div>
                     </form>
-                </div>
-                <br>
+                </div> -->
+            <br>
 
 
             </div>
@@ -630,6 +640,15 @@
 
         $myCheckbox.on('click', function() {
             this.checked ? $required.prop('required', true) : $required.prop('required', false);
+        });
+    </script>
+
+    <script>
+        var $myCheckbox = $('#myCheckbox1'),
+            $required = $('.required');
+
+        $myCheckbox.on('click', function() {
+            this.checked ? $required.prop('disabled', true) : $required.prop('required', false);
         });
     </script>
 
