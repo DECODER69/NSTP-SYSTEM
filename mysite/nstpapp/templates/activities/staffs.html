@@ -34,8 +34,11 @@
                             <th scope="col">NSTP Companion</th>
                             <th scope="col">Date Registered</th>
                             <th scope="col">Date Approved</th>
-
+                            <th scope="col">Staff Status</th>
                             <th scope="col">View</th>
+                            <th scope="col" style="background-color: rgb(156, 245, 168);">Options</th>
+
+
                             <th scope="col">Action</th>
 
 
@@ -45,13 +48,49 @@
                     <tbody>
                         {% for s in staffs %}
                         <tr>
-                            <td>{{s.idnumber}}</td>
-                            <td>{{s.firstname}} {{s.lastname}}</td>
-                            <td>{{s.field}}</td>
-                            <td>{{s.date_joined}}</td>
-                            <td>{{s.date_declined}}</td>
-                            <td></td>
-                            <td></td>
+                            <form action="{% url 'activities:approve_staff' s.user_id %}" method="POST">
+                                {% csrf_token %}
+                                <td>{{s.idnumber}}</td>
+                                <td>{{s.firstname}} {{s.lastname}}</td>
+                                <td>{{s.field}}</td>
+                                <td>{{s.date_joined}}</td>
+                                <td>{{s.date_declined}}</td>
+                                {% if s.staff_status == 'NONE' %}
+                                <td style="display: flex; justify-content:space-between;">Not yet Assigned <span style="color: red;"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                                {% else %}
+                                <td style="display: flex; justify-content:space-between;">{{s.staff_status}} <span style="color:rgb(0, 175, 15);"><i class="fa-solid fa-circle-check"></i></span></td>
+                                {% endif %}
+                                <td>
+
+                                    <a href="{% url 'activities:staff_profile' s.id %}"><i class="fa-solid fa-eye"></i> View profile</a>
+
+                                </td>
+
+
+                                <td>
+                                    <fieldset>
+
+                                        <div>
+                                            <input type="radio" id="dewey" name="staff" value="1">
+                                            <label for="dewey">Set as Staff</label>
+                                        </div>
+
+                                        <div>
+                                            <input type="radio" id="louie" name="none" value="2">
+                                            <label for="louie">Remove as Staff</label>
+                                        </div>
+                                    </fieldset>
+                                </td>
+
+
+
+                                <td>
+                                    <input type="hidden" value="{{s.user_id}}" name="ids">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </td>
+                            </form>
+
+
                         </tr>
                         {% endfor %}
                     </tbody>

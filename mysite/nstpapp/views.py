@@ -6232,3 +6232,27 @@ def staffs(request):
         'staffs':staffs
     }
     return render(request, 'activities/staffs.html', context)
+
+def staff_profile(request, id):
+    name = extenduser.objects.filter(id=id)
+    context = {
+        'name': name
+    }
+    return render(request, 'activities/staff_profile.html', context)
+
+def approve_staff(request, user_id):
+    if request.method == 'POST':
+        ids=request.POST.get('ids')
+        staff = request.POST.get('staff')
+        none = request.POST.get('none')
+        datess = datetime.datetime.now() 
+        
+        if staff is not None:
+            print(staff)
+            extenduser.objects.filter(user_id=ids).update(staff_status='STAFF', date_declined=datess)
+            User.objects.filter(id=ids).update(is_staff='1')
+        elif none is not None:
+            print(none)
+            extenduser.objects.filter(user_id=ids).update(staff_status='NONE', date_declined=datess)
+            User.objects.filter(id=ids).update(is_staff='0')
+    return redirect('/staffs')

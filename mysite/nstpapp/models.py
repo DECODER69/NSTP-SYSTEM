@@ -219,6 +219,7 @@ class extenduser(models.Model):
     date_declined = models.DateTimeField(null=True)
     modified_by = models.CharField(max_length=20, default='')
     date_modified = models.DateTimeField(null=True)
+    staff_status = models.CharField(max_length=20, default='NONE')
     
     
     
