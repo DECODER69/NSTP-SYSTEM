@@ -23,7 +23,7 @@
         </div><br>
         <div class="bg">
             <div class="announce table-responsive">
-                <h5>List of all Staffs</h5>
+                <h5><i class="fa-solid fa-users-gear"></i> List of all Staffs </h5>
                 <br>
                 <table id="example2" class="table table-bordered table-hover ">
                     <thead class="thead">
@@ -48,35 +48,37 @@
                     <tbody>
                         {% for s in staffs %}
                         <tr>
+
+                            <td>{{s.idnumber}}</td>
+                            <td>{{s.firstname}} {{s.lastname}}</td>
+                            <td>{{s.field}}</td>
+                            <td>{{s.date_joined}}</td>
+                            <td>{{s.date_declined}}</td>
+                            {% if s.staff_status == 'NONE' %}
+                            <td style="display: flex; justify-content:space-between;">Not yet Assigned <span style="color: red;"><i class="fa-solid fa-circle-xmark"></i></span></td>
+                            {% else %}
+                            <td style="display: flex; justify-content:space-between;">{{s.staff_status}} <span style="color:rgb(0, 175, 15);"><i class="fa-solid fa-circle-check"></i></span></td>
+                            {% endif %}
+                            <td>
+
+                                <a href="{% url 'activities:staff_profile' s.id %}"><i class="fa-solid fa-eye"></i> View profile</a>
+
+                            </td>
+
                             <form action="{% url 'activities:approve_staff' s.user_id %}" method="POST">
                                 {% csrf_token %}
-                                <td>{{s.idnumber}}</td>
-                                <td>{{s.firstname}} {{s.lastname}}</td>
-                                <td>{{s.field}}</td>
-                                <td>{{s.date_joined}}</td>
-                                <td>{{s.date_declined}}</td>
-                                {% if s.staff_status == 'NONE' %}
-                                <td style="display: flex; justify-content:space-between;">Not yet Assigned <span style="color: red;"><i class="fa-solid fa-circle-xmark"></i></span></td>
-                                {% else %}
-                                <td style="display: flex; justify-content:space-between;">{{s.staff_status}} <span style="color:rgb(0, 175, 15);"><i class="fa-solid fa-circle-check"></i></span></td>
-                                {% endif %}
-                                <td>
-
-                                    <a href="{% url 'activities:staff_profile' s.id %}"><i class="fa-solid fa-eye"></i> View profile</a>
-
-                                </td>
-
-
                                 <td>
                                     <fieldset>
 
+
+
                                         <div>
                                             <input type="radio" id="dewey" name="staff" value="1">
-                                            <label for="dewey">Set as Staff</label>
+                                            <label for="dewey">Assign as Staff</label>
                                         </div>
 
                                         <div>
-                                            <input type="radio" id="louie" name="none" value="2">
+                                            <input type="radio" id="louie" name="staff" value="0">
                                             <label for="louie">Remove as Staff</label>
                                         </div>
                                     </fieldset>

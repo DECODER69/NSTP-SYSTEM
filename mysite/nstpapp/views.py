@@ -6247,11 +6247,11 @@ def approve_staff(request, user_id):
         none = request.POST.get('none')
         datess = datetime.datetime.now() 
         
-        if staff is not None:
+        if staff == str(1):
             print(staff)
             extenduser.objects.filter(user_id=ids).update(staff_status='STAFF', date_declined=datess)
             User.objects.filter(id=ids).update(is_staff='1')
-        elif none is not None:
+        else:
             print(none)
             extenduser.objects.filter(user_id=ids).update(staff_status='NONE', date_declined=datess)
             User.objects.filter(id=ids).update(is_staff='0')
