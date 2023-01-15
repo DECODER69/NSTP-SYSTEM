@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSTP</title>
+    <link rel="stylesheet" href="../../static/admin_css/staffs.css">
+    <link rel="stylesheet" href="../../static/admin_css/minmin.css">
+</head>
+
+{% include 'activities/loader.html' %}
+
+<body>
+    {{ redirect_to_login_immediately }} {% include 'activities/admin_nav.html' %}
+
+    <section class="page-content">
+        <div class="heads">
+            <h1 class="text"><i class='bx bx-home'></i> NSTP STAFFS</h1><br>
+            <h1 class="text" id="time"></h1>
+
+        </div><br>
+        <div class="bg">
+            <div class="announce table-responsive">
+                <h5>List of all Staffs</h5>
+                <br>
+                <table id="example2" class="table table-bordered table-hover ">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Fullname</th>
+
+                            <th scope="col">NSTP Companion</th>
+                            <th scope="col">Date Registered</th>
+                            <th scope="col">Date Approved</th>
+
+                            <th scope="col">View</th>
+                            <th scope="col">Action</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for s in staffs %}
+                        <tr>
+                            <td>{{s.idnumber}}</td>
+                            <td>{{s.firstname}} {{s.lastname}}</td>
+                            <td>{{s.field}}</td>
+                            <td>{{s.date_joined}}</td>
+                            <td>{{s.date_declined}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- </div> -->
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <script src="../../static/js/pag.js"></script>
+    <script src="../../static/js/datbot.js"></script>
+    <script src="../../static/js/dat.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example2').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
+</body>
+
+</html>

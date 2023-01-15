@@ -61,7 +61,9 @@
                             <tbody>
 
                                 <!-- FOR FIRST SEM ONLY -->
-                                {% for s in rows %}{% for k in semester %}{% if k.sem == 'First Term' %}
+                                {% for s in rows %}
+                                {% for k in semester %}
+                                {% if k.sem == 'First Term' %}
                                 <tr>
                                     <td><input type="text" value="{{s.ID_Number.0}}{{s.ID_Number.1}}{{s.ID_Number.2}}{{s.ID_Number.3}}{{s.ID_Number.4}}{{s.ID_Number.5}}{{s.ID_Number.6}}{{s.ID_Number.7}}{{s.ID_Number.8}}{{s.ID_Number.9}}{{s.ID_Number.10}}{{s.ID_Number.11}}"
                                             readonly class="form-control" name="ids"></td>
@@ -77,7 +79,9 @@
                                     <!-- <td><input type="text" value="{{s.Demerits}}" readonly class="form-control" name="demerits2"></td> -->
 
                                 </tr>
-                                {% endif %} {% endfor %} {% endfor %}
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
                             </tbody>
 
                             <input type="hidden" value="{{td_count}}" name="td_count">

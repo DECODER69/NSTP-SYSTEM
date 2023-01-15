@@ -100,9 +100,10 @@ def dashboard_page(request):
         'present': present,
         'absent': absent,
         'labels': labels,
-        'term':[term.last()],
         'present2': present2,
         'absent2': absent2,
+        'term':[term.last()],
+
         
       
     }
@@ -2408,7 +2409,7 @@ def open_csv(request):
             'rows': df.to_dict('records'),
             'td_count':td_count,
             'getSection':getSection,
-            'semester':semester
+            'semester':[semester.last()]
         }
         return render(request, 'activities/open_csv.html', context)
     
@@ -2637,7 +2638,7 @@ def open_cwts_csv(request):
             'rows': df.to_dict('records'),
             'td_count':td_count,
             'getSection':getSection,
-            'semester':semester
+            'semester':[semester.last()]
         }
         return render(request, 'activities/read_csv.html', context)
     
@@ -2729,59 +2730,59 @@ def save_cwts_attendance(request):
                 messages.success(request, 'Attendance   updated')
         if td_count == str(2):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD2_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(3):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD3_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(4):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD4_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(5):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD5_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(6):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD6_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(7):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD7_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(8):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD8_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(9):
             for c in ids2 : 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD9_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(10):
             for c in ids2 : 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD10_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(11):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD11_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(12):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD12_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(13):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD13_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(14):
             for c in ids2 : 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD14_2='1')
                 messages.success(request, 'Attendance   updated')
         if td_count == str(15):
             for c in ids2: 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1')
+                extenduser.objects.filter(idnumber=c).update(TD15_2='1')
                 messages.success(request, 'Attendance   updated')
     return redirect('/cwts_attendance')
 def del_cwts_tday(request, id):
@@ -2868,7 +2869,10 @@ def update_att_credits_cwts(request):
     if request.method == 'POST':
         pres1 = request.POST.getlist('pres1')
         abs1 = request.POST.getlist('abs1')
+        pres2 = request.POST.getlist('pres2')
+        abs2 = request.POST.getlist('abs2')
         percentages = request.POST.getlist('percentage')
+        percentages2 = request.POST.getlist('percentage2')
       
 
         ids = request.POST.getlist('getId')
@@ -2883,8 +2887,8 @@ def update_att_credits_cwts(request):
         # extenduser.objects.filter
  
         
-        for k, l in zip(ids2, credits2):
-            extenduser.objects.filter(id=k).update(att_credits_2=l)
+        for k, l, m, n, o in zip(ids2, credits2, pres2, abs2, percentages2):
+            extenduser.objects.filter(id=k).update(att_credits_2=l, pres2=m, abs2=n, percentage2=o)
     return redirect('/cwts_attendance_tab')
 
 
@@ -6220,3 +6224,11 @@ def cw_enrolled_profile(request, id):
 
     
     return render(request, 'activities/cw_enrolled_profile.html', context)
+
+
+def staffs(request):
+    staffs = extenduser.objects.filter(category='STAFF')
+    context = {
+        'staffs':staffs
+    }
+    return render(request, 'activities/staffs.html', context)

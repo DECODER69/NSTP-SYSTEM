@@ -116,7 +116,7 @@
                                 <hr>
                                 <br>
                                 <div id="container" style="width: 100%; ">
-                                    <canvas id="pie-chart"></canvas>
+                                    <canvas id="pie-chart2"></canvas>
                                 </div><br>
                                  {% for s in name %}{% if s.second_sem == 'ENROLLED' or s.second_sem == 'COMPLETED' and s.percentage2 != '' %}
                                 <h5 style="text-align:center;">{{s.percentage2 }} %</h5>
@@ -595,10 +595,9 @@
 
      </script>  
 
-
      <script>
 
-        var config = {
+        var config2 = {
           type: 'doughnut',
           data: {
             datasets: [{
@@ -617,13 +616,12 @@
         
     
         window.onload = function() {
-          var ctx = document.getElementById('pie-chart').getContext('2d');
+          var ctx = document.getElementById('pie-chart2').getContext('2d');
        
-          window.myPie = new Chart(ctx, config);
+          window.myPie = new Chart(ctx, config2);
         };
     
-         </script> 
-
+         </script>  
     <script>
         var fileTypes = ['pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'txt']; //acceptable file types
         function readURL(input) {
