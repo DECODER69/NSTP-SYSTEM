@@ -114,7 +114,7 @@
 
                                     <td>
                                         <input type="hidden" value="{{s.id}}" name="getId" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
-                                        <input type="hidden" name="percentage" id="percentage" class="percentage">
+                                        <input type="text" name="percentage" id="percentage" class="percentage">
 
                                     </td>
                                     <td class="tds">{{s.TD1}}</td>
@@ -139,6 +139,7 @@
                                         <input type="hidden" name="pres1" id="pres1">
                                         <input type="hidden" name="abs1" id="abs1">
 
+
                                     </td>
                                     <td id="result" class="result" style="display: none;">
 
@@ -154,7 +155,7 @@
 
                                     <td>
                                         <input type="hidden" value="{{s.id}}" name="ids2" id="id"> {{s.firstname}} {{s.middlename}} {{s.lastname}}
-
+                                        <input type="text" name="percentage2" id="percentage2" class="percentage">
 
                                     </td>
                                     <td class="tds">{{s.TD1_2}}</td>
@@ -176,6 +177,8 @@
 
                                     <td>
                                         <input name="credits2" value="" id="input" readonly>
+                                        <input type="hidden" name="pres2" id="pres2">
+                                        <input type="hidden" name="abs2" id="abs2">
                                     </td>
                                     <td id="result" class="result" style="display: none;">
 
@@ -242,7 +245,10 @@
                 $(this).find('#input').val(results.toFixed(2));
                 $(this).find('#pres1').val(present.toFixed(2));
                 $(this).find('#abs1').val(absent.toFixed(2));
+                $(this).find('#pres2').val(present.toFixed(2));
+                $(this).find('#abs2').val(absent.toFixed(2));
                 $(this).find('#percentage').val(percentage.toFixed(2));
+                $(this).find('#percentage2').val(percentage.toFixed(2));
                 console.log("percentage " + percentage)
 
             })

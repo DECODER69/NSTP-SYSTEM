@@ -71,15 +71,28 @@ def dashboard_page(request):
     labels = [ 'ABSENT','PRESENT']
     present = []
     absent = []
+    
+    present2 = []
+    absent2 = []
     name = extenduser.objects.filter(user = request.user)
     pres1 = extenduser.objects.filter(user = request.user)
     abs1 = extenduser.objects.filter(user = request.user)
+    
+    pres2 = extenduser.objects.filter(user = request.user)
+    abs2 = extenduser.objects.filter(user = request.user)
+    term = school_year.objects.all()
     
     for s in pres1:
         present.append(s.pres1)
        
     for k in abs1:
         absent.append(k.abs1)
+    
+    for s in pres2:
+        present2.append(s.pres2)
+       
+    for k in abs2:
+        absent2.append(k.abs2)
 
     context = {
         'name': name,
@@ -87,6 +100,9 @@ def dashboard_page(request):
         'present': present,
         'absent': absent,
         'labels': labels,
+        'term':[term.last()],
+        'present2': present2,
+        'absent2': absent2,
         
       
     }
@@ -99,19 +115,31 @@ def profile_page(request):
     labels = [ 'ABSENT','PRESENT']
     present = []
     absent = []
+    
+    present2 = []
+    absent2 = []
     name = extenduser.objects.filter(user=request.user)
     pres1 = extenduser.objects.filter(user=request.user)
     abs1 = extenduser.objects.filter(user=request.user)
+    pres2 = extenduser.objects.filter(user = request.user)
+    abs2 = extenduser.objects.filter(user = request.user)
     section = sections.objects.all()
     
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(user=request.user)
+    term = school_year.objects.all()
     for s in pres1:
         present.append(s.pres1)
        
     for k in abs1:
         absent.append(k.abs1)
+        
+    for s in pres2:
+        present2.append(s.pres2)
+       
+    for k in abs2:
+        absent2.append(k.abs2)
     context = {
         'ids': ids,
         'getSection': getSection,
@@ -121,8 +149,9 @@ def profile_page(request):
         'present': present,
         'absent': absent,
         'name': name,
-        'pres1':pres1,
-        'abs1':abs1
+        'present2': present2,
+        'absent2': absent2,
+        'term':[term.last()],
     }
     
     return render(request, 'activities/profile.html', context)
@@ -1929,7 +1958,10 @@ def update_att_credits(request):
     if request.method == 'POST':
         pres1 = request.POST.getlist('pres1')
         abs1 = request.POST.getlist('abs1')
+        pres2 = request.POST.getlist('pres2')
+        abs2 = request.POST.getlist('abs2')
         percentages = request.POST.getlist('percentage')
+        percentages2 = request.POST.getlist('percentage2')
       
 
         ids = request.POST.getlist('getId')
@@ -1944,8 +1976,8 @@ def update_att_credits(request):
         # extenduser.objects.filter
  
         
-        for k, l in zip(ids2, credits2):
-            extenduser.objects.filter(id=k).update(att_credits_2=l)
+        for k, l, m, n, o in zip(ids2, credits2, pres2, abs2, percentages2):
+            extenduser.objects.filter(id=k).update(att_credits_2=l, pres2=m, abs2=n, percentage2=o)
     return redirect('/attendance_tab')
 
 @login_required(login_url='/staff_signin')
@@ -2463,59 +2495,59 @@ def read_attendance(request):
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(2):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD2_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD2_2='1', TD2_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(3):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD3_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD3_2='1', TD3_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(4):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD4_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD4_2='1', TD4_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(5):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD5_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD5_2='1', TD5_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(6):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD6_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD6_2='1', TD6_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(7):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD7_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD7_2='1', TD7_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(8):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD8_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD8_2='1', TD8_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(9):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD9_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD9_2='1', TD9_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(10):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD10_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD10_2='1', TD10_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(11):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD11_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD11_2='1', TD11_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(12):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD12_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD12_2='1', TD12_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(13):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD13_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD13_2='1', TD13_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(14):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD14_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD14_2='1', TD14_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
         if td_count == str(15):
             for c, d in zip(ids2, demerits2): 
-                extenduser.objects.filter(idnumber=c).update(TD1_2='1', TD15_2_dem = d)
+                extenduser.objects.filter(idnumber=c).update(TD15_2='1', TD15_2_dem = d)
                 messages.success(request, 'Attendance and Demerits updated')
     return redirect('/sample_attendance')
 
@@ -3253,8 +3285,12 @@ def each_student(request, id):
     name = extenduser.objects.filter(id=id)
     pres1 = extenduser.objects.filter(id=id)
     abs1 = extenduser.objects.filter(id = id)
+    pres2 = extenduser.objects.filter(id=id)
+    abs2= extenduser.objects.filter(id = id)
+    present2 = []
+    absent2 = []
     section = sections.objects.all()
-    
+    term = school_year.objects.all()
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
@@ -3263,6 +3299,12 @@ def each_student(request, id):
        
     for k in abs1:
         absent.append(k.abs1)
+        
+    for s in pres2:
+        present2.append(s.pres2)
+       
+    for k in abs2:
+        absent2.append(k.abs2)
     context = {
         'ids': ids,
         'getSection': getSection,
@@ -3273,7 +3315,12 @@ def each_student(request, id):
         'absent': absent,
         'name': name,
         'pres1':pres1,
-        'abs1':abs1
+        'abs1':abs1,
+        'pres2':pres2,
+        'abs2':abs2,
+        'present2': present2,
+        'absent2': absent2,
+        'term':[term.last()],
     }
     
 
@@ -3479,8 +3526,12 @@ def cwts_each_student(request, id):
     name = extenduser.objects.filter(id=id)
     pres1 = extenduser.objects.filter(id = id)
     abs1 = extenduser.objects.filter(id = id)
+    pres2 = extenduser.objects.filter(id=id)
+    abs2= extenduser.objects.filter(id = id)
+    present2 = []
+    absent2 = []
     section = sections.objects.all()
-    
+    term = school_year.objects.all()
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id).filter(status='ENROLLED')
@@ -3489,6 +3540,12 @@ def cwts_each_student(request, id):
        
     for k in abs1:
         absent.append(k.abs1)
+        
+    for s in pres2:
+        present2.append(s.pres2)
+       
+    for k in abs2:
+        absent2.append(k.abs2)
     context = {
         'ids': ids,
         'getSection': getSection,
@@ -3497,9 +3554,12 @@ def cwts_each_student(request, id):
         'labels': labels,
         'present': present,
         'absent': absent,
+        'present2': present2,
+        'absent2': absent2,
         'name': name,
         'pres1':pres1,
-        'abs1':abs1
+        'abs1':abs1,
+        'term':[term.last()]
     }
         
     return render(request, 'activities/cwts_each.html', context)
@@ -4100,7 +4160,7 @@ def student_update(request):
                 gcontact = gcontact,
                 field = field,
                 sickness=sickness,
-                proof=proof
+        
           
             
                 

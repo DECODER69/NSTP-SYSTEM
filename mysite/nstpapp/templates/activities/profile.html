@@ -84,35 +84,60 @@
                                 </div>
                             </div> -->
 
+                            {% for t in term %}{% if t.sem == 'First Term' %}
                             <div class="card p-3">
-
-                                <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Atendance Record</b></div>
+                                <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record (1st Semester)</div>
                                 <hr>
                                 <br>
                                 <div id="container" style="width: 100%; ">
                                     <canvas id="pie-chart"></canvas>
-                                </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
-                                <h5 id='perci'>{{s.percentage1 }} %</h5>
-                                <h5 id="curr">Current Score</h5>
+                                </div><br>
+                                 {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
+                                <h5 style="text-align:center;">{{s.percentage1 }} %</h5>
+                                <h5 style="text-align:center;">Current Score</h5>
                                 <br>
                                 <div class="st">
                                     <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres1|floatformat:0}} Present Days</span><br>
                                     <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
                                 </div>
-
-                                {% elif s.second_sem == 'ENROLLED' and s.percentage2 != '' %}
-                                <h5 id='perci'>{{s.percentage2 }} %</h5>
-                                <h5 id="curr">Current Score</h5>
+        
+                            
+        
+                                {% else %}
+                                <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
+                                {% endif %} 
+                                {% endfor %}
+        
+                            </div>
+                            {% else %}
+        
+                            <div class="card p-3">
+                                <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record (2nd Semester)</div>
+                                <hr>
+                                <br>
+                                <div id="container" style="width: 100%; ">
+                                    <canvas id="pie-chart"></canvas>
+                                </div><br>
+                                 {% for s in name %}{% if s.second_sem == 'ENROLLED' or s.second_sem == 'COMPLETED' and s.percentage2 != '' %}
+                                <h5 style="text-align:center;">{{s.percentage2 }} %</h5>
+                                <h5 style="text-align:center;">Current Score</h5>
                                 <br>
                                 <div class="st">
-                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
-                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
+                                    <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Day(s)</span><br>
+                                    <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Day(s)</span>
                                 </div>
+        
+                            
+        
                                 {% else %}
-                                <h5>No Record yet</h5>
-                                {% endif %} {% endfor %}
-
+                                <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
+                                {% endif %} 
+                                {% endfor %}
+        
                             </div>
+                            {% endif %}
+                            
+                            {% endfor %}
                             <br>
                             <div class="card p-3">
                                 <div class="mb-2"><b><i class="fa-solid fa-scroll"></i> Grade</b></div>
@@ -292,7 +317,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Address <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input class="form-control" type="text" placeholder="Address" value="{{s.address}}" name="address">
+                                                                            <input class="form-control" type="text" placeholder="Address" value="{{s.address}}" name="address" required>
                                                                         </div>
                                                                     </div>
 
@@ -302,7 +327,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Birthday <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input type="date" name="birthday" id="birthday" class="form-control"><br/><br/>
+                                                                            <input type="date" name="birthday" id="birthday" class="form-control" value="{{s.birthday}}" required><br/><br/>
 
                                                                             <input type="hidden" name="m" class="form-control"><br>
                                                                             <input type="hidden" name="d" class="form-control"><br>
@@ -321,7 +346,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Gender <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <select id="" class="form-control" name="gender">
+                                                                            <select id="" class="form-control" name="gender" required>
                                                                                 <option value="{{s.gender}}" selected di>{{s.gender}}</option>
                                                                                 <option value="Male">Male</option>
                                                                                 <option value="Female">Female</option>
@@ -332,7 +357,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Course <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input type="text" placeholder="Section" class="form-control" name="section" value="{{s.section}}">
+                                                                            <input required type="text" placeholder="Section" class="form-control" name="section" value="{{s.section}}">
                                                                             <input type="hidden" value="{{s.status}}" name="status">
                                                                         </div>
                                                                     </div>
@@ -343,14 +368,14 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Contact <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input type="number" name="cpnumber" class="form-control" value="{{s.cpnumber}}" placeholder="Contact Number">
+                                                                            <input type="number" name="cpnumber" class="form-control" value="{{s.cpnumber}}" placeholder="Contact Number" required>
 
                                                                         </div>
                                                                     </div>
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Civil Status <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <select name="civil" id="" class="form-control">
+                                                                            <select name="civil" id="" class="form-control" required>
                                                                                 <option value="{{s.civil}}" disabled>{{s.civil}}</option>
                                                                                 <option value="Single">Single</option>
                                                                                 <option value="Married">Married</option>
@@ -366,7 +391,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Nationality <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input type="text" placeholder="Nationality" name="nationality" value="{{s.nationality}}" class="form-control">
+                                                                            <input required type="text" placeholder="Nationality" name="nationality" value="{{s.nationality}}" class="form-control">
                                                                         </div>
                                                                     </div>
 
@@ -387,7 +412,7 @@
                                                                     <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Contact person <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
-                                                                            <input type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Contact Person" required>
+                                                                            <input required type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Contact Person" required>
 
                                                                         </div>
                                                                     </div>
@@ -539,6 +564,66 @@
 
             {% endfor %}
     </section>
+    
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+
+    var config = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [ {{absent|safe}} , {{present |safe}}],
+          backgroundColor: [
+             '#D0021B','#7ED321'
+          ],
+          label: {{labels | safe}}
+        }],
+        labels: {{labels | safe}}
+      },
+      options: {
+        responsive: true
+      }
+    };
+    
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+   
+      window.myPie = new Chart(ctx, config);
+    };
+
+     </script>  
+
+
+     <script>
+
+        var config = {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: [ {{absent2|safe}} , {{present2 |safe}}],
+              backgroundColor: [
+                 '#D0021B','#7ED321'
+              ],
+              label: {{labels | safe}}
+            }],
+            labels: {{labels | safe}}
+          },
+          options: {
+            responsive: true
+          }
+        };
+        
+    
+        window.onload = function() {
+          var ctx = document.getElementById('pie-chart').getContext('2d');
+       
+          window.myPie = new Chart(ctx, config);
+        };
+    
+         </script> 
+
     <script>
         var fileTypes = ['pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png', 'txt']; //acceptable file types
         function readURL(input) {
@@ -605,34 +690,9 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <!-- <script>
 
-    var config = {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [ {{absent|safe}} , {{present |safe}}],
-          backgroundColor: [
-             '#D0021B','#7ED321'
-          ],
-          label: {{labels | safe}}
-        }],
-        labels: {{labels | safe}}
-      },
-      options: {
-        responsive: true
-      }
-    };
-    
 
-    window.onload = function() {
-      var ctx = document.getElementById('pie-chart').getContext('2d');
-   
-      window.myPie = new Chart(ctx, config);
-    };
-
-     </script> -->
+             
     <!-- for checkbox multiple -->
     <script>
         var $myCheckbox = $('#myCheckbox'),

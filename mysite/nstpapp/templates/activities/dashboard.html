@@ -15,6 +15,27 @@
 <body>
     {% include 'activities/navbar.html' %}
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Student Profile</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Please Complete your profile before proceeding to Enrollment !
+              Incomplete Profile will not be able to Enroll. Please Disregard this message if you already done it. Thnak You..
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <a href="/profile_page" class="btn btn-primary">Proceed</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
 
@@ -149,13 +170,15 @@
 
 
                     </div>
+                    {% for t in term %}{% if t.sem == 'First Term' %}
                     <div class="recent-files box">
-                        <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record</div>
+                        <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record (1st Semester)</div>
                         <hr>
                         <br>
                         <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart"></canvas>
-                        </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
+                        </div><br>
+                         {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
                         <h1>{{s.percentage1 }} %</h1>
                         <h5>Current Score</h5>
                         <br>
@@ -164,20 +187,43 @@
                             <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
                         </div>
 
-                        {% elif s.second_sem == 'ENROLLED' and s.percentage2 != '' %}
-                        <h1>{{s.percentage2 }} %</h1>
-                        <h5 style="color:red;">Current Score</h5>
-                        <br>
-                        <div class="st">
-                            <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Days</span><br>
-                            <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Days</span>
-                        </div>
+                    
 
                         {% else %}
                         <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
-                        {% endif %} {% endfor %}
+                        {% endif %} 
+                        {% endfor %}
 
                     </div>
+                    {% else %}
+
+                    <div class="recent-files box">
+                        <div class="title"><i class="fa-solid fa-scroll"></i> Attendance Record (2nd Semester)</div>
+                        <hr>
+                        <br>
+                        <div id="container" style="width: 100%; ">
+                            <canvas id="pie-chart"></canvas>
+                        </div><br>
+                         {% for s in name %}{% if s.second_sem == 'ENROLLED' or s.second_sem == 'COMPLETED' and s.percentage2 != '' %}
+                        <h1>{{s.percentage2 }} %</h1>
+                        <h5>Current Score</h5>
+                        <br>
+                        <div class="st">
+                            <span id="spresent"><i class="fa-solid fa-circle"></i> {{s.pres2|floatformat:0}} Present Day(s)</span><br>
+                            <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Day(s)</span>
+                        </div>
+
+                    
+
+                        {% else %}
+                        <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
+                        {% endif %} 
+                        {% endfor %}
+
+                    </div>
+                    {% endif %}
+                    
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -185,7 +231,11 @@
         {% comment %} <small id="smalls">@sentinels 2022</small> {% endcomment %}
 
     </section>
-
+    <script>
+        $(document).ready(function(){
+            $("#exampleModal").modal('show');
+        });
+    </script>
 
 
     <!-- <div class="custom-shape-divider-bottom-1669703185">
@@ -213,7 +263,7 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <!-- <script>
+  <script>
 
     var config = {
       type: 'doughnut',
@@ -239,7 +289,39 @@
       window.myPie = new Chart(ctx, config);
     };
 
-     </script>  -->
+     </script>  
+
+
+     <script>
+
+        var config = {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: [ {{absent2|safe}} , {{present2 |safe}}],
+              backgroundColor: [
+                 '#D0021B','#7ED321'
+              ],
+              label: {{labels | safe}}
+            }],
+            labels: {{labels | safe}}
+          },
+          options: {
+            responsive: true
+          }
+        };
+        
+    
+        window.onload = function() {
+          var ctx = document.getElementById('pie-chart').getContext('2d');
+       
+          window.myPie = new Chart(ctx, config);
+        };
+    
+         </script> 
+
+
+
 
 
 </body>
