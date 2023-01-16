@@ -35,8 +35,9 @@
                         <table class="table table-bordered table-hover" id="grades">
                             <thead>
                                 <tr>
-                                    <th scope="col">Content</th>
-                                    <th scope="col">Percentage %</th>
+                                    <th scope="col">CONTENT</th>
+                                    <th scope="col">PERCENTAGE</th>
+
 
 
                                 </tr>
@@ -45,34 +46,40 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Attendance</th>
-                                    <td><input type="text" class="form-control" name="attendance" value="{{s.attendance}}" placeholder="0.05"></td>
+                                    <td><input type="number" class=" box form-control" id="attendance" name="attendance" value="{{s.attendance1}}" placeholder="ex: 5"></td>
+                                    <td><input type="hidden" class="" id="attendance2" name="attendance2" value="{{s.attendance}}" readonly></td>
 
                                 </tr>
                                 <tr>
                                     <th scope="row">Quizzes</th>
-                                    <td><input type="text" class="form-control" name="quiz" value="{{s.quiz}}" placeholder="0.30"></td>
+                                    <td><input type="number" class="box form-control " id="quiz" name="quiz" value="{{s.quiz1}}" placeholder="ex: 30"></td>
+                                    <td><input type="hidden" class="" id="quiz2" name="quiz2" value="{{s.quiz}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Exercises</th>
-                                    <td><input type="text" class="form-control" name="exercise" value="{{s.exercises}}" placeholder="0.30"></td>
+                                    <td><input type="number" class="box form-control " id="exercise" name="exercise" value="{{s.exercises1}}" placeholder="ex: 30"></td>
+                                    <td><input type="hidden" class="" id="exercise2" name="exercise2" value="{{s.exercises}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Class Participation</th>
-                                    <td><input type="text" class="form-control" name="participation" value="{{s.participation}}" placeholder="0.05"></td>
+                                    <td><input type="number" class="box form-control " id="participation" name="participation" value="{{s.participation1}}" placeholder="ex: 5"></td>
+                                    <td><input type="hidden" class="" id="participation2" name="participation2" value="{{s.participation}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Midterm Exam</th>
-                                    <td><input type="text" class="form-control" name="midterm" value="{{s.midterm_exam}}" placeholder="0.15"></td>
+                                    <td><input type="number" class="box form-control " id="midterm" name="midterm" value="{{s.midterm_exam1}}" placeholder="ex: 15"></td>
+                                    <td><input type="hidden" class="" id="midterm2" name="midterm2" value="{{s.midterm_exam}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Final Exam</th>
-                                    <td><input type="text" class="form-control" name="final" value="{{s.final_exam}}" placeholder="0.15"></td>
+                                    <td><input type="number" class="box form-control " id="finals" name="final" value="{{s.final_exam1}}" placeholder="ex: 15"></td>
+                                    <td><input type="hidden" class="" id="finals2" name="final2" value="{{s.final_exam}}" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" id="total">EQUIVALENT:</th>
-                                    <td><input type="text" class="total" id="percentage" readonly name="total" value="{{s.total}}"></td>
+                                    <td><input type="number" class="total" id="percentage" readonly name="total" value="{{s.total}}"></td>
 
-
+                                </tr>
 
                             </tbody>
                             {% endfor %}
@@ -96,7 +103,7 @@
 
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
+    <!-- <script>
 
         {% for msg in messages %}
         Swal.fire({
@@ -106,12 +113,12 @@
             showConfirmButton: false,
             timer: 2500
           }) {% endfor %}
-    </script>  
+    </script>   -->
 
     <script>
         $(document).ready(function() {
 
-            $("#grades").on('input', '.form-control', function() {
+            $("#grades").on('input', '.box', function() {
                 var calculated_total_sum = 0;
 
                 $("#grades .form-control").each(function() {
@@ -122,6 +129,46 @@
                 });
                 $("#percentage").val(calculated_total_sum);
             });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#attendance').on('keyup paste', function() {
+
+            var attendance = parseFloat($("#attendance").val());
+            $("#attendance2").val((attendance / 100).toFixed(2));
+
+
+        });
+
+        $('#quiz').on('keyup paste', function() {
+
+            var attendance = parseFloat($("#quiz").val());
+            $("#quiz2").val((attendance / 100).toFixed(2));
+        });
+
+        $('#exercise').on('keyup paste', function() {
+
+            var attendance = parseFloat($("#exercise").val());
+            $("#exercise2").val((attendance / 100).toFixed(2));
+        });
+
+        $('#participation').on('keyup paste', function() {
+
+            var attendance = parseFloat($("#participation").val());
+            $("#participation2").val((attendance / 100).toFixed(2));
+        });
+
+        $('#midterm').on('keyup paste', function() {
+
+            var attendance = parseFloat($("#midterm").val());
+            $("#midterm2").val((attendance / 100).toFixed(2));
+        });
+
+        $('#finals').on('keyup paste', function() {
+
+            var attendance = parseFloat($("#finals").val());
+            $("#finals2").val((attendance / 100).toFixed(2));
         });
     </script>
 

@@ -338,10 +338,16 @@ class cwts_grading(models.Model):
     exercises = models.CharField(max_length=100, default='')
     midterm_exam = models.CharField(max_length=100, default='')
     final_exam =  models.CharField(max_length=100, default='')
-
     participation = models.CharField(max_length=100, default='')
-    
     total = models.CharField(max_length=100, default='')
+    
+    attendance1 =  models.CharField(max_length=100, default='')
+    quiz1 = models.CharField(max_length=100, default='')
+    exercises1 = models.CharField(max_length=100, default='')
+    midterm_exam1 = models.CharField(max_length=100, default='')
+    final_exam1 =  models.CharField(max_length=100, default='')
+    participation1 = models.CharField(max_length=100, default='')
+    total1 = models.CharField(max_length=100, default='')
     
     
 class cwts_activity(models.Model):

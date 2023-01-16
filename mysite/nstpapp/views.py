@@ -2852,14 +2852,24 @@ def cwts_course_evaluation(request):
 
 def save_evaluation(request):
     if request.method == 'POST':
-        attendance = request.POST.get('attendance')
-        quiz = request.POST.get('quiz')
-        exercise = request.POST.get('exercise')
-        participation = request.POST.get('participation')
-        midterm = request.POST.get('midterm')
-        final = request.POST.get('final')
+        attendance = request.POST.get('attendance2')
+        quiz = request.POST.get('quiz2')
+        exercise = request.POST.get('exercise2')
+        participation = request.POST.get('participation2')
+        midterm = request.POST.get('midterm2')
+        final = request.POST.get('final2')
+        
+        # for whole number
+        attendance1 = request.POST.get('attendance')
+        quiz1 = request.POST.get('quiz')
+        exercise1 = request.POST.get('exercise')
+        participation1 = request.POST.get('participation')
+        midterm1 = request.POST.get('midterm')
+        final1 = request.POST.get('final')
+        
         total = request.POST.get('total')
-        data = cwts_grading(attendance=attendance,quiz=quiz,exercises=exercise, participation=participation, midterm_exam=midterm, final_exam=final, total=total)
+        data = cwts_grading(attendance=attendance,quiz=quiz,exercises=exercise, participation=participation, midterm_exam=midterm, final_exam=final, total=total, 
+                            attendance1=attendance1,quiz1=quiz1,exercises1=exercise1, participation1=participation1, midterm_exam1=midterm1, final_exam1=final1,)
         data.save()
         messages.success(request, 'Grading Evaluation Updated Successfully')
     return redirect('/cwts_course_evaluation')
