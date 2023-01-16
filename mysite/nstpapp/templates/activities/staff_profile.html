@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../static/admin_css/staffs.css">
 </head>
 
 <body>
@@ -13,13 +14,408 @@
 
     <section class="page-content">
         <div class="heads">
-            <h1 class="text"><i class='bx bx-home'></i> NSTP STAFFS</h1><br>
-            <h1 class="text" id="time"></h1>
-
-        </div><br>
-        <div class="bg">
+            <a href="/staffs">
+                <h1 class="text"> NSTP STAFFS&nbsp;>&nbsp;</h1>
+            </a><br> {% for s in name %}
+            <h1 class="text">{{s.idnumber}} </h1>
         </div>
+
+        <br>
+
+        <!-- whole body -->
+
+        <div class="bg" id="ggs">
+            <form action="{% url 'activities:student_update'  %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="containers">
+                    <div class="row flex-lg-nowrap">
+                        <div class="col-12 col-lg-auto mb-3" style="width: 300px;">
+                            <!-- <div class="card p-3">
+                                <div class="e-navlist e-navlist--active-bg">
+                                    <ul class="nav">
+                                        <li class="nav-item"><a class="nav-link px-2 active" href="#"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
+                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-crud-users" target="__blank"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
+                                        <li class="nav-item"><a class="nav-link px-2" href="https://www.bootdey.com/snippets/view/bs4-edit-profile-page" target="__blank"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+
+
+                            <br>
+
+                            <div class="card p-3">
+                                <div class="mb-2" style="color: red;"><b><i class="fa-solid fa-scroll"></i> Logs</b></div>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold;">{{s.approved_by}}</h6>
+                                            <label>Approved by</label>
+
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+
+                                            <h6 style="font-weight: bold; color:#1d7901;">{{s.date_declined}}</h6>
+                                            <label>Date Approved</label>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <hr>
+                                <br>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col" id="ggs">
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="e-profile">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-auto mb-3">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                <span style="color: rgb(255, 255, 255); font: bold 8pt Arial;">
+                                                                <img src="{{s.picture.url}}" alt="" height="140px">
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{s.firstname}} {{s.lastname}}</h4>
+                                                            <p class="mb-0">{{s.email}}</p>
+                                                            <div class="text-muted"><small>CATEGORY: {{s.staff_status}} </small></div>
+                                                            <!-- <div class="mt-2">
+                                                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">
+                                                                    <i class="fa-brands fa-telegram"></i>
+                                                                  <span>Message</span>
+                                                                </button>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="text-center text-sm-right">
+                                                            <span class="badge badge-success">{{s.staff_status}}</span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <!-- <ul class="nav nav-tabs">
+                                                <li class="nav-item"><a href="#" class="active nav-link">Student Information</a></li>
+                                            </ul> -->
+                                                <!-- <h5 class="pt-sm-2 pb-1 mb-0 text-nowrap">Student Information</h5> -->
+                                                <div class="mb-2"><b>Student Information</b></div>
+                                                <div class="tab-content pt-3">
+                                                    <div class="tab-pane active">
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="row" id="ro">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>First Name </label>
+                                                                            <input type="hidden" name="ids" value="{{s.id}}">
+                                                                            <input class="form-control" type="text" name="firstname" placeholder="First Name" value="{{s.firstname}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Middle Name</label>
+                                                                            <input class="form-control" type="text" name="middlename" placeholder="Middle name" value="{{s.middlename}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Last name</label>
+                                                                            <input class="form-control" type="text" name="lastname" placeholder="Last Name" value="{{s.lastname}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" id="ro">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Email</label>
+                                                                            <input class="form-control" type="text" placeholder="gsfe Email" value="{{s.email}}" name="email">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>ID Number</label>
+                                                                            <input class="form-control" type="text" placeholder="Student ID" value="{{s.idnumber}}" name="idnumber">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Address <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input class="form-control" type="text" placeholder="Address" value="{{s.address}}" name="address" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row" id="colcol">
+
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Birthday <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input type="date" name="birthday" id="birthday" class="form-control" value="{{s.birthday}}" required><br/><br/>
+
+                                                                            <input type="hidden" name="m" class="form-control"><br>
+                                                                            <input type="hidden" name="d" class="form-control"><br>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Age</label>
+                                                                            <input type="text" placeholder="Age" name="age" id="age" class="form-control">
+                                                                        </div>
+                                                                    </div> -->
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Gender <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <select id="" class="form-control" name="gender" required>
+                                                                                <option value="{{s.gender}}" selected di>{{s.gender}}</option>
+                                                                                <option value="Male">Male</option>
+                                                                                <option value="Female">Female</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Course <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input required type="text" placeholder="Section" class="form-control" name="section" value="{{s.section}}">
+                                                                            <input type="hidden" value="{{s.status}}" name="status">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Contact <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input type="number" name="cpnumber" class="form-control" value="{{s.cpnumber}}" placeholder="Contact Number" required>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Civil Status <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <select name="civil" id="" class="form-control" required>
+                                                                                <option value="{{s.civil}}" disabled>{{s.civil}}</option>
+                                                                                <option value="Single">Single</option>
+                                                                                <option value="Married">Married</option>
+                                                                                <option value="Widowed">Widowed</option>
+                                                                                <option value="Divorced">Divorced</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row" id="colcol">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Nationality <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input required type="text" placeholder="Nationality" name="nationality" value="{{s.nationality}}" class="form-control">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>NSTP Companion</label>
+                                                                            <input type="text" placeholder="Nationality" name="field" value="{{s.field}}" class="form-control" readonly>
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                                <br>
+                                                                <div class="mb-2"><b>Emergency Contact</b></div>
+                                                                <div class="row" id="ro">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Contact person <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input required type="text" name="nfather" class="form-control" value="{{s.nfather}}" placeholder="Contact Person" required>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Contact Number <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></label>
+                                                                            <input required type="text" placeholder="Number" class="form-control" name="pcontact" value="{{s.pcontact}}" minlength="11" maxlength="11" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <br>
+                                                                <hr>
+                                                                <!-- <div class="mb-2"><b>Health <span style="color: red; font-size:20px; vertical-align:bottom;">*</span></b></div>
+                                                                <br>
+                                                                <div class="row" id="ro">
+                                                                    <div class="col">
+                                                                        <div class="form-group" required>
+                                                                            <input type="checkbox" id="myCheckbox1" class="single-checkbox">
+                                                                            <label for="">I am Physically Fit</label>
+                                                                            <br>
+
+                                                                            <input type="checkbox" id="myCheckbox" class="single-checkbox">
+                                                                            <label for="">I have Health Issues</label>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label for="">List Your Health Issues here</label>
+                                                                            <textarea name="sickness" class="required form-control" title="Please disegard if you are physically fit" required>{{s.sickness}}</textarea>
+
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label for="">Upload Your Medical certificate</label>
+
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="required custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="proof">
+                                                                                <label class=" custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <br>
+
+                                                                        <div class="form-group">
+                                                                            <label for="">Submitted Medical Certificate</label>
+                                                                            <br> {% if s.proof == '' %}
+                                                                            <a href="">Medical Certificate</a> {% else %}
+                                                                            <a href="{{s.proof.url}}" target="_blank">Medical Certificate</a> {% endif %}
+
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <br>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <button class="btn btn-block btn-success" type="submit">
+                                                                                <i class="fa-solid fa-file-export"></i>
+                                                                           Update
+                                                                        </button>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div> -->
+
+
+                                                                <hr>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            </form>
+
+            <!-- <div class="col-12 col-md-3 mb-3">
+                <div class="card">
+                    <form action="{% url 'activities:edit_health' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold">Health Status</h6>
+
+                            <textarea class="form-control" rows="3" placeholder="Health Conditions">{{s.sickness}}</textarea>
+                        </div>
+
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold">Health Certificate</h6>
+                            <div class="container">
+                                <div class="row it">
+                                    <div class="col-sm-offset-1 col-sm-12" id="one">
+                                        <p style="color: #7e7e7e; font-style:italic;">
+                                            'pdf', 'docx', 'rtf', 'jpg', 'jpeg', 'png' & 'text' format.
+                                        </p><br>
+
+                                        <div id="uploader">
+                                            <div class="row uploadDoc">
+                                                <div class="col-sm-12" id="sm12" style="  margin:auto;">
+                                                    <div class="docErr">Please upload valid file</div>
+                                                    <div class="fileUpload btn btn-orange">
+                                                        <img src="../../static/images/cloud-computing.png" class="icon">
+                                                        <span class="upl" id="upload">Select</span>
+                                                        <input type="file" required class="upload up" id="up" onchange="readURL(this);" />
+                                                        <input type="hidden" name="ids" value="{{s.id}}">
+                                                    </div>
+                                                    <br>&nbsp;&nbsp;<br>
+                                                    <button class="btn btn-next" type="submit"><i class="fa fa-paper-plane"></i> Upload</button>
+                                                </div>
+                                            </div>
+                                            <div class="details2">
+                                                <div class="proof">
+                                                    {% if s.proof.url != '' %}
+                                                    <a href="{{s.proof.url}}" target="_blank" title="Proof">View Proof Submitted</a> {% else %}
+                                                    <a href="#" title="No submitted proof" title="Proof">View Proof Submitted</a> {% endif %}
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+            <br>
+
+
+            </div>
+            </div>
+
+
+
+
+            {% endfor %}
     </section>
+
 
 </body>
 

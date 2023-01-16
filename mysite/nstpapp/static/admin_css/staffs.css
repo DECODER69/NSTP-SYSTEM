@@ -34,7 +34,6 @@ section {
 }
 
 .heads {
-    justify-content: space-between;
     display: flex;
     background: #4b4d52;
     height: 60px !important;
