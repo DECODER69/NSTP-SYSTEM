@@ -6225,13 +6225,15 @@ def cw_enrolled_profile(request, id):
     
     return render(request, 'activities/cw_enrolled_profile.html', context)
 
-
+@login_required(login_url='/login_page')
 def staffs(request):
-    staffs = extenduser.objects.filter(category='STAFF')
-    context = {
-        'staffs':staffs
-    }
-    return render(request, 'activities/staffs.html', context)
+    if request.user.is_staff:
+        staffs = extenduser.objects.filter(category='STAFF')
+        context = {
+            'staffs':staffs
+        }
+        return render(request, 'activities/staffs.html', context)
+    return redirect('/login_page')
 
 def staff_profile(request, id):
     name = extenduser.objects.filter(id=id)
