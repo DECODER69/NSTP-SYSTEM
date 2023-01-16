@@ -1445,6 +1445,9 @@ def create_td2(request):
             return redirect('/attendance_tab')
     return redirect('/attendance_tab')
 
+
+
+
 def open_date(request):
     section = sections.objects.filter(fiel = 'ROTC')
     if request.method == 'POST':
@@ -6268,3 +6271,20 @@ def approve_staff(request, user_id):
             extenduser.objects.filter(user_id=ids).update(staff_status='NONE', date_declined=datess)
             User.objects.filter(id=ids).update(is_staff='0')
     return redirect('/staffs')
+
+def create_td33(request):
+    if request.method == 'POST':
+        td = request.POST.get('td')
+        td_count = request.POST.get('td_count')
+        if cwts_training.objects.filter(class_td=td).exists():
+            messages.error(request, 'Training Day already exists ' +str(td))
+            return redirect('/cwts_attendance_tab')
+        elif cwts_training.objects.filter(td_count =td_count).exists():
+            messages.error(request, 'Training Day count exists ' +str(td_count))
+            return redirect('/attendacwts_attendance_tabnce_tab')
+        else:
+            alls = cwts_training(class_td=td, td_count=td_count)
+            alls.save()
+            return redirect('/cwts_attendance_tab')
+    return redirect('/cwts_attendance_tab')
+
