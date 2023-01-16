@@ -228,7 +228,7 @@
                         <div class="col">
                             <div class="form-group">
                                 {% if user.first_sem == 'ENROLLED' or user.first_sem == 'DROPPED' %}
-                                <h5 style="color: red;">You are not qualified to enroll now. Please Contact us or visit NSTP Office. Thnak you</h5> {% else%} {% if user.second_sem == '' %}
+                                <h5 style="color: red;">You are not qualified to enroll now. Please Contact us or visit NSTP Office. Thank you</h5> {% else%} {% if user.second_sem == '' %}
                                 <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" title="Enroll">Enroll Now</button><br> {% elif user.second_sem == 'PENDING' %}
                                 <h5 style="font-weight: bolder; color:orange;">{{user.second_sem}} <i class="fa-regular fa-clock"></i></h5>
                                 {% elif user.second_sem == 'REJECTED' %}

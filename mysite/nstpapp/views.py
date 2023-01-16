@@ -5894,7 +5894,7 @@ def get_all(request):
                 
         if second is not None:
             for a in ids2:
-                extenduser.objects.filter(id=a).update(second_sem = second, modified_by=approved_by, date_modified=date_modified )
+                extenduser.objects.filter(id=a).update(second_sem = second, modified_by=approved_by, date_modified=date_modified, status='GRADUATE' )
                 
             # for first sem
         if dropped is not None:
@@ -5934,7 +5934,7 @@ def get_all2(request):
                 
         if second is not None:
             for a in ids2:
-                extenduser.objects.filter(id=a).update(second_sem = second, modified_by=approved_by, date_modified=date_modified )
+                extenduser.objects.filter(id=a).update(second_sem = second, modified_by=approved_by, date_modified=date_modified, status='GRADUATE' )
                 
             # for first sem
         if dropped is not None:

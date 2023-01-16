@@ -17,24 +17,23 @@
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Student Profile</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Student Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
+                </div>
+                <div class="modal-body">
+                    Please Complete your profile before proceeding to Enrollment ! Incomplete Profile will not be able to Enroll. Please Disregard this message if you already done it. Thnak You..
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="/profile_page" class="btn btn-primary">Proceed</a>
+                </div>
             </div>
-            <div class="modal-body">
-              Please Complete your profile before proceeding to Enrollment !
-              Incomplete Profile will not be able to Enroll. Please Disregard this message if you already done it. Thnak You..
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <a href="/profile_page" class="btn btn-primary">Proceed</a>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
 
 
@@ -179,8 +178,7 @@
                         <br>
                         <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart"></canvas>
-                        </div><br>
-                         {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
+                        </div><br> {% for s in name %}{% if s.first_sem == 'ENROLLED' and s.percentage1 != '' %}
                         <h5 style="text-align:center;">{{s.percentage1 }} %</h5>
                         <h5 style="text-align:center;">Current Score</h5>
                         <br>
@@ -189,12 +187,11 @@
                             <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs1|floatformat:0}} Absent Days</span>
                         </div>
 
-                    
+
 
                         {% else %}
                         <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
-                        {% endif %} 
-                        {% endfor %}
+                        {% endif %} {% endfor %}
 
                     </div>
                     {% else %}
@@ -205,8 +202,7 @@
                         <br>
                         <div id="container" style="width: 100%; ">
                             <canvas id="pie-chart2"></canvas>
-                        </div><br>
-                         {% for s in name %}{% if s.second_sem == 'ENROLLED'  and s.percentage2 != '' %}
+                        </div><br> {% for s in name %}{% if s.second_sem == 'ENROLLED' and s.percentage2 != '' %}
                         <h5 style="text-align:center;">{{s.percentage2 }} %</h5>
                         <h5 style="text-align:center;">Current Score</h5>
                         <br>
@@ -215,17 +211,14 @@
                             <span id="sabsent"><i class="fa-solid fa-circle"></i> {{s.abs2|floatformat:0}} Absent Day(s)</span>
                         </div>
 
-                    
+
 
                         {% else %}
                         <h5><i class="fa-solid fa-face-frown-open"></i> No Record yet</h5>
-                        {% endif %} 
-                        {% endfor %}
+                        {% endif %} {% endfor %}
 
                     </div>
-                    {% endif %}
-                    
-                    {% endfor %}
+                    {% endif %} {% endfor %}
                 </div>
             </div>
         </div>
@@ -234,7 +227,7 @@
 
     </section>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $("#exampleModal").modal('show');
         });
     </script>
@@ -266,7 +259,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
-
+    <!-- 
     <script>
 
     var config = {
@@ -297,7 +290,7 @@
      </script>  
 
 
-     {% comment %} <script>
+ <script>
 
         var config2 = {
           type: 'doughnut',
@@ -323,10 +316,10 @@
           window.myPie = new Chart(ctx, config2);
         };
     
-         </script>    {% endcomment %}
+         </script>     -->
 
 
-    
+
 
 
 
