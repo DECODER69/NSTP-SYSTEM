@@ -53,9 +53,24 @@
                 <span class="line11">NAVAL RESERVE OFFICERS TRAINING COURSE (NROTC)</span><br> {% for s in details %}
                 <span class="line12"><i>Given this {{s.date}} day of {{s.month}} {{s.year}}at TUP-Cavite, Carlos Q. Trinidad Avenue, Salawag, Dasmarinas City, Cavite</i></span><br>
                 <div class="bot">
+                    <span class="lastline">
+                        <div class="commandant">
+                            <h7>{{s.commandant}}</h7>
+                            <p>Commandant</p>
+                        </div>
 
+                        <div class="commandant">
+                            <h7>{{s.registrar}}</h7>
+                            <p>Registrar</p>
+                        </div>
 
-                    <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}  {% endfor %}</u>&emsp;<u class="control">236-20-{{forloop.counter}}</u></span>
+                        <div class="commandant">
+                            <h7>236-{{forloop.counter}}</h7>
+                            <p>Control Number</p>
+                        </div>
+                    </span>
+
+                    <!-- <span class="lastline"> <u class="com">{{s.commandant}}</u>&nbsp;&nbsp; &nbsp;  <u class="comm">{{s.registrar}}  {% endfor %}</u>&emsp;<u class="control">236-20-{{forloop.counter}}</u></span> -->
                 </div>
 
 
