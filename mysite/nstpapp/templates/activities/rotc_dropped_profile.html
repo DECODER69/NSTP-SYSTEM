@@ -71,7 +71,7 @@
         {% for s in details %}
 
         <div class="bg">
-            <form action="{% url 'activities:update_each_rejected' %}" method="POST">
+            <form action="{% url 'activities:re_approved_dopped' %}" method="POST">
                 {% csrf_token %}
                 <div class="containers">
                     <div class="row flex-lg-nowrap">
@@ -395,16 +395,23 @@
 
                                     </div>
                                     <br>
-                                    <!-- <div class="card mb-3">
+                                    <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="px-xl-3">
+                                                {% for s in sy %}
+                                                <input type="text" name="term" id="" value="{{s.sem}}"> {% if s.sem == 'First Term' %}
+                                                <input type="text" value="ENROLLED" name="first_sem">
+                                                <input type="text" value="" name="second_sem"> {% elif s.sem == 'Second Term' %}
+                                                <input type="text" value="COMPLETED" name="first_sem">
+                                                <input type="text" value="ENROLLED" name="second_sem"> {% endif %} {% endfor %} {% if user.is_authenticated %}
+                                                <input type="text" name="approved_by" value="{{user.first_name}} {{user.last_name}}"> {% endif %}
                                                 <button class="btn btn-block btn-success" type="submit">
                                                 <i class="fa-solid fa-file-export"></i>
                                            Update
                                         </button>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                 </div>
                             </div>

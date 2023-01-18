@@ -276,6 +276,11 @@ urlpatterns = [
     path('staff_profile/<str:id>', views.staff_profile, name='staff_profile'),
     path('approve_staff/<str:user_id>', views.approve_staff, name='approve_staff'),
     path('create_td33/', views.create_td33, name='create_td33'),
+    path('re_approved_dopped/', views.re_approved_dopped, name='re_approved_dopped'),
+    path('re_approved_dopped_cw/', views.re_approved_dopped_cw, name='re_approved_dopped_cw'),
+    
+    
+    
     
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='activities/registration/password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='activities/registration/password_reset_done.html'),name='password_reset_done'),

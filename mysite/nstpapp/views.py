@@ -5803,6 +5803,7 @@ def dropped_rotc_profile(request, id):
     pres1 = extenduser.objects.filter(id=id)
     abs1 = extenduser.objects.filter(id = id)
     section = sections.objects.all()
+    sy = school_year.objects.all()
     
     print(ids)
     getSection = request.POST.get('getSection')
@@ -5822,7 +5823,8 @@ def dropped_rotc_profile(request, id):
         'absent': absent,
         'name': name,
         'pres1':pres1,
-        'abs1':abs1
+        'abs1':abs1,
+        'sy':[sy.last()]
     }
     
 
@@ -5843,7 +5845,7 @@ def dropped_cwts_profile(request, id):
     pres1 = extenduser.objects.filter(id=id)
     abs1 = extenduser.objects.filter(id = id)
     section = sections.objects.all()
-    
+    sy = school_year.objects.all()
     print(ids)
     getSection = request.POST.get('getSection')
     details = extenduser.objects.filter(id=id)
@@ -5862,7 +5864,8 @@ def dropped_cwts_profile(request, id):
         'absent': absent,
         'name': name,
         'pres1':pres1,
-        'abs1':abs1
+        'abs1':abs1,
+        'sy':[sy.last()]
     }
     
 
@@ -6288,3 +6291,540 @@ def create_td33(request):
             return redirect('/cwts_attendance_tab')
     return redirect('/cwts_attendance_tab')
 
+
+def re_approved_dopped(request):
+    
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        approved_by = request.POST.get('approved_by')
+        date_declined = datetime.datetime.now()
+        platoon_count = extenduser.objects.filter(platoons=platoons).count()
+        
+        term = request.POST.get('term')
+        first_sem = request.POST.get('first_sem')
+        second_sem = request.POST.get('second_sem')
+        print("hahahah s" +str(platoon_count))
+        if platoon_count < 29 :
+            if term == 'First Term':
+                if status == 'DROPPED':
+                    print("enrolled3")
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status,
+                    first_sem = status,
+            
+                    approved_by = approved_by,
+                    date_declined = date_declined,
+                    
+                    
+                    )
+                    
+                    return redirect('/rotc_dropped')
+                    
+                elif status == 'ENROLLED':
+                    print("enrolled")
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = '',
+                        first_sem = '',
+                        second_sem = '',
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                    )
+                    return redirect('/rotc_dropped')
+                    # return redirect(request.META['HTTP_REFERER'])
+                elif status == 'REJECTED':
+                
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                        first_sem = status,
+                        second_sem= second_sem,
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                    
+                    )
+                    
+                return redirect('/rotc_dropped')
+            
+            elif term == 'Second Term':
+                
+                if status == 'DROPPED':
+                    
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status,
+                    first_sem = status,
+            
+                    approved_by = approved_by,
+                    date_declined = date_declined,
+                    
+                    
+                    )
+                    
+                    return redirect('/rotc_dropped')
+                    
+                elif status == 'ENROLLED':
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = '',
+                        first_sem = '',
+                        second_sem = '',
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                    )
+                    return redirect('/rotc_dropped')
+                    # return redirect(request.META['HTTP_REFERER'])
+                elif status == 'REJECTED':
+                
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = '',
+                        first_sem = '',
+                        second_sem= '',
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                    
+                    )
+                    
+                return redirect('/rotc_dropped')
+                
+        else:
+            messages.info(request,  str(platoons) + ' platoon has reached the maximum number of students')
+            
+        
+        # return redirect('/manage_section')
+            return redirect(request.META['HTTP_REFERER'])
+    return redirect('/rotc_dropped')
+
+
+
+
+def re_approved_dopped_cw(request):
+    
+    if request.method == 'POST':
+        ids = request.POST.get('ids')
+        
+        print("sheesh" + str(ids))
+        
+        firstname = request.POST.get('firstname')
+        middlename = request.POST.get('middlename')
+        lastname = request.POST.get('lastname')
+        email = request.POST.get('email')
+        idnumber= request.POST.get('idnumber')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        age = request.POST.get('age')
+        birthday = request.POST.get('birthday')
+        section = request.POST.get('section')
+        cpnumber = request.POST.get('cpnumber')
+        civil = request.POST.get('civil')
+        nationality = request.POST.get('nationality')
+        nfather = request.POST.get('nfather')
+        foccupation = request.POST.get('foccupation')
+        nmother = request.POST.get('nmother')
+        moccupation = request.POST.get('moccupation')
+        pcontact = request.POST.get('pcontact')
+        nguardian = request.POST.get('nguardian')
+        gcontact = request.POST.get('gcontact')
+        sickness = request.POST.get('sickness')
+        field = request.POST.get('field')
+        platoons = request.POST.get('platoons')
+        note = request.POST.get('note')
+        status = request.POST.get('status')
+        approved_by = request.POST.get('approved_by')
+        date_declined = datetime.datetime.now()
+        platoon_count = extenduser.objects.filter(platoons=platoons).count()
+        
+        term = request.POST.get('term')
+        first_sem = request.POST.get('first_sem')
+        second_sem = request.POST.get('second_sem')
+        print("hahahah s" +str(platoon_count))
+        if platoon_count < 29 :
+            if term == 'First Term':
+                if status == 'DROPPED':
+                    print("enrolled3")
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status,
+                    first_sem = status,
+            
+                    approved_by = approved_by,
+                    date_declined = date_declined,
+                    
+                    
+                    )
+                    
+                    return redirect('/rotc_dropped')
+                    
+                elif status == 'ENROLLED':
+                    print("enrolled")
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = '',
+                        first_sem = '',
+                        second_sem = '',
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                    )
+                    return redirect('/rotc_dropped')
+                    # return redirect(request.META['HTTP_REFERER'])
+                elif status == 'REJECTED':
+                
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = status,
+                        first_sem = status,
+                        second_sem= second_sem,
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                    
+                    )
+                    
+                return redirect('/rotc_dropped')
+            
+            elif term == 'Second Term':
+                
+                if status == 'DROPPED':
+                    
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                    middlename = middlename,
+                    lastname=lastname,
+                    email = email,
+                    idnumber = idnumber,
+                    address = address,
+                    gender = gender,
+                    age = age,
+                    birthday = birthday,
+                    section = section, 
+                    cpnumber = cpnumber,
+                    civil = civil,
+                    nationality = nationality,
+                    nfather = nfather,
+                    foccupation = foccupation,
+                    nmother = nmother,
+                    moccupation = moccupation,
+                    pcontact = pcontact,
+                    nguardian = nguardian,
+                    gcontact = gcontact,
+                    sickness = sickness,
+                    field = field,
+                    platoons = platoons,
+                    note = note,
+                    status = status,
+                    first_sem = status,
+            
+                    approved_by = approved_by,
+                    date_declined = date_declined,
+                    
+                    
+                    )
+                    
+                    return redirect('/rotc_dropped')
+                    
+                elif status == 'ENROLLED':
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = '',
+                        first_sem = '',
+                        second_sem = '',
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                    )
+                    return redirect('/rotc_dropped')
+                    # return redirect(request.META['HTTP_REFERER'])
+                elif status == 'REJECTED':
+                
+                    extenduser.objects.filter(id=ids).update(firstname = firstname,
+                        middlename = middlename,
+                        lastname=lastname,
+                        email = email,
+                        idnumber = idnumber,
+                        address = address,
+                        gender = gender,
+                        age = age,
+                        birthday = birthday,
+                        section = section, 
+                        cpnumber = cpnumber,
+                        civil = civil,
+                        nationality = nationality,
+                        nfather = nfather,
+                        foccupation = foccupation,
+                        nmother = nmother,
+                        moccupation = moccupation,
+                        pcontact = pcontact,
+                        nguardian = nguardian,
+                        gcontact = gcontact,
+                        sickness = sickness,
+                        field = field,
+                        platoons = platoons,
+                        note = note,
+                        status = '',
+                        first_sem = '',
+                        second_sem= '',
+                        approved_by = approved_by,
+                        date_declined = date_declined,
+                        
+                    
+                    )
+                    
+                return redirect('/rotc_dropped')
+                
+        else:
+            messages.info(request,  str(platoons) + ' platoon has reached the maximum number of students')
+            
+        
+        # return redirect('/manage_section')
+            return redirect(request.META['HTTP_REFERER'])
+    return redirect('/rotc_dropped')
