@@ -208,7 +208,7 @@
                             <div class="form-group">
 
                                 {% if user.first_sem == '' %}
-                                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal1" title="Enroll">Enroll Now</button><br> {% elif user.first_sem == 'PENDING' %}
+                                <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">Enrollment is Not Yet Open</h5> {% elif user.first_sem == 'PENDING' %}
                                 <h5 style="font-weight: bolder; color:orange;">{{user.first_sem}} <i class="fa-regular fa-clock"></i></h5>
                                 {% elif user.first_sem == 'REJECTED' %}
                                 <h5 style="font-weight: bolder; color:rgb(207, 0, 0);">{{user.first_sem}} <i class="fa-regular fa-circle-xmark"></i></h5>
