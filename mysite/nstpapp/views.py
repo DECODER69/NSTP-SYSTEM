@@ -1256,7 +1256,7 @@ def cwts_generate(request):
         years = request.POST.get('years')
         sys1 = school_year.objects.filter(years=years)
         section = request.POST.get('section')
-        details = certification.objects.all()
+        details = cwts_certification.objects.all()
         yyy =  extenduser.objects.filter(s_year=years).filter(status='GRADUATE')
         namess = extenduser.objects.filter(s_year=years).filter(status='GRADUATE').filter(field='CWTS')
         print(section)

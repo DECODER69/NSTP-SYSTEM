@@ -216,7 +216,6 @@
     font-weight: bold;
     justify-content: space-between;
     display: flex;
-
     margin: auto;
 }
 
@@ -233,9 +232,10 @@
 
 .bot {
     width: 90%;
-    margin-top: 100px;
     justify-content: space-between;
     display: flex;
+    margin: auto;
+    margin-top: 100px !important;
 }
 
 .comm {
