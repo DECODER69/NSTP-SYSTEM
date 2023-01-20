@@ -57,24 +57,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class="adda">
-                            <form action="{% url 'activities:download' %}" method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{getSection}}" name="cate">
-                                <button class="btn btn-success" type="submit" style="width: 100%;" id="dl"><i class='bx bxs-download' ></i> Download List</button>
-                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
-                            </form>
-                            <form action="{% url 'activities:add_students' %}" method="POST" target="_new">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{getSection}}" name="platoon">
-                                <button class="btn btn-success" type="submit" style="width: 100%;" id="adds"><i class='bx bx-plus'></i> Export</button>
-                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
-                            </form>
 
-
-
-
-                        </div>
 
 
                     </div>

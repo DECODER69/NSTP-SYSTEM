@@ -53,21 +53,7 @@
                             </p>
                         </div>
 
-                        <div class="adda">
-                            <form action="{% url 'activities:download4' %}" method="POST" id="dd">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{getSection}}" name="cate">
-                                <button class="btn btn-success" type="submit" id="dl"><i class='bx bxs-download' ></i> Download List</button>
-                                <!-- <a href="{% url 'activities:add_students' %}" class="btn btn-success" style="width: 100%;" target="_blank">Add Student</a> -->
-                            </form>
-
-
-
-
-                            <!-- <button type="button" onclick="calculate()" class="btn btn-success" id="calc"><i class='bx bx-calculator' ></i> Calculate</button> -->
-
-                        </div>
-
+                       
 
                     </div>
                     <div class="reports">
